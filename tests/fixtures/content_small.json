@@ -1,0 +1,50 @@
+{
+  "version": "test-1",
+  "subjects": [
+    {
+      "id": "812",
+      "name": "植物生理学",
+      "score": 150,
+      "has_content": true,
+      "chapters": [
+        {
+          "id": "812-01",
+          "name": "第一章 植物细胞",
+          "tier": 3,
+          "weight_center": 6,
+          "weight_range": [3, 10],
+          "points": [
+            {"id": "812-01-01", "text": "细胞壁的功能", "spoken": "细胞壁的功能", "tags": ["基础"], "listen_ok": true, "media": [], "audio": []},
+            {"id": "812-01-02", "text": "胞间连丝", "spoken": "胞间连丝", "tags": [], "listen_ok": true, "media": [], "audio": []}
+          ],
+          "quiz": [
+            {"id": "q8120101", "stem": "下列不属于细胞壁成分的是？", "media": [], "options": ["纤维素", "果胶", "木质素", "血红蛋白"], "answer": 3, "explain": "血红蛋白是动物蛋白。", "point_id": "812-01-01"}
+          ],
+          "cards": [
+            {"id": "c8120101", "front": "名词解释：胞间连丝", "back": "相邻细胞间物质运输与信息传递的通道。", "point_id": "812-01-02", "media": []}
+          ]
+        },
+        {
+          "id": "812-04",
+          "name": "第四章 植物的光合作用",
+          "tier": 1,
+          "weight_center": 23,
+          "weight_range": [16, 28],
+          "points": [
+            {"id": "812-04-01", "text": "光合作用的意义", "spoken": "光合作用的意义", "tags": ["基础"], "listen_ok": true, "media": [], "audio": [{"src": "audio/812-04-01.mp3", "dur": 42}]},
+            {"id": "812-04-02", "text": "C3/C4/CAM 对比", "spoken": "三条途径对比", "tags": ["易错"], "listen_ok": true, "media": [], "audio": [{"src": "audio/812-04-02-p1.mp3", "dur": 55}, {"src": "audio/812-04-02-p2.mp3", "dur": 30}]}
+          ],
+          "quiz": [],
+          "cards": []
+        }
+      ]
+    },
+    {
+      "id": "204",
+      "name": "英语（二）",
+      "score": 100,
+      "has_content": false,
+      "chapters": []
+    }
+  ]
+}
