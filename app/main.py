@@ -37,4 +37,6 @@ def health():
 _content_dir = pathlib.Path(get_settings().content_dir)
 app.mount("/audio", StaticFiles(directory=_content_dir / "audio", check_dir=False), name="audio")
 app.mount("/media", StaticFiles(directory=_content_dir / "media", check_dir=False), name="media")
+app.mount("/media-private", StaticFiles(directory=_content_dir / "media-private", check_dir=False),
+          name="media-private")
 app.mount("/", StaticFiles(directory=WEB_DIR, html=True), name="web")

@@ -10,3 +10,5 @@ private-media/
 content/audio/
 *.pdf
 .DS_Store
+.build_*.log
+content/media-private/

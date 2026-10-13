@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "127.0.0.1:8000:8000"   # 仅本机暴露，由宝塔 Nginx 反代
+    volumes:
+      - ./data:/app/data                  # SQLite（备份这个目录）
+      - ./content:/app/content            # 内容+音频（gen_audio 回填 content.json 需整目录挂载）
+      - ./content/media-private:/app/content/media-private  # 教材裁图（可选）

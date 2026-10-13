@@ -1,0 +1,13 @@
+.venv
+.git
+data
+dist
+private-media
+content/audio
+tests
+docs
+.superpowers
+__pycache__
+*.pyc
+*.pdf
+.env
