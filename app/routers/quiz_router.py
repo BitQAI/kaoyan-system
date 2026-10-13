@@ -86,7 +86,8 @@ def quiz_run(mode: Literal["chapter", "wrong", "favorites"], chapter: str | None
              n: int = 15, con: sqlite3.Connection = Depends(db.get_db)):
     data = content.load_content()
     if mode == "chapter":
-        items = [q for _, ch in content.iter_chapters(data) if ch["id"] == chapter
+        items = [q for _, ch in content.iter_chapters(data)
+                 if (chapter is None or ch["id"] == chapter)
                  for q in ch.get("quiz", [])]
     elif mode == "wrong":
         ids = {r["quiz_id"] for r in con.execute(

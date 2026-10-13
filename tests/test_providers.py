@@ -34,12 +34,12 @@ def test_stream_chat_parses_sse(monkeypatch):
         def raise_for_status(self):
             pass
 
-        def iter_lines(self, decode_unicode=True):
-            yield 'data: {"choices":[{"delta":{"reasoning_content":"想一下"}}]}'
-            yield ""
-            yield 'data: {"choices":[{"delta":{"content":"水势是"}}]}'
-            yield 'data: {"choices":[{"delta":{"content":"化学势差。"}}]}'
-            yield "data: [DONE]"
+        def iter_lines(self, decode_unicode=False):
+            yield 'data: {"choices":[{"delta":{"reasoning_content":"想一下"}}]}'.encode()
+            yield b""
+            yield 'data: {"choices":[{"delta":{"content":"水势是"}}]}'.encode()
+            yield 'data: {"choices":[{"delta":{"content":"化学势差。"}}]}'.encode()
+            yield b"data: [DONE]"
 
     captured = {}
 
@@ -73,9 +73,9 @@ def test_stream_chat_bailian_no_session_header(monkeypatch):
         def raise_for_status(self):
             pass
 
-        def iter_lines(self, decode_unicode=True):
-            yield 'data: {"choices":[{"delta":{"content":"ok"}}]}'
-            yield "data: [DONE]"
+        def iter_lines(self, decode_unicode=False):
+            yield 'data: {"choices":[{"delta":{"content":"ok"}}]}'.encode()
+            yield b"data: [DONE]"
 
     captured = {}
 

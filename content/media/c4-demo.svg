@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="110" viewBox="0 0 260 110">
+  <rect x="12" y="40" width="70" height="30" rx="7" fill="#eaf8f1" stroke="#11845b" stroke-width="2"/>
+  <text x="22" y="60" font-size="12" fill="#11845b">叶肉细胞</text>
+  <rect x="176" y="40" width="72" height="30" rx="7" fill="#edf3ff" stroke="#2457d6" stroke-width="2"/>
+  <text x="185" y="60" font-size="12" fill="#2457d6">维管束鞘</text>
+  <path d="M84 55 H172" stroke="#b96a00" stroke-width="2.5" marker-end="url(#a)"/>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#b96a00"/></marker></defs>
+  <text x="92" y="46" font-size="11" fill="#b96a00">C4 化合物（草酰乙酸）</text>
+  <text x="12" y="95" font-size="11" fill="#687386">PEPC 固定 CO₂ → 鞘细胞内释放 → 卡尔文循环</text>
+</svg>

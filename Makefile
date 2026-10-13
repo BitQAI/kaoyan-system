@@ -4,7 +4,7 @@ test:
 	$(PY) -m pytest -q
 
 dev:
-	.venv/bin/uvicorn app.main:app --reload --port 8000
+	.venv/bin/uvicorn app.main:app --reload --port 8010
 
 content:
 	$(PY) scripts/parse_content.py --subject 812 --subject 315 --subject 101

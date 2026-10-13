@@ -52,7 +52,9 @@ def stream_chat(messages: list[dict], session_id: str, settings, timeout: int = 
         timeout=timeout,
     )
     resp.raise_for_status()
-    for line in resp.iter_lines(decode_unicode=True):
+    for raw in resp.iter_lines(decode_unicode=False):
+        # SSE 响应常无 charset，requests 会按 latin-1 解码破坏中文；这里显式 UTF-8
+        line = raw.decode("utf-8", errors="replace")
         if not line or not line.startswith("data:"):
             continue
         payload = line[5:].strip()

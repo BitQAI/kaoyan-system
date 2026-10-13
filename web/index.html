@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>考研陪跑</title>
+<meta name="theme-color" content="#2457d6">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="stylesheet" href="/app.css">
+<link rel="stylesheet" href="/vendor/katex/katex.min.css">
+<script defer src="/vendor/katex/katex.min.js"></script>
+<script defer src="/vendor/katex/mhchem.min.js"></script>
+</head>
+<body>
+<!-- 登录屏 -->
+<div id="login-screen" class="login hidden">
+  <div class="login-box">
+    <h1>考研陪跑</h1>
+    <p class="small">个人学习系统 · 单密码登录</p>
+    <input id="login-pw" type="password" placeholder="输入密码" autocomplete="current-password">
+    <button id="login-btn" class="btn">登 录</button>
+    <p class="small err" id="login-err"></p>
+  </div>
+</div>
+
+<!-- 主应用 -->
+<div id="app" class="phone hidden">
+  <div class="topbar">
+    <h1>考研陪跑 <span class="days" id="days">–</span></h1>
+  </div>
+
+  <section class="screen on" id="s-today">
+    <div class="card" id="boot-error" style="display:none">
+      <h3>加载失败</h3>
+      <p class="small" id="boot-error-msg"></p>
+      <button class="btn" onclick="location.reload()">重试</button>
+    </div>
+    <div class="card">
+      <h3>今日听单 <span class="small" id="listen-meta"></span></h3>
+      <div id="listen-list"></div>
+    </div>
+    <div class="card">
+      <h3>今晚任务 <span class="small">晚间集中</span></h3>
+      <div id="evening-tasks"></div>
+    </div>
+    <div class="card">
+      <h3>四科进度 <span class="small">加权完成度</span></h3>
+      <div class="rings" id="rings"></div>
+      <p class="small" id="streak-line" style="margin:10px 0 0"></p>
+    </div>
+  </section>
+
+  <section class="screen" id="s-listen">
+    <div class="player" id="player">
+      <div class="ctx" id="p-ctx">未选择音频</div>
+      <div class="unit" id="p-title">—</div>
+      <div class="bar"><i id="p-fill" style="width:0%"></i></div>
+      <div class="timeline"><span id="p-cur">0:00</span><span id="p-dur">0:00</span></div>
+      <div class="pctl">
+        <button onclick="window.kyPlayer.seek(-15)" title="回退15秒">-15s</button>
+        <button class="main" id="p-play" onclick="window.kyPlayer.toggle()">▶</button>
+        <button onclick="window.kyPlayer.seek(15)" title="前进15秒">+15s</button>
+        <button id="p-rate" onclick="window.kyPlayer.cycleRate(this)" title="倍速">1.0x</button>
+        <button id="p-loop" onclick="window.kyPlayer.toggleLoop(this)" title="单段循环">↻</button>
+      </div>
+    </div>
+    <div class="seg">
+      <button class="on" id="q-plan" onclick="window.kyPlayer.setQueue('plan')">按计划</button>
+      <button id="q-chapter" onclick="window.kyPlayer.setQueue('chapter')">按章节</button>
+      <button id="q-fav" onclick="window.kyPlayer.setQueue('fav')">我的收藏</button>
+    </div>
+    <div class="card"><h3 id="queue-title">播放队列 <span class="small" id="queue-meta"></span></h3>
+      <div id="queue-list"></div>
+    </div>
+  </section>
+  <section class="screen" id="s-look">
+    <div class="seg" id="look-seg"></div>
+    <div id="look-chapters"></div>
+    <div id="look-detail" class="hidden"></div>
+  </section>
+  <section class="screen" id="s-test">
+    <div class="card"><h3>训练库 <span class="small" id="wrong-count"></span></h3>
+      <div id="test-modes"></div></div>
+    <div id="quiz-run"></div>
+    <div class="card"><h3>背题卡 · 名词解释</h3><div id="card-box"></div></div>
+  </section>
+  <section class="screen" id="s-me">
+    <div class="card"><h3>进度总览 <span class="small">加权 / 原始</span></h3>
+      <div id="me-progress"></div></div>
+    <div class="card"><h3>AI 对话历史 <span class="small">按知识点 / 题目分组</span></h3>
+      <div id="me-threads"></div></div>
+    <div class="card"><h3>设置</h3><div id="me-settings"></div></div>
+    <div class="card"><h3>账号</h3><div id="me-pwd"></div></div>
+  </section>
+
+  <nav class="tabbar">
+    <button class="on" data-tab="today" onclick="window.kyGo('today')"><span class="ic">今</span>今日</button>
+    <button data-tab="listen" onclick="window.kyGo('listen')"><span class="ic">听</span>听</button>
+    <button data-tab="look" onclick="window.kyGo('look')"><span class="ic">看</span>看</button>
+    <button data-tab="test" onclick="window.kyGo('test')"><span class="ic">测</span>测</button>
+    <button data-tab="me" onclick="window.kyGo('me')"><span class="ic">我</span>我的</button>
+  </nav>
+</div>
+
+<!-- AI 抽屉 -->
+<div class="mask" id="mask"></div>
+<div class="ai" id="ai">
+  <header>
+    <div><b id="ai-title">问 AI</b><div class="ctx" id="ai-ctx">对话记录自动按知识点归档</div></div>
+    <button class="btn sm ghost" onclick="window.kyAI.close()">收起</button>
+  </header>
+  <div class="chat" id="chat"></div>
+  <div class="qchips" id="ai-qchips">
+    <button>讲简单点</button><button>举个例子</button><button>按考试答题格式给标准答案</button>
+    <button>出 2 道相关的题</button><button>我错在哪</button>
+  </div>
+  <div class="input">
+    <input id="ai-input" placeholder="针对当前知识点提问…">
+    <button class="btn" id="ai-send">发送</button>
+  </div>
+</div>
+
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>
