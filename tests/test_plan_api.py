@@ -49,6 +49,30 @@ def test_plan_today_and_stats(tmp_path, monkeypatch):
     _teardown()
 
 
+def test_plan_today_reviews_fields(tmp_path, monkeypatch):
+    _boot(tmp_path, monkeypatch)
+    from fastapi.testclient import TestClient
+
+    from app.main import app
+
+    with TestClient(app) as c:
+        c.post("/api/login", json={"password": "pw"})
+        assert c.get("/api/plan/today").json()["reviews_due"] == 0
+        c.post("/api/progress", json={"point_id": "812-04-01", "state": "half"})
+        # half 建档 due=+1 天 → 今天不 due；把 due 改到今天验证到期路径
+        from app import db
+
+        con = db.connect()
+        con.execute("UPDATE reviews SET due_date = date('now', 'localtime')")
+        con.commit()
+        con.close()
+        body = c.get("/api/plan/today").json()
+        assert body["reviews_due"] == 1
+        assert body["review_points"] == ["812-04-01"]
+        assert body["plan"]["look"][0] == "812-04-01"
+    _teardown()
+
+
 def test_settings_roundtrip(tmp_path, monkeypatch):
     _boot(tmp_path, monkeypatch)
     from fastapi.testclient import TestClient

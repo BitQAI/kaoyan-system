@@ -28,6 +28,44 @@ def _teardown():
     get_settings.cache_clear()
 
 
+def test_attempt_multi_and_blank_shapes(tmp_path, monkeypatch):
+    """新题型 API：multi 全对才得分；blank 归一化匹配。"""
+    import json as _json
+
+    _boot(tmp_path, monkeypatch)
+    # 向测试 content 注入 multi / blank 两题
+    cpath = tmp_path / "content" / "content.json"
+    data = _json.loads(cpath.read_text(encoding="utf-8"))
+    ch = data["subjects"][0]["chapters"][0]
+    ch["quiz"].extend([
+        {"id": "q81201m1", "chapter": "812-01", "point_id": "812-01-01", "type": "multi",
+         "stem": "关于细胞壁，正确的有？", "options": ["含纤维素", "含血红蛋白", "支持保护", "仅细菌有"],
+         "answer": [0, 2], "explain": "纤维素+支持保护正确。"},
+        {"id": "q81201b1", "chapter": "812-01", "point_id": "812-01-01", "type": "blank",
+         "stem": "水势组成式 Ψw=Ψs+Ψp+____，填入第三项。",
+         "blanks": [{"accept": ["Ψm", "Ψ_m", "衬质势"]}], "explain": "衬质势 Ψm。"},
+    ])
+    cpath.write_text(_json.dumps(data, ensure_ascii=False), encoding="utf-8")
+    from app import content as content_mod
+
+    content_mod.reset_cache()
+    from fastapi.testclient import TestClient
+
+    from app.main import app
+
+    with TestClient(app) as c:
+        c.post("/api/login", json={"password": "pw"})
+        r = c.post("/api/quiz/attempt", json={"quiz_id": "q81201m1", "response": [2, 0]})
+        assert r.json()["correct"] is True
+        r = c.post("/api/quiz/attempt", json={"quiz_id": "q81201m1", "response": [0]})
+        assert r.json()["correct"] is False
+        r = c.post("/api/quiz/attempt", json={"quiz_id": "q81201b1", "response": ["Ψ_m"]})
+        assert r.json()["correct"] is True
+        r = c.post("/api/quiz/attempt", json={"quiz_id": "q81201b1", "response": ["Ksp"]})
+        assert r.json()["correct"] is False
+    _teardown()
+
+
 def test_attempt_wrong_then_resolve(tmp_path, monkeypatch):
     _boot(tmp_path, monkeypatch)
     from fastapi.testclient import TestClient

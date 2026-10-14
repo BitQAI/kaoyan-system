@@ -43,6 +43,14 @@ def find_card(content: dict, card_id: str):
     return None
 
 
+def quiz_chapter_map(content: dict) -> dict:
+    out = {}
+    for _, chap in iter_chapters(content):
+        for q in chap.get("quiz", []):
+            out[q["id"]] = chap["id"]
+    return out
+
+
 def find_point(content: dict, point_id: str):
     for subj, chap in iter_chapters(content):
         for p in chap.get("points", []):

@@ -37,12 +37,27 @@ def check(content: dict, content_dir: pathlib.Path | None = None) -> list[str]:
                 errors.append(f"{ch['id']} 题目缺少 id")
             if not q.get("stem"):
                 errors.append(f"{qid} 缺少题干")
-            opts = q.get("options") or []
-            if len(opts) < 2:
-                errors.append(f"{qid} 选项不足")
-            ans = q.get("answer")
-            if not isinstance(ans, int) or not (0 <= ans < len(opts)):
-                errors.append(f"{qid} answer 越界: {ans}")
+            qtype = q.get("type", "single")
+            if qtype not in ("single", "multi", "blank"):
+                errors.append(f"{qid} 未知题型: {qtype}")
+            elif qtype == "blank":
+                blanks = q.get("blanks") or []
+                if not blanks:
+                    errors.append(f"{qid} 填空缺少 blanks")
+                for b in blanks:
+                    if not (b.get("accept") or []):
+                        errors.append(f"{qid} 填空 accept 为空")
+            else:
+                opts = q.get("options") or []
+                if len(opts) < 2:
+                    errors.append(f"{qid} 选项不足")
+                ans = q.get("answer")
+                if qtype == "multi":
+                    if not isinstance(ans, list) or not ans or len(set(ans)) != len(ans) \
+                            or any(not isinstance(a, int) or not (0 <= a < len(opts)) for a in ans):
+                        errors.append(f"{qid} multi answer 非法: {ans}")
+                elif not isinstance(ans, int) or not (0 <= ans < len(opts)):
+                    errors.append(f"{qid} answer 越界: {ans}")
             if not q.get("explain"):
                 errors.append(f"{qid} 缺少解析")
             pid = q.get("point_id")

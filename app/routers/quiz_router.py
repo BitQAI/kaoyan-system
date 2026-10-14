@@ -1,4 +1,5 @@
 import datetime
+import json
 import random
 import sqlite3
 from typing import Literal
@@ -7,7 +8,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app import auth, content, db
-from app.services import wrongbook
+from app.services import quiz_grader, review_engine, wrongbook
 
 router = APIRouter(prefix="/api", dependencies=[Depends(auth.require_auth)])
 
@@ -41,7 +42,8 @@ def _bump_daily(con, col: str, n: int = 1) -> None:
 
 class AttemptBody(BaseModel):
     quiz_id: str
-    chosen: int
+    chosen: int | None = None      # 旧形状（单选中标）
+    response: object = None        # 新形状：single=int / multi=list[int] / blank=list[str]
 
 
 class CardReviewBody(BaseModel):
@@ -55,15 +57,21 @@ def attempt(body: AttemptBody, con: sqlite3.Connection = Depends(db.get_db)):
     if not found:
         raise HTTPException(status_code=404, detail="quiz_not_found")
     _, _, quiz = found
-    correct = body.chosen == quiz["answer"]
-    con.execute("INSERT INTO quiz_attempts(quiz_id, chosen, correct, ts) VALUES(?,?,?,?)",
-                (body.quiz_id, body.chosen, int(correct), _now()))
+    resp = body.response if body.response is not None else body.chosen
+    result = quiz_grader.grade(quiz, resp)
+    correct = result["correct"]
+    chosen_int = resp if isinstance(resp, int) else None
+    con.execute("INSERT INTO quiz_attempts(quiz_id, chosen, correct, ts, response) VALUES(?,?,?,?,?)",
+                (body.quiz_id, chosen_int, int(correct), _now(),
+                 json.dumps(resp, ensure_ascii=False)))
     new_state = wrongbook.apply_attempt(_wb_row(con, body.quiz_id), correct, _now())
     if new_state is not None:
         _wb_upsert(con, body.quiz_id, new_state)
+    if not correct and quiz.get("point_id"):
+        review_engine.schedule(con, quiz["point_id"])
     _bump_daily(con, "quiz_n")
     con.commit()
-    return {"correct": correct, "explain": quiz.get("explain", ""), "answer": quiz["answer"]}
+    return {"correct": correct, "explain": quiz.get("explain", ""), "answer": result["answer"]}
 
 
 @router.get("/quiz/wrong")
@@ -114,6 +122,7 @@ def card_review(body: CardReviewBody, con: sqlite3.Connection = Depends(db.get_d
             "INSERT INTO progress(point_id, state, updated_at) VALUES(?,?,?) "
             "ON CONFLICT(point_id) DO UPDATE SET state=excluded.state, updated_at=excluded.updated_at",
             (point_id, state, _now()))
+        review_engine.on_state_change(con, point_id, state)
     _bump_daily(con, "cards")
     con.commit()
     return {"ok": True, "point_state": state}

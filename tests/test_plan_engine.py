@@ -33,6 +33,38 @@ def test_look_includes_half_and_new_by_weight():
     assert len(p["look"]) == 2
 
 
+def test_listen_prefers_chapter_clips_when_present():
+    content = {"subjects": [{"id": "x", "chapters": [{
+        "id": "x-01", "weight_center": 10, "points": [
+            {"id": "x-01-01", "media": [], "audio": [], "listen_ok": True},
+            {"id": "x-01-02", "media": [], "audio": [], "listen_ok": True}],
+        "listen": [{"src": "audio/x-01-c1.mp3", "dur": 40, "point_ids": ["x-01-01", "x-01-02"]},
+                   {"src": "audio/x-01-c2.mp3", "dur": 30, "point_ids": ["x-01-02"]}],
+        "quiz": [], "cards": []}]}]}
+    p = plan_engine.build_plan(content, {}, wrong_ids=set(),
+                               cfg={"listen_minutes": 5, "look_n": 0, "quiz_n": 0})
+    assert p["listen"] == ["x-01-c1", "x-01-c2"]
+
+
+def test_listen_skips_fully_studied_chapter_clips():
+    content = {"subjects": [{"id": "x", "chapters": [{
+        "id": "x-01", "weight_center": 10,
+        "points": [{"id": "x-01-01", "media": [], "audio": [], "listen_ok": True}],
+        "listen": [{"src": "audio/x-01-c1.mp3", "dur": 40, "point_ids": ["x-01-01"]}],
+        "quiz": [], "cards": []}]}]}
+    p = plan_engine.build_plan(content, {"x-01-01": "known"}, wrong_ids=set(),
+                               cfg={"listen_minutes": 5, "look_n": 0, "quiz_n": 0})
+    assert p["listen"] == []
+
+
+def test_due_reviews_come_first_in_look():
+    p = plan_engine.build_plan(FIXTURE, {"812-04-01": "half"}, wrong_ids=set(),
+                               cfg={"listen_minutes": 0, "look_n": 2, "quiz_n": 0},
+                               due_review={"812-04-02"})
+    assert p["look"][0] == "812-04-02"
+    assert "812-04-01" in p["look"]
+
+
 def test_pace_counts_remaining_points():
     r = plan_engine.pace(FIXTURE, {"812-04-01": "known"}, days_left=60, done_today=0)
     assert r["remaining_points"] == 3           # 812 共 4 点，1 个 known

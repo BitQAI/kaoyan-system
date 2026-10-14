@@ -19,6 +19,10 @@ def connect(path: str | None = None) -> sqlite3.Connection:
 def init_db() -> None:
     con = connect()
     con.executescript(SCHEMA.read_text(encoding="utf-8"))
+    # 幂等迁移：老库补列（SQLite 无 IF NOT EXISTS ADD COLUMN）
+    cols = {r["name"] for r in con.execute("PRAGMA table_info(quiz_attempts)")}
+    if "response" not in cols:
+        con.execute("ALTER TABLE quiz_attempts ADD COLUMN response TEXT")
     con.commit()
     con.close()
 

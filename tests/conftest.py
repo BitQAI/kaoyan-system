@@ -6,6 +6,16 @@ import pytest
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 
+@pytest.fixture(autouse=True)
+def _reset_login_limiter():
+    """登录限速为进程级内存状态，测试间必须清零，防相互污染。"""
+    from app import auth
+
+    auth._fails.clear()
+    yield
+    auth._fails.clear()
+
+
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("KY_DB_PATH", str(tmp_path / "t.db"))

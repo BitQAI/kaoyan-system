@@ -4,7 +4,7 @@ import sqlite3
 from fastapi import APIRouter, Depends
 
 from app import auth, content, db, settings_store
-from app.services import plan_engine, progress_engine
+from app.services import plan_engine, progress_engine, review_engine
 
 router = APIRouter(prefix="/api", dependencies=[Depends(auth.require_auth)])
 
@@ -43,11 +43,14 @@ def plan_today(con: sqlite3.Connection = Depends(db.get_db)):
     logs = [dict(r) for r in con.execute(
         "SELECT date, listen_sec, clips, cards, quiz_n FROM daily_log "
         "ORDER BY date DESC LIMIT 30")]
+    due = review_engine.due_points(con)
     return {
         "days_left": dl,
-        "plan": plan_engine.build_plan(data, states, _wrong_ids(con), cfg),
+        "plan": plan_engine.build_plan(data, states, _wrong_ids(con), cfg, due_review=set(due)),
         "pace": plan_engine.pace(data, states, days_left=dl, done_today=done_today),
         "logs_30d": logs,
+        "reviews_due": len(due),
+        "review_points": due[:50],
     }
 
 

@@ -12,6 +12,29 @@ from app.config import get_settings
 COOKIE = "ky_session"
 SCRYPT_N, SCRYPT_R, SCRYPT_P = 2 ** 14, 8, 1
 
+# ---- 登录失败限速（进程级内存，单进程个人应用足够）----
+_FAIL_WINDOW = 900          # 15 分钟
+_MAX_FAILS = 5
+_fails: dict[str, list[float]] = {}
+
+
+def login_allowed(ip: str, now: float | None = None) -> int:
+    """允许返回 0；被锁返回还需等待的秒数（并顺带清理过期记录）。"""
+    t = now if now is not None else time.time()
+    arr = [x for x in _fails.get(ip, []) if t - x < _FAIL_WINDOW]
+    _fails[ip] = arr
+    if len(arr) >= _MAX_FAILS:
+        return int(_FAIL_WINDOW - (t - arr[0])) + 1
+    return 0
+
+
+def record_login_fail(ip: str, now: float | None = None) -> None:
+    _fails.setdefault(ip, []).append(now if now is not None else time.time())
+
+
+def clear_login_fails(ip: str) -> None:
+    _fails.pop(ip, None)
+
 
 def hash_password(pw: str) -> str:
     salt = os.urandom(16)

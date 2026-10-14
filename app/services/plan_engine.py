@@ -28,7 +28,8 @@ def _chapter_score(chap: dict, states: dict) -> float:
     return chap.get("weight_center", 0) * (1 - comp)
 
 
-def build_plan(content: dict, states: dict, wrong_ids: set, cfg: dict) -> dict:
+def build_plan(content: dict, states: dict, wrong_ids: set, cfg: dict,
+               due_review: set | None = None) -> dict:
     listen_minutes = cfg.get("listen_minutes", 40)
     look_n = cfg.get("look_n", 8)
     quiz_n = cfg.get("quiz_n", 15)
@@ -38,7 +39,20 @@ def build_plan(content: dict, states: dict, wrong_ids: set, cfg: dict) -> dict:
                       key=lambda cs: -_chapter_score(cs[0], states))
 
     listen, secs, budget = [], 0, listen_minutes * 60
+    listen_point_ids: set[str] = set()
     for chap, _ in chapters:
+        if secs >= budget:
+            break
+        clips = chap.get("listen") or []
+        if clips:
+            pts = chap.get("points", [])
+            if not pts or all(states.get(p["id"], "new") not in ("new", None) for p in pts):
+                continue                              # 整章已开过（任意非 new）
+            for c in clips:
+                listen.append(clip_id_of(c))
+                secs += c.get("dur", 0)
+                listen_point_ids.update(c.get("point_ids", []))
+            continue
         for p in chap.get("points", []):
             if secs >= budget:
                 break
@@ -51,18 +65,28 @@ def build_plan(content: dict, states: dict, wrong_ids: set, cfg: dict) -> dict:
             for a in p["audio"]:
                 listen.append(clip_id_of(a))
                 secs += a.get("dur", 0)
-    listened_points = {cid.rsplit("-p", 1)[0] if "-p" in cid[-4:] else cid for cid in listen}
+            listen_point_ids.add(p["id"])
 
     wrong_points = {q["point_id"] for s in content.get("subjects", [])
                     for c in s.get("chapters", []) for q in c.get("quiz", [])
                     if q["id"] in wrong_ids and q.get("point_id")}
+
+    # look：到期复习最先（按章权重降序）→ 常规复习候选 → 新点补足
+    weight_of = {p["id"]: chap.get("weight_center", 0)
+                 for chap, _ in chapters for p in chap.get("points", [])}
+    look: list[str] = []
+    for pid in sorted(due_review or set(), key=lambda x: -weight_of.get(x, 0)):
+        if pid not in look:
+            look.append(pid)
     review_candidates = [(chap, p) for _, chap, p in _iter_points(content)
                          if states.get(p["id"]) in ("half", "review") or p["id"] in wrong_points]
     review_candidates.sort(key=lambda cp: -cp[0].get("weight_center", 0))
-    look = [p["id"] for _, p in review_candidates]
+    for _, p in review_candidates:
+        if p["id"] not in look:
+            look.append(p["id"])
     if len(look) < look_n:
         fresh = [(chap, p) for _, chap, p in _iter_points(content)
-                 if states.get(p["id"], "new") in ("new", None) and p["id"] not in listened_points]
+                 if states.get(p["id"], "new") in ("new", None) and p["id"] not in listen_point_ids]
         fresh.sort(key=lambda cp: -cp[0].get("weight_center", 0))
         for _, p in fresh:
             if len(look) >= look_n:
@@ -72,7 +96,7 @@ def build_plan(content: dict, states: dict, wrong_ids: set, cfg: dict) -> dict:
     look = look[:look_n]
 
     today_chapters = {chap["id"] for _, chap, p in _iter_points(content)
-                      if p["id"] in set(look) | listened_points}
+                      if p["id"] in set(look) | listen_point_ids}
     quiz = [q for s in content.get("subjects", []) for c in s.get("chapters", [])
             if c["id"] in today_chapters for q in c.get("quiz", [])]
     wrong_quiz = [q for s in content.get("subjects", []) for c in s.get("chapters", [])

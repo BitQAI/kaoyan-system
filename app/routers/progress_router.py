@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
 from app import auth, content, db
-from app.services import progress_engine
+from app.services import progress_engine, review_engine
 
 router = APIRouter(prefix="/api", dependencies=[Depends(auth.require_auth)])
 
@@ -47,4 +47,5 @@ def set_progress(body: ProgressBody, con: sqlite3.Connection = Depends(db.get_db
             (body.point_id, body.state, _now()),
         )
     con.commit()
+    review_engine.on_state_change(con, body.point_id, body.state)
     return {"ok": True}

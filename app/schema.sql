@@ -12,11 +12,12 @@ CREATE TABLE IF NOT EXISTS audio_pos (
 );
 
 CREATE TABLE IF NOT EXISTS quiz_attempts (
-  id      INTEGER PRIMARY KEY AUTOINCREMENT,
-  quiz_id TEXT NOT NULL,
-  chosen  INTEGER NOT NULL,
-  correct INTEGER NOT NULL,
-  ts      TEXT NOT NULL
+  id       INTEGER PRIMARY KEY AUTOINCREMENT,
+  quiz_id  TEXT NOT NULL,
+  chosen   INTEGER,
+  correct  INTEGER NOT NULL,
+  ts       TEXT NOT NULL,
+  response TEXT
 );
 
 CREATE TABLE IF NOT EXISTS wrong_book (
@@ -63,4 +64,22 @@ CREATE TABLE IF NOT EXISTS daily_log (
 CREATE TABLE IF NOT EXISTS settings (
   k TEXT PRIMARY KEY,
   v TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS reviews (
+  point_id   TEXT PRIMARY KEY,
+  stage      INTEGER NOT NULL DEFAULT 0,
+  due_date   TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS exam_runs (
+  id          TEXT PRIMARY KEY,
+  subject     TEXT NOT NULL,
+  kind        TEXT NOT NULL,
+  started_at  TEXT NOT NULL,
+  finished_at TEXT,
+  detail_json TEXT NOT NULL,
+  score       REAL,
+  total       REAL
 );
