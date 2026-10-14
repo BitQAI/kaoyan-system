@@ -15,6 +15,7 @@ export async function renderLook() {
   if (!state.states) {
     const d = await get('/api/progress').catch(() => ({ states: {}, reports: [] }));
     state.states = d.states || {};
+    state.unitStates = d.unit_states || {};
     state.reports = d.reports || [];
   }
   if (!state.favoritesLoaded) {
@@ -247,15 +248,40 @@ function examBody(p) {
 
 function noteBody(p) {
   if (p.units && p.units.length) {
-    const items = p.units.map((u) => `<li>${u}</li>`).join('');
+    const us = state.unitStates || {};
+    const items = p.units.map((u, i) => {
+      const cur = CYCLE.find((c) => c.s === (us[`${p.id}#${i}`] || 'new')) || CYCLE[0];
+      return `<li><span class="utext">${u}</span>
+        <button class="chip ustate ${cur.cls}" title="标记本条掌握程度"
+          onclick="event.stopPropagation(); window.kyLook.unitCycle('${p.id}', ${i}, this)">${cur.label}</button></li>`;
+    }).join('');
     const raw = p.note
       ? `<details class="notebox"><summary>查看完整原文</summary><p class="ptext">${p.note}</p></details>`
       : '';
-    return `<div class="units"><b>理解要点</b><ol>${items}</ol>${raw}</div>`;
+    return `<div class="units"><b>理解要点 <span class="small">逐条标记</span></b><ol>${items}</ol>${raw}</div>`;
   }
   if (!p.note) return '';
   return `<details class="notebox"><summary>展开理解（${p.note.length} 字）</summary>
     <p class="ptext">${p.note}</p></details>`;
+}
+
+/** 细项（知识单元）状态轮转；服务端据此汇总考点状态。 */
+async function unitCycle(pid, idx, btn) {
+  const key = `${pid}#${idx}`;
+  state.unitStates = state.unitStates || {};
+  const cur = state.unitStates[key] || 'new';
+  const i = CYCLE.findIndex((c) => c.s === cur);
+  const next = CYCLE[(i + 1) % CYCLE.length];
+  state.unitStates[key] = next.s;
+  btn.className = 'chip ustate ' + next.cls;
+  btn.textContent = next.label;
+  const r = await post('/api/unit_progress', { point_id: pid, idx, state: next.s }).catch(() => null);
+  if (r && r.point_state) {
+    state.states[pid] = r.point_state;
+    const pc = CYCLE.find((c) => c.s === r.point_state) || CYCLE[0];
+    const rowBtn = document.querySelector(`#pt-${pid} > button.chip`);
+    if (rowBtn) { rowBtn.className = 'chip ' + pc.cls; rowBtn.textContent = pc.label; }
+  }
 }
 
 function renderTex(root) {
@@ -315,6 +341,7 @@ export const kyLook = {
   cycle: cycleState,
   star: starPoint,
   downloadAsk,
+  unitCycle,
   toggle: togglePoint,
   expand: expandPoint,
   jumpTo,

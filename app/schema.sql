@@ -4,6 +4,15 @@ CREATE TABLE IF NOT EXISTS progress (
   updated_at TEXT NOT NULL
 );
 
+-- 细项进度：按考点内的知识单元序号记录（0 起）
+CREATE TABLE IF NOT EXISTS unit_progress (
+  point_id   TEXT NOT NULL,
+  idx        INTEGER NOT NULL,
+  state      TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  PRIMARY KEY (point_id, idx)
+);
+
 CREATE TABLE IF NOT EXISTS audio_pos (
   clip_id      TEXT PRIMARY KEY,
   position_sec REAL NOT NULL DEFAULT 0,

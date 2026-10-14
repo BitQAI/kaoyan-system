@@ -85,8 +85,11 @@ body{margin:0;background:#eef1f6;color:var(--text);font:14px/1.65 -apple-system,
 .units{margin:8px 0;border:1px solid var(--line);border-radius:10px;padding:9px 12px 10px;background:#fff}
 .units>b{display:block;font-size:11.5px;color:var(--brand);margin-bottom:6px}
 .units ol{margin:0;padding-left:0;list-style:none;counter-reset:u}
-.units li{position:relative;padding:6px 0 6px 24px;font-size:13px;line-height:1.7;border-top:1px dashed var(--line)}
+.units li{position:relative;display:flex;gap:8px;align-items:flex-start;
+  padding:6px 0 6px 24px;font-size:13px;line-height:1.7;border-top:1px dashed var(--line)}
 .units li:first-child{border-top:none}
+.utext{flex:1;min-width:0}
+.ustate{flex:none;margin-top:1px;font-size:10.5px;padding:1px 8px}
 .units li::before{counter-increment:u;content:counter(u);position:absolute;left:2px;top:7px;
   width:16px;height:16px;border-radius:50%;background:var(--soft);color:var(--brand);
   font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
