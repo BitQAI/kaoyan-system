@@ -1,5 +1,5 @@
 import { get } from './api.js';
-import { clipTitle, pointTitle, state, tagChips } from './state.js';
+import { clipTitle, pointTitle, state } from './state.js';
 
 const RING_COLORS = { 812: '#b33a3a', 315: '#b96a00', 101: '#2457d6', 204: '#11845b' };
 
@@ -25,13 +25,13 @@ export async function renderToday() {
   } else {
     listen.innerHTML = clips.slice(0, 6).map((cid) => {
       const hit = state.clipIndex.get(cid);
-      const tier = hit && hit.chap.tier ? `t${hit.chap.tier}` : 't3';
-      return `<div class="row"><span class="dot d${hit ? Math.min(hit.chap.tier || 3, 3) : 3}"></span>
-        <div class="t"><b>${clipTitle(cid)}</b><span class="small">
-        <span class="badge ${tier}">${hit ? hit.chap.name.slice(0, 10) : ''}</span>
-        ${hit ? tagChips(hit.point, 2) : ''}
-        ${hit && hit.clip.dur ? ' · ' + Math.round(hit.clip.dur) + 's' : ''}</span></div>
-        <button class="btn sm" onclick="window.kyGo('listen')">听</button></div>`;
+      const dur = hit && hit.clip.dur ? Math.round(hit.clip.dur) + 's' : '';
+      return `<div class="lrow" onclick="window.kyGo('listen')">
+        <span class="dot d${hit ? Math.min(hit.chap.tier || 3, 3) : 3}"></span>
+        <b class="lt">${clipTitle(cid)}</b>
+        <span class="lsmall">${hit ? hit.chap.name.slice(0, 8) : ''}</span>
+        <span class="lsmall">${dur}</span>
+        <span class="caret">›</span></div>`;
     }).join('');
   }
 

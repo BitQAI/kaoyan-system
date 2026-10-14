@@ -33,9 +33,24 @@ export async function loadContent(force = false) {
   return data;
 }
 
+/** 展示用短标题：去掉括号内的解释性罗列，兼容被切碎的续段与超长文本。 */
+export function shortTitle(text) {
+  const cap = (s) => (s.length > 26 ? s.slice(0, 26) + '…' : s);
+  let t = (text || '').trim();
+  const open = t.indexOf('（');
+  if (open >= 2) {
+    const head = t.slice(0, open).replace(/[，,、；;。：:]+$/, '');
+    if (head.length >= 2) return cap(head);
+  }
+  if (open < 0) {
+    t = t.replace(/）\s*$/, '');
+  }
+  return cap(t);
+}
+
 export function pointTitle(pointId) {
   const hit = state.pointIndex.get(pointId);
-  return hit ? hit.point.text.slice(0, 30) : pointId;
+  return hit ? shortTitle(hit.point.text) : pointId;
 }
 
 export function clipTitle(clipId) {
@@ -43,10 +58,10 @@ export function clipTitle(clipId) {
   if (!hit) return clipId;
   if (hit.isChapter) {
     const suffix = clipId.includes('-c') ? `（${clipId.split('-c')[1]}）` : '';
-    return hit.chap.name + ' · 考点串讲' + suffix;
+    return hit.chap.name + ' · 串讲' + suffix;
   }
   const part = clipId.includes('-p') ? `（${clipId.split('-p')[1]}）` : '';
-  return hit.point.text.slice(0, 26) + part;
+  return shortTitle(hit.point.text) + part;
 }
 
 const TAG_PRIORITY = ['易错', '常考', '高频', '必掌握', '重点', '基础', '机制', '理解', '了解'];

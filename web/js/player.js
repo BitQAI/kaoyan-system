@@ -1,5 +1,5 @@
 import { get, post } from './api.js';
-import { clipTitle, pointTitle, state, tagChips } from './state.js';
+import { clipTitle, pointTitle, state } from './state.js';
 
 const audio = new Audio();
 audio.preload = 'metadata';
@@ -186,14 +186,13 @@ function paintQueue() {
     const tier = hit && hit.chap.tier ? Math.min(hit.chap.tier, 3) : 3;
     const cur = cid === current() ? '<span class="chip g">当前</span>' : '';
     const done = posMap[cid] && posMap[cid].plays ? '<span class="small">✓</span>' : '';
-    const sub = hit && hit.isChapter
-      ? `<span class="small">整章串讲 · ${(hit.point_ids || []).length} 个考点 · ${fmt(hit.clip.dur)}</span>`
-      : `<span class="small">${hit ? tagChips(hit.point) : ''}${hit ? hit.chap.name.slice(0, 10) : ''} · ${fmt(hit && hit.clip.dur)}</span>`;
-    return `<div class="row" onclick="window.kyPlayer.playClip('${cid}')">
+    const dur = `<span class="lsmall">${fmt(hit && hit.clip.dur)}</span>`;
+    const kind = hit && hit.isChapter
+      ? `<span class="lsmall">串讲·${(hit.point_ids || []).length}点</span>` : '';
+    return `<div class="lrow" onclick="window.kyPlayer.playClip('${cid}')">
       <span class="dot d${tier}"></span>
-      <div class="t"><b>${clipTitle(cid)}</b>
-        ${sub}</div>
-      ${cur}${done}</div>`;
+      <b class="lt">${clipTitle(cid)}</b>
+      ${kind}${cur}${dur}${done}</div>`;
   };
   list.innerHTML = order.map((sid) => {
     const items = groups.get(sid);

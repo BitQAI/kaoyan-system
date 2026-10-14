@@ -1,5 +1,5 @@
 import { get, post } from './api.js';
-import { state, tagClass } from './state.js';
+import { shortTitle, state, tagClass } from './state.js';
 
 const TIER = { 1: '第一梯队', 2: '第二梯队', 3: '第三梯队' };
 const CYCLE = [
@@ -181,22 +181,6 @@ function mediaHtml(media) {
     }
     return '';
   }).join('');
-}
-
-/** 展示用短标题：去掉括号内的解释性罗列（如「水的生理作用（溶剂、代谢反应物…）」）。
- *  兼容源数据中被切碎的续段（如「…作用机理）」）。 */
-function shortTitle(text) {
-  const cap = (s) => (s.length > 26 ? s.slice(0, 26) + '…' : s);
-  let t = (text || '').trim();
-  const open = t.indexOf('（');
-  if (open >= 2) {
-    const head = t.slice(0, open).replace(/[，,、；;。：:]+$/, '');
-    if (head.length >= 2) return cap(head);
-  }
-  if (open < 0) {
-    t = t.replace(/）\s*$/, '');                  // 无左括号的续段：去掉孤立右括号
-  }
-  return cap(t);
 }
 
 /** 考点分条：优先按分号切；无分号按句号切，最多 6 条。 */
