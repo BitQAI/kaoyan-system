@@ -31,7 +31,7 @@ export async function renderLook() {
   document.getElementById('look-chapters').classList.remove('hidden');
 }
 
-/** 跳转到某考点：切科目 → 开章节 → 滚动高亮。 */
+/** 跳转到某考点：切科目 → 开章节 → 自动展开 → 滚动高亮。 */
 export async function jumpTo(pointId) {
   const hit = state.pointIndex.get(pointId);
   if (!hit) return;
@@ -39,12 +39,28 @@ export async function jumpTo(pointId) {
   subject = hit.subj.id;
   await renderLook();
   await openChapter(hit.chap.id);
+  expandPoint(pointId);
   const el = document.getElementById('pt-' + pointId);
   if (el) {
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     el.classList.add('highlight');
     setTimeout(() => el.classList.remove('highlight'), 2600);
   }
+}
+
+function togglePoint(pid) {
+  const body = document.getElementById('pb-' + pid);
+  if (!body) return;
+  const collapsed = body.classList.toggle('hidden');
+  const caret = document.getElementById('caret-' + pid);
+  if (caret) caret.textContent = collapsed ? '▾' : '▴';
+}
+
+function expandPoint(pid) {
+  const body = document.getElementById('pb-' + pid);
+  if (body) body.classList.remove('hidden');
+  const caret = document.getElementById('caret-' + pid);
+  if (caret) caret.textContent = '▴';
 }
 
 function search(q) {
@@ -129,28 +145,73 @@ function mediaHtml(media) {
   }).join('');
 }
 
+/** 展示用短标题：去掉括号内的解释性罗列（如「水的生理作用（溶剂、代谢反应物…）」）。
+ *  兼容源数据中被切碎的续段（如「…作用机理）」）。 */
+function shortTitle(text) {
+  const cap = (s) => (s.length > 26 ? s.slice(0, 26) + '…' : s);
+  let t = (text || '').trim();
+  const open = t.indexOf('（');
+  if (open >= 2) {
+    const head = t.slice(0, open).replace(/[，,、；;。：:]+$/, '');
+    if (head.length >= 2) return cap(head);
+  }
+  if (open < 0) {
+    t = t.replace(/）\s*$/, '');                  // 无左括号的续段：去掉孤立右括号
+  }
+  return cap(t);
+}
+
+/** 考点分条：优先按分号切；无分号按句号切，最多 6 条。 */
+function examBullets(exam) {
+  let parts = (exam || '').split(/[；;]/).map((s) => s.trim()).filter(Boolean);
+  if (parts.length <= 1) parts = (exam || '').split('。').map((s) => s.trim()).filter(Boolean);
+  return parts.slice(0, 6);
+}
+
 function pointHtml(p) {
   const st = (state.states[p.id] || 'new');
   const cur = CYCLE.find((c) => c.s === st) || CYCLE[0];
-  const due = state.dueSet && state.dueSet.has(p.id)
-    ? '<span class="chip r">待复习</span>' : '';
-  const tags = due + (p.tags || []).map((t) =>
-    `<span class="chip ${tagClass(t)}">${t}</span>`).join('');
   const fav = favorites.has(p.id) ? 'on' : '';
-  const kws = (p.keywords || []).map((k) => `<span class="chip">${k}</span>`).join('');
-  const body = p.note
-    ? `<p class="ptext">${p.note}</p>`
-    : '<p class="ptext muted">解析待生成 · 可先点「问 AI」讲解</p>';
-  const exam = p.exam ? `<div class="exam"><b>考点怎么考</b>${p.exam}</div>` : '';
-  return `<div class="pcard" id="pt-${p.id}">
-    <div class="row">
-      <div class="t"><b>${p.text.slice(0, 34)}</b><span class="small">${kws}${tags}</span></div>
-      <button class="chip ${cur.cls}" onclick="window.kyLook.cycle('${p.id}', this)">${cur.label}</button>
-      <button class="star ${fav}" onclick="window.kyLook.star('${p.id}', this)">★</button>
+  // 徽标最多 3 个：待复习优先，其后关键词，再补标签
+  const chips = [];
+  if (state.dueSet && state.dueSet.has(p.id)) chips.push('<span class="chip r">待复习</span>');
+  for (const k of (p.keywords || [])) { if (chips.length >= 3) break; chips.push(`<span class="chip">${k}</span>`); }
+  for (const t of (p.tags || [])) {
+    if (chips.length >= 3) break;
+    if (t === '时政' || t === '高频') chips.push(`<span class="chip ${tagClass(t)}">${t}</span>`);
+  }
+  const hasBody = !!(p.note || p.exam || (p.media || []).length);
+  return `<div class="prow" id="pt-${p.id}">
+    <div class="prow-main" onclick="window.kyLook.toggle('${p.id}')">
+      <div class="ptitle">${shortTitle(p.text)}</div>
+      <div class="pmeta">${chips.join('')}</div>
     </div>
-    ${body}${exam}${mediaHtml(p.media)}
-    <button class="btn sm ghost" onclick="window.kyAI && window.kyAI.open('point','${p.id}')">问 AI</button>
+    <button class="chip ${cur.cls}" onclick="event.stopPropagation(); window.kyLook.cycle('${p.id}', this)">${cur.label}</button>
+    <button class="star ${fav}" onclick="event.stopPropagation(); window.kyLook.star('${p.id}', this)">★</button>
+    <span class="caret" id="caret-${p.id}">${hasBody ? '▾' : ''}</span>
+  </div>
+  <div class="pbody hidden" id="pb-${p.id}">
+    ${examBody(p)}
+    ${noteBody(p)}
+    ${mediaHtml(p.media)}
+    <div class="pacts">
+      <button class="btn sm ghost" onclick="window.kyAI && window.kyAI.open('point','${p.id}')">问 AI</button>
+      <span class="small">${p.text}</span>
+    </div>
   </div>`;
+}
+
+function examBody(p) {
+  if (!p.exam) return '';
+  const items = examBullets(p.exam);
+  return `<div class="exam"><b>考点怎么考</b><ul>${
+    items.map((s) => `<li>${s}</li>`).join('')}</ul></div>`;
+}
+
+function noteBody(p) {
+  if (!p.note) return '';
+  return `<details class="notebox"><summary>展开理解（${p.note.length} 字）</summary>
+    <p class="ptext">${p.note}</p></details>`;
 }
 
 function renderTex(root) {
@@ -209,6 +270,8 @@ export const kyLook = {
   back: renderLook,
   cycle: cycleState,
   star: starPoint,
+  toggle: togglePoint,
+  expand: expandPoint,
   jumpTo,
   search,
   _subject: () => subject,
