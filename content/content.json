@@ -215,7 +215,15 @@
         "易错"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "chart",
+         "src": "media/812-01-01-c.png",
+         "caption": "植物细胞结构示意：细胞壁、大液泡、质体与胞间连丝（自绘）",
+         "source": "matplotlib",
+         "license": "self"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-01-01.mp3",
@@ -303,7 +311,15 @@
         "易错"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "chart",
+         "src": "media/812-01-03-c.png",
+         "caption": "生物膜流动镶嵌模型：磷脂双分子层与功能膜蛋白（自绘）",
+         "source": "matplotlib",
+         "license": "self"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-01-03.mp3",
@@ -382,7 +398,15 @@
         "易错"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "chart",
+         "src": "media/812-01-05-c.png",
+         "caption": "细胞骨架：微管、微丝与中间纤维（自绘）",
+         "source": "matplotlib",
+         "license": "self"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-01-05.mp3",

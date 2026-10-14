@@ -309,4 +309,9 @@ for _pid, _draw in charts_misc.FIGURES.items():
     CHARTS[_pid] = {"title": _title, "xlabel": "", "ylabel": "",
                     "caption": f"{_title}（自绘）", "draw": _draw}
 
+# 单元配图示范（第一章）：结构类示意图，展开考点时先于文字展示
+for _pid, _spec in charts_misc.UNIT_FIGURES.items():
+    CHARTS[_pid] = {"title": _spec["title"], "xlabel": "", "ylabel": "",
+                    "caption": _spec["caption"], "draw": _spec["draw"]}
+
 STATIC: dict = {}

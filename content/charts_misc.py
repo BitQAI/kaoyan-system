@@ -129,3 +129,91 @@ FIGURES["812-00-02"] = _flow(
             {"x1": 0.67, "y1": 0.62, "x2": 0.695, "y2": 0.62},
             {"x1": 0.50, "y1": 0.52, "x2": 0.50, "y2": 0.34, "label": "贯穿全程"}],
     texts=[{"x": 0.5, "y": 0.86, "text": "植物生理学内容体系（按生命活动过程）", "size": 7.8, "color": "#b33a3a"}])
+
+
+def draw_plant_cell(ax):
+    """植物细胞结构示意：细胞壁/大液泡/质体/胞间连丝。"""
+    import matplotlib.patches as mpatches
+    ax.add_patch(mpatches.FancyBboxPatch((0.08, 0.12), 0.84, 0.74, boxstyle="round,pad=0.01",
+                 fc="#f4faf6", ec="#11845b", lw=2.4))            # 细胞壁
+    ax.add_patch(mpatches.FancyBboxPatch((0.12, 0.16), 0.76, 0.66, boxstyle="round,pad=0.008",
+                 fc="#eef6ff", ec="#2457d6", lw=1.4))            # 原生质体/质膜
+    ax.add_patch(mpatches.Circle((0.50, 0.47), 0.17, fc="#dbeafe", ec="#2457d6", lw=1.6))
+    ax.text(0.50, 0.47, "大液泡", fontsize=8.5, ha="center", va="center", color="#2457d6")
+    for cx, cy, lab in [(0.25, 0.66, "叶绿体"), (0.72, 0.70, "质体"), (0.24, 0.28, "线粒体"),
+                        (0.76, 0.28, "高尔基体")]:
+        ax.add_patch(mpatches.Ellipse((cx, cy), 0.15, 0.10, fc="#e8f6ef", ec="#11845b", lw=1.2))
+        ax.text(cx, cy - 0.085, lab, fontsize=6.6, ha="center", color="#11845b")
+    ax.add_patch(mpatches.Circle((0.47, 0.80), 0.045, fc="#fff4e5", ec="#b96a00", lw=1.2))
+    ax.text(0.47, 0.875, "细胞核", fontsize=6.6, ha="center", color="#b96a00")
+    for y in (0.30, 0.62):
+        ax.plot([0.04, 0.14], [y, y + 0.04], color="#8a94a6", lw=1.6, ls="--")
+        ax.text(0.015, y + 0.09, "胞间连丝", fontsize=6.4, color="#6b7280")
+    ax.text(0.08, 0.90, "细胞壁", fontsize=7.4, color="#11845b")
+    ax.text(0.10, 0.055, "质膜", fontsize=6.8, color="#2457d6")
+    ax.set_axis_off()
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+
+
+def draw_fluid_mosaic(ax):
+    """生物膜流动镶嵌模型：磷脂双分子层 + 膜蛋白。"""
+    import matplotlib.patches as mpatches
+    ax.add_patch(mpatches.Rectangle((0.06, 0.40), 0.88, 0.06, fc="#eaf1ff", ec="none"))
+    ax.add_patch(mpatches.Rectangle((0.06, 0.54), 0.88, 0.06, fc="#eaf1ff", ec="none"))
+    for x in [0.075 + i * 0.055 for i in range(16)]:
+        ax.add_patch(mpatches.Circle((x, 0.50), 0.018, fc="#2457d6", ec="none"))
+        ax.add_patch(mpatches.Circle((x, 0.44), 0.018, fc="#2457d6", ec="none"))
+        ax.plot([x, x], [0.44, 0.50], color="#bcd0f5", lw=1)
+    ax.add_patch(mpatches.FancyBboxPatch((0.22, 0.32), 0.10, 0.36, boxstyle="round,pad=0.008",
+                 fc="#e8f6ef", ec="#11845b", lw=1.6))
+    ax.text(0.27, 0.24, "载体蛋白", fontsize=7, ha="center", color="#11845b")
+    ax.add_patch(mpatches.FancyBboxPatch((0.48, 0.34), 0.12, 0.32, boxstyle="round,pad=0.008",
+                 fc="#fff4e5", ec="#b96a00", lw=1.6))
+    ax.text(0.54, 0.24, "通道蛋白", fontsize=7, ha="center", color="#b96a00")
+    ax.add_patch(mpatches.FancyBboxPatch((0.74, 0.42), 0.14, 0.16, boxstyle="round,pad=0.008",
+                 fc="#fdeeee", ec="#b33a3a", lw=1.6))
+    ax.text(0.81, 0.34, "受体蛋白", fontsize=7, ha="center", color="#b33a3a")
+    ax.text(0.06, 0.66, "磷脂双分子层（亲水头·疏水尾）", fontsize=7.2, color="#2457d6")
+    ax.text(0.50, 0.86, "膜蛋白镶嵌其中 → 流动性 + 不对称性", fontsize=7.6, ha="center", color="#333b45")
+    ax.set_axis_off()
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+
+
+def draw_cytoskeleton(ax):
+    """细胞骨架三组分：微管 / 微丝 / 中间纤维。"""
+    import matplotlib.patches as mpatches
+    # 微管：中空管
+    ax.add_patch(mpatches.Rectangle((0.08, 0.72), 0.34, 0.09, fc="#eaf1ff", ec="#2457d6", lw=1.4))
+    for x in [0.13 + i * 0.05 for i in range(6)]:
+        ax.add_patch(mpatches.Circle((x, 0.765), 0.016, fc="#fff", ec="#2457d6", lw=1))
+    ax.text(0.25, 0.85, "微管：中空管·13 条原丝", fontsize=7.2, ha="center", color="#2457d6")
+    ax.text(0.25, 0.64, "纺锤体 / 成膜体 / 微纤丝方向", fontsize=6.6, ha="center", color="#6b7280")
+    # 微丝：双螺旋细丝
+    import math
+    xs = [0.10 + i * 0.006 for i in range(45)]
+    ax.plot(xs, [0.50 + 0.03 * math.sin(i * 0.7) for i in range(45)], color="#11845b", lw=2)
+    ax.text(0.25, 0.57, "微丝：肌动蛋白双螺旋", fontsize=7.2, ha="center", color="#11845b")
+    ax.text(0.25, 0.40, "胞质环流 / 顶端生长", fontsize=6.6, ha="center", color="#6b7280")
+    # 中间纤维：单根细线
+    ax.plot([0.10, 0.40], [0.28, 0.28], color="#b96a00", lw=1.8)
+    ax.text(0.25, 0.33, "中间纤维：抗拉支持", fontsize=7.2, ha="center", color="#b96a00")
+    ax.text(0.25, 0.19, "（植物中是否存在需对照教材核验）", fontsize=6.4, ha="center", color="#6b7280")
+    # 右栏说明
+    ax.text(0.60, 0.78, "共同特点：", fontsize=7.4, color="#333b45")
+    for i, t in enumerate(["动态组装 / 去组装", "维持细胞形态与极性", "参与物质运输与分裂", "受发育与环境信号调控"]):
+        ax.text(0.60, 0.68 - i * 0.10, "· " + t, fontsize=6.8, color="#4a5158")
+    ax.set_axis_off()
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+
+
+UNIT_FIGURES = {
+    "812-01-01": {"title": "植物细胞的结构特点", "draw": draw_plant_cell,
+                  "caption": "植物细胞结构示意：细胞壁、大液泡、质体与胞间连丝（自绘）"},
+    "812-01-03": {"title": "生物膜流动镶嵌模型", "draw": draw_fluid_mosaic,
+                  "caption": "生物膜流动镶嵌模型：磷脂双分子层与功能膜蛋白（自绘）"},
+    "812-01-05": {"title": "细胞骨架三组分", "draw": draw_cytoskeleton,
+                  "caption": "细胞骨架：微管、微丝与中间纤维（自绘）"},
+}

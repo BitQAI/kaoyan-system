@@ -230,8 +230,8 @@ function pointHtml(p) {
   </div>
   <div class="pbody hidden" id="pb-${p.id}">
     ${examBody(p)}
-    ${noteBody(p)}
     ${mediaHtml(p.media)}
+    ${noteBody(p)}
     <div class="pacts">
       <button class="btn sm ghost" onclick="window.kyAI && window.kyAI.open('point','${p.id}')">问 AI</button>
       <span class="small">${p.text}</span>
