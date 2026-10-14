@@ -101,3 +101,28 @@ find /www/backup -name "kaoyan-*.tar.gz" -mtime +7 -delete
 - 新增教材裁图：编辑 `content/figures_textbook.json` → 本机 `python scripts/crop_textbook.py --config content/figures_textbook.json --attach` → 上传 `content/media-private/`
 - 查日志：`docker compose logs -f app`
 - 语音引擎：`qwen_audio`（百炼 qwen-audio-3.1-tts-next，男声 longanyang，默认）/ `bailian`（qwen3-tts-flash，需充值）/ `edge`（微软免费，部分网络不可用）
+
+## 8. 月度时政更新（101 形势与政策）
+
+时政内容需人工供稿（系统不编造事件），每月约 10 分钟：
+
+1. 按 `content/current_affairs/TEMPLATE.md` 整理当月摘要，存为 `content/current_affairs/YYYY-MM.md`（官方材料摘要粘贴，勿自撰）。
+2. 入库（幂等，可反复执行）：
+
+```bash
+docker compose run --rm app python scripts/apply_current_affairs.py
+```
+
+3. 重生成 101 章级音频（新考点需要能听；TTS 额度不足时先跳过，恢复后重跑自动补齐）：
+
+```bash
+docker compose run --rm app python scripts/gen_chapter_listen.py --subject 101
+```
+
+4. 生成解析（可选）：
+
+```bash
+docker compose run --rm app python scripts/gen_notes.py --subject 101 --merge
+```
+
+5. 重新打包并热更：`docker compose build && docker compose up -d`

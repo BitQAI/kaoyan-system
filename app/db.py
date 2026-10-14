@@ -19,12 +19,26 @@ def connect(path: str | None = None) -> sqlite3.Connection:
 def init_db() -> None:
     con = connect()
     con.executescript(SCHEMA.read_text(encoding="utf-8"))
-    # 幂等迁移：老库补列（SQLite 无 IF NOT EXISTS ADD COLUMN）
-    cols = {r["name"] for r in con.execute("PRAGMA table_info(quiz_attempts)")}
-    if "response" not in cols:
-        con.execute("ALTER TABLE quiz_attempts ADD COLUMN response TEXT")
+    _migrate_quiz_attempts(con)
     con.commit()
     con.close()
+
+
+def _migrate_quiz_attempts(con) -> None:
+    """幂等迁移 quiz_attempts：补 response 列；旧库 chosen 为 NOT NULL 时重建表放开。"""
+    cols = {r["name"]: r for r in con.execute("PRAGMA table_info(quiz_attempts)")}
+    if "response" not in cols:
+        con.execute("ALTER TABLE quiz_attempts ADD COLUMN response TEXT")
+        cols = {r["name"]: r for r in con.execute("PRAGMA table_info(quiz_attempts)")}
+    if cols.get("chosen") is not None and cols["chosen"]["notnull"]:
+        con.executescript(
+            "ALTER TABLE quiz_attempts RENAME TO quiz_attempts_old;"
+            "CREATE TABLE quiz_attempts ("
+            "  id INTEGER PRIMARY KEY AUTOINCREMENT, quiz_id TEXT NOT NULL,"
+            "  chosen INTEGER, correct INTEGER NOT NULL, ts TEXT NOT NULL, response TEXT);"
+            "INSERT INTO quiz_attempts(id, quiz_id, chosen, correct, ts, response) "
+            "  SELECT id, quiz_id, chosen, correct, ts, response FROM quiz_attempts_old;"
+            "DROP TABLE quiz_attempts_old;")
 
 
 def get_db():

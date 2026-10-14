@@ -23,6 +23,11 @@ export async function loadContent(force = false) {
           state.clipIndex.set(clipId, { point: p, clip: a, chap, subj });
         }
       }
+      for (const c of chap.listen || []) {
+        const clipId = c.src.replace(/^audio\//, '').replace(/\.mp3$/, '');
+        state.clipIndex.set(clipId, { chap, subj, clip: c, isChapter: true,
+                                      point_ids: c.point_ids || [] });
+      }
     }
   }
   return data;
@@ -36,6 +41,10 @@ export function pointTitle(pointId) {
 export function clipTitle(clipId) {
   const hit = state.clipIndex.get(clipId);
   if (!hit) return clipId;
+  if (hit.isChapter) {
+    const suffix = clipId.includes('-c') ? `（${clipId.split('-c')[1]}）` : '';
+    return hit.chap.name + ' · 考点串讲' + suffix;
+  }
   const part = clipId.includes('-p') ? `（${clipId.split('-p')[1]}）` : '';
   return hit.point.text.slice(0, 26) + part;
 }

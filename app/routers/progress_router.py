@@ -49,3 +49,22 @@ def set_progress(body: ProgressBody, con: sqlite3.Connection = Depends(db.get_db
     con.commit()
     review_engine.on_state_change(con, body.point_id, body.state)
     return {"ok": True}
+
+
+@router.get("/reviews/due")
+def reviews_due(con: sqlite3.Connection = Depends(db.get_db)):
+    rows = con.execute(
+        "SELECT point_id, stage, due_date FROM reviews "
+        "WHERE due_date <= date('now', 'localtime') ORDER BY due_date, point_id").fetchall()
+    return {"items": [dict(r) for r in rows]}
+
+
+@router.post("/reviews/{point_id}/advance")
+def review_advance(point_id: str, con: sqlite3.Connection = Depends(db.get_db)):
+    con.execute(
+        "INSERT INTO progress(point_id, state, updated_at) VALUES(?, 'known', ?) "
+        "ON CONFLICT(point_id) DO UPDATE SET state='known', updated_at=excluded.updated_at",
+        (point_id, _now()))
+    con.commit()
+    review_engine.advance(con, point_id)
+    return {"ok": True}

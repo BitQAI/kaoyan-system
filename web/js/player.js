@@ -77,6 +77,13 @@ function loadAndPlay() {
   if (saved && saved > 1) audio.currentTime = saved;
   audio.playbackRate = rate;
   audio.play().catch(() => {});
+  // 预取下一段（弱网不断流）
+  const nx = queue[idx + 1];
+  if (nx) {
+    const pre = new Audio();
+    pre.preload = 'auto';
+    pre.src = '/audio/' + nx + '.mp3';
+  }
   paintPlayer();
   paintQueue();
   setupMediaSession(cid);
@@ -86,7 +93,7 @@ function onEnded() {
   const cid = current();
   if (loopOne) { audio.currentTime = 0; audio.play().catch(() => {}); return; }
   savePos(cid, true);
-  markPointIfLastPart(cid);
+  markProgressIfDone(cid);
   next();
 }
 
@@ -110,17 +117,23 @@ async function savePos(cid, countPlay) {
   }).catch(() => {});
 }
 
-async function markPointIfLastPart(cid) {
+async function markProgressIfDone(cid) {
   const hit = state.clipIndex.get(cid);
   if (!hit) return;
-  const clips = hit.point.audio || [];
-  const lastSrc = clips.length ? clips[clips.length - 1].src : '';
-  const lastCid = lastSrc.replace(/^audio\//, '').replace(/\.mp3$/, '');
-  if (cid !== lastCid) return;                     // 非最后一段：只存位置
-  const pid = hit.point.id;
-  if ((progressStates[pid] || 'new') !== 'new') return;
-  progressStates[pid] = 'listened';
-  await post('/api/progress', { point_id: pid, state: 'listened' }).catch(() => {});
+  let targets = [];
+  if (hit.isChapter) {
+    targets = hit.point_ids || [];                 // 整章串讲播完 → 全章点记为已听
+  } else {
+    const clips = hit.point.audio || [];
+    const lastSrc = clips.length ? clips[clips.length - 1].src : '';
+    const lastCid = lastSrc.replace(/^audio\//, '').replace(/\.mp3$/, '');
+    if (cid === lastCid) targets = [hit.point.id]; // 非最后一段：只存位置
+  }
+  for (const pid of targets) {
+    if ((progressStates[pid] || 'new') !== 'new') continue;
+    progressStates[pid] = 'listened';
+    await post('/api/progress', { point_id: pid, state: 'listened' }).catch(() => {});
+  }
 }
 
 function setupMediaSession(cid) {
@@ -173,10 +186,13 @@ function paintQueue() {
     const tier = hit && hit.chap.tier ? Math.min(hit.chap.tier, 3) : 3;
     const cur = cid === current() ? '<span class="chip g">当前</span>' : '';
     const done = posMap[cid] && posMap[cid].plays ? '<span class="small">✓</span>' : '';
+    const sub = hit && hit.isChapter
+      ? `<span class="small">整章串讲 · ${(hit.point_ids || []).length} 个考点 · ${fmt(hit.clip.dur)}</span>`
+      : `<span class="small">${hit ? tagChips(hit.point) : ''}${hit ? hit.chap.name.slice(0, 10) : ''} · ${fmt(hit && hit.clip.dur)}</span>`;
     return `<div class="row" onclick="window.kyPlayer.playClip('${cid}')">
       <span class="dot d${tier}"></span>
       <div class="t"><b>${clipTitle(cid)}</b>
-        <span class="small">${hit ? tagChips(hit.point) : ''}${hit ? hit.chap.name.slice(0, 10) : ''} · ${fmt(hit && hit.clip.dur)}</span></div>
+        ${sub}</div>
       ${cur}${done}</div>`;
   };
   list.innerHTML = order.map((sid) => {
@@ -188,6 +204,12 @@ function paintQueue() {
 }
 
 /* 事件与节流保存 */
+audio.addEventListener('error', () => {
+  if (!navigator.onLine) {
+    document.getElementById('p-ctx').textContent =
+      '离线中：该段未下载 · 联网后可播（看页「下载本章音频」可离线）';
+  }
+});
 audio.addEventListener('ended', onEnded);
 audio.addEventListener('timeupdate', () => {
   paintPlayer();
@@ -216,3 +238,68 @@ export const kyPlayer = {
   _fireEnded: () => onEnded(),
 };
 window.kyPlayer = kyPlayer;
+
+// ---------- 离线音频（按章下载到 Cache Storage；SW 对 /audio 缓存优先） ----------
+// 记录随 content 版本走：重生成音频后版本变化 → 已下载章显示为未下载，提示重新下载
+const OFFLINE_LS = 'ky_audio_chaps';
+
+function contentVer() { return (state.content && state.content.version) || 'v1'; }
+
+function offlineSet() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(OFFLINE_LS) || 'null');
+    if (!raw) return new Set();
+    if (Array.isArray(raw)) return new Set();                 // 旧格式无版本信息 → 视为失效
+    if (raw.ver !== contentVer()) return new Set();           // 版本不符 → 提示重新下载
+    return new Set(raw.chaps || []);
+  } catch (e) { return new Set(); }
+}
+function offlineSave(s) {
+  localStorage.setItem(OFFLINE_LS, JSON.stringify({ ver: contentVer(), chaps: [...s] }));
+}
+
+function chapterClipSrcs(chapId) {
+  const srcs = [];
+  for (const subj of state.content.subjects) {
+    for (const ch of subj.chapters || []) {
+      if (ch.id !== chapId) continue;
+      for (const c of ch.listen || []) srcs.push(c.src);
+      for (const p of ch.points || []) for (const a of p.audio || []) srcs.push(a.src);
+    }
+  }
+  return srcs;
+}
+
+export async function downloadChapter(chapId) {
+  const ver = (state.content && state.content.version) || 'v1';
+  const cache = await caches.open('ky-audio-' + ver);
+  const srcs = chapterClipSrcs(chapId);
+  let ok = 0;
+  for (const s of srcs) {
+    try { await cache.add('/' + s); ok += 1; } catch (e) { /* 单段失败不阻塞整章 */ }
+  }
+  if (srcs.length && ok === srcs.length) {
+    const set = offlineSet(); set.add(chapId); offlineSave(set);
+  }
+  return { ok, total: srcs.length };
+}
+
+export function offlineStatus(chapId) { return offlineSet().has(chapId); }
+
+export async function clearOffline() {
+  for (const k of await caches.keys()) {
+    if (k.startsWith('ky-audio-')) await caches.delete(k);
+  }
+  localStorage.removeItem(OFFLINE_LS);
+}
+
+async function downloadFromCard(chapId, btn) {
+  const old = btn.textContent;
+  btn.textContent = '下载中…';
+  const r = await downloadChapter(chapId);
+  btn.textContent = r.total && r.ok === r.total ? '已离线 ✓' : `部分失败 ${r.ok}/${r.total}`;
+  if (!r.total) btn.textContent = old;
+}
+
+window.kyOffline = { download: downloadChapter, status: offlineStatus,
+                     clear: clearOffline, downloadFromCard };

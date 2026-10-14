@@ -1,0 +1,17 @@
+{
+  "quizzes": [],
+  "cards": [
+    {"id": "c20402n01", "chapter": "204-02", "point_id": "204-02-02", "kind": "词汇", "front": "词汇：address 的熟词僻义", "back": "address 除「地址」外常考「处理、解决（问题）」（=deal with）与「向……讲话」：address the issue of...（处理……问题）。同类高频熟词僻义：subject（使遭受 be subjected to）、observe（遵守）、appreciate（意识到/感激）。"},
+    {"id": "c20402n02", "chapter": "204-02", "point_id": "204-02-05", "kind": "句型", "front": "句型：长难句主干识别三步法", "back": "①找谓语动词（确定分句数）；②定主语（谓语前的主语中心词）；③理修饰（从句、非谓语、介词短语逐层剥离）。示例：The researcher who conducted the survey found that... 主干为 The researcher found that...。翻译时先翻主干，再把修饰成分挂回。"},
+    {"id": "c20404n01", "chapter": "204-04", "point_id": "204-04-03", "kind": "技巧", "front": "技巧：细节题的定位与同义替换", "back": "步骤：①划题干关键词（专有名词、数字、实义动词）；②回原文定位对应句，同义替换处最常见（近义词、词性转换、正话反说）；③逐字比对选项，排除偷换概念、无中生有、绝对化（all/never）。原则：答案必有原文依据，不凭常识做题。"},
+    {"id": "c20404n02", "chapter": "204-04", "point_id": "204-04-02", "kind": "技巧", "front": "技巧：主旨题的解法", "back": "①重点读首末段与各段首句；②找高频复现词（主题词）；③把握段落功能（问题—分析—结论）；④警惕以偏概全（只覆盖一段的选项）。标题题选择能覆盖全文、不过宽也不过窄的选项。"},
+    {"id": "c20405n01", "chapter": "204-05", "point_id": "204-05-01", "kind": "技巧", "front": "技巧：真题精读四步流程", "back": "①限时做题（每篇 18 分钟内）；②逐句翻译长难句，标出生词与句型；③错因归类（定位错/替换没看出/过度推理）；④生词入卡、次日复习。目标是「把每篇真题榨干」：题干定位句与干扰项设置方式都能复述出来。"},
+    {"id": "c20406n01", "chapter": "204-06", "point_id": "204-06-02", "kind": "技巧", "front": "技巧：小标题匹配的解题步骤", "back": "①先读选项（小标题），圈出核心名词与动词；②逐段找主题句（首末句、转折词后）；③匹配关键词复现与同义替换；④划掉已选项，检查剩余段落匹配的唯一性。"},
+    {"id": "c20407n01", "chapter": "204-07", "point_id": "204-07-02", "kind": "技巧", "front": "技巧：翻译拆句三步法", "back": "①找主干（主谓宾划出来）→②理修饰（定语从句、状语、非谓语逐层标注）→③重组中文：定语前置、状语提前、被动变主动、代词还原。评分标准「准确、完整、通顺」——先保准确完整，再润色通顺。"},
+    {"id": "c20407n02", "chapter": "204-07", "point_id": "204-07-04", "kind": "句型", "front": "句型：被动句翻译策略", "back": "①英语被动多、汉语主动多，宜意译为主动句：The plan was carried out → 计划得以实施；②无主被动句可补出「人们、大家、有人」；③确需保留被动时用「被、受、由、得以」。高频失分点：代词指代不清、被动直译生硬。"},
+    {"id": "c20408n01", "chapter": "204-08", "point_id": "204-08-01", "kind": "模板", "front": "模板：建议信三段框架", "back": "①开头：表明写信目的与身份（I am writing to suggest that...）；②主体：2-3 条具体建议（First and foremost.../Moreover...），每条给理由；③结尾：希望采纳、期待回复（I would appreciate it if you could take my suggestions into consideration.）。格式齐全：称谓、正文、结束语、落款。"},
+    {"id": "c20408n02", "chapter": "204-08", "point_id": "204-08-02", "kind": "模板", "front": "模板：应用文常用功能句", "back": "感谢信：I am writing to express my sincere gratitude for...；邀请信：It is my pleasure to invite you to...；道歉信：I am writing to apologize for...；通知：All the students are required to...。要点：对象与称谓写对、任务目的明确、核心信息覆盖完整、结尾有收束。"},
+    {"id": "c20409n01", "chapter": "204-09", "point_id": "204-09-02", "kind": "模板", "front": "模板：图表作文描述段句式", "back": "趋势：rose/increased steadily from...to...；declined/dropped sharply；remained stable at...；占比：account for / make up...%；极值：peaked at... / reached a low point of...。写作顺序：先总体趋势、后具体数据；时态统一（叙述过去数据用一般过去时）。"},
+    {"id": "c20409n02", "chapter": "204-09", "point_id": "204-09-03", "kind": "模板", "front": "模板：图表作文二、三段框架", "back": "第二段（原因/意义）：There are several reasons accounting for this trend. First and foremost... What's more...；意义：It contributes to... / It is beneficial to...。第三段（结论/建议）：In conclusion... / To sum up...；From my perspective, it is advisable to...。评分要点：结构清楚、连接词明确、先保证正确再追求丰富。"}
+  ]
+}

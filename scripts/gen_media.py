@@ -24,21 +24,26 @@ def gen_structures() -> list[dict]:
     from rdkit.Chem import Draw
 
     out = []
-    for point_id, smiles in media_config.STRUCTURES.items():
-        mol = Chem.MolFromSmiles(smiles)
-        if mol is None:
-            print(f"  ! SMILES 解析失败: {point_id} {smiles}")
-            continue
-        drawer = Draw.rdMolDraw2D.MolDraw2DSVG(320, 220)
-        Draw.rdMolDraw2D.PrepareAndDrawMolecule(drawer, mol)
-        drawer.FinishDrawing()
-        svg = drawer.GetDrawingText()
-        path = MEDIA_DIR / f"{point_id}-s.svg"
-        path.write_text(svg, encoding="utf-8")
-        out.append({"point_id": point_id, "media": {
-            "type": "structure", "src": f"media/{path.name}",
-            "caption": media_config.STRUCTURES_CAPTION.get(point_id, "结构式"),
-            "source": "rdkit", "license": "self"}})
+    for point_id, spec in media_config.STRUCTURES.items():
+        smiles_list = spec if isinstance(spec, list) else [spec]
+        cap = media_config.STRUCTURES_CAPTION.get(point_id, "结构式")
+        caps = cap if isinstance(cap, list) else [cap]
+        for i, smiles in enumerate(smiles_list):
+            mol = Chem.MolFromSmiles(smiles)
+            if mol is None:
+                print(f"  ! SMILES 解析失败: {point_id} {smiles}")
+                continue
+            drawer = Draw.rdMolDraw2D.MolDraw2DSVG(320, 220)
+            Draw.rdMolDraw2D.PrepareAndDrawMolecule(drawer, mol)
+            drawer.FinishDrawing()
+            svg = drawer.GetDrawingText()
+            suffix = "-s.svg" if len(smiles_list) == 1 else f"-s{i + 1}.svg"
+            path = MEDIA_DIR / f"{point_id}{suffix}"
+            path.write_text(svg, encoding="utf-8")
+            out.append({"point_id": point_id, "media": {
+                "type": "structure", "src": f"media/{path.name}",
+                "caption": caps[i] if i < len(caps) else "结构式",
+                "source": "rdkit", "license": "self"}})
     return out
 
 
@@ -95,12 +100,13 @@ def commons_search(query: str, limit: int = 8) -> list[dict]:
 def attach(entries: list[dict]) -> None:
     content_path = ROOT / "content" / "content.json"
     content = json.loads(content_path.read_text(encoding="utf-8"))
-    by_id = {e["point_id"]: e["media"] for e in entries}
+    by_id: dict[str, list] = {}                 # 同点可挂多张（如一组结构式）
+    for e in entries:
+        by_id.setdefault(e["point_id"], []).append(e["media"])
     for subj in content["subjects"]:
         for ch in subj.get("chapters", []):
             for p in ch.get("points", []):
-                if p["id"] in by_id:
-                    m = by_id[p["id"]]
+                for m in by_id.get(p["id"], []):
                     p.setdefault("media", [])
                     if not any(x.get("src") == m["src"] for x in p["media"]):
                         p["media"].append(m)

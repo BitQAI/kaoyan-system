@@ -80,11 +80,17 @@ EDGE_VOICE = "zh-CN-YunxiNeural"   # 云希：中文男声
 QWEN_AUDIO_MODEL = "qwen-audio-3.1-tts-next"
 QWEN_AUDIO_VOICE = "longanyang"    # 龙安阳：中文男声
 QWEN_AUDIO_PROMPT = "以考研复习讲解的语气，平静、清晰、连贯地朗读"
+# 回退引擎：qwen-audio 服务截断（实测 231 字仅 3s）时改用 cosyvoice，同为龙安阳男声
+FALLBACK_MODEL = "cosyvoice-v3-flash"
+FALLBACK_VOICE = "longanyang"
+_CHARS_PER_SEC = 4.8               # 实测正常语速，用于判定合成是否被截断
+_qwen_broken = False               # 进程内粘性标记：qwen 截断后本批不再尝试
 
 
-def synth_qwen_audio(text: str, voice: str | None, settings, retries: int = 3,
-                     sleep: float = 1.0) -> bytes:
-    """Qwen-Audio-TTS → mp3 bytes，voice 默认 longanyang（男声）。"""
+def _synth_native(text: str, model: str, voice: str, settings,
+                  text_prompt: str | None = None, retries: int = 3,
+                  sleep: float = 1.0) -> bytes:
+    """百炼原生 TTS 端点 → mp3 bytes。"""
     base = settings.bailian_base.rstrip("/")
     if base.endswith("/compatible-mode/v1"):
         base = base[: -len("/compatible-mode/v1")]
@@ -92,14 +98,14 @@ def synth_qwen_audio(text: str, voice: str | None, settings, retries: int = 3,
     last = None
     for attempt in range(retries):
         try:
+            inp = {"text": text, "voice": voice, "format": "mp3", "sample_rate": 24000}
+            if text_prompt:
+                inp["text_prompt"] = text_prompt
             r = requests.post(
                 url,
                 headers={"Authorization": f"Bearer {settings.bailian_key}",
                          "Content-Type": "application/json"},
-                json={"model": QWEN_AUDIO_MODEL, "input": {
-                    "text": text, "voice": voice or QWEN_AUDIO_VOICE,
-                    "format": "mp3", "sample_rate": 24000,
-                    "text_prompt": QWEN_AUDIO_PROMPT}},
+                json={"model": model, "input": inp},
                 timeout=120,
             )
             r.raise_for_status()
@@ -112,6 +118,43 @@ def synth_qwen_audio(text: str, voice: str | None, settings, retries: int = 3,
             if attempt < retries - 1:
                 time.sleep(sleep * (attempt + 1))
     raise RuntimeError(str(last))
+
+
+def _truncated(text: str, data: bytes) -> bool:
+    """音频时长不足文本应有长度的 40% → 视为服务截断。"""
+    with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as f:
+        f.write(data)
+        p = pathlib.Path(f.name)
+    try:
+        return probe_dur(p) < len(text) / _CHARS_PER_SEC * 0.4
+    finally:
+        p.unlink(missing_ok=True)
+
+
+def synth_qwen_audio(text: str, voice: str | None, settings, retries: int = 3,
+                     sleep: float = 1.0) -> bytes:
+    """Qwen-Audio-TTS → mp3 bytes，voice 默认 longanyang（男声）。
+
+    音频时长与文本严重不符（qwen-audio 服务截断）或调用失败时，自动回退 cosyvoice；
+    同一进程内一旦判定截断，后续直接走回退（避免每段重复一次无效请求）。
+    """
+    global _qwen_broken
+    if not _qwen_broken:
+        try:
+            data = _synth_native(text, QWEN_AUDIO_MODEL, voice or QWEN_AUDIO_VOICE,
+                                 settings, text_prompt=QWEN_AUDIO_PROMPT,
+                                 retries=retries, sleep=sleep)
+            if not _truncated(text, data):
+                return data
+            _qwen_broken = True
+            print(f"  ! qwen-audio 音频截断（{len(text)} 字 → 过短），"
+                  f"本批改用 {FALLBACK_MODEL}", file=sys.stderr)
+        except Exception as e:  # noqa: BLE001
+            _qwen_broken = True
+            print(f"  ! qwen-audio 失败（{str(e)[:60]}），本批改用 {FALLBACK_MODEL}",
+                  file=sys.stderr)
+    return _synth_native(text, FALLBACK_MODEL, FALLBACK_VOICE, settings,
+                         retries=retries, sleep=sleep)
 
 
 def synth_edge(text: str, voice: str | None = None, retries: int = 3, sleep: float = 1.0) -> bytes:

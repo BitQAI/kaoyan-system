@@ -1,11 +1,12 @@
 import { get, post } from './api.js';
-import { loadContent } from './state.js';
+import { loadContent, state } from './state.js';
 import { renderToday } from './today.js';
 import { renderListen } from './player.js';
 import { renderLook } from './look.js';
 import { renderTest } from './quiz.js';
 import { initAI } from './ai.js';
 import { renderMe } from './me.js';
+import './exam.js';
 
 const TABS = ['today', 'listen', 'look', 'test', 'me'];
 
@@ -20,6 +21,7 @@ export function kyGo(tab) {
   if (btn) btn.classList.add('on');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   document.dispatchEvent(new CustomEvent('ky-tab', { detail: tab }));
+  if (tab === 'today') renderToday();
   if (tab === 'listen') renderListen();
   if (tab === 'look') renderLook();
   if (tab === 'test') renderTest();
@@ -37,7 +39,23 @@ async function enterApp() {
     document.getElementById('boot-error-msg').textContent = '内容加载失败：' + e.message;
     return;
   }
+  audioCacheGC();
   await renderToday();
+}
+
+const AUDIO_VER_LS = 'ky_audio_ver';
+
+/** 音频离线缓存版本治理：content 版本变化 → 清理旧缓存并提示重下。 */
+async function audioCacheGC() {
+  const ver = (state.content && state.content.version) || 'v1';
+  const prev = localStorage.getItem(AUDIO_VER_LS);
+  if (prev && prev !== ver) {
+    for (const k of await caches.keys()) {
+      if (k.startsWith('ky-audio-')) await caches.delete(k);
+    }
+    localStorage.removeItem('ky_audio_chaps');
+  }
+  localStorage.setItem(AUDIO_VER_LS, ver);
 }
 
 async function boot() {

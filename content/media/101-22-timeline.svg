@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="686" viewBox="0 0 380 686" font-family="PingFang SC, Hiragino Sans GB, sans-serif">
+<rect width="380" height="686" fill="#ffffff"/>
+<text x="16" y="30" font-size="15" font-weight="700" fill="#2457d6">中国近现代史时间轴（1840—2021）</text>
+<line x1="86" y1="44" x2="86" y2="640" stroke="#c9d4e8" stroke-width="2"/>
+<circle cx="86" cy="54" r="4" fill="#2457d6"/>
+<text x="74" y="58" font-size="12.5" font-weight="700" fill="#2457d6" text-anchor="end">1840</text>
+<text x="104" y="58" font-size="11.5" fill="#333b45">鸦片战争，近代史开端</text>
+<circle cx="86" cy="88" r="4" fill="#2457d6"/>
+<text x="74" y="92" font-size="12.5" font-weight="700" fill="#2457d6" text-anchor="end">1851</text>
+<text x="104" y="92" font-size="11.5" fill="#333b45">太平天国运动兴起</text>
+<circle cx="86" cy="122" r="4" fill="#2457d6"/>
+<text x="74" y="126" font-size="12.5" font-weight="700" fill="#2457d6" text-anchor="end">1894</text>
+<text x="104" y="126" font-size="11.5" fill="#333b45">甲午中日战争</text>
+<circle cx="86" cy="156" r="4" fill="#2457d6"/>
+<text x="74" y="160" font-size="12.5" font-weight="700" fill="#2457d6" text-anchor="end">1898</text>
+<text x="104" y="160" font-size="11.5" fill="#333b45">戊戌维新运动</text>
+<circle cx="86" cy="190" r="4" fill="#2457d6"/>
+<text x="74" y="194" font-size="12.5" font-weight="700" fill="#2457d6" text-anchor="end">1900</text>
+<text x="104" y="194" font-size="11.5" fill="#333b45">八国联军侵华</text>
+<circle cx="86" cy="224" r="4" fill="#2457d6"/>
+<text x="74" y="228" font-size="12.5" font-weight="700" fill="#2457d6" text-anchor="end">1911</text>
+<text x="104" y="228" font-size="11.5" fill="#333b45">辛亥革命，帝制终结</text>
+<circle cx="86" cy="258" r="4" fill="#2457d6"/>
+<text x="74" y="262" font-size="12.5" font-weight="700" fill="#2457d6" text-anchor="end">1915</text>
+<text x="104" y="262" font-size="11.5" fill="#333b45">新文化运动兴起</text>
+<circle cx="86" cy="292" r="4" fill="#b33a3a"/>
+<text x="74" y="296" font-size="12.5" font-weight="700" fill="#b33a3a" text-anchor="end">1919</text>
+<text x="104" y="296" font-size="11.5" fill="#333b45">五四运动，新民主主义革命开端</text>
+<circle cx="86" cy="326" r="4" fill="#b33a3a"/>
+<text x="74" y="330" font-size="12.5" font-weight="700" fill="#b33a3a" text-anchor="end">1921</text>
+<text x="104" y="330" font-size="11.5" fill="#333b45">中国共产党成立</text>
+<circle cx="86" cy="360" r="4" fill="#2457d6"/>
+<text x="74" y="364" font-size="12.5" font-weight="700" fill="#2457d6" text-anchor="end">1927</text>
+<text x="104" y="364" font-size="11.5" fill="#333b45">南昌起义；井冈山根据地</text>
+<circle cx="86" cy="394" r="4" fill="#2457d6"/>
+<text x="74" y="398" font-size="12.5" font-weight="700" fill="#2457d6" text-anchor="end">1934</text>
+<text x="104" y="398" font-size="11.5" fill="#333b45">红军长征开始</text>
+<circle cx="86" cy="428" r="4" fill="#2457d6"/>
+<text x="74" y="432" font-size="12.5" font-weight="700" fill="#2457d6" text-anchor="end">1937</text>
+<text x="104" y="432" font-size="11.5" fill="#333b45">全面抗战爆发</text>
+<circle cx="86" cy="462" r="4" fill="#2457d6"/>
+<text x="74" y="466" font-size="12.5" font-weight="700" fill="#2457d6" text-anchor="end">1945</text>
+<text x="104" y="466" font-size="11.5" fill="#333b45">抗日战争胜利</text>
+<circle cx="86" cy="496" r="4" fill="#b33a3a"/>
+<text x="74" y="500" font-size="12.5" font-weight="700" fill="#b33a3a" text-anchor="end">1949</text>
+<text x="104" y="500" font-size="11.5" fill="#333b45">新中国成立，半殖民地半封建社会结束</text>
+<circle cx="86" cy="530" r="4" fill="#2457d6"/>
+<text x="74" y="534" font-size="12.5" font-weight="700" fill="#2457d6" text-anchor="end">1956</text>
+<text x="104" y="534" font-size="11.5" fill="#333b45">三大改造完成，社会主义基本制度确立</text>
+<circle cx="86" cy="564" r="4" fill="#b33a3a"/>
+<text x="74" y="568" font-size="12.5" font-weight="700" fill="#b33a3a" text-anchor="end">1978</text>
+<text x="104" y="568" font-size="11.5" fill="#333b45">十一届三中全会，改革开放</text>
+<circle cx="86" cy="598" r="4" fill="#b33a3a"/>
+<text x="74" y="602" font-size="12.5" font-weight="700" fill="#b33a3a" text-anchor="end">2012</text>
+<text x="104" y="602" font-size="11.5" fill="#333b45">十八大以来，中国特色社会主义新时代</text>
+<circle cx="86" cy="632" r="4" fill="#2457d6"/>
+<text x="74" y="636" font-size="12.5" font-weight="700" fill="#2457d6" text-anchor="end">2021</text>
+<text x="104" y="636" font-size="11.5" fill="#333b45">建党百年，全面建成小康社会</text>
+</svg>

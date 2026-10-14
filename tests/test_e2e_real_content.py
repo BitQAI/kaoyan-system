@@ -18,10 +18,12 @@ def test_real_content_passes_validation():
     assert errors == [], errors[:10]
     subjects = {s["id"]: s for s in content["subjects"]}
     assert set(subjects) == {"101", "204", "315", "812"}
-    assert subjects["204"]["has_content"] is False
-    for sid in ("812", "315", "101"):
+    for sid in ("812", "315", "101", "204"):
+        assert subjects[sid]["has_content"] is True
         assert len(subjects[sid]["chapters"]) > 0
         assert sum(c["weight_center"] for c in subjects[sid]["chapters"]) > 0
+    # 204 无音频（复习型科目）：不应有章级听单
+    assert all(not (c.get("listen") or []) for c in subjects["204"]["chapters"])
 
 
 @pytest.mark.skipif(not REAL_CONTENT.exists(), reason="需先生成 content.json")

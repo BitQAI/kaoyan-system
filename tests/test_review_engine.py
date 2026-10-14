@@ -72,6 +72,30 @@ def test_progress_hook_schedules_review(client):
     con.close()
 
 
+def test_reviews_api_due_and_advance(client):
+    """GET /api/reviews/due 返回到期项；POST advance 推进并标记 known。"""
+    import datetime as dt
+
+    from app import db
+
+    client.post("/api/login", json={"password": "pw"})
+    today = dt.date.today().isoformat()
+    con = db.connect()
+    con.execute("INSERT INTO reviews(point_id, stage, due_date, updated_at) VALUES('812-04-01',0,?,?)",
+                (today, today))
+    con.commit()
+    con.close()
+    items = client.get("/api/reviews/due").json()["items"]
+    assert items and items[0]["point_id"] == "812-04-01"
+    assert client.post("/api/reviews/812-04-01/advance").status_code == 200
+    assert client.get("/api/progress").json()["states"]["812-04-01"] == "known"
+    assert client.get("/api/reviews/due").json()["items"] == []      # 已推进（due+7）
+    con = db.connect()
+    row = con.execute("SELECT stage FROM reviews WHERE point_id='812-04-01'").fetchone()
+    assert row["stage"] == 1
+    con.close()
+
+
 def test_wrong_attempt_schedules_review(tmp_path, monkeypatch):
     """答错 → 关联考点进入复习（stage0）。"""
     import json

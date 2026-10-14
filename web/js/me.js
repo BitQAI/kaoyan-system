@@ -37,6 +37,11 @@ export async function renderMe() {
     <div class="row"><div class="t"><b>音色（下次生成音频生效）</b></div>
       <select id="set-voice">${voiceSel}</select></div>
     <button class="btn" style="margin-top:10px" onclick="window.kyMe.save()">保存设置</button>`;
+  document.getElementById('me-export').innerHTML = `
+    <div class="row"><div class="t"><b>错题清单</b><span class="small">未出本错题 · 题干/答案/解析</span></div>
+      <button class="btn sm ghost" onclick="window.kyMe.exportFile('wrong')">下载</button></div>
+    <div class="row"><div class="t"><b>备考进度表</b><span class="small">四科加权 + 各章进度</span></div>
+      <button class="btn sm ghost" onclick="window.kyMe.exportFile('progress')">下载</button></div>`;
   document.getElementById('me-pwd').innerHTML = `
     <div class="row"><div class="t"><b>修改密码</b><span class="small">写入 .env，重启服务后生效</span></div></div>
     <div class="row"><input class="num wide" type="password" id="pwd-old" placeholder="当前密码"></div>
@@ -72,5 +77,18 @@ function openThread(id, type, ref) {
   window.kyAI.open(type, ref || null);
 }
 
-export const kyMe = { save, changePwd, openThread };
+async function exportFile(kind) {
+  const r = await fetch('/api/export/' + kind, { credentials: 'same-origin' });
+  if (!r.ok) return;
+  const text = await r.text();
+  const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  const d = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  a.download = (kind === 'wrong' ? '错题清单-' : '备考进度-') + d + '.md';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+export const kyMe = { save, changePwd, openThread, exportFile };
 window.kyMe = kyMe;

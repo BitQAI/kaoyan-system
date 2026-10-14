@@ -17,7 +17,12 @@ self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
   if (e.request.method !== 'GET') return;
   if (url.origin !== self.location.origin) return;
-  if (url.pathname.startsWith('/api') || url.pathname.startsWith('/audio')) return;
+  if (url.pathname.startsWith('/api')) return;
+  if (url.pathname.startsWith('/audio')) {
+    // 已下载（Cache Storage 里有）→ 缓存优先；未下载 → 直连网络
+    e.respondWith(caches.match(e.request).then((hit) => hit || fetch(e.request)));
+    return;
+  }
   e.respondWith(
     fetch(e.request)
       .then((resp) => {

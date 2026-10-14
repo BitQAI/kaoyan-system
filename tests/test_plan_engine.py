@@ -70,3 +70,19 @@ def test_pace_counts_remaining_points():
     assert r["remaining_points"] == 3           # 812 共 4 点，1 个 known
     assert abs(r["per_day"] - 3 / 60) < 1e-9
     assert r["behind"] is True                  # 今日 0 < per_day
+
+
+def test_look_fresh_caps_three_points_per_chapter():
+    content = {"subjects": [{"id": "x", "chapters": [
+        {"id": "x-01", "weight_center": 20, "points": [
+            {"id": f"x-01-{i:02d}", "media": [], "audio": [], "listen_ok": False}
+            for i in range(1, 7)], "quiz": [], "cards": []},
+        {"id": "x-02", "weight_center": 10, "points": [
+            {"id": f"x-02-{i:02d}", "media": [], "audio": [], "listen_ok": False}
+            for i in range(1, 4)], "quiz": [], "cards": []},
+    ]}]}
+    p = plan_engine.build_plan(content, {}, wrong_ids=set(),
+                               cfg={"listen_minutes": 0, "look_n": 5, "quiz_n": 0})
+    # 高权重章最多 3 个，其余名额让给下一章
+    assert sum(1 for x in p["look"] if x.startswith("x-01")) == 3
+    assert sum(1 for x in p["look"] if x.startswith("x-02")) == 2

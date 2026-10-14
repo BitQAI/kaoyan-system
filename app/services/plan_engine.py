@@ -88,11 +88,15 @@ def build_plan(content: dict, states: dict, wrong_ids: set, cfg: dict,
         fresh = [(chap, p) for _, chap, p in _iter_points(content)
                  if states.get(p["id"], "new") in ("new", None) and p["id"] not in listen_point_ids]
         fresh.sort(key=lambda cp: -cp[0].get("weight_center", 0))
-        for _, p in fresh:
+        per_chap: dict[str, int] = {}
+        for chap, p in fresh:
             if len(look) >= look_n:
                 break
+            if per_chap.get(chap["id"], 0) >= 3:      # 同章最多 3 点，保证多科/多章覆盖
+                continue
             if p["id"] not in look:
                 look.append(p["id"])
+                per_chap[chap["id"]] = per_chap.get(chap["id"], 0) + 1
     look = look[:look_n]
 
     today_chapters = {chap["id"] for _, chap, p in _iter_points(content)

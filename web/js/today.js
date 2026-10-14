@@ -46,6 +46,21 @@ export async function renderToday() {
       <span class="small">含错题重练</span></div>
       <button class="btn sm ghost" onclick="window.kyGo('test')">去完成</button></div>`;
 
+  const reviewBox = document.getElementById('review-box');
+  if (data.reviews_due > 0) {
+    reviewBox.innerHTML = `<div class="card"><h3>今日复习 <span class="small">${data.reviews_due} 点到期</span></h3>` +
+      (data.review_points || []).slice(0, 8).map((pid) => {
+        const h = state.pointIndex.get(pid);
+        return `<div class="row" style="cursor:pointer"
+          onclick="window.kyGo('look'); setTimeout(function(){window.kyLook.jumpTo('${pid}')},350)">
+          <div class="t"><b>${h ? h.point.text.slice(0, 26) : pid}</b>
+            <span class="small">${h ? h.chap.name.slice(0, 12) : ''} · 标记「会」即推进复习</span></div>
+          <span class="small">去复习 ›</span></div>`;
+      }).join('') + '</div>';
+  } else {
+    reviewBox.innerHTML = '';
+  }
+
   const rings = document.getElementById('rings');
   if (data.pace && data.pace.behind && data.pace.remaining_points > 0) {
     document.getElementById('streak-line').innerHTML =
