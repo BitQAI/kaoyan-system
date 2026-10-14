@@ -2,6 +2,7 @@
 
 点 ID 依据 content/content.json 的实际编号；新增媒体在此登记。
 """
+from content import charts_basic  # noqa: E402
 
 # 315 有机化学结构式（RDKit 渲染）
 STRUCTURES = {
@@ -29,6 +30,11 @@ STRUCTURES = {
     "315-23-05": "OC[C@H]1O[C@H](O[C@H]2O[C@H](CO)[C@@H](O)[C@H](O)[C@H]2O)[C@H](O)[C@@H](O)[C@@H]1O",  # 麦芽糖
     "315-24-01": ["NCC(=O)O", "NC(CS)C(=O)O"],               # 甘氨酸 / 半胱氨酸
     "315-22-01": ["c1ccc2[nH]ccc2c1", "c1ccncc1", "c1cncnc1", "c1ccc2ncccc2c1"],  # 吲哚/吡啶/嘧啶/喹啉
+    # 脂类（315-25）：甘油三酯代表
+    "315-25-01": [
+        "CCCCCCCCCCCCCCCCCC(=O)OCC(COC(=O)CCCCCCCCCCCCCCCCC)OC(=O)CCCCCCCCCCCCCCCCC",  # 三硬脂酸甘油酯
+        "CCCCCCCCC=CCCCCCCCC(=O)OCC(COC(=O)CCCCCCCC=CCCCCCCCC)OC(=O)CCCCCCCC=CCCCCCCCC",  # 三油酸甘油酯
+    ],
 }
 STRUCTURES_CAPTION = {
     "315-13-01": "2-甲基丁烷（伯、仲、叔、季碳标注示例）",
@@ -53,6 +59,8 @@ STRUCTURES_CAPTION = {
     "315-23-05": "麦芽糖（α-1,4-苷键，还原性二糖）",
     "315-24-01": ["甘氨酸（最简单α-氨基酸）", "半胱氨酸（含巯基，可形成二硫键）"],
     "315-22-01": ["吲哚（苯并吡咯）", "吡啶（六元含氮杂环）", "嘧啶（二氮六元环）", "喹啉（苯并吡啶）"],
+    "315-25-01": ["三硬脂酸甘油酯（饱和高级脂肪酸甘油酯）",
+                  "三油酸甘油酯（含 C=C 的不饱和甘油酯，碘值高）"],
 }
 
 
@@ -205,6 +213,43 @@ CHARTS = {
     "315-09-08": {"title": "EDTA 酸效应曲线", "xlabel": "pH", "ylabel": "lgαY(H)",
                   "caption": "pH 越低酸效应越强、EDTA 配位能力越弱（自绘）",
                   "draw": _edta_alpha},
+    # —— 315 缺图章节补齐（每章 ≥1 图）——
+    "315-01-03": {"title": "稀溶液依数性：蒸气压下降", "xlabel": "温度 / ℃", "ylabel": "蒸气压 / kPa",
+                  "caption": "溶液蒸气压下降 → 沸点升高、凝固点降低（示意图，自绘）",
+                  "draw": charts_basic.draw_vapor_pressure},
+    "315-02-05": {"title": "反应焓变与能级变化", "xlabel": "", "ylabel": "",
+                  "caption": "ΔrH° = H(产物) − H(反应物)，放热反应示意（自绘）",
+                  "draw": charts_basic.draw_reaction_enthalpy},
+    "315-03-03": {"title": "活化能与有效碰撞", "xlabel": "", "ylabel": "",
+                  "caption": "活化配合物、正/逆活化能与反应热的关系（自绘）",
+                  "draw": charts_basic.draw_activation_energy},
+    "315-05-02": {"title": "准确度与精密度的四种情形", "xlabel": "", "ylabel": "",
+                  "caption": "以打靶类比：+ 为真值，空心点为测定值（自绘）",
+                  "draw": charts_basic.draw_accuracy_precision},
+    "315-07-05": {"title": "分步沉淀与选择性沉淀", "xlabel": "", "ylabel": "",
+                  "caption": "Ksp 小的 AgI 先沉淀，可实现 I⁻ 与 Cl⁻ 的分离（示意，自绘）",
+                  "draw": charts_basic.draw_fractional_precipitation},
+    "315-08-02": {"title": "Zn-Cu 原电池", "xlabel": "", "ylabel": "",
+                  "caption": "电极、盐桥、电子流向与正负极反应（示意，自绘）",
+                  "draw": charts_basic.draw_galvanic_cell},
+    "315-10-07": {"title": "吸收曲线与最大吸收波长", "xlabel": "波长 λ / nm", "ylabel": "吸光度 A",
+                  "caption": "选 λmax 作测量波长，灵敏度最高（示意图，自绘）",
+                  "draw": charts_basic.draw_absorption_curve},
+    "315-11-03": {"title": "pH 测量电池组成", "xlabel": "", "ylabel": "",
+                  "caption": "玻璃电极（指示）与饱和甘汞电极（参比）组成电池（示意，自绘）",
+                  "draw": charts_basic.draw_ph_cell},
+    "315-12-01": {"title": "碳的三种杂化与键角", "xlabel": "", "ylabel": "",
+                  "caption": "sp（180°）、sp²（120°）、sp³（109.5°）（示意，自绘）",
+                  "draw": charts_basic.draw_hybrid_orbitals},
+    "315-16-01": {"title": "手性与对映体", "xlabel": "", "ylabel": "",
+                  "caption": "镜像不重合即手性；手性碳连 4 个不同基团（示意，自绘）",
+                  "draw": charts_basic.draw_chirality},
+    "315-17-04": {"title": "SN2 背面进攻与构型翻转", "xlabel": "", "ylabel": "",
+                  "caption": "亲核试剂从背面进攻，产物构型翻转（瓦尔登转化，示意，自绘）",
+                  "draw": charts_basic.draw_sn2},
+    "315-26-02": {"title": "常压蒸馏装置", "xlabel": "", "ylabel": "",
+                  "caption": "圆底烧瓶—蒸馏头—冷凝管—接收瓶（示意，自绘）",
+                  "draw": charts_basic.draw_distillation_apparatus},
 }
 
 # 人工挑选的静态图（Commons CC / 教材裁图 local）：
