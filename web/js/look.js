@@ -246,6 +246,13 @@ function examBody(p) {
 }
 
 function noteBody(p) {
+  if (p.units && p.units.length) {
+    const items = p.units.map((u) => `<li>${u}</li>`).join('');
+    const raw = p.note
+      ? `<details class="notebox"><summary>查看完整原文</summary><p class="ptext">${p.note}</p></details>`
+      : '';
+    return `<div class="units"><b>理解要点</b><ol>${items}</ol>${raw}</div>`;
+  }
   if (!p.note) return '';
   return `<details class="notebox"><summary>展开理解（${p.note.length} 字）</summary>
     <p class="ptext">${p.note}</p></details>`;
