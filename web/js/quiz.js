@@ -1,5 +1,5 @@
 import { get, post } from './api.js';
-import { state } from './state.js';
+import { state, tagChips } from './state.js';
 
 let run = null;       // 当前做题会话
 let waiting = false;
@@ -51,10 +51,12 @@ async function renderCards() {
   }
   if (!card) { box.innerHTML = '<div class="empty">暂无背题卡</div>'; return; }
   box.dataset.cardId = card.id;
+  const cardHit = card.point_id && state.pointIndex.get(card.point_id);
   box.innerHTML = `
     <div class="flip" id="flipcard" onclick="this.classList.toggle('f')">
       <div class="inner">
-        <div class="face"><b>${card.front}</b><p class="small">点击翻面查看答案</p></div>
+        <div class="face"><div class="small">${cardHit ? tagChips(cardHit.point, 3) : ''}</div>
+          <b>${card.front}</b><p class="small">点击翻面查看答案</p></div>
         <div class="face back"><span class="small">答案（AI 生成，请对照教材）</span><p>${card.back}</p></div>
       </div>
     </div>
@@ -89,9 +91,11 @@ function paintQuiz() {
   const q = run.items[run.i];
   const media = (q.media || []).map((m) => m.src
     ? `<div class="media"><img src="/${m.src}" alt=""></div>` : '').join('');
+  const hit = q.point_id && state.pointIndex.get(q.point_id);
   box.innerHTML = `<div class="card">
     <h3>选择题 ${run.i + 1}/${run.items.length} <span class="small">已完成 ${run.right} 对</span></h3>
     ${media}
+    ${hit ? `<div class="small" style="margin:2px 0">${tagChips(hit.point, 3)}<span style="color:var(--muted)"> 关联：${hit.point.text.slice(0, 18)}</span></div>` : ''}
     <p style="margin:4px 0 2px"><b>${q.stem}</b></p>
     ${q.options.map((o, i) => `<div class="opt" data-i="${i}" onclick="window.kyQuiz.pick(this,${i})">
       <span class="k">${'ABCD'[i]}</span><span>${o}</span></div>`).join('')}

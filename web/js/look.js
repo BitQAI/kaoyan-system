@@ -1,5 +1,5 @@
 import { get, post } from './api.js';
-import { state } from './state.js';
+import { state, tagClass } from './state.js';
 
 const TIER = { 1: '第一梯队', 2: '第二梯队', 3: '第三梯队' };
 const CYCLE = [
@@ -75,7 +75,7 @@ function pointHtml(p) {
   const st = (state.states[p.id] || 'new');
   const cur = CYCLE.find((c) => c.s === st) || CYCLE[0];
   const tags = (p.tags || []).map((t) =>
-    `<span class="chip ${t === '易错' ? 'r' : t === '重点' ? 'o' : ''}">${t}</span>`).join('');
+    `<span class="chip ${tagClass(t)}">${t}</span>`).join('');
   const fav = favorites.has(p.id) ? 'on' : '';
   return `<div class="pcard">
     <div class="row">

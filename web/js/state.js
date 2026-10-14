@@ -20,7 +20,7 @@ export async function loadContent(force = false) {
         state.pointIndex.set(p.id, { subj, chap, point: p });
         for (const a of p.audio || []) {
           const clipId = a.src.replace(/^audio\//, '').replace(/\.mp3$/, '');
-          state.clipIndex.set(clipId, { point: p, clip: a, chap });
+          state.clipIndex.set(clipId, { point: p, clip: a, chap, subj });
         }
       }
     }
@@ -38,4 +38,29 @@ export function clipTitle(clipId) {
   if (!hit) return clipId;
   const part = clipId.includes('-p') ? `（${clipId.split('-p')[1]}）` : '';
   return hit.point.text.slice(0, 26) + part;
+}
+
+const TAG_PRIORITY = ['易错', '常考', '高频', '必掌握', '重点', '基础', '机制', '理解', '了解'];
+
+export function tagClass(t) {
+  if (['易错', '常考', '高频', '必掌握'].includes(t)) return 'r';
+  if (['重点', '理解'].includes(t)) return 'o';
+  if (t === '机制') return 'b';
+  if (t === '了解') return '';
+  return 'g';
+}
+
+/** 按优先级取前 max 个徽标（html）。传入 point 或 tags 数组。 */
+export function tagChips(pointOrTags, max = 2) {
+  const tags = Array.isArray(pointOrTags) ? pointOrTags : (pointOrTags && pointOrTags.tags) || [];
+  const sorted = [...tags].sort((a, b) => {
+    const ia = TAG_PRIORITY.indexOf(a); const ib = TAG_PRIORITY.indexOf(b);
+    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+  });
+  return sorted.slice(0, max).map((t) => `<span class="chip ${tagClass(t)}">${t}</span>`).join('');
+}
+
+export function pointTags(pointId) {
+  const hit = state.pointIndex.get(pointId);
+  return hit ? hit.point.tags || [] : [];
 }

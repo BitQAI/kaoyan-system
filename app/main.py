@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+from starlette.middleware.base import BaseHTTPMiddleware
 
 from app import db
 from app.config import get_settings
@@ -19,6 +20,20 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="kaoyan-system", lifespan=lifespan)
+
+
+class _NoStoreStatic(BaseHTTPMiddleware):
+    """静态前端资源禁用 HTTP 缓存（SW 已负责离线缓存；避免改版后拿到旧 JS）。"""
+
+    async def dispatch(self, request, call_next):
+        resp = await call_next(request)
+        if request.url.path.startswith(("/js/", "/vendor/")) or \
+                request.url.path in ("/app.css", "/sw.js", "/manifest.json"):
+            resp.headers["Cache-Control"] = "no-store"
+        return resp
+
+
+app.add_middleware(_NoStoreStatic)
 app.include_router(auth_router.router)
 app.include_router(content_router.router)
 app.include_router(progress_router.router)

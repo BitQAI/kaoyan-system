@@ -1,5 +1,5 @@
 import { get, post } from './api.js';
-import { clipTitle, pointTitle, state } from './state.js';
+import { clipTitle, pointTitle, state, tagChips } from './state.js';
 
 const audio = new Audio();
 audio.preload = 'metadata';
@@ -157,16 +157,33 @@ function paintQueue() {
     list.innerHTML = '<div class="empty">队列为空（选"按章节"或等计划生成）。</div>';
     return;
   }
-  list.innerHTML = queue.map((cid, i) => {
+  // 按科目分组渲染（播放顺序保持不变，仅视觉分组）
+  const order = [];
+  const groups = new Map();
+  queue.forEach((cid) => {
     const hit = state.clipIndex.get(cid);
+    const sid = hit ? hit.subj.id : '?';
+    if (!groups.has(sid)) {
+      groups.set(sid, []);
+      order.push(sid);
+    }
+    groups.get(sid).push({ cid, hit });
+  });
+  const rowHtml = ({ cid, hit }, i) => {
     const tier = hit && hit.chap.tier ? Math.min(hit.chap.tier, 3) : 3;
-    const cur = i === idx ? '<span class="chip g">当前</span>' : '';
+    const cur = cid === current() ? '<span class="chip g">当前</span>' : '';
     const done = posMap[cid] && posMap[cid].plays ? '<span class="small">✓</span>' : '';
     return `<div class="row" onclick="window.kyPlayer.playClip('${cid}')">
       <span class="dot d${tier}"></span>
       <div class="t"><b>${clipTitle(cid)}</b>
-        <span class="small">${hit ? hit.chap.name.slice(0, 12) : ''} · ${fmt(hit && hit.clip.dur)}</span></div>
+        <span class="small">${hit ? tagChips(hit.point) : ''}${hit ? hit.chap.name.slice(0, 10) : ''} · ${fmt(hit && hit.clip.dur)}</span></div>
       ${cur}${done}</div>`;
+  };
+  list.innerHTML = order.map((sid) => {
+    const items = groups.get(sid);
+    const name = items[0].hit ? items[0].hit.subj.name : '未知科目';
+    return `<div class="qgroup"><b>${name}</b><span class="small">${items.length} 段</span></div>
+      <div class="qbody">${items.map(rowHtml).join('')}</div>`;
   }).join('');
 }
 
