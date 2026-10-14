@@ -105,6 +105,20 @@ body{margin:0;background:#eef1f6;color:var(--text);font:14px/1.65 -apple-system,
 .blank-input:focus{border-color:var(--brand)}
 .pcard.highlight{outline:2px solid var(--brand);border-radius:10px;background:var(--soft)}
 .prow.highlight{outline:2px solid var(--brand);border-radius:10px;background:var(--soft)}
+/* 看页：章节单行列表 + 下载图标 + 确认弹窗 */
+.clist{padding:2px 12px}
+.crow{display:flex;align-items:center;gap:7px;padding:12px 0;border-top:1px solid var(--line);cursor:pointer}
+.crow:first-child{border-top:none}
+.cname{flex:1;min-width:0;font-size:13.5px;font-weight:600;color:#243040;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cscore{font-size:11px;flex:none;color:#6b7280}
+.cscore.t1{color:var(--red)}.cscore.t2{color:var(--orange)}
+.cpct{font-size:11px;color:var(--muted);width:34px;text-align:right;flex:none}
+.ico{width:26px;height:26px;border:none;background:none;color:var(--brand);font-size:15px;cursor:pointer;padding:0;flex:none;line-height:1}
+.ico.ok{color:var(--green)}
+.cmask{position:fixed;inset:0;background:rgba(20,30,50,.35);display:flex;align-items:center;justify-content:center;z-index:80}
+.cbox{background:#fff;border-radius:14px;padding:16px;width:78%;max-width:340px;box-shadow:0 12px 32px rgba(20,30,50,.25)}
+.cbox p{font-size:13.5px;line-height:1.7;white-space:pre-line;margin:0 0 12px}
+.cbtns{display:flex;gap:8px;justify-content:flex-end}
 mark{background:#fff3c4;color:inherit;border-radius:3px;padding:0 1px}
 .flip{perspective:1000px;cursor:pointer}
 .flip .inner{position:relative;min-height:140px;transition:transform .5s;transform-style:preserve-3d}

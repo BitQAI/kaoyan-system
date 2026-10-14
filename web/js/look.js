@@ -115,19 +115,56 @@ function paintChapters() {
     </div>`;
     return;
   }
-  document.getElementById('look-chapters').innerHTML = subj.chapters.map((ch) => {
-    const hasAudio = (ch.listen || []).length || (ch.points || []).some((p) => (p.audio || []).length);
-    const off = window.kyOffline && window.kyOffline.status(ch.id);
-    return `
-    <div class="card" style="cursor:pointer" onclick="window.kyLook.open('${ch.id}')">
-      <h3>${ch.name}
-        <span class="badge t${ch.tier || 3}">${TIER[ch.tier] || '第三梯队'} · ${ch.weight_center || 0} 分</span></h3>
-      <div class="bar"><i style="width:${Math.round(chapterCompletion(ch.id) * 100)}%"></i></div>
-      ${hasAudio ? `<div style="margin-top:8px">
-        <button class="btn sm ghost" onclick="event.stopPropagation(); window.kyOffline.downloadFromCard('${ch.id}', this)">${off ? '已离线 ✓' : '⇩ 下载本章音频'}</button>
-      </div>` : ''}
-    </div>`;
-  }).join('');
+  document.getElementById('look-chapters').innerHTML = `<div class="card clist">` +
+    subj.chapters.map((ch) => {
+      const hasAudio = (ch.listen || []).length || (ch.points || []).some((p) => (p.audio || []).length);
+      const off = window.kyOffline && window.kyOffline.status(ch.id);
+      const pct = Math.round(chapterCompletion(ch.id) * 100);
+      const tier = Math.min(ch.tier || 3, 3);
+      return `<div class="crow" onclick="window.kyLook.open('${ch.id}')"
+          style="background:linear-gradient(90deg, var(--soft) ${pct}%, transparent ${pct}%)">
+        <span class="dot d${tier}"></span>
+        <span class="cname">${ch.name}</span>
+        <span class="cscore t${tier}">${ch.weight_center || 0}分</span>
+        <span class="cpct">${pct}%</span>
+        ${hasAudio ? `<button class="ico${off ? ' ok' : ''}" title="下载本章音频"
+          onclick="event.stopPropagation(); window.kyLook.downloadAsk('${ch.id}', this)">${off ? '✓' : '⇩'}</button>` : '<span class="ico"></span>'}
+        <span class="caret">›</span>
+      </div>`;
+    }).join('') + '</div>';
+}
+
+/** 轻量确认弹窗（Promise<boolean>）。 */
+function confirmBox(msg, okText = '确定') {
+  return new Promise((resolve) => {
+    const mask = document.createElement('div');
+    mask.className = 'cmask';
+    mask.innerHTML = `<div class="cbox"><p>${msg}</p>
+      <div class="cbtns"><button class="btn sm ghost" data-x>取消</button>
+      <button class="btn sm" data-ok>${okText}</button></div></div>`;
+    document.body.appendChild(mask);
+    const close = (v) => { mask.remove(); resolve(v); };
+    mask.querySelector('[data-ok]').onclick = () => close(true);
+    mask.querySelector('[data-x]').onclick = () => close(false);
+    mask.onclick = (e) => { if (e.target === mask) close(false); };
+  });
+}
+
+/** 点下载图标：先弹窗确认，再下载本章音频。 */
+async function downloadAsk(chapId, btn) {
+  const subj = state.content.subjects.find((s) => s.id === subject);
+  const chap = subj && subj.chapters.find((c) => c.id === chapId);
+  if (!chap) return;
+  const n = (chap.listen || []).length + (chap.points || []).reduce((a, p) => a + (p.audio || []).length, 0);
+  if (!n) { btn.textContent = '无音频'; return; }
+  const ok = await confirmBox(`下载《${chap.name}》的 ${n} 段音频到本地？\n下载后无网络也能收听本章。`, '下载');
+  if (!ok) return;
+  const old = btn.textContent;
+  btn.textContent = '…';
+  const r = await window.kyOffline.download(chapId);
+  btn.textContent = r.total && r.ok === r.total ? '✓' : '⇩';
+  if (!(r.total && r.ok === r.total)) btn.textContent = old;
+  btn.classList.toggle('ok', r.total > 0 && r.ok === r.total);
 }
 
 function mediaHtml(media) {
@@ -270,6 +307,7 @@ export const kyLook = {
   back: renderLook,
   cycle: cycleState,
   star: starPoint,
+  downloadAsk,
   toggle: togglePoint,
   expand: expandPoint,
   jumpTo,
