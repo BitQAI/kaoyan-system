@@ -266,7 +266,7 @@ git add -A && git commit -m "feat(m2): multi-type quiz UI, exam mode, chapter li
 - Modify: `content/quiz/101.json`（追加 `type:"multi"` 题目与分析卡）
 - 遵守 Task 2 的 schema；`scripts/validate_content.py` 校验
 
-- [ ] **Step 1: 撰写 60 道多选**（每模块 ~10：马原/毛中特/习概/史纲/思修/时政；4 选项 2-3 个正确，选项为教材标准表述变体）→ **Step 2: 撰写 18 张分析题卡**（`cards` 使用 `kind:"分析"`，back 为「原理+材料落点+小结」三段式作答骨架）→ **Step 3: `--merge` + validate 0 问题** → **Step 4: 输出抽查清单（题干/答案/解析三列 markdown）→ 暂存**
+- [x] **Step 1: 撰写 62 道多选**（马原16+史纲10+毛中特10+习概12+思修8+时政6）**（每模块 ~10：马原/毛中特/习概/史纲/思修/时政；4 选项 2-3 个正确，选项为教材标准表述变体）→ **Step 2: 分析题卡 18 张 ✓**（`cards` 使用 `kind:"分析"`，back 为「原理+材料落点+小结」三段式作答骨架）→ **Step 3: `--merge` + validate 0 问题** → **Step 4: 输出抽查清单（题干/答案/解析三列 markdown）→ 暂存**
 
 ---
 
@@ -275,7 +275,7 @@ git add -A && git commit -m "feat(m2): multi-type quiz UI, exam mode, chapter li
 **Files:**
 - Modify: `content/quiz/315.json`
 
-- [ ] **Step 1: 选择题补齐至每章 ≥12**（新增 60：四大平衡/热力学/结构/有机反应网络为主，计算类给解题步骤解析）→ **Step 2: 填空 40 道**（弱酸 pH、Ksp 换算、电势计算、命名、方程式补全等；`accept` 列 2-3 个可接受变体）→ **Step 3: merge + validate（含新题型校验）** → **Step 4: 抽查清单 → 暂存**
+- [x] **Step 1: 新增选择 60**（按权重分布至各章 6~14 道，未全部达到 ≥12——26 章全达 12 需 ~134 道，见交付说明）（新增 60：四大平衡/热力学/结构/有机反应网络为主，计算类给解题步骤解析）→ **Step 2: 填空 40 道 ✓**（弱酸 pH、Ksp 换算、电势计算、命名、方程式补全等；`accept` 列 2-3 个可接受变体）→ **Step 3: merge + validate（含新题型校验）** → **Step 4: 抽查清单 → 暂存**
 
 ---
 
@@ -284,7 +284,7 @@ git add -A && git commit -m "feat(m2): multi-type quiz UI, exam mode, chapter li
 **Files:**
 - Modify: `content/quiz/315.json`（`kind:"综合"` 卡：计算题完整步骤）、`content/quiz/812.json`（`kind` 标注 + 补齐）
 
-- [ ] **Step 1: 315 综合卡 20**（滴定计算/热力学 ΔG 判断/平衡移动/有机合成路线，back 含完整解题步骤链）→ **Step 2: 812 卡片重标 kind（名解/简答/论述）并补齐每章 ≥5（净增 ~23）** → **Step 3: merge + validate + 计数 ≥700 断言** → **Step 4: 抽查 → 暂存**
+- [x] **Step 1: 315 综合卡 20 ✓**（滴定计算/热力学 ΔG 判断/平衡移动/有机合成路线，back 含完整解题步骤链）→ **Step 2: 812 卡片重标 kind + 补齐至每章 ≥5（名解≥2/简答≥2/论述≥1，净增 28）✓** → **Step 3: merge + validate + 计数 ≥700 断言** → **Step 4: 抽查 → 暂存**
 
 ---
 
@@ -293,7 +293,7 @@ git add -A && git commit -m "feat(m2): multi-type quiz UI, exam mode, chapter li
 **Files:**
 - Modify: `content/media_config.py`,（运行）`scripts/gen_media.py`
 
-- [ ] **Step 1: 补 20 个结构式 SMILES**（苯酚/苯甲酸/乙酸乙酯/乙胺/乙酰胺/丙烯/丙炔/环己烷(椅式叠简)/乳酸/柠檬酸/果糖链式/麦芽糖/甘氨酸/半胱氨酸/葡萄糖醛酸/吲哚/吡啶/嘧啶/喹啉/乙酸酐，按对应章 point_id 挂载）→ **Step 2: 图表 +6**（0.1/0.01/0.001M NaOH 滴定 HAc 曲线族、缓冲容量-pH 曲线、同周期原子半径与第一电离能双轴图、4s/3d 能级交错示意图）→ **Step 3: 生成 + attach + 逐张目检（Read 渲染图）** → **Step 4: validate + 暂存**
+- [x] **Step 1: 结构式 +20（合计 28）✓**（苯酚/苯甲酸/乙酸乙酯/乙胺/乙酰胺/丙烯/丙炔/环己烷(椅式叠简)/乳酸/柠檬酸/果糖链式/麦芽糖/甘氨酸/半胱氨酸/葡萄糖醛酸/吲哚/吡啶/嘧啶/喹啉/乙酸酐，按对应章 point_id 挂载）→ **Step 2: 图表 +6（合计 8）✓**（0.1/0.01/0.001M NaOH 滴定 HAc 曲线族、缓冲容量-pH 曲线、同周期原子半径与第一电离能双轴图、4s/3d 能级交错示意图）→ **Step 3: 生成 + attach + 逐张目检（Read 渲染图）** → **Step 4: validate + 暂存**
 
 ---
 
@@ -302,7 +302,9 @@ git add -A && git commit -m "feat(m2): multi-type quiz UI, exam mode, chapter li
 **Files:**
 - Modify: `content/figures_textbook.json`（新增条目）、`content/media/`（101 时间轴 SVG）、`content/media_config.py`（STATIC 挂载时间轴）
 
-- [ ] **Step 1: 王忠版逐章扫描定位**（呼吸/生长物质/成花/抗逆/细胞/矿质章，缩略图拼版→放大目检→裁图→Read 复核，沿用既有流程）→ **Step 2: 目标 8-12 张**（优先：TCA 循环图、五大激素表、光周期示意、抗逆膜伤害图、细胞结构图、根系矿质吸收图）→ **Step 3: 手绘史纲时间轴 SVG（1840→2026 关键节点）挂入 101-22** → **Step 4: attach + validate（每章 ≥1 检查脚本通过：统计各章 media 非空）** → **Step 5: 暂存**
+- [x] **Step 1: 王忠版逐章扫描定位**（新增 tiled 拼版 + 页眉条带定位法；章节页界已测绘：呼吸=p214-257、生长物质=p322-388、成花=p480-508、抗逆=p546-590）→ **Step 2: 裁图 13 张**（TCA循环/糖酵解/呼吸链/韧皮部装载/IAA合成/生长素调运/光敏色素 Pr-Pfr/光周期暗期中断/冷害膜脂相变/细胞壁/根系硝酸盐/组织培养激素比例/种子成熟曲线）→ **Step 3: 史纲时间轴 SVG 挂入 101-22 ✓** → **Step 4: attach + validate ✓（812 十一载章中 10 章已有点位带图；812-00 绪论无合适插图）** → **Step 5: 暂存 ✓**
+- 附带修复：`mediaHtml` 懒加载图片在滚动容器内永不触发 → 统一 eager；`gen_media.attach` 多点位覆盖 bug
+- 注：教材裁图依安全约束不入库（`content/media-private/`，部署用 `upload_assets.sh` 上传）；「全科每章 ≥1 图」未完全达成，315/101/204 多数章仍无图（需后续批量补充并自绘）
 
 ---
 
@@ -317,7 +319,7 @@ git add -A && git commit -m "feat(m2): multi-type quiz UI, exam mode, chapter li
 - 幂等：同月重复执行先移除旧生成点再重建。
 - **本期内容**：仅建机制 + 模板 + README（写明"每月从官方/机构时政材料摘要粘贴，运行一条命令"）；**不编造事件**，待用户供稿执行。
 
-- [ ] **Step 1: 解析器测试**（模板样例 → 2 点 + 音频调用 mock）→ **Step 2: FAIL→实现→PASS** → **Step 3: README/模板/DEPLOY 文档** → **Step 4: 暂存；M3 全绿后提交**
+- [x] **Step 1: 解析器测试（3 用例）✓**→ **Step 2: FAIL→实现→PASS** → **Step 3: README/模板/DEPLOY 文档** → **Step 4: 暂存；M3 全绿后提交**
 
 ```bash
 git add -A && git commit -m "feat(m3): chapter listen audio, quiz expansion (multi/blank/subjective), media coverage, current-affairs pipeline"

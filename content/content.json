@@ -233,7 +233,16 @@
         "易错"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "diagram",
+         "src": "media-private/812-01-02-t1.png",
+         "caption": "细胞壁的层次结构（电镜照片与结构模式图）",
+         "source": "textbook",
+         "license": "个人学习使用（不外传）",
+         "attribution": "王忠《植物生理学》图 1-4"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-01-02.mp3",
@@ -1380,7 +1389,16 @@
         "易错"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "diagram",
+         "src": "media-private/812-03-05-t1.png",
+         "caption": "根系对硝酸盐的吸收、运输与同化途径",
+         "source": "textbook",
+         "license": "个人学习使用（不外传）",
+         "attribution": "王忠《植物生理学》图 3-3"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-03-05.mp3",
@@ -2321,7 +2339,32 @@
         "易错"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "diagram",
+         "src": "media-private/812-05-03-t1.png",
+         "caption": "三羧酸循环（TCA 循环）及其反应阶段",
+         "source": "textbook",
+         "license": "个人学习使用（不外传）",
+         "attribution": "王忠《植物生理学》图 5-6"
+        },
+        {
+         "type": "diagram",
+         "src": "media-private/812-05-03-t2.png",
+         "caption": "糖酵解途径（EMP）与相关酶系",
+         "source": "textbook",
+         "license": "个人学习使用（不外传）",
+         "attribution": "王忠《植物生理学》图 5-7"
+        },
+        {
+         "type": "diagram",
+         "src": "media-private/812-05-03-t3.png",
+         "caption": "线粒体电子传递与氧化磷酸化（呼吸链）",
+         "source": "textbook",
+         "license": "个人学习使用（不外传）",
+         "attribution": "王忠《植物生理学》图 5-23"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-05-03.mp3",
@@ -2700,7 +2743,16 @@
         "基础"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "diagram",
+         "src": "media-private/812-06-01-t1.png",
+         "caption": "源向库的韧皮部装载途径（共质体与质外体）",
+         "source": "textbook",
+         "license": "个人学习使用（不外传）",
+         "attribution": "王忠《植物生理学》图 6-1"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-06-01.mp3",
@@ -3051,7 +3103,16 @@
         "易错"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "diagram",
+         "src": "media-private/812-07-03-t1.png",
+         "caption": "生长素（IAA）的生物合成途径（4 条途径）",
+         "source": "textbook",
+         "license": "个人学习使用（不外传）",
+         "attribution": "王忠《植物生理学》图 8-7"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-07-03.mp3",
@@ -3078,7 +3139,16 @@
         "易错"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "diagram",
+         "src": "media-private/812-07-04-t1.png",
+         "caption": "生长素调运养分的作用（放射性自显影实验）",
+         "source": "textbook",
+         "license": "个人学习使用（不外传）",
+         "attribution": "王忠《植物生理学》图 8-10"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-07-04.mp3",
@@ -3673,7 +3743,16 @@
         "基础"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "diagram",
+         "src": "media-private/812-08-04-t1.png",
+         "caption": "生长素与细胞分裂素比例对组织培养分化的影响",
+         "source": "textbook",
+         "license": "个人学习使用（不外传）",
+         "attribution": "王忠《植物生理学》图 10-9/10-10"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-08-04.mp3",
@@ -3798,7 +3877,16 @@
         "基础"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "diagram",
+         "src": "media-private/812-08-09-t1.png",
+         "caption": "光敏色素 Pr/Pfr 两种构型的互变与吸收光谱",
+         "source": "textbook",
+         "license": "个人学习使用（不外传）",
+         "attribution": "王忠《植物生理学》图 9-4"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-08-09.mp3",
@@ -4145,7 +4233,16 @@
         "易错"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "diagram",
+         "src": "media-private/812-09-05-t1.png",
+         "caption": "光周期、暗期中断与光间断对成花的影响",
+         "source": "textbook",
+         "license": "个人学习使用（不外传）",
+         "attribution": "王忠《植物生理学》图 11-11"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-09-05.mp3",
@@ -4509,7 +4606,16 @@
         "易错"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "diagram",
+         "src": "media-private/812-10-04-t1.png",
+         "caption": "种子成熟过程中含水量、呼吸速率与激素的变化",
+         "source": "textbook",
+         "license": "个人学习使用（不外传）",
+         "attribution": "王忠《植物生理学》图 12-10"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-10-04.mp3",
@@ -5075,7 +5181,16 @@
         "易错"
        ],
        "listen_ok": true,
-       "media": [],
+       "media": [
+        {
+         "type": "diagram",
+         "src": "media-private/812-11-08-t1.png",
+         "caption": "由低温引起的膜脂相变（液晶态→凝胶态）",
+         "source": "textbook",
+         "license": "个人学习使用（不外传）",
+         "attribution": "王忠《植物生理学》图 13-5"
+        }
+       ],
        "audio": [
         {
          "src": "audio/812-11-08.mp3",

@@ -45,6 +45,30 @@ def scan_thumbnails(pdf: str, start: int, end: int, step: int, outdir: pathlib.P
     return outs
 
 
+def tile_thumbnails(paths: list[str], out: pathlib.Path, cols: int = 6,
+                    cell_w: int = 190) -> dict:
+    """把缩略图拼成一张网格图（一次目检多页，用于定位插图）。"""
+    from PIL import Image, ImageDraw
+
+    imgs = []
+    for p in paths:
+        im = Image.open(p)
+        h = int(im.height * cell_w / im.width)
+        imgs.append((pathlib.Path(p).stem, im.resize((cell_w, h))))
+    cell_h = max(im.height for _, im in imgs) + 18
+    rows = (len(imgs) + cols - 1) // cols
+    canvas = Image.new("RGB", (cols * cell_w, rows * cell_h), "white")
+    draw = ImageDraw.Draw(canvas)
+    for i, (name, im) in enumerate(imgs):
+        x, y = (i % cols) * cell_w, (i // cols) * cell_h
+        canvas.paste(im, (x, y + 16))
+        draw.text((x + 4, y + 2), name, fill="#b33a3a")
+        draw.rectangle([x, y, x + cell_w - 1, y + cell_h - 1], outline="#dddddd")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    canvas.save(out)
+    return {"out": str(out), "pages": len(imgs), "size": [canvas.width, canvas.height]}
+
+
 def run_config(cfg_path: pathlib.Path) -> list[dict]:
     cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
     results = []
@@ -92,6 +116,8 @@ def main():
     ap.add_argument("--scan", help="起止页 如 100-160")
     ap.add_argument("--step", type=int, default=4)
     ap.add_argument("--thumbs", default="/tmp/ky_thumbs")
+    ap.add_argument("--tile", help="把缩略图拼成网格图输出到该路径（配合 --scan）")
+    ap.add_argument("--cols", type=int, default=6)
     ap.add_argument("--attach", action="store_true")
     args = ap.parse_args()
 
@@ -106,6 +132,8 @@ def main():
         s, e = (int(x) for x in args.scan.split("-"))
         outs = scan_thumbnails(args.pdf, s, e, args.step, pathlib.Path(args.thumbs))
         print(f"缩略图 {len(outs)} 张 → {args.thumbs}")
+        if args.tile:
+            print(tile_thumbnails(outs, pathlib.Path(args.tile), cols=args.cols))
         return
     if args.pdf and args.page and args.box and args.out:
         info = crop(args.pdf, args.page, tuple(float(x) for x in args.box.split(",")),

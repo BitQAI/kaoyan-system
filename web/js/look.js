@@ -121,8 +121,8 @@ function mediaHtml(media) {
         <div class="figcap">${m.caption || ''}</div></div>`;
     }
     if (m.src) {
-      const lazy = /\.(png|jpe?g|webp)$/i.test(m.src) ? 'lazy' : 'eager';   // SVG 极小且懒加载易漏载
-      return `<div class="media"><img loading="${lazy}" src="/${m.src}" alt="${m.caption || ''}">
+      // 动态插入的懒加载图在滚动容器内可能永不触发，统一 eager（每章图片数量有限）
+      return `<div class="media"><img loading="eager" src="/${m.src}" alt="${m.caption || ''}">
         <div class="figcap">${m.caption || ''}${m.source ? ' · 来源：' + m.source : ''}${m.license ? '（' + m.license + '）' : ''}</div></div>`;
     }
     return '';
