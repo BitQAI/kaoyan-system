@@ -213,6 +213,8 @@ window.kyQuiz = kyQuiz;
 
 const CARDS_LS = 'ky_cards_done';
 let cardCursor = 0;
+let cardStep = 0;              // 背题卡三步：0 问题 / 1 关键词锚点 / 2 完整答案
+let curCard = null;
 
 function cardsDone() {
   try { return new Set(JSON.parse(localStorage.getItem(CARDS_LS) || '[]')); } catch (e) { return new Set(); }
@@ -252,25 +254,50 @@ async function renderCards() {
     return;
   }
   box.dataset.cardId = card.id;
+  curCard = card;
+  cardStep = 0;
   const hit = state.pointIndex.get(card.point_id);
   const ctx = hit ? `${hit.subj.name.slice(0, 6)} · ${hit.chap.name.slice(0, 12)}` : '';
   box.innerHTML = `
     <div class="ccard-bar"><span class="small">${ctx}</span>
       <span class="small">${doneN + 1}/${all.length}</span></div>
-    <div class="flip" id="flipcard" onclick="this.classList.toggle('f')">
-      <div class="inner">
-        <div class="face"><div class="small">${card.kind ? `<span class="chip b">${card.kind}</span>` : ''}
-          ${hit ? tagChips(hit.point, 2) : ''}</div>
-          <b>${card.front}</b><p class="small">点击翻面查看答案</p></div>
-        <div class="face back"><span class="small">答案（AI 生成，请对照教材）</span><p>${card.back}</p></div>
-      </div>
-    </div>
-    <div style="display:flex;gap:8px;margin-top:10px">
+    <div class="stepcard">
+      <div class="small">${card.kind ? `<span class="chip b">${card.kind}</span>` : ''}${hit ? tagChips(hit.point, 2) : ''}</div>
+      <b class="sc-front">${card.front}</b>
+      <div id="sc-body"></div>
+      <div id="sc-acts"></div>
+    </div>`;
+  paintCardStep();
+}
+
+function paintCardStep() {
+  const body = document.getElementById('sc-body');
+  const acts = document.getElementById('sc-acts');
+  if (!body || !acts || !curCard) return;
+  const hit = state.pointIndex.get(curCard.point_id);
+  if (cardStep === 0) {
+    body.innerHTML = '<p class="small">先在心里回忆一遍，对不上再看提示。</p>';
+    acts.innerHTML = '<div class="sc-btns">' +
+      '<button class="btn" onclick="window.kyQuiz.cardStep(1)">看关键词</button>' +
+      '<button class="btn ghost" onclick="window.kyQuiz.cardStep(2)">直接看答案</button></div>';
+  } else if (cardStep === 1) {
+    const ks = (hit && hit.point.keywords) || [];
+    body.innerHTML = ks.length
+      ? `<div class="anchors">${ks.map((k) => `<span class="chip b">${k}</span>`).join('')}</div>
+         <p class="small">顺着锚点把内容串起来，再对答案。</p>`
+      : '<p class="small">（暂无关键词锚点，直接看答案吧）</p>';
+    acts.innerHTML = '<div class="sc-btns">' +
+      '<button class="btn" onclick="window.kyQuiz.cardStep(2)">看完整答案</button>' +
+      '<button class="btn ghost" onclick="window.kyQuiz.cardStep(0)">回到问题</button></div>';
+  } else {
+    body.innerHTML = `<div class="sc-answer"><span class="small">答案（AI 生成，请对照教材）</span>
+      <p>${curCard.back}</p></div>`;
+    acts.innerHTML = `<div class="sc-btns">
       <button class="btn sm" style="flex:1;background:var(--green)" onclick="window.kyQuiz.verdict('know')">会了</button>
       <button class="btn sm" style="flex:1;background:var(--orange)" onclick="window.kyQuiz.verdict('fuzzy')">模糊</button>
       <button class="btn sm" style="flex:1;background:var(--red)" onclick="window.kyQuiz.verdict('no')">不会</button>
-      <button class="btn sm ghost" onclick="window.kyQuiz.verdict('skip')">跳过</button>
-    </div>`;
+      <button class="btn sm ghost" onclick="window.kyQuiz.verdict('skip')">跳过</button></div>`;
+  }
 }
 
 async function verdict(v) {
@@ -285,8 +312,10 @@ async function verdict(v) {
     done.add(cardId);
     saveCardsDone(done);
   }
+  cardStep = 0;
   renderCards();
 }
 
 kyQuiz.verdict = verdict;
 kyQuiz.resetCards = resetCards;
+kyQuiz.cardStep = (n) => { cardStep = n; paintCardStep(); };
