@@ -65,10 +65,18 @@ def stats(con: sqlite3.Connection = Depends(db.get_db)):
     today = datetime.date.today().isoformat()
     row = con.execute("SELECT listen_sec, clips, cards, quiz_n, review_n FROM daily_log "
                       "WHERE date = ?", (today,)).fetchone()
+    cutoff = (datetime.datetime.now(datetime.timezone.utc)
+              - datetime.timedelta(days=7)).isoformat()
+    ratings = {"again": 0, "hard": 0, "good": 0}
+    for r in con.execute("SELECT rating, COUNT(*) AS n FROM unit_ratings "
+                         "WHERE ts >= ? GROUP BY rating", (cutoff,)):
+        if r["rating"] in ratings:
+            ratings[r["rating"]] = r["n"]
     return {
         "streak_days": _streak(con),
         "today": dict(row) if row else {"listen_sec": 0, "clips": 0, "cards": 0,
                                         "quiz_n": 0, "review_n": 0},
         "ring": progress_engine.compute_all(data, states),
         "days_left": plan_engine.days_left(),
+        "ratings_7d": ratings,
     }

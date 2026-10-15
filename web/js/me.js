@@ -20,6 +20,22 @@ export async function renderMe() {
     ${pace ? `<div class="row"><div class="t"><b>追赶节奏</b>
       <span class="small">待学 ${pace.remaining_points} 点 · 每天约 ${pace.per_day.toFixed(1)} 点可追平</span></div></div>` : ''}`;
 
+  const r7 = st.ratings_7d || { good: 0, hard: 0, again: 0 };
+  const total7 = r7.good + r7.hard + r7.again;
+  const pct = (n) => (total7 ? Math.round((n / total7) * 100) : 0);
+  document.getElementById('me-memory').innerHTML = total7 ? `
+    <div class="mrow"><b class="lt">秒答</b>
+      <span class="minibar"><i style="width:${pct(r7.good)}%;background:var(--green)"></i></span>
+      <span class="lsmall">${r7.good}</span></div>
+    <div class="mrow"><b class="lt">吃力</b>
+      <span class="minibar"><i style="width:${pct(r7.hard)}%;background:var(--orange)"></i></span>
+      <span class="lsmall">${r7.hard}</span></div>
+    <div class="mrow"><b class="lt">忘了</b>
+      <span class="minibar"><i style="width:${pct(r7.again)}%;background:var(--red)"></i></span>
+      <span class="lsmall">${r7.again}</span></div>
+    <p class="small" style="margin:8px 0 0">如实评分，间隔才对得上。</p>`
+    : '<div class="empty">近 7 日还没有复习评分</div>';
+
   const ring = (stats && stats.ring) || [];
   document.getElementById('me-progress').innerHTML = ring.map((s) => {
     const pct = Math.round((s.weighted || 0) * 100);

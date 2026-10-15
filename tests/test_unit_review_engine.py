@@ -227,6 +227,16 @@ def test_review_queue_api_shape(client, tmp_path):
     assert [i["idx"] for i in q2["items"]] == [0, 1, 2]
 
 
+def test_stats_ratings_7d(client, tmp_path):
+    """近 7 日评分分布（我的页记忆统计）。"""
+    _write_content(tmp_path)
+    client.post("/api/login", json={"password": "pw"})
+    client.post("/api/unit_review", json={"point_id": "A-1-01", "idx": 0, "rating": "good"})
+    client.post("/api/unit_review", json={"point_id": "A-1-01", "idx": 1, "rating": "again"})
+    s = client.get("/api/stats").json()
+    assert s["ratings_7d"] == {"again": 1, "hard": 0, "good": 1}
+
+
 def test_settings_review_n_roundtrip(client, tmp_path):
     _write_content(tmp_path)
     client.post("/api/login", json={"password": "pw"})

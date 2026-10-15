@@ -21,7 +21,7 @@
 - [x] T6 今日页时间自适应 + streak 迁移
 - [x] T7 听页节间检索提示
 - [x] T8 设置：每日复习条数
-- [ ] T9 视觉编码 + 记忆统计
+- [x] T9 视觉编码 + 记忆统计
 - [ ] T10 cue 线索标题（门控：样例先行，主人确认后全量）
 
 ---
@@ -216,8 +216,8 @@ daily_stats.bump_daily(con, col, n=1) -> None
 - `web/js/look.js`（chip 图标前缀 ○／✓／~／✗）、`web/app.css`、`app/routers/plan_router.py`（`/api/stats` 增 `ratings_7d` 与 `today.review_n`）、`web/js/me.js`（记忆统计卡：近 7 日 秒答/吃力/忘 + 迷你条）
 
 **步骤**
-- [ ] 1. 后端 `ratings_7d` + 测试
-- [ ] 2. 前端图标与统计卡；浏览器自验；commit
+- [x] 1. 后端 `ratings_7d` + 测试
+- [x] 2. 前端图标与统计卡；浏览器自验；commit（chip 图标已在 T3 完成）
 
 ---
 
