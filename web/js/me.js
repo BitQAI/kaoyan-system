@@ -1,5 +1,7 @@
 import { get, post } from './api.js';
-import { state } from './state.js';
+import { shortTitle, state } from './state.js';
+
+const RING_COLORS = { 812: '#b33a3a', 315: '#b96a00', 101: '#2457d6', 204: '#11845b' };
 
 export async function renderMe() {
   const [stats, settings, threads] = await Promise.all([
@@ -10,20 +12,24 @@ export async function renderMe() {
   state.stats = stats || state.stats;
 
   const ring = (stats && stats.ring) || [];
-  document.getElementById('me-progress').innerHTML = ring.map((s) => `
-    <div class="row"><div class="t"><b>${s.name}</b>
-      <span class="small">加权 ${Math.round(s.weighted * 100)}% · 原始 ${Math.round(s.raw * 100)}%${
-        s.has_content === false ? ' · 仅看板' : ''}</span></div>
-      <div style="width:110px"><div class="bar"><i style="width:${Math.round(s.weighted * 100)}%"></i></div></div>
-    </div>`).join('') || '<div class="empty">暂无数据</div>';
+  document.getElementById('me-progress').innerHTML = ring.map((s) => {
+    const pct = Math.round((s.weighted || 0) * 100);
+    return `<div class="mrow" onclick="window.kyMe.gotoSubject('${s.id}')">
+      <span class="dot" style="background:${RING_COLORS[s.id] || '#c3cbd8'}"></span>
+      <b class="lt">${s.name}</b>
+      <span class="minibar"><i style="width:${pct}%"></i></span>
+      <span class="lsmall">${pct}%</span>
+      <span class="caret">›</span></div>`;
+  }).join('') || '<div class="empty">暂无数据</div>';
 
   const th = (threads.items || []);
   document.getElementById('me-threads').innerHTML = th.length ? th.map((t) => `
-    <div class="row" style="cursor:pointer" onclick="window.kyMe.openThread('${t.id}','${t.owner_type}','${t.owner_ref || ''}')">
-      <div class="t"><b>${t.title || t.owner_ref || '自由问答'}</b>
-        <span class="small">${t.owner_type === 'point' ? '知识点' : t.owner_type === 'quiz' ? '题目' : '自由'} ·
-        ${(t.updated_at || '').slice(0, 16).replace('T', ' ')}</span></div><span class="small">›</span>
-    </div>`).join('') : '<div class="empty">还没有对话记录</div>';
+    <div class="lrow" onclick="window.kyMe.openThread('${t.id}','${t.owner_type}','${t.owner_ref || ''}')">
+      <span class="dot" style="background:var(--brand2)"></span>
+      <b class="lt">${shortTitle(t.title || t.owner_ref || '自由问答')}</b>
+      <span class="lsmall">${t.owner_type === 'point' ? '知识点' : t.owner_type === 'quiz' ? '题目' : '自由'}</span>
+      <span class="lsmall">${(t.updated_at || '').slice(5, 10)}</span>
+      <span class="caret">›</span></div>`).join('') : '<div class="empty">还没有对话记录</div>';
 
   const voiceSel = ['Ethan', 'Cherry', 'Serena'].map((v) =>
     `<option ${settings.voice === v ? 'selected' : ''}>${v}</option>`).join('');
@@ -38,10 +44,12 @@ export async function renderMe() {
       <select id="set-voice">${voiceSel}</select></div>
     <button class="btn" style="margin-top:10px" onclick="window.kyMe.save()">保存设置</button>`;
   document.getElementById('me-export').innerHTML = `
-    <div class="row"><div class="t"><b>错题清单</b><span class="small">未出本错题 · 题干/答案/解析</span></div>
-      <button class="btn sm ghost" onclick="window.kyMe.exportFile('wrong')">下载</button></div>
-    <div class="row"><div class="t"><b>备考进度表</b><span class="small">四科加权 + 各章进度</span></div>
-      <button class="btn sm ghost" onclick="window.kyMe.exportFile('progress')">下载</button></div>`;
+    <div class="lrow" onclick="window.kyMe.exportFile('wrong')">
+      <span class="dot" style="background:var(--red)"></span><b class="lt">错题清单</b>
+      <span class="lsmall">题干/答案/解析</span><span class="ico">⇩</span></div>
+    <div class="lrow" onclick="window.kyMe.exportFile('progress')">
+      <span class="dot" style="background:var(--brand)"></span><b class="lt">备考进度表</b>
+      <span class="lsmall">四科加权 + 各章进度</span><span class="ico">⇩</span></div>`;
   document.getElementById('me-pwd').innerHTML = `
     <div class="row"><div class="t"><b>修改密码</b><span class="small">写入 .env，重启服务后生效</span></div></div>
     <div class="row"><input class="num wide" type="password" id="pwd-old" placeholder="当前密码"></div>
@@ -90,5 +98,11 @@ async function exportFile(kind) {
   URL.revokeObjectURL(a.href);
 }
 
-export const kyMe = { save, changePwd, openThread, exportFile };
+/** 点进度行 → 切到该科的「看」页。 */
+function gotoSubject(subjId) {
+  if (window.kyGo) window.kyGo('look');
+  if (window.kyLook) window.kyLook.subject(subjId);
+}
+
+export const kyMe = { save, changePwd, openThread, exportFile, gotoSubject };
 window.kyMe = kyMe;
