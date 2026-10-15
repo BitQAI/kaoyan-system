@@ -225,3 +225,27 @@ def test_review_queue_api_shape(client, tmp_path):
     assert {"items", "due_total", "shown", "days_left", "frozen_graduation"} <= set(q)
     q2 = client.get("/api/review/queue", params={"point": "A-1-01"}).json()
     assert [i["idx"] for i in q2["items"]] == [0, 1, 2]
+
+
+def test_settings_review_n_roundtrip(client, tmp_path):
+    _write_content(tmp_path)
+    client.post("/api/login", json={"password": "pw"})
+    assert client.get("/api/settings").json()["review_n"] == 60
+    client.post("/api/settings", json={"review_n": 80})
+    assert client.get("/api/settings").json()["review_n"] == 80
+
+
+def test_settings_review_n_clamped(client, tmp_path):
+    """越界值保存后可读取，但队列使用处 clamp 到 10–200。"""
+    _write_content(tmp_path)
+    client.post("/api/login", json={"password": "pw"})
+    client.post("/api/settings", json={"review_n": 9999})
+    from app import db, settings_store
+
+    con = db.connect()
+    assert settings_store.review_n(con) == 200
+    con.close()
+    client.post("/api/settings", json={"review_n": 1})
+    con = db.connect()
+    assert settings_store.review_n(con) == 10
+    con.close()

@@ -20,7 +20,7 @@
 - [x] T5 训练库交错 + 测这个考点
 - [x] T6 今日页时间自适应 + streak 迁移
 - [x] T7 听页节间检索提示
-- [ ] T8 设置：每日复习条数
+- [x] T8 设置：每日复习条数
 - [ ] T9 视觉编码 + 记忆统计
 - [ ] T10 cue 线索标题（门控：样例先行，主人确认后全量）
 
@@ -204,9 +204,9 @@ daily_stats.bump_daily(con, col, n=1) -> None
 - `app/settings_store.py`（`review_n: 60`）、`app/routers/review_router.py`（clamp 10–200）、`web/js/me.js`
 
 **步骤**
-- [ ] 1. 默认值 + clamp + 测试（settings 读写、queue 截断随 review_n 变化）
-- [ ] 2. 前端输入 + 后果文案「到期复习按此上限出卡；超额顺延到下次，不会丢失」
-- [ ] 3. 浏览器自验；commit
+- [x] 1. 默认值 + clamp + 测试（settings 读写、queue 截断随 review_n 变化）
+- [x] 2. 前端输入 + 后果文案「到期复习按此上限出卡；超额顺延到下次，不会丢失」
+- [x] 3. 浏览器自验；commit
 
 ---
 

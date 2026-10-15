@@ -49,6 +49,9 @@ export async function renderMe() {
       <input class="num" type="number" id="set-look" value="${settings.look_n || 8}" min="0" max="50"></div>
     <div class="row"><div class="t"><b>每日测题</b></div>
       <input class="num" type="number" id="set-quiz" value="${settings.quiz_n || 15}" min="0" max="100"></div>
+    <div class="row"><div class="t"><b>每日复习条数</b>
+      <span class="small">到期复习按此上限出卡；超额顺延到下次，不会丢失</span></div>
+      <input class="num" type="number" id="set-review" value="${settings.review_n || 60}" min="10" max="200"></div>
     <div class="row"><div class="t"><b>音色（下次生成音频生效）</b></div>
       <select id="set-voice">${voiceSel}</select></div>
     <button class="btn" style="margin-top:10px" onclick="window.kyMe.save()">保存设置</button>`;
@@ -72,6 +75,7 @@ async function save() {
     listen_minutes: Number(document.getElementById('set-listen').value),
     look_n: Number(document.getElementById('set-look').value),
     quiz_n: Number(document.getElementById('set-quiz').value),
+    review_n: Number(document.getElementById('set-review').value),
     voice: document.getElementById('set-voice').value,
   });
   alert('已保存');
