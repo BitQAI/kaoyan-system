@@ -66,7 +66,13 @@ def parse_reply(text: str) -> list[str] | None:
         obj = json.loads(m.group(0))
     except json.JSONDecodeError:
         return None
-    units = [str(u).strip() for u in (obj.get("units") or []) if str(u).strip()]
+    raw = obj.get("units")
+    if raw is None:                      # 容错：模型偶用 atoms 等其他键名
+        for v in obj.values():
+            if isinstance(v, list):
+                raw = v
+                break
+    units = [str(u).strip() for u in (raw or []) if str(u).strip()]
     return units if len(units) >= 3 else None
 
 
@@ -78,7 +84,7 @@ def call_llm(messages: list[dict], settings, retries: int = 2) -> list[str] | No
         try:
             r = requests.post(url, headers={**headers, "Content-Type": "application/json"},
                               json={"model": MODEL, "messages": messages,
-                                    "max_tokens": 4000}, timeout=300)
+                                    "max_tokens": 8000}, timeout=300)
             r.raise_for_status()
             got = parse_reply(r.json()["choices"][0]["message"].get("content") or "")
             if got:
