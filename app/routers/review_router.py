@@ -24,6 +24,32 @@ def review_queue(point: str | None = None, con: sqlite3.Connection = Depends(db.
                                     point_id=point)
 
 
+def _csv(s: str | None) -> list | None:
+    items = [x.strip() for x in (s or "").split(",") if x.strip()]
+    return items or None
+
+
+@router.get("/memo/queue")
+def memo_queue_api(quick: str = "due", subjects: str | None = None, chapters: str | None = None,
+                   points: str | None = None, filter: str | None = None,
+                   con: sqlite3.Connection = Depends(db.get_db)):
+    if quick not in ("due", "today_look", "fav", "hot"):
+        raise HTTPException(status_code=422, detail="bad_quick")
+    data = content.load_content()
+    look_points = None
+    if quick == "today_look":
+        states = {r["point_id"]: r["state"] for r in
+                  con.execute("SELECT point_id, state FROM progress")}
+        wrong = {r["quiz_id"] for r in
+                 con.execute("SELECT quiz_id FROM wrong_book WHERE resolved_at IS NULL")}
+        look_points = plan_engine.build_plan(data, states, wrong,
+                                             settings_store.load(con))["look"]
+    return unit_review_engine.memo_queue(
+        con, data, settings_store.review_n(con), quick=quick,
+        subjects=_csv(subjects), chapters=_csv(chapters), points=_csv(points),
+        filter=_csv(filter), look_points=look_points)
+
+
 class UnitReviewBody(BaseModel):
     point_id: str
     rating: Literal["again", "hard", "good"]

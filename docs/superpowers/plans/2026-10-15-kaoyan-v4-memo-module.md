@@ -8,7 +8,7 @@
 进度总览：
 
 - [x] T1（M1）卡级调度：`card_reviews` + 引擎扩展 + `/api/card_review`
-- [ ] T2（M2）memo 队列引擎 + `/api/memo/queue` + 今日页计数
+- [x] T2（M2）memo 队列引擎 + `/api/memo/queue` + 今日页计数
 - [ ] T3（M3+M4）「记」前端：翻转卡会话 + 范围面板 + 第 6 个 Tab
 - [ ] T4（M6）迁移：测页去卡、今日页入口、`#s-review` 并屏
 - [ ] T5（M5）看页瘦身 + 死代码清理
@@ -59,10 +59,10 @@ GET /api/memo/queue?quick=due|today_look|fav|hot&subjects=&chapters=&points=&fil
 - `queue(...)` 旧签名行为不变（V3 测试全绿是硬约束）
 
 **步骤**
-- [ ] 1. 测试先行：合并交错（单元+卡）、范围含新卡、`filter=weak/due/fav/hot`、截断/不截断、est_min、total
-- [ ] 2. 实现 `memo_queue` + `queue` 薄封装；API 路由
-- [ ] 3. plan_router 计数扩展 + 测试
-- [ ] 4. 全量 `make test`；curl 冒烟（真实内容）；commit
+- [x] 1. 测试先行：合并交错（单元+卡）、范围含新卡、`filter=weak/due/fav/hot`、截断/不截断、est_min、total
+- [x] 2. 实现 `memo_queue` + `queue` 薄封装；API 路由
+- [x] 3. plan_router 计数扩展 + 测试
+- [x] 4. 全量 `make test`；curl 冒烟（真实内容）；commit
 
 ---
 

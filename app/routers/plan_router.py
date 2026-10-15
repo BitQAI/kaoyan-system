@@ -53,8 +53,9 @@ def plan_today(con: sqlite3.Connection = Depends(db.get_db)):
         "logs_30d": logs,
         "reviews_due": len(due),
         "review_points": due[:50],
-        "review_units_due": q["due_total"],
-        "review_session_est_min": max(1, round(q["shown"] * 0.2)) if q["shown"] else 0,
+        "review_units_due": q["units_total"],
+        "review_cards_due": q["cards_total"],
+        "review_session_est_min": q["est_min"],
     }
 
 
