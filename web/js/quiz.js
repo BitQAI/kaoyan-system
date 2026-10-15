@@ -45,6 +45,9 @@ export async function renderTest() {
       <button class="btn sm" onclick="window.kyQuiz.resume()">继续</button>
       <button class="btn sm ghost" onclick="window.kyQuiz.discard()">重新开始</button></div></div>` : '';
   document.getElementById('test-modes').innerHTML = `
+    <div class="lrow" onclick="window.kyQuiz.start('mix')">
+      <span class="dot" style="background:var(--brand)"></span><b class="lt">综合练习</b>
+      <span class="lsmall">跨科交错 · 推荐</span><span class="caret">›</span></div>
     <div class="lrow" onclick="window.kyQuiz.start('chapter')">
       <span class="dot d1"></span><b class="lt">选择题练习</b>
       <span class="lsmall">按章节 · 今日优先</span><span class="caret">›</span></div>
@@ -71,6 +74,21 @@ async function start(mode) {
     return;
   }
   run = { items, i: 0, right: 0, mode, chapter, flagged: new Set() };
+  saveRun();
+  paintQuiz();
+}
+
+/** 测这个考点：从看页直达，只出该考点的题。 */
+async function startPoint(pointId) {
+  const items = (await get('/api/quiz/run?' +
+    new URLSearchParams({ mode: 'point', point_id: pointId, n: '15' }))).items || [];
+  window.kyGo('test');
+  if (!items.length) {
+    document.getElementById('quiz-run').innerHTML =
+      '<div class="card"><div class="empty">该考点暂无题目（可在看页点「问 AI」让它出题）。</div></div>';
+    return;
+  }
+  run = { items, i: 0, right: 0, mode: 'point', chapter: null, flagged: new Set() };
   saveRun();
   paintQuiz();
 }
@@ -181,7 +199,7 @@ async function judge(response, opts = {}) {
 }
 
 export const kyQuiz = {
-  start, resume, discard,
+  start, resume, discard, startPoint,
   pick: (el, i) => { el.classList.add('pick'); judge(i); },
   toggleOpt: (el) => { el.classList.toggle('picked'); el.classList.toggle('pick'); },
   submitMulti() {

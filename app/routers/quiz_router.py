@@ -85,9 +85,17 @@ def wrong_list(con: sqlite3.Connection = Depends(db.get_db)):
 
 
 @router.get("/quiz/run")
-def quiz_run(mode: Literal["chapter", "wrong", "favorites"], chapter: str | None = None,
+def quiz_run(mode: Literal["chapter", "wrong", "favorites", "mix", "point"],
+             chapter: str | None = None, point_id: str | None = None,
              n: int = 15, con: sqlite3.Connection = Depends(db.get_db)):
     data = content.load_content()
+    if mode == "mix":
+        return {"items": _mix_items(data, n)}
+    if mode == "point":
+        items = [q for _, ch in content.iter_chapters(data) for q in ch.get("quiz", [])
+                 if q.get("point_id") == point_id]
+        random.shuffle(items)
+        return {"items": items[:n]}
     if mode == "chapter":
         items = [q for _, ch in content.iter_chapters(data)
                  if (chapter is None or ch["id"] == chapter)
@@ -102,6 +110,30 @@ def quiz_run(mode: Literal["chapter", "wrong", "favorites"], chapter: str | None
         items = [q for _, ch in content.iter_chapters(data) for q in ch.get("quiz", []) if q["id"] in ids]
     random.shuffle(items)
     return {"items": items[:n]}
+
+
+def _mix_items(data: dict, n: int) -> list[dict]:
+    """跨科交错：各科内部洗牌后按科目轮转合并。"""
+    buckets = {}
+    for subj in data.get("subjects", []):
+        qs = [q for ch in subj.get("chapters", []) for q in ch.get("quiz", [])]
+        if qs:
+            random.shuffle(qs)
+            buckets[subj["id"]] = qs
+    order = list(buckets)
+    items, ptr = [], {sid: 0 for sid in order}
+    while len(items) < n:
+        added = False
+        for sid in order:
+            if ptr[sid] < len(buckets[sid]):
+                items.append(buckets[sid][ptr[sid]])
+                ptr[sid] += 1
+                added = True
+                if len(items) >= n:
+                    break
+        if not added:
+            break
+    return items
 
 
 @router.post("/cards/review")

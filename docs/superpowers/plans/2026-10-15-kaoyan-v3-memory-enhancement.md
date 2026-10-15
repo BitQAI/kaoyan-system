@@ -17,7 +17,7 @@
 - [x] T2 复习模式 UI
 - [x] T3 看页改造
 - [x] T4 背题卡三屏
-- [ ] T5 训练库交错 + 测这个考点
+- [x] T5 训练库交错 + 测这个考点
 - [ ] T6 今日页时间自适应 + streak 迁移
 - [ ] T7 听页节间检索提示
 - [ ] T8 设置：每日复习条数
@@ -161,9 +161,9 @@ daily_stats.bump_daily(con, col, n=1) -> None
 **接口**：`mode += mix | point`；`mix` 按科目内洗牌后轮转交错取前 n；`point` 过滤 `point_id`
 
 **步骤**
-- [ ] 1. 后端两模式 + 测试
-- [ ] 2. 前端「综合练习（跨科交错）」置顶行 + `startPoint(pointId)`（供 T3 直达）
-- [ ] 3. 浏览器自验 + `make test`；commit
+- [x] 1. 后端两模式 + 测试
+- [x] 2. 前端「综合练习（跨科交错）」置顶行 + `startPoint(pointId)`（供 T3 直达）
+- [x] 3. 浏览器自验 + `make test`；commit
 
 ---
 
