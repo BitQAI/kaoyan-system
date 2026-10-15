@@ -36,6 +36,7 @@ export async function renderListen() {
 }
 
 export function setQueue(mode) {
+  cancelPrompt();
   ['plan', 'chapter', 'fav'].forEach((m) => {
     const b = document.getElementById('q-' + m);
     if (b) b.classList.toggle('on', m === mode);
@@ -63,6 +64,7 @@ export function setQueue(mode) {
 }
 
 export function playClip(cid) {
+  cancelPrompt();
   const i = queue.indexOf(cid);
   if (i >= 0) idx = i;
   else { queue.unshift(cid); idx = 0; }
@@ -94,7 +96,44 @@ function onEnded() {
   if (loopOne) { audio.currentTime = 0; audio.play().catch(() => {}); return; }
   savePos(cid, true);
   markProgressIfDone(cid);
+  const nx = queue[idx + 1];
+  if (nx && shouldPrompt(cid, nx)) { showPrompt(cid, nx); return; }
   next();
+}
+
+/** 段间检索提示：跨考点（或串讲→考点）时插一段「先回忆」。 */
+function shouldPrompt(prevCid, nextCid) {
+  const a = state.clipIndex.get(prevCid);
+  const b = state.clipIndex.get(nextCid);
+  if (!a || !b || b.isChapter) return false;
+  if (a.isChapter) return true;
+  return a.point.id !== b.point.id;
+}
+
+let promptTimer = null;
+
+function cancelPrompt() {
+  if (promptTimer) { clearInterval(promptTimer); promptTimer = null; }
+  const el = document.getElementById('p-prompt');
+  if (el) el.classList.add('hidden');
+}
+
+function showPrompt(prevCid) {
+  const el = document.getElementById('p-prompt');
+  const hit = state.clipIndex.get(prevCid);
+  const label = hit ? (hit.isChapter ? hit.chap.name + ' · 串讲' : hit.point.text.slice(0, 18)) : '';
+  let sec = 8;
+  const paint = () => {
+    el.innerHTML = `<b>🎧 先回忆：刚才这段讲了哪几点？</b>
+      <span class="small">刚听完：${label}</span>
+      <div class="prompt-btns">
+        <button class="btn sm" onclick="window.kyPlayer.promptGo()">继续 ▶（${sec}s）</button>
+        <button class="btn sm ghost" onclick="window.kyPlayer.promptReplay('${prevCid}')">回听上段</button>
+      </div>`;
+  };
+  el.classList.remove('hidden');
+  paint();
+  promptTimer = setInterval(() => { sec -= 1; if (sec <= 0) promptGo(); else paint(); }, 1000);
 }
 
 function next() {
@@ -225,6 +264,13 @@ export const kyPlayer = {
   seek: (d) => { audio.currentTime = Math.max(0, audio.currentTime + d); },
   next, prev, playClip,
   setQueue,
+  promptGo: () => { cancelPrompt(); next(); },
+  promptReplay: (cid) => {
+    cancelPrompt();
+    const i = queue.indexOf(cid);
+    if (i >= 0) idx = i;
+    loadAndPlay();
+  },
   cycleRate(btn) {
     const seq = [1.0, 1.25, 1.5, 2.0];
     rate = seq[(seq.indexOf(rate) + 1) % seq.length];
