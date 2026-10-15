@@ -15,6 +15,7 @@ const FILTERS = [
   { k: 'weak', label: '没学完' },
   { k: 'hot', label: '易错·高频' },
 ];
+const TIER_LABEL = { 1: '第1梯队', 2: '第2梯队', 3: '第3梯队' };
 
 let session = null;      // {items, i, counts, scope, label}
 let flipped = false;
@@ -195,9 +196,11 @@ function paint() {
   let front = '';
   let back = '';
   let pos = '';
+  const tierChip = TIER_LABEL[it.tier]
+    ? `<span class="chip ${it.tier === 1 ? 'r' : 'b'}">${TIER_LABEL[it.tier]}</span>` : '';
   if (kind === 'card') {
     const cd = cardById(it.card_id) || { front: '（卡片缺失）', back: '' };
-    pos = `${esc(displayTitle(p))} · 背题卡`;
+    pos = `${tierChip}${esc(displayTitle(p))} · 背题卡`;
     front = `<div class="small">${cd.kind ? `<span class="chip b">${cd.kind}</span>` : ''}背题卡</div>
       <b class="memo-q">${esc(cd.front)}</b>`;
     const ks = (p && p.keywords) || [];
@@ -207,7 +210,7 @@ function paint() {
   } else {
     const units = (p && p.units) || [];
     const text = units[it.idx] || (p ? p.text : it.point_id);
-    pos = `${esc(displayTitle(p))} · 第 ${it.idx + 1}/${units.length || '?'} 条`;
+    pos = `${tierChip}${esc(displayTitle(p))} · 第 ${it.idx + 1}/${units.length || '?'} 条`;
     front = `<div class="small">单元卡</div>
       <div class="memo-q">${esc(text.slice(0, 12))}……</div>`;
     back = `<span class="small">原文</span><p class="memo-a">${esc(text)}</p>`;
