@@ -31,6 +31,22 @@ class UnitReviewBody(BaseModel):
     all: bool = False
 
 
+class CardReviewBody(BaseModel):
+    card_id: str
+    rating: Literal["again", "hard", "good"]
+
+
+@router.post("/card_review")
+def card_review(body: CardReviewBody, con: sqlite3.Connection = Depends(db.get_db)):
+    if not content.find_card(content.load_content(), body.card_id):
+        raise HTTPException(status_code=404, detail="card_not_found")
+    r = unit_review_engine.rate_card(con, body.card_id, body.rating)
+    daily_stats.bump_daily(con, "cards")
+    con.commit()
+    return {"ok": True,
+            "next": unit_review_engine.next_intervals(r["stage"], plan_engine.days_left())}
+
+
 @router.post("/unit_review")
 def unit_review(body: UnitReviewBody, con: sqlite3.Connection = Depends(db.get_db)):
     found = content.find_point(content.load_content(), body.point_id)

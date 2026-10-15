@@ -7,7 +7,7 @@
 
 进度总览：
 
-- [ ] T1（M1）卡级调度：`card_reviews` + 引擎扩展 + `/api/card_review`
+- [x] T1（M1）卡级调度：`card_reviews` + 引擎扩展 + `/api/card_review`
 - [ ] T2（M2）memo 队列引擎 + `/api/memo/queue` + 今日页计数
 - [ ] T3（M3+M4）「记」前端：翻转卡会话 + 范围面板 + 第 6 个 Tab
 - [ ] T4（M6）迁移：测页去卡、今日页入口、`#s-review` 并屏
@@ -32,9 +32,9 @@ POST /api/card_review {card_id, rating} -> {ok, next:{again,hard,good,graduates}
 - 规则与单元完全一致（again/hard/good、毕业保留行、考前缩放）；评分只写 `card_reviews` + `daily_log.cards`，**不改考点状态**；卡不存在 404、rating 枚举校验。
 
 **步骤**
-- [ ] 1. 测试先行：卡级规则矩阵（复用缩放边界因子）+ 解耦断言（评分后 progress 无变化）+ API 测试
-- [ ] 2. schema + 引擎 `rate_card`（内部复用 `_rate_on(table,…)`）至新测试绿
-- [ ] 3. 路由 + 全量 `make test`；commit
+- [x] 1. 测试先行：卡级规则矩阵（复用缩放边界因子）+ 解耦断言（评分后 progress 无变化）+ API 测试
+- [x] 2. schema + 引擎 `rate_card`（内部复用 `_schedule(table,…)`）至新测试绿
+- [x] 3. 路由 + 全量 `make test`；commit
 
 **验证**：新测试绿、V3 存量绿（`unit_review_engine` 行为不变）。
 

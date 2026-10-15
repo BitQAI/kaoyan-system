@@ -102,6 +102,14 @@ CREATE TABLE IF NOT EXISTS unit_ratings (
   ts       TEXT NOT NULL
 );
 
+-- V4 背题卡级复习调度（stage≥3 为毕业，行保留）
+CREATE TABLE IF NOT EXISTS card_reviews (
+  card_id    TEXT PRIMARY KEY,
+  stage      INTEGER NOT NULL DEFAULT 0,
+  due_date   TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS exam_runs (
   id          TEXT PRIMARY KEY,
   subject     TEXT NOT NULL,

@@ -52,13 +52,9 @@ def next_intervals(stage: int, days_left: int) -> dict:
             "good": good, "graduates": graduates}
 
 
-def rate(con, point_id: str, idx: int, rating: str, today: str | None = None,
-         days_left: int | None = None) -> dict:
-    t = _today(today)
-    dl = _days_left(t, days_left)
-    row = con.execute("SELECT stage FROM unit_reviews WHERE point_id = ? AND idx = ?",
-                      (point_id, idx)).fetchone()
-    stage = row["stage"] if row else 0
+def _schedule(con, table: str, key_cols: list[str], key_vals: list,
+              stage: int, rating: str, t: str, dl: int) -> dict:
+    """按三档评分推进一侧（单元/背题卡共用的调度核心）。"""
     if rating == "again":
         ns, days = 0, cap_days(AGAIN_DAYS, dl)
     elif rating == "hard":
@@ -71,13 +67,34 @@ def rate(con, point_id: str, idx: int, rating: str, today: str | None = None,
     else:
         ns, days = stage + 1, cap_days(GOOD_DAYS[stage], dl)
     due = _plus(t, days)
+    cols = ", ".join(key_cols + ["stage", "due_date", "updated_at"])
+    ph = ", ".join("?" * (len(key_cols) + 3))
     con.execute(
-        "INSERT INTO unit_reviews(point_id, idx, stage, due_date, updated_at) VALUES(?,?,?,?,?) "
-        "ON CONFLICT(point_id, idx) DO UPDATE SET stage=excluded.stage, "
-        "due_date=excluded.due_date, updated_at=excluded.updated_at",
-        (point_id, idx, ns, due, t))
+        f"INSERT INTO {table}({cols}) VALUES({ph}) "
+        f"ON CONFLICT({', '.join(key_cols)}) DO UPDATE SET stage=excluded.stage, "
+        f"due_date=excluded.due_date, updated_at=excluded.updated_at",
+        (*key_vals, ns, due, t))
     con.commit()
     return {"stage": ns, "due_date": due, "graduates": ns >= GRADUATE_STAGE}
+
+
+def rate(con, point_id: str, idx: int, rating: str, today: str | None = None,
+         days_left: int | None = None) -> dict:
+    t = _today(today)
+    dl = _days_left(t, days_left)
+    row = con.execute("SELECT stage FROM unit_reviews WHERE point_id = ? AND idx = ?",
+                      (point_id, idx)).fetchone()
+    return _schedule(con, "unit_reviews", ["point_id", "idx"], [point_id, idx],
+                     row["stage"] if row else 0, rating, t, dl)
+
+
+def rate_card(con, card_id: str, rating: str, today: str | None = None,
+              days_left: int | None = None) -> dict:
+    t = _today(today)
+    dl = _days_left(t, days_left)
+    row = con.execute("SELECT stage FROM card_reviews WHERE card_id = ?", (card_id,)).fetchone()
+    return _schedule(con, "card_reviews", ["card_id"], [card_id],
+                     row["stage"] if row else 0, rating, t, dl)
 
 
 def _item(pid: str, idx: int, stage: int, due: str, days_left: int) -> dict:
