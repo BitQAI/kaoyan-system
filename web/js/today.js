@@ -1,5 +1,5 @@
 import { get } from './api.js';
-import { clipTitle, pointTitle, state } from './state.js';
+import { clipTitle, shortTitle, state } from './state.js';
 
 const RING_COLORS = { 812: '#b33a3a', 315: '#b96a00', 101: '#2457d6', 204: '#11845b' };
 
@@ -39,23 +39,28 @@ export async function renderToday() {
   const look = data.plan.look || [];
   const test = data.plan.test || [];
   tasks.innerHTML = `
-    <div class="row"><div class="t"><b>看：${look.length} 个考点卡</b>
-      <span class="small">${look.slice(0, 2).map(pointTitle).join(' · ') || '暂无'}</span></div>
-      <button class="btn sm ghost" onclick="window.kyGo('look')">去完成</button></div>
-    <div class="row"><div class="t"><b>测：${test.length} 题</b>
-      <span class="small">含错题重练</span></div>
-      <button class="btn sm ghost" onclick="window.kyGo('test')">去完成</button></div>`;
+    <div class="lrow" onclick="window.kyGo('look')">
+      <span class="dot" style="background:var(--brand)"></span>
+      <b class="lt">看：${look.length} 个考点</b>
+      <span class="lsmall">${look.length ? shortTitle(state.pointIndex.get(look[0])?.point.text || '') : '暂无'}</span>
+      <span class="caret">›</span></div>
+    <div class="lrow" onclick="window.kyGo('test')">
+      <span class="dot" style="background:var(--orange)"></span>
+      <b class="lt">测：${test.length} 题</b>
+      <span class="lsmall">含错题重练</span>
+      <span class="caret">›</span></div>`;
 
   const reviewBox = document.getElementById('review-box');
   if (data.reviews_due > 0) {
-    reviewBox.innerHTML = `<div class="card"><h3>今日复习 <span class="small">${data.reviews_due} 点到期</span></h3>` +
+    reviewBox.innerHTML = `<div class="card"><h3>今日复习 <span class="small">${data.reviews_due} 点到期 · 标记「会」即推进</span></h3>` +
       (data.review_points || []).slice(0, 8).map((pid) => {
         const h = state.pointIndex.get(pid);
-        return `<div class="row" style="cursor:pointer"
+        return `<div class="lrow"
           onclick="window.kyGo('look'); setTimeout(function(){window.kyLook.jumpTo('${pid}')},350)">
-          <div class="t"><b>${h ? h.point.text.slice(0, 26) : pid}</b>
-            <span class="small">${h ? h.chap.name.slice(0, 12) : ''} · 标记「会」即推进复习</span></div>
-          <span class="small">去复习 ›</span></div>`;
+          <span class="dot" style="background:var(--red)"></span>
+          <b class="lt">${h ? shortTitle(h.point.text) : pid}</b>
+          <span class="lsmall">${h ? h.chap.name.slice(0, 8) : ''}</span>
+          <span class="caret">›</span></div>`;
       }).join('') + '</div>';
   } else {
     reviewBox.innerHTML = '';
