@@ -52,7 +52,7 @@
 
 ---
 
-## T1（M1）间隔计算式
+## Task 1（T1 / M1）间隔计算式
 
 **文件清单**
 - Modify: `app/services/unit_review_engine.py:15-56`（常量区 + `next_intervals`）
@@ -197,7 +197,7 @@ git commit -m "feat(schedule): exam-anchored interval formula with tiered K"
 
 ---
 
-## T2（M2）评分推进接 tier
+## Task 2（T2 / M2）评分推进接 tier
 
 **文件清单**
 - Modify: `app/content.py`（追加 `point_tier_map` / `card_tier_map`）
@@ -380,7 +380,7 @@ git commit -m "feat(schedule): tier-aware rating with K and exam-anchored gaps"
 
 ---
 
-## T3（M3）队列 tier 排序与动态 next
+## Task 3（T3 / M3）队列 tier 排序与动态 next
 
 **文件清单**
 - Modify: `app/services/unit_review_engine.py:106-293`（`_mk_unit_item` / `_mk_card_item` / `_memo_sort_key` / `_assemble` / `memo_queue` / `queue`）
@@ -463,7 +463,7 @@ git commit -m "feat(schedule): tier-first queue ordering and dynamic next interv
 
 ---
 
-## T4（M4）路由与设置
+## Task 4（T4 / M4）路由与设置
 
 **文件清单**
 - Modify: `app/routers/review_router.py:65-104`
@@ -535,7 +535,7 @@ git commit -m "feat(schedule): wire tier into review APIs, raise review_n to 260
 
 ---
 
-## T5（M6）前端适配
+## Task 5（T5 / M6）前端适配
 
 **文件清单**
 - Modify: `web/js/memo.js:174-176`（间隔标注）、`:210-214`（单元卡头部）
@@ -579,7 +579,7 @@ git commit -m "feat(memo): show tier badge on flip cards"
 
 ---
 
-## T6（M7）模拟验证脚本与回归
+## Task 6（T6 / M7）模拟验证脚本与回归
 
 **文件清单**
 - Create: `scripts/simulate_schedule.py`
