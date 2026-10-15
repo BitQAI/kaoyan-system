@@ -14,7 +14,7 @@
 
 - [x] T1 单元级调度引擎（后端）
 - [x] T11 液态玻璃视觉重构（全站）
-- [ ] T2 复习模式 UI
+- [x] T2 复习模式 UI
 - [ ] T3 看页改造
 - [ ] T4 背题卡三屏
 - [ ] T5 训练库交错 + 测这个考点
@@ -106,11 +106,11 @@ daily_stats.bump_daily(con, col, n=1) -> None
 - 入口 API：`window.kyReview.start(pointId?)`（pointId 空 = 全量队列）
 
 **步骤**
-- [ ] 1. 读 main.js/api.js/app.css 现有模式，确定接入点
-- [ ] 2. review.js 会话状态机 + 卡面渲染 + 评分提交 + 完成页 + 轻恢复
-- [ ] 3. index.html 屏与样式；main.js 接线
-- [ ] 4. 浏览器自验：进入 → 遮罩 → 揭示 → 三档评分（间隔标注）→ 跳过后继续 → 完成统计；中途退出恢复
-- [ ] 5. commit
+- [x] 1. 读 main.js/api.js/app.css 现有模式，确定接入点
+- [x] 2. review.js 会话状态机 + 卡面渲染 + 评分提交 + 完成页 + 轻恢复
+- [x] 3. index.html 屏与样式；main.js 接线
+- [x] 4. 浏览器自验：进入 → 遮罩 → 揭示 → 三档评分（间隔标注）→ 跳过后继续 → 完成统计；中途退出恢复
+- [x] 5. commit
 
 **验证**：金路径截图/快照；确认评分后 `unit_reviews`/`unit_progress` 数据落库正确。
 

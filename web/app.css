@@ -258,6 +258,22 @@ select{padding:7px 10px;border:1px solid var(--line);border-radius:10px;font-siz
 .tabbar button .ic svg{width:13px;height:13px}
 .tabbar button.on{color:var(--brand);font-weight:700}
 .tabbar button.on .ic{background:linear-gradient(180deg,#3d6ce8,#2457d6);color:#fff;box-shadow:0 4px 12px rgba(36,87,214,.35)}
+/* 复习模式 */
+.rev-card{min-height:320px;display:flex;flex-direction:column}
+.rev-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.rev-crumb{font-size:11.5px;color:var(--muted)}
+.rev-crumb2{font-size:12.5px;color:var(--brand);margin-top:3px;font-weight:600}
+.rev-exit{border:none;background:none;color:var(--muted);font-size:12px;cursor:pointer;flex:none;padding:2px 0}
+.rev-text{margin:16px 0 4px;font-size:16px;line-height:1.95;flex:1;color:var(--text);word-break:break-all}
+.rev-text.masked{color:var(--muted);letter-spacing:.5px}
+.rev-tip{font-size:11.5px;color:var(--muted);margin-bottom:10px}
+.rev-rate{display:flex;gap:8px;margin-top:6px}
+.rev-rate button{flex:1;border:1px solid var(--glass-border);border-radius:14px;padding:10px 6px;font-size:14px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;gap:2px;align-items:center}
+.rev-rate button small{font-size:10.5px;font-weight:400;opacity:.78}
+.rev-rate .again{background:var(--redbg);color:var(--red)}
+.rev-rate .hard{background:var(--orangebg);color:var(--orange)}
+.rev-rate .good{background:var(--greenbg);color:var(--green)}
+.rev-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
 /* 不支持 backdrop-filter 的降级：高不透明度纯色 */
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
   :root{--panel:rgba(255,255,255,.93);--panel-strong:rgba(255,255,255,.97);--panel-soft:rgba(255,255,255,.84)}

@@ -4,6 +4,7 @@ import { renderToday } from './today.js';
 import { renderListen } from './player.js';
 import { renderLook } from './look.js';
 import { renderTest } from './quiz.js';
+import { renderReview } from './review.js';
 import { initAI } from './ai.js';
 import { renderMe } from './me.js';
 import './exam.js';
@@ -26,6 +27,7 @@ export function kyGo(tab) {
   if (tab === 'look') renderLook();
   if (tab === 'test') renderTest();
   if (tab === 'me') renderMe();
+  if (tab === 'review') renderReview();
 }
 window.kyGo = kyGo;
 
