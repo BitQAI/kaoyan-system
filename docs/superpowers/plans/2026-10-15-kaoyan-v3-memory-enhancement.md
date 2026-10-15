@@ -227,7 +227,7 @@ daily_stats.bump_daily(con, col, n=1) -> None
 - `scripts/gen_cues.py`（新，复用 gen_notes.py 的 opencode 网关模式）、`content/cues.json`、`web/js/state.js`（`displayTitle = cue || shortTitle(text)`）及各调用点
 
 **步骤**
-- [ ] 1. 脚本实现（`--limit N` / `--merge`）
+- [x] 1. 脚本实现（`--limit N` / `--merge`）
 - [ ] 2. 生成 20 条样例 → **主人确认**（不通过则跳过本任务）
 - [ ] 3. 全量生成 + 合并 + 前端改用 displayTitle
 - [ ] 4. 浏览器自验；commit
