@@ -10,7 +10,7 @@
 - [x] T1（M1）卡级调度：`card_reviews` + 引擎扩展 + `/api/card_review`
 - [x] T2（M2）memo 队列引擎 + `/api/memo/queue` + 今日页计数
 - [x] T3（M3+M4）「记」前端：翻转卡会话 + 范围面板 + 第 6 个 Tab
-- [ ] T4（M6）迁移：测页去卡、今日页入口、`#s-review` 并屏
+- [x] T4（M6）迁移：测页去卡、今日页入口、`#s-review` 并屏
 - [ ] T5（M5）看页瘦身 + 死代码清理
 - [ ] T6（M7）删旧端点/测试 + 全量回归 + README + 收尾
 
@@ -99,8 +99,8 @@ GET /api/memo/queue?quick=due|today_look|fav|hot&subjects=&chapters=&points=&fil
 - 路由与 Tab 收口检查（`kyGo('review')` 全部替换为 `memo`）
 
 **步骤**
-- [ ] 1. 测页卡片区删除 + 死引用清理
-- [ ] 2. 今日页入口与文案；浏览器自验（测页无卡片、今日跳转正确）；commit
+- [x] 1. 测页卡片区删除 + 死引用清理
+- [x] 2. 今日页入口与文案；浏览器自验（测页无卡片、今日跳转正确）；commit
 
 ---
 
