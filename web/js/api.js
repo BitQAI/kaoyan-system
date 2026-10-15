@@ -17,6 +17,58 @@ export async function api(path, opts = {}) {
 export const get = (p) => api(p);
 export const post = (p, body) => api(p, { method: 'POST', body });
 
+// ---------- 可靠提交：失败暂存本地，联网/下次成功时自动补发 ----------
+const PENDING_KEY = 'ky_pending_posts';
+const PENDING_MAX = 200;
+let flushing = false;
+
+function pendingList() {
+  try { return JSON.parse(localStorage.getItem(PENDING_KEY) || '[]'); } catch (e) { return []; }
+}
+
+function pendingSave(list) {
+  try {
+    localStorage.setItem(PENDING_KEY, JSON.stringify(list.slice(-PENDING_MAX)));
+  } catch (e) { /* localStorage 满则丢弃旧数据 */ }
+}
+
+const isBusinessError = (e) =>
+  String(e && e.message).startsWith('http_4') || String(e && e.message) === 'unauthorized';
+
+/** 关键写入（评分等）：网络失败入队稍后补发；业务错误（4xx/401）正常抛出。 */
+export async function postReliable(path, body) {
+  try {
+    const r = await post(path, body);
+    flushPending();                                   // 网络可用，顺手清积压
+    return r;
+  } catch (e) {
+    if (isBusinessError(e)) throw e;
+    const list = pendingList();
+    list.push({ path, body, ts: Date.now() });
+    pendingSave(list);
+    return null;
+  }
+}
+
+export async function flushPending() {
+  if (flushing) return;
+  const list = pendingList();
+  if (!list.length) return;
+  flushing = true;
+  const rest = [];
+  for (const item of list) {
+    try {
+      await post(item.path, item.body);
+    } catch (e) {
+      if (!isBusinessError(e)) rest.push(item);       // 仍离线 → 留队；4xx/401 → 丢弃
+    }
+  }
+  pendingSave(rest);
+  flushing = false;
+}
+
+window.addEventListener('online', () => flushPending());
+
 /** SSE：逐事件回调。返回 promise，流结束 resolve。 */
 export async function postStream(path, body, onEvent) {
   const r = await fetch(path, {

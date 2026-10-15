@@ -1,4 +1,4 @@
-import { get, post } from './api.js';
+import { get, post, flushPending } from './api.js';
 import { loadContent, state } from './state.js';
 import { renderToday } from './today.js';
 import { renderListen } from './player.js';
@@ -80,6 +80,7 @@ async function boot() {
   try {
     await get('/api/me');
     await enterApp();
+    flushPending();                 // 上线后补发离线期间的评分
   } catch (e) {
     hide('app');
     show('login-screen');

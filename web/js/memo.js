@@ -1,4 +1,4 @@
-import { get, post } from './api.js';
+import { get, postReliable } from './api.js';
 import { displayTitle, state } from './state.js';
 
 const LS_KEY = 'ky_review_run';
@@ -295,9 +295,9 @@ async function rate(rating) {
   const kind = it.kind || 'unit';
   next();
   if (kind === 'card') {
-    await post('/api/card_review', { card_id: it.card_id, rating }).catch(() => {});
+    await postReliable('/api/card_review', { card_id: it.card_id, rating }).catch(() => {});
   } else {
-    await post('/api/unit_review', { point_id: it.point_id, idx: it.idx, rating }).catch(() => {});
+    await postReliable('/api/unit_review', { point_id: it.point_id, idx: it.idx, rating }).catch(() => {});
   }
 }
 

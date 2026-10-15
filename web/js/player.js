@@ -28,15 +28,34 @@ async function ensureMeta() {
   }
 }
 
+// ---------- 收听游标：刷新/重进后回到上一段（位置由服务端 audio_pos 提供） ----------
+const LISTEN_LS = 'ky_listen_state';
+let listenMode = 'plan';
+
+function saveListenState() {
+  try {
+    localStorage.setItem(LISTEN_LS, JSON.stringify({ mode: listenMode, cid: current() }));
+  } catch (e) { /* 忽略 */ }
+}
+
+function loadListenState() {
+  try { return JSON.parse(localStorage.getItem(LISTEN_LS) || 'null') || {}; } catch (e) { return {}; }
+}
+
 export async function renderListen() {
   await ensureMeta();
-  if (!queue.length) setQueue('plan');
+  if (!queue.length) {
+    const s = loadListenState();
+    setQueue(s.mode || 'plan', s.cid || null);
+    if (s.cid && current() === s.cid) loadAndPlay();   // 续播；浏览器拦截自动播放时停在原位
+  }
   paintPlayer();
   paintQueue();
 }
 
-export function setQueue(mode) {
+export function setQueue(mode, restoreCid = null) {
   cancelPrompt();
+  listenMode = mode;
   ['plan', 'chapter', 'fav'].forEach((m) => {
     const b = document.getElementById('q-' + m);
     if (b) b.classList.toggle('on', m === mode);
@@ -58,7 +77,9 @@ export function setQueue(mode) {
   } else {
     queue = [];
   }
-  idx = queue.length ? 0 : -1;
+  const ri = restoreCid ? queue.indexOf(restoreCid) : -1;
+  idx = ri >= 0 ? ri : (queue.length ? 0 : -1);
+  saveListenState();
   paintQueue();
   paintPlayer();
 }
@@ -89,6 +110,7 @@ function loadAndPlay() {
   paintPlayer();
   paintQueue();
   setupMediaSession(cid);
+  saveListenState();
 }
 
 function onEnded() {
