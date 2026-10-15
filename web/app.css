@@ -263,11 +263,6 @@ select{padding:7px 10px;border:1px solid var(--line);border-radius:10px;font-siz
 .tabbar button .ic svg{width:13px;height:13px}
 .tabbar button.on{color:var(--brand);font-weight:700}
 .tabbar button.on .ic{background:linear-gradient(180deg,#3d6ce8,#2457d6);color:#fff;box-shadow:0 4px 12px rgba(36,87,214,.35)}
-/* 显式评分选择（弹窗按钮） */
-.rate-choice{flex:1;border:1px solid var(--glass-border);border-radius:12px;padding:10px 0;font-size:13.5px;font-weight:700;cursor:pointer;background:var(--panel-soft);color:var(--text)}
-.rate-choice.r{background:var(--redbg);color:var(--red)}
-.rate-choice.o{background:var(--orangebg);color:var(--orange)}
-.rate-choice.g{background:var(--greenbg);color:var(--green)}
 .umore-btn{margin-top:6px;width:100%}
 /* 听页：段间检索提示 */
 .prompt{position:fixed;left:50%;transform:translateX(-50%);bottom:112px;width:min(400px,calc(100vw - 40px));z-index:45;

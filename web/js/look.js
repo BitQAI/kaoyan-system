@@ -8,7 +8,6 @@ const CYCLE = [
   { s: 'half', label: '~ 半', cls: 'o' },
   { s: 'review', label: '✗ 不会', cls: 'r' },
 ];
-const RATING_STATE = { again: 'review', hard: 'half', good: 'known' };
 const UNITS_SHOWN = 7;
 let subject = '812';
 let favorites = new Set();
@@ -221,7 +220,7 @@ function pointHtml(p) {
       <div class="ptitle">${displayTitle(p)}</div>
       <div class="pmeta">${chips.join('')}</div>
     </div>
-    <button class="chip ${cur.cls}" onclick="event.stopPropagation(); window.kyLook.stateAsk('${p.id}', this)">${cur.label}</button>
+    <span class="chip ${cur.cls}" title="掌握程度（在「记」中复习评分）">${cur.label}</span>
     <button class="star ${fav}" onclick="event.stopPropagation(); window.kyLook.star('${p.id}', this)">★</button>
     <span class="caret" id="caret-${p.id}">${hasBody ? '▾' : ''}</span>
   </div>
@@ -230,7 +229,6 @@ function pointHtml(p) {
     ${mediaHtml(p.media)}
     ${noteBody(p)}
     <div class="pacts">
-      <button class="btn sm" onclick="event.stopPropagation(); window.kyReview && window.kyReview.start('${p.id}')">复习此点</button>
       <button class="btn sm ghost" onclick="event.stopPropagation(); window.kyQuiz && window.kyQuiz.startPoint ? window.kyQuiz.startPoint('${p.id}') : window.kyGo('test')">测这个考点</button>
       <button class="btn sm ghost" onclick="window.kyAI && window.kyAI.open('point','${p.id}')">问 AI</button>
     </div>
@@ -250,8 +248,7 @@ function unitItem(p, u, i) {
   const cur = CYCLE.find((c) => c.s === (us[`${p.id}#${i}`] || 'new')) || CYCLE[0];
   const more = i >= UNITS_SHOWN ? ` class="umore hidden" data-more="${p.id}"` : '';
   return `<li${more}><span class="utext">${u}</span>
-    <button class="chip ustate ${cur.cls}" data-uidx="${i}" title="标记本条掌握程度"
-      onclick="event.stopPropagation(); window.kyLook.rateAsk('${p.id}', ${i}, this)">${cur.label}</button></li>`;
+    <span class="chip ustate ${cur.cls}" title="掌握程度（在「记」中复习评分）">${cur.label}</span></li>`;
 }
 
 function noteBody(p) {
@@ -263,78 +260,12 @@ function noteBody(p) {
     const raw = p.note
       ? `<details class="notebox"><summary>查看完整原文</summary><p class="ptext">${p.note}</p></details>`
       : '';
-    return `<div class="units"><b>理解要点
-      <span><span class="small">逐条评分</span>
-      <button class="btn sm ghost" style="margin-left:8px"
-        onclick="event.stopPropagation(); window.kyLook.allGood('${p.id}')">一键评分</button></span></b>
+    return `<div class="units"><b>理解要点 <span class="small">在「记」中复习评分</span></b>
       <ol>${items}</ol>${more}${raw}</div>`;
   }
   if (!p.note) return '';
   return `<details class="notebox"><summary>展开理解（${p.note.length} 字）</summary>
     <p class="ptext">${p.note}</p></details>`;
-}
-
-/** 轻量选择弹窗（Promise<选择值|null>）。 */
-function chooseBox(title, choices) {
-  return new Promise((resolve) => {
-    const mask = document.createElement('div');
-    mask.className = 'cmask';
-    mask.innerHTML = `<div class="cbox"><p style="margin-bottom:10px">${title}</p>
-      <div style="display:flex;gap:8px">${choices.map((c) =>
-        `<button class="${c.cls}" data-v="${c.v}">${c.label}</button>`).join('')}</div>
-      <div class="cbtns" style="margin-top:12px"><button class="btn sm ghost" data-x>取消</button></div></div>`;
-    document.body.appendChild(mask);
-    const close = (v) => { mask.remove(); resolve(v); };
-    mask.querySelectorAll('[data-v]').forEach((b) => { b.onclick = () => close(b.dataset.v); });
-    mask.querySelector('[data-x]').onclick = () => close(null);
-    mask.onclick = (e) => { if (e.target === mask) close(null); };
-  });
-}
-
-function updatePointChip(pid) {
-  const cur = CYCLE.find((c) => c.s === (state.states[pid] || 'new')) || CYCLE[0];
-  const rowBtn = document.querySelector(`#pt-${pid} > button.chip`);
-  if (rowBtn) { rowBtn.className = 'chip ' + cur.cls; rowBtn.textContent = cur.label; }
-}
-
-/** 单元显式评分（忘了/吃力/秒答）→ 写单元级调度。 */
-async function rateAsk(pid, idx, btn) {
-  const v = await chooseBox('这条掌握得怎么样？', [
-    { v: 'again', label: '忘了', cls: 'rate-choice r' },
-    { v: 'hard', label: '吃力', cls: 'rate-choice o' },
-    { v: 'good', label: '秒答', cls: 'rate-choice g' },
-  ]);
-  if (!v) return;
-  state.unitStates = state.unitStates || {};
-  const st = RATING_STATE[v];
-  state.unitStates[`${pid}#${idx}`] = st;
-  const c = CYCLE.find((x) => x.s === st) || CYCLE[0];
-  btn.className = 'chip ustate ' + c.cls;
-  btn.textContent = c.label;
-  const r = await post('/api/unit_review', { point_id: pid, idx, rating: v }).catch(() => null);
-  if (r && r.point_state) { state.states[pid] = r.point_state; updatePointChip(pid); }
-}
-
-/** 一键给考点内全部单元评分。 */
-async function allGood(pid) {
-  const v = await chooseBox('整个考点的所有单元统一标为？', [
-    { v: 'good', label: '全部秒答', cls: 'rate-choice g' },
-    { v: 'hard', label: '全部吃力', cls: 'rate-choice o' },
-    { v: 'again', label: '全部忘了', cls: 'rate-choice r' },
-  ]);
-  if (!v) return;
-  const r = await post('/api/unit_review', { point_id: pid, rating: v, all: true }).catch(() => null);
-  if (!r) return;
-  const st = RATING_STATE[v];
-  const c = CYCLE.find((x) => x.s === st) || CYCLE[0];
-  state.unitStates = state.unitStates || {};
-  document.querySelectorAll(`#pb-${pid} .ustate`).forEach((b) => {
-    state.unitStates[`${pid}#${b.dataset.uidx}`] = st;
-    b.className = 'chip ustate ' + c.cls;
-    b.textContent = c.label;
-  });
-  state.states[pid] = r.point_state;
-  updatePointChip(pid);
 }
 
 function unitsMore(pid, btn) {
@@ -363,34 +294,6 @@ async function openChapter(chId) {
   renderTex(view);
 }
 
-async function stateAsk(pid, btn) {
-  const v = await chooseBox('整个考点掌握得怎么样？', [
-    { v: 'known', label: '会了', cls: 'rate-choice g' },
-    { v: 'half', label: '半会', cls: 'rate-choice o' },
-    { v: 'review', label: '不会', cls: 'rate-choice r' },
-    { v: 'new', label: '重置未学', cls: 'rate-choice' },
-  ]);
-  if (!v) return;
-  state.states[pid] = v;
-  const c = CYCLE.find((x) => x.s === v) || CYCLE[0];
-  btn.className = 'chip ' + c.cls;
-  btn.textContent = c.label;
-  await post('/api/progress', { point_id: pid, state: v }).catch(() => {});
-  const rep = (state.reports || []).find((r) => r.id === subject);
-  if (rep) {
-    const chap = state.content.subjects.find((s) => s.id === subject).chapters
-      .find((c2) => (c2.points || []).some((p) => p.id === pid));
-    if (chap) {
-      const hit = (rep.chapters || []).find((c2) => c2.id === chap.id);
-      if (hit) {
-        const pts = chap.points || [];
-        const coef = { known: 1, review: 0.6, half: 0.5, listened: 0.3, new: 0 };
-        hit.completion = pts.reduce((acc, p) => acc + (coef[state.states[p.id] || 'new'] || 0), 0) / (pts.length || 1);
-      }
-    }
-  }
-}
-
 async function starPoint(pid, btn) {
   const on = favorites.has(pid);
   if (on) { favorites.delete(pid); btn.classList.remove('on'); } else { favorites.add(pid); btn.classList.add('on'); }
@@ -401,11 +304,8 @@ export const kyLook = {
   subject(s) { subject = s; renderLook(); },
   open: openChapter,
   back: renderLook,
-  stateAsk,
   star: starPoint,
   downloadAsk,
-  rateAsk,
-  allGood,
   unitsMore,
   toggle: togglePoint,
   expand: expandPoint,
