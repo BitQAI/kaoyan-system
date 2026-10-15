@@ -51,27 +51,24 @@ export async function renderToday() {
       <span class="caret">›</span></div>`;
 
   const reviewBox = document.getElementById('review-box');
-  if (data.reviews_due > 0) {
-    reviewBox.innerHTML = `<div class="card"><h3>今日复习 <span class="small">${data.reviews_due} 点到期 · 标记「会」即推进</span></h3>` +
-      (data.review_points || []).slice(0, 8).map((pid) => {
-        const h = state.pointIndex.get(pid);
-        return `<div class="lrow"
-          onclick="window.kyGo('look'); setTimeout(function(){window.kyLook.jumpTo('${pid}')},350)">
-          <span class="dot" style="background:var(--red)"></span>
-          <b class="lt">${h ? shortTitle(h.point.text) : pid}</b>
-          <span class="lsmall">${h ? h.chap.name.slice(0, 8) : ''}</span>
-          <span class="caret">›</span></div>`;
-      }).join('') + '</div>';
+  const due = data.review_units_due || 0;
+  if (due > 0) {
+    reviewBox.innerHTML = `<div class="card"><h3>今日复习 <span class="small">${due} 条到期 · 约 ${data.review_session_est_min || 0} 分钟</span></h3>
+      <p class="small" style="margin:0 0 10px">先回忆、再看原文、如实评分；最不熟的先出，跨科交错。</p>
+      <button class="btn" style="width:100%" onclick="window.kyReview && window.kyReview.start()">开始复习</button></div>`;
   } else {
-    reviewBox.innerHTML = '';
+    reviewBox.innerHTML = `<div class="card"><h3>今日复习 <span class="small">已完成 ✓</span></h3>
+      <p class="small" style="margin:0">暂无到期条目。去「看」页学新考点，标记后会按间隔回来。</p></div>`;
+  }
+
+  const hour = new Date().getHours();
+  const t = (state.stats && state.stats.today) || {};
+  const doneTonight = (t.quiz_n || 0) + (t.cards || 0) + (t.review_n || 0) > 0;
+  if (hour >= 21 && !doneTonight) {
+    tasks.innerHTML += '<p class="small" style="margin:8px 0 0">睡前把今天的内容过一遍——睡一觉会帮你记得更牢。</p>';
   }
 
   const rings = document.getElementById('rings');
-  if (data.pace && data.pace.behind && data.pace.remaining_points > 0) {
-    document.getElementById('streak-line').innerHTML =
-      `连续打卡 <b style="color:var(--brand)">${state.stats ? state.stats.streak_days : 0}</b> 天 · ` +
-      `待学 ${data.pace.remaining_points} 点 · 每天约 ${data.pace.per_day.toFixed(1)} 点可追平`;
-  }
   if (state.stats && state.stats.ring) {
     rings.innerHTML = state.stats.ring.map((s) => {
       const pct = Math.round((s.weighted || 0) * 100);
@@ -79,10 +76,19 @@ export async function renderToday() {
       return `<div><div class="ring" style="--p:${pct};--c:${c}"><i>${pct}%</i></div>
         <span class="small">${s.name.slice(0, 6)}</span></div>`;
     }).join('');
-    if (!data.pace || !data.pace.behind) {
-      document.getElementById('streak-line').innerHTML =
-        `连续打卡 <b style="color:var(--brand)">${state.stats.streak_days}</b> 天 · ` +
-        `昨日听 ${Math.round((state.stats.today.listen_sec || 0) / 60)} 分钟`;
-    }
+  }
+
+  reorderCards(hour >= 18);
+}
+
+/** 时间自适应：白天听单优先，18 点后复习优先。 */
+function reorderCards(evening) {
+  const sec = document.getElementById('s-today');
+  const order = evening
+    ? ['review-box', 'card-tasks', 'card-listen', 'card-progress']
+    : ['card-listen', 'card-tasks', 'review-box', 'card-progress'];
+  for (const id of order) {
+    const el = document.getElementById(id);
+    if (el) sec.appendChild(el);
   }
 }

@@ -36,19 +36,18 @@
       <p class="small" id="boot-error-msg"></p>
       <button class="btn" onclick="location.reload()">重试</button>
     </div>
-    <div class="card">
+    <div class="card" id="card-listen">
       <h3>今日听单 <span class="small" id="listen-meta"></span></h3>
       <div id="listen-list"></div>
     </div>
-    <div class="card">
+    <div class="card" id="card-tasks">
       <h3>今晚任务 <span class="small">晚间集中</span></h3>
       <div id="evening-tasks"></div>
     </div>
     <div id="review-box"></div>
-    <div class="card">
+    <div class="card" id="card-progress">
       <h3>四科进度 <span class="small">加权完成度</span></h3>
       <div class="rings" id="rings"></div>
-      <p class="small" id="streak-line" style="margin:10px 0 0"></p>
     </div>
   </section>
 
@@ -97,6 +96,7 @@
   <section class="screen" id="s-me">
     <div class="card"><h3>进度总览 <span class="small">加权完成度 · 点进看内容</span></h3>
       <div id="me-progress"></div></div>
+    <div class="card"><h3>坚持与节奏</h3><div id="me-streak"></div></div>
     <div class="card"><h3>AI 对话历史 <span class="small">按知识点 / 题目分组</span></h3>
       <div id="me-threads"></div></div>
     <div class="card"><h3>数据导出 <span class="small">Markdown · 考前打印</span></h3><div id="me-export"></div></div>

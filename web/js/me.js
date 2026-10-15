@@ -4,12 +4,21 @@ import { shortTitle, state } from './state.js';
 const RING_COLORS = { 812: '#b33a3a', 315: '#b96a00', 101: '#2457d6', 204: '#11845b' };
 
 export async function renderMe() {
-  const [stats, settings, threads] = await Promise.all([
+  const [stats, settings, threads, plan] = await Promise.all([
     get('/api/stats').catch(() => null),
     get('/api/settings').catch(() => ({})),
     get('/api/ai/threads').catch(() => ({ items: [] })),
+    get('/api/plan/today').catch(() => null),
   ]);
   state.stats = stats || state.stats;
+
+  const st = stats || {};
+  const pace = plan && plan.pace;
+  document.getElementById('me-streak').innerHTML = `
+    <div class="row"><div class="t"><b>连续打卡</b>
+      <span class="small">${st.streak_days || 0} 天 · 今日听 ${Math.round(((st.today || {}).listen_sec || 0) / 60)} 分钟</span></div></div>
+    ${pace ? `<div class="row"><div class="t"><b>追赶节奏</b>
+      <span class="small">待学 ${pace.remaining_points} 点 · 每天约 ${pace.per_day.toFixed(1)} 点可追平</span></div></div>` : ''}`;
 
   const ring = (stats && stats.ring) || [];
   document.getElementById('me-progress').innerHTML = ring.map((s) => {
