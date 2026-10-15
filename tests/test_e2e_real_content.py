@@ -64,12 +64,21 @@ def test_full_api_flow_with_real_content(tmp_path, monkeypatch):
         for _ in range(2):
             c.post("/api/quiz/attempt", json={"quiz_id": quiz["id"], "chosen": quiz["answer"]})
         assert all(q["id"] != quiz["id"] for q in c.get("/api/quiz/wrong").json()["items"])
-        # 背题卡 → 推进度
+        # 背题卡评分 → 卡级调度（V4：与考点状态解耦）
         card = next(cd for s in data["subjects"] if s["id"] == "812"
                     for ch in s["chapters"] for cd in ch["cards"])
-        c.post("/api/cards/review", json={"card_id": card["id"], "verdict": "know"})
-        states = c.get("/api/progress").json()["states"]
-        assert states.get(card["point_id"]) == "known"
+        r = c.post("/api/card_review", json={"card_id": card["id"], "rating": "good"}).json()
+        assert r["ok"] and r["next"]["again"] == 1
+        from app import db as _db
+
+        con = _db.connect()
+        assert con.execute("SELECT stage FROM card_reviews WHERE card_id=?",
+                           (card["id"],)).fetchone()["stage"] == 1
+        con.close()
+        # 单元评分 → 考点进度（进度环数据来源）
+        pt = next(p for s in data["subjects"] if s["id"] == "812"
+                  for ch in s["chapters"] for p in ch["points"] if p.get("units"))
+        c.post("/api/unit_review", json={"point_id": pt["id"], "rating": "good", "all": True})
         # 播放位置
         clip = next(a["src"] for s in data["subjects"] if s["id"] == "812"
                     for ch in s["chapters"] for p in ch["points"] for a in p["audio"])

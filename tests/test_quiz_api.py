@@ -153,19 +153,3 @@ def test_quiz_run_point_mode(tmp_path, monkeypatch):
                      params={"mode": "point", "point_id": "nope"}).json()["items"] == []
     _teardown()
 
-
-def test_card_review_updates_point_state(tmp_path, monkeypatch):
-    _boot(tmp_path, monkeypatch)
-    from fastapi.testclient import TestClient
-
-    from app.main import app
-
-    with TestClient(app) as c:
-        c.post("/api/login", json={"password": "pw"})
-        c.post("/api/cards/review", json={"card_id": "c8120101", "verdict": "know"})
-        assert c.get("/api/progress").json()["states"]["812-01-02"] == "known"
-        c.post("/api/cards/review", json={"card_id": "c8120101", "verdict": "fuzzy"})
-        assert c.get("/api/progress").json()["states"]["812-01-02"] == "half"
-        c.post("/api/cards/review", json={"card_id": "c8120101", "verdict": "no"})
-        assert c.get("/api/progress").json()["states"]["812-01-02"] == "review"
-    _teardown()
