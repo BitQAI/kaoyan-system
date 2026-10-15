@@ -20,8 +20,16 @@ def init_db() -> None:
     con = connect()
     con.executescript(SCHEMA.read_text(encoding="utf-8"))
     _migrate_quiz_attempts(con)
+    _migrate_daily_log(con)
     con.commit()
     con.close()
+
+
+def _migrate_daily_log(con) -> None:
+    """幂等迁移 daily_log：补 review_n 列（V3 复习计数）。"""
+    cols = {r["name"] for r in con.execute("PRAGMA table_info(daily_log)")}
+    if "review_n" not in cols:
+        con.execute("ALTER TABLE daily_log ADD COLUMN review_n INTEGER NOT NULL DEFAULT 0")
 
 
 def _migrate_quiz_attempts(con) -> None:

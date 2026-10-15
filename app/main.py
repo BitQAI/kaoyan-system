@@ -8,7 +8,8 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from app import db
 from app.config import get_settings
 from app.routers import (ai_router, auth_router, content_router, exam_router, media_state_router,
-                         plan_router, progress_router, quiz_router, settings_router, stats_router)
+                         plan_router, progress_router, quiz_router, review_router, settings_router,
+                         stats_router)
 
 WEB_DIR = pathlib.Path(__file__).resolve().parent.parent / "web"
 
@@ -37,6 +38,7 @@ app.add_middleware(_NoStoreStatic)
 app.include_router(auth_router.router)
 app.include_router(content_router.router)
 app.include_router(progress_router.router)
+app.include_router(review_router.router)
 app.include_router(media_state_router.router)
 app.include_router(quiz_router.router)
 app.include_router(exam_router.router)

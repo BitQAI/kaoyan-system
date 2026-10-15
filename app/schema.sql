@@ -67,7 +67,8 @@ CREATE TABLE IF NOT EXISTS daily_log (
   listen_sec INTEGER NOT NULL DEFAULT 0,
   clips      INTEGER NOT NULL DEFAULT 0,
   cards      INTEGER NOT NULL DEFAULT 0,
-  quiz_n     INTEGER NOT NULL DEFAULT 0
+  quiz_n     INTEGER NOT NULL DEFAULT 0,
+  review_n   INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS settings (
@@ -80,6 +81,25 @@ CREATE TABLE IF NOT EXISTS reviews (
   stage      INTEGER NOT NULL DEFAULT 0,
   due_date   TEXT NOT NULL,
   updated_at TEXT NOT NULL
+);
+
+-- V3 单元级复习调度（stage≥3 为毕业，行保留）
+CREATE TABLE IF NOT EXISTS unit_reviews (
+  point_id   TEXT NOT NULL,
+  idx        INTEGER NOT NULL,
+  stage      INTEGER NOT NULL DEFAULT 0,
+  due_date   TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  PRIMARY KEY (point_id, idx)
+);
+
+-- V3 单元评分流水（统计用，append-only）
+CREATE TABLE IF NOT EXISTS unit_ratings (
+  id       INTEGER PRIMARY KEY AUTOINCREMENT,
+  point_id TEXT NOT NULL,
+  idx      INTEGER NOT NULL,
+  rating   TEXT NOT NULL,
+  ts       TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS exam_runs (

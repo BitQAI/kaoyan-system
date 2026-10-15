@@ -12,7 +12,7 @@
 
 进度总览：
 
-- [ ] T1 单元级调度引擎（后端）
+- [x] T1 单元级调度引擎（后端）
 - [ ] T11 液态玻璃视觉重构（全站）
 - [ ] T2 复习模式 UI
 - [ ] T3 看页改造
@@ -54,14 +54,14 @@ daily_stats.bump_daily(con, col, n=1) -> None
 - 队列：到期单元（stage<3）∪ 到期考点展开（该点无到期单元时，出未毕业单元；全毕业则跳过）；排序 (stage,due) 后按科目轮转交错；`review_n` 截断、`due_total` 为未截断数；`point` 参数单考点模式不受截断
 
 **步骤**
-- [ ] 1. schema.sql 两表 + db.py daily_log 迁移
-- [ ] 2. daily_stats.bump_daily + quiz_router 换用（测试保持绿）
-- [ ] 3. progress_engine.recompute_point_state 迁入 + progress_router 改用（测试保持绿）
-- [ ] 4. 测试先行：`test_unit_review_engine.py` 规则矩阵 / 缩放边界(22·21·7·0) / 毕业 / 队列生成(去重·全毕业跳过·排序·交错·截断) / point 模式
-- [ ] 5. 实现 `unit_review_engine` 至新测试绿
-- [ ] 6. `review_router` 实现（rate 联动 unit_progress 状态 + recompute + bump_daily；all 批量）+ main.py 注册 + API 测试
-- [ ] 7. plan_router：streak 计入 review_n；plan/today 增 `review_units_due`、`review_session_est_min`（≈条数×0.2 分钟）
-- [ ] 8. `make test` 全绿 → commit
+- [x] 1. schema.sql 两表 + db.py daily_log 迁移
+- [x] 2. daily_stats.bump_daily + quiz_router 换用（测试保持绿）
+- [x] 3. progress_engine.recompute_point_state 迁入 + progress_router 改用（测试保持绿）
+- [x] 4. 测试先行：`test_unit_review_engine.py` 规则矩阵 / 缩放边界(22·21·7·0) / 毕业 / 队列生成(去重·全毕业跳过·排序·交错·截断) / point 模式
+- [x] 5. 实现 `unit_review_engine` 至新测试绿
+- [x] 6. `review_router` 实现（rate 联动 unit_progress 状态 + recompute + bump_daily；all 批量）+ main.py 注册 + API 测试
+- [x] 7. plan_router：streak 计入 review_n；plan/today 增 `review_units_due`、`review_session_est_min`（≈条数×0.2 分钟）
+- [x] 8. `make test` 全绿 → commit
 
 **验证**：新测试覆盖 + 94 存量绿；`GET /api/review/queue` 手工 curl 检查排序与字段。
 
