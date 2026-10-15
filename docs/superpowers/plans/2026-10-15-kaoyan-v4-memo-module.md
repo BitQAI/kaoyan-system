@@ -9,7 +9,7 @@
 
 - [x] T1（M1）卡级调度：`card_reviews` + 引擎扩展 + `/api/card_review`
 - [x] T2（M2）memo 队列引擎 + `/api/memo/queue` + 今日页计数
-- [ ] T3（M3+M4）「记」前端：翻转卡会话 + 范围面板 + 第 6 个 Tab
+- [x] T3（M3+M4）「记」前端：翻转卡会话 + 范围面板 + 第 6 个 Tab
 - [ ] T4（M6）迁移：测页去卡、今日页入口、`#s-review` 并屏
 - [ ] T5（M5）看页瘦身 + 死代码清理
 - [ ] T6（M7）删旧端点/测试 + 全量回归 + README + 收尾
@@ -81,10 +81,10 @@ GET /api/memo/queue?quick=due|today_look|fav|hot&subjects=&chapters=&points=&fil
 - 全局入口：`window.kyMemo`（`startDue()` 供今日页）
 
 **步骤**
-- [ ] 1. git mv + 会话翻转改造（kind 感知双卡面）
-- [ ] 2. 范围面板（含 N 张估算的防抖计数）
-- [ ] 3. Tab/路由/样式（含翻转 CSS 玻璃化）
-- [ ] 4. 浏览器自验：金路径（含背题卡混排、翻转动效、间隔标注）+ 范围面板各模式 + 空态；commit
+- [x] 1. git mv + 会话翻转改造（kind 感知双卡面）
+- [x] 2. 范围面板（含 N 张估算的防抖计数）
+- [x] 3. Tab/路由/样式（含翻转 CSS 玻璃化）
+- [x] 4. 浏览器自验：金路径（含背题卡混排、翻转动效、间隔标注）+ 范围面板各模式 + 空态；commit
 
 ---
 

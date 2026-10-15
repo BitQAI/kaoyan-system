@@ -55,7 +55,7 @@ export async function renderToday() {
   if (due > 0) {
     reviewBox.innerHTML = `<div class="card"><h3>今日复习 <span class="small">${due} 条到期 · 约 ${data.review_session_est_min || 0} 分钟</span></h3>
       <p class="small" style="margin:0 0 10px">先回忆、再看原文、如实评分；最不熟的先出，跨科交错。</p>
-      <button class="btn" style="width:100%" onclick="window.kyReview && window.kyReview.start()">开始复习</button></div>`;
+      <button class="btn" style="width:100%" onclick="window.kyGo('memo')">去「记」开始复习</button></div>`;
   } else {
     reviewBox.innerHTML = `<div class="card"><h3>今日复习 <span class="small">已完成 ✓</span></h3>
       <p class="small" style="margin:0">暂无到期条目。去「看」页学新考点，标记后会按间隔回来。</p></div>`;

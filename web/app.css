@@ -255,7 +255,7 @@ select{padding:7px 10px;border:1px solid var(--line);border-radius:10px;font-siz
 /* 底部 Tab：悬浮玻璃坞 */
 .tabbar{position:fixed;bottom:calc(10px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);
   width:min(406px,calc(100vw - 24px));background:var(--panel-strong);border:1px solid var(--glass-border);border-radius:24px;
-  display:grid;grid-template-columns:repeat(5,1fr);z-index:40;
+  display:grid;grid-template-columns:repeat(6,1fr);z-index:40;
   box-shadow:inset 0 1px 0 var(--glass-edge),var(--shadow-lift);
   backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6)}
 .tabbar button{border:none;background:none;padding:9px 0 9px;font-size:11.5px;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
@@ -292,6 +292,27 @@ select{padding:7px 10px;border:1px solid var(--line);border-radius:10px;font-siz
 .rev-rate .hard{background:var(--orangebg);color:var(--orange)}
 .rev-rate .good{background:var(--greenbg);color:var(--green)}
 .rev-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+/* 「记」翻转卡 */
+.mflip{perspective:1200px;cursor:pointer;margin:12px 0;min-height:200px}
+.mflip-inner{position:relative;min-height:200px;height:var(--flip-h,240px);transition:transform .5s;transform-style:preserve-3d}
+.mflip.on .mflip-inner{transform:rotateY(180deg)}
+.mflip-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  display:flex;flex-direction:column;justify-content:center;gap:8px;overflow-y:auto;
+  background:var(--panel-soft);border:1px solid var(--glass-border);border-radius:16px;padding:16px}
+.mflip-face.back{transform:rotateY(180deg);background:var(--panel-strong)}
+.memo-q{font-size:16.5px;line-height:1.8;word-break:break-all}
+.memo-a{font-size:14.5px;line-height:1.9;margin:2px 0 0;word-break:break-all}
+.memo-hint{font-size:11px;color:var(--muted);margin-top:6px}
+/* 「记」范围面板 */
+.scope-sec{margin-bottom:12px}
+.scope-sec>b{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:600}
+.schips{display:flex;flex-wrap:wrap;gap:6px}
+.schip{border:1px solid var(--line);background:var(--panel-soft);color:var(--text);border-radius:99px;padding:6px 12px;font-size:12.5px;cursor:pointer}
+.schip.on{background:var(--soft);border-color:var(--brand);color:var(--brand);font-weight:700}
+.chkrow{display:flex;align-items:center;gap:8px;padding:9px 2px;border-bottom:1px solid var(--line);font-size:13.5px;cursor:pointer}
+.chkrow:last-child{border-bottom:none}
+.chkrow input{width:16px;height:16px;accent-color:var(--brand);flex:none}
+.chgroup{margin-bottom:4px}
 /* 不支持 backdrop-filter 的降级：高不透明度纯色 */
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
   :root{--panel:rgba(255,255,255,.93);--panel-strong:rgba(255,255,255,.97);--panel-soft:rgba(255,255,255,.84)}
