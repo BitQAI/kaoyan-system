@@ -67,7 +67,7 @@ export async function renderMe() {
       <input class="num" type="number" id="set-quiz" value="${settings.quiz_n || 15}" min="0" max="100"></div>
     <div class="row"><div class="t"><b>每日复习条数</b>
       <span class="small">到期复习按此上限出卡；超额顺延到下次，不会丢失</span></div>
-      <input class="num" type="number" id="set-review" value="${settings.review_n || 60}" min="10" max="200"></div>
+      <input class="num" type="number" id="set-review" value="${settings.review_n || 260}" min="100" max="300"></div>
     <div class="row"><div class="t"><b>音色（下次生成音频生效）</b></div>
       <select id="set-voice">${voiceSel}</select></div>
     <button class="btn" style="margin-top:10px" onclick="window.kyMe.save()">保存设置</button>`;

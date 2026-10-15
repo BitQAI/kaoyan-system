@@ -57,12 +57,14 @@ def _gap(stage: int, k: int, days_left: int, key: str) -> int | None:
 
 
 def next_intervals(stage: int, k: int, days_left: int, key: str) -> dict:
-    """各档评分对应的下次间隔天数（good=None 表示毕业）。"""
+    """各档评分对应的下次间隔天数（good=None 表示毕业）。
+
+    hard 必须与 `_advance` 同源（用当前 stage 算 gap 再折半），否则按钮上
+    标注的天数会与真点下去排出的天数不一致。
+    """
     good = _gap(stage + 1, k, days_left, key)
-    if good is None:
-        hard = max(1, round((days_left - jitter(key)) / 2))
-    else:
-        hard = max(1, round(good / 2))
+    hg = _gap(stage, k, days_left, key)
+    hard = max(1, round(hg / 2)) if hg is not None else 1
     return {"again": 1, "hard": hard, "good": good, "graduates": good is None}
 
 
@@ -154,7 +156,7 @@ def _keep(x: dict, filters: set, unit_rows: dict, card_rows: dict,
            else card_rows.get(x["card_id"]))
     if "due" in filters and (not row or row["due_date"] > t):
         return False
-    if "weak" in filters and (not row or row["stage"] >= 2):
+    if "weak" in filters and (not row or row["stage"] >= x["k"]):
         return False
     if "fav" in filters and x["point_id"] not in fav_ids:
         return False

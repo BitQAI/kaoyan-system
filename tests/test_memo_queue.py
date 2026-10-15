@@ -200,3 +200,24 @@ def test_jitter_spreads_same_day_items():
     dues = {e.next_intervals(0, 4, 65, e.unit_key(f"A-1-0{i}", 0))["good"]
             for i in range(1, 9)}
     assert len(dues) > 1
+
+
+def test_weak_filter_scales_with_k(tmp_path, monkeypatch):
+    """「没学完」= 未毕业（stage < k），而非硬编码的 stage < 2。"""
+    con = _db(tmp_path, monkeypatch)
+    from app.services import unit_review_engine as e
+
+    con.execute(INS_U, ("A-1-01", 0, 2, T, T))      # stage=2
+    con.commit()
+
+    def _content(tier):
+        return {"subjects": [{"id": "A", "chapters": [
+            {"id": "A-1", "tier": tier, "points": [{"id": "A-1-01", "units": ["u1"]}]}]}]}
+
+    q1 = e.memo_queue(con, _content(1), review_n=60, chapters=["A-1"], filter=["weak"],
+                      today=T, days_left=65)
+    assert [i["idx"] for i in q1["items"]] == [0]   # tier1 K=4：stage2 未毕业 → 属「没学完」
+
+    q3 = e.memo_queue(con, _content(3), review_n=60, chapters=["A-1"], filter=["weak"],
+                      today=T, days_left=65)
+    assert q3["items"] == []                        # tier3 K=2：stage2 已毕业 → 不算

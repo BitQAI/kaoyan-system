@@ -71,7 +71,7 @@ def test_next_intervals_follows_exam_anchor():
     d0 = e.next_intervals(0, 4, 65, key)    # 学习后 stage=0 → good 推 stage=1
     assert d0["graduates"] is False and d0["again"] == 1
     assert d0["good"] == round((65 - j) / (2 ** 3 - 1))
-    assert d0["hard"] == max(1, round(d0["good"] / 2))
+    assert d0["hard"] == max(1, round(round((65 - j) / (2 ** 4 - 1)) / 2))
 
     # stage=3 时 good 毕业（K=4）
     assert e.next_intervals(3, 4, 65, key)["good"] is None
@@ -371,3 +371,23 @@ def test_unit_review_api_returns_dynamic_next(ac, tmp_path):
     # 缺省 tier=3 → K=2：首次评分后只剩 1 次，间隔 = 剩余天数全额
     assert row["stage"] == 1
     assert row["due_date"] == _plus(e._today(None), max(1, dl - j))
+
+
+def test_next_intervals_hard_matches_actual_schedule(tmp_path, monkeypatch):
+    """按钮上标注的「吃力」天数必须与真点下去排出的天数一致。"""
+    import datetime
+
+    con = _db(tmp_path, monkeypatch)
+    from app.services import unit_review_engine as e
+
+    key = e.unit_key("A-1-01", 0)
+    for stage, k in [(0, 2), (0, 4), (1, 4), (2, 4), (0, 6), (3, 6)]:
+        con.execute("DELETE FROM unit_reviews")
+        if stage:
+            con.execute(INS_U, ("A-1-01", 0, stage, T, T))
+        con.commit()
+        shown = e.next_intervals(stage, k, 65, key)["hard"]
+        r = e.rate(con, "A-1-01", 0, "hard", k, today=T, days_left=65)
+        actual = (datetime.date.fromisoformat(r["due_date"])
+                  - datetime.date.fromisoformat(T)).days
+        assert shown == actual, f"stage={stage} k={k}: 标注 {shown} 天，实际 {actual} 天"

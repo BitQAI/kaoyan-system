@@ -13,7 +13,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 from app.services import unit_review_engine as e   # noqa: E402
 
-EXAM = 64          # 距考试天数（day 0 = 今天；2026-10-15 → 2026-12-19）
+EXAM = 65          # 距考试天数（day 0 = 今天；2026-10-15 → 2026-12-19 = 65 天）
 TAIL = 21          # 考前窗口
 DEFAULT_CONTENT = pathlib.Path(__file__).resolve().parent.parent / "content" / "content.json"
 
