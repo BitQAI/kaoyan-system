@@ -45,15 +45,18 @@ export async function renderTest() {
       <button class="btn sm" onclick="window.kyQuiz.resume()">继续</button>
       <button class="btn sm ghost" onclick="window.kyQuiz.discard()">重新开始</button></div></div>` : '';
   document.getElementById('test-modes').innerHTML = `
-    <div class="row"><div class="t"><b>选择题练习</b><span class="small">按章节 · 今日章节优先</span></div>
-      <button class="btn sm" onclick="window.kyQuiz.start('chapter')">开始</button></div>
-    <div class="row"><div class="t"><b>错题重练</b><span class="small">${w.length ? `${w.length} 题待清` : '暂无错题'}</span></div>
-      <button class="btn sm ghost" style="color:var(--red);background:var(--redbg)"
-        onclick="window.kyQuiz.start('wrong')">重练</button></div>
-    <div class="row"><div class="t"><b>收藏重练</b><span class="small">来自收藏的题目</span></div>
-      <button class="btn sm ghost" onclick="window.kyQuiz.start('favorites')">开始</button></div>
-    <div class="row"><div class="t"><b>模拟考试</b><span class="small">按真题题型 · 限时 · 计分</span></div>
-      <button class="btn sm" style="background:var(--green)" onclick="window.kyExam&&window.kyExam.entry()">进入</button></div>`;
+    <div class="lrow" onclick="window.kyQuiz.start('chapter')">
+      <span class="dot d1"></span><b class="lt">选择题练习</b>
+      <span class="lsmall">按章节 · 今日优先</span><span class="caret">›</span></div>
+    <div class="lrow" onclick="window.kyQuiz.start('wrong')">
+      <span class="dot" style="background:var(--red)"></span><b class="lt">错题重练</b>
+      <span class="lsmall">${w.length ? `${w.length} 题待清` : '暂无错题'}</span><span class="caret">›</span></div>
+    <div class="lrow" onclick="window.kyQuiz.start('favorites')">
+      <span class="dot" style="background:var(--orange)"></span><b class="lt">收藏重练</b>
+      <span class="lsmall">来自收藏</span><span class="caret">›</span></div>
+    <div class="lrow" onclick="window.kyExam&&window.kyExam.entry()">
+      <span class="dot" style="background:var(--green)"></span><b class="lt">模拟考试</b>
+      <span class="lsmall">真题题型 · 限时计分</span><span class="caret">›</span></div>`;
   await renderCards();
 }
 
@@ -208,30 +211,65 @@ window.kyQuiz = kyQuiz;
 
 // ---------- 背题卡（自评） ----------
 
+const CARDS_LS = 'ky_cards_done';
+let cardCursor = 0;
+
+function cardsDone() {
+  try { return new Set(JSON.parse(localStorage.getItem(CARDS_LS) || '[]')); } catch (e) { return new Set(); }
+}
+
+function saveCardsDone(s) { localStorage.setItem(CARDS_LS, JSON.stringify([...s])); }
+
+function resetCards() { localStorage.removeItem(CARDS_LS); renderCards(); }
+
 async function renderCards() {
   const box = document.getElementById('card-box');
-  let card = null;
-  outer: for (const subj of state.content.subjects) {
+  const all = [];
+  for (const subj of state.content.subjects) {
     for (const c of subj.chapters) {
-      const remain = (c.cards || []).find((cd) => state.pointIndex.has(cd.point_id));
-      if (remain) { card = remain; break outer; }
+      for (const cd of (c.cards || [])) {
+        if (state.pointIndex.has(cd.point_id)) all.push(cd);
+      }
     }
   }
-  if (!card) { box.innerHTML = '<div class="empty">暂无背题卡</div>'; return; }
+  if (!all.length) { box.innerHTML = '<div class="empty">暂无背题卡</div>'; return; }
+  const done = cardsDone();
+  const doneN = all.filter((cd) => done.has(cd.id)).length;
+  // 游标轮转：跳过未完成的卡（含「模糊」重出的），避免连续出现同一张
+  let card = null;
+  for (let k = 0; k < all.length; k++) {
+    const cd = all[(cardCursor + k) % all.length];
+    if (!done.has(cd.id)) {
+      card = cd;
+      cardCursor = (cardCursor + k + 1) % all.length;
+      break;
+    }
+  }
+  if (!card) {
+    box.dataset.cardId = '';
+    box.innerHTML = `<div class="empty">本轮 ${all.length} 张已过完 🎉</div>
+      <div style="text-align:center"><button class="btn sm ghost" onclick="window.kyQuiz.resetCards()">重新开始一轮</button></div>`;
+    return;
+  }
   box.dataset.cardId = card.id;
   const hit = state.pointIndex.get(card.point_id);
+  const ctx = hit ? `${hit.subj.name.slice(0, 6)} · ${hit.chap.name.slice(0, 12)}` : '';
   box.innerHTML = `
+    <div class="ccard-bar"><span class="small">${ctx}</span>
+      <span class="small">${doneN + 1}/${all.length}</span></div>
     <div class="flip" id="flipcard" onclick="this.classList.toggle('f')">
       <div class="inner">
-        <div class="face"><div class="small">${hit ? tagChips(hit.point, 3) : ''}${card.kind ? `<span class="chip b">${card.kind}</span>` : ''}</div>
+        <div class="face"><div class="small">${card.kind ? `<span class="chip b">${card.kind}</span>` : ''}
+          ${hit ? tagChips(hit.point, 2) : ''}</div>
           <b>${card.front}</b><p class="small">点击翻面查看答案</p></div>
         <div class="face back"><span class="small">答案（AI 生成，请对照教材）</span><p>${card.back}</p></div>
       </div>
     </div>
     <div style="display:flex;gap:8px;margin-top:10px">
-      <button class="btn" style="flex:1;background:var(--green)" onclick="window.kyQuiz.verdict('know')">会了</button>
-      <button class="btn" style="flex:1;background:var(--orange)" onclick="window.kyQuiz.verdict('fuzzy')">模糊</button>
-      <button class="btn" style="flex:1;background:var(--red)" onclick="window.kyQuiz.verdict('no')">不会</button>
+      <button class="btn sm" style="flex:1;background:var(--green)" onclick="window.kyQuiz.verdict('know')">会了</button>
+      <button class="btn sm" style="flex:1;background:var(--orange)" onclick="window.kyQuiz.verdict('fuzzy')">模糊</button>
+      <button class="btn sm" style="flex:1;background:var(--red)" onclick="window.kyQuiz.verdict('no')">不会</button>
+      <button class="btn sm ghost" onclick="window.kyQuiz.verdict('skip')">跳过</button>
     </div>`;
 }
 
@@ -239,8 +277,16 @@ async function verdict(v) {
   const box = document.getElementById('card-box');
   const cardId = box.dataset.cardId;
   if (!cardId) return;
-  await post('/api/cards/review', { card_id: cardId, verdict: v }).catch(() => {});
-  renderTest();
+  if (v !== 'skip') {
+    await post('/api/cards/review', { card_id: cardId, verdict: v }).catch(() => {});
+  }
+  if (v !== 'fuzzy') {                     // 模糊的卡片留到下一轮再出现
+    const done = cardsDone();
+    done.add(cardId);
+    saveCardsDone(done);
+  }
+  renderCards();
 }
 
 kyQuiz.verdict = verdict;
+kyQuiz.resetCards = resetCards;
