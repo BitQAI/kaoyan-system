@@ -64,13 +64,17 @@ class CardReviewBody(BaseModel):
 
 @router.post("/card_review")
 def card_review(body: CardReviewBody, con: sqlite3.Connection = Depends(db.get_db)):
-    if not content.find_card(content.load_content(), body.card_id):
+    data = content.load_content()
+    if not content.find_card(data, body.card_id):
         raise HTTPException(status_code=404, detail="card_not_found")
-    r = unit_review_engine.rate_card(con, body.card_id, body.rating)
+    tier = content.card_tier_map(data).get(body.card_id, 3)
+    k = unit_review_engine.target_k("card", tier)
+    r = unit_review_engine.rate_card(con, body.card_id, body.rating, k)
     daily_stats.bump_daily(con, "cards")
     con.commit()
     return {"ok": True,
-            "next": unit_review_engine.next_intervals(r["stage"], plan_engine.days_left())}
+            "next": unit_review_engine.next_intervals(r["stage"], k,
+                                                      plan_engine.days_left(), body.card_id)}
 
 
 @router.post("/unit_review")
@@ -78,7 +82,9 @@ def unit_review(body: UnitReviewBody, con: sqlite3.Connection = Depends(db.get_d
     found = content.find_point(content.load_content(), body.point_id)
     if not found:
         raise HTTPException(status_code=404, detail="point_not_found")
-    total = len(found[2].get("units") or [])
+    _, chap, point = found
+    k = unit_review_engine.target_k("unit", chap.get("tier", 3))
+    total = len(point.get("units") or [])
     idxs = list(range(total)) if body.all else ([body.idx] if body.idx is not None else [])
     if not idxs:
         raise HTTPException(status_code=422, detail="idx_required")
@@ -87,7 +93,7 @@ def unit_review(body: UnitReviewBody, con: sqlite3.Connection = Depends(db.get_d
 
     last = None
     for i in idxs:
-        last = unit_review_engine.rate(con, body.point_id, i, body.rating)
+        last = unit_review_engine.rate(con, body.point_id, i, body.rating, k)
         con.execute(
             "INSERT INTO unit_progress(point_id, idx, state, updated_at) VALUES(?,?,?,?) "
             "ON CONFLICT(point_id, idx) DO UPDATE SET state=excluded.state, "
@@ -101,4 +107,6 @@ def unit_review(body: UnitReviewBody, con: sqlite3.Connection = Depends(db.get_d
     state = con.execute("SELECT state FROM progress WHERE point_id = ?",
                         (body.point_id,)).fetchone()
     return {"ok": True, "point_state": state["state"] if state else "new",
-            "next": unit_review_engine.next_intervals(last["stage"], plan_engine.days_left())}
+            "next": unit_review_engine.next_intervals(
+                last["stage"], k, plan_engine.days_left(),
+                unit_review_engine.unit_key(body.point_id, idxs[-1]))}

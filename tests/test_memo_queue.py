@@ -8,18 +8,18 @@ INS_C = "INSERT INTO card_reviews(card_id, stage, due_date, updated_at) VALUES(?
 
 CONTENT = {"subjects": [
     {"id": "A", "name": "科目A", "chapters": [
-        {"id": "A-1", "name": "章一", "points": [
+        {"id": "A-1", "name": "章一", "tier": 1, "points": [
             {"id": "A-1-01", "units": ["u1", "u2"], "tags": ["易错"]},
             {"id": "A-1-02", "units": ["x1"], "tags": ["基础"]},
         ], "cards": [
             {"id": "cA101", "point_id": "A-1-01", "kind": "名解", "front": "f", "back": "b"},
         ]},
-        {"id": "A-2", "name": "章二", "points": [
+        {"id": "A-2", "name": "章二", "tier": 3, "points": [
             {"id": "A-2-01", "units": ["z1"], "tags": []},
         ], "cards": []},
     ]},
     {"id": "B", "name": "科目B", "chapters": [
-        {"id": "B-1", "name": "章一", "points": [
+        {"id": "B-1", "name": "章一", "tier": 2, "points": [
             {"id": "B-1-01", "units": ["y1"], "tags": ["高频"]},
         ], "cards": [
             {"id": "cB101", "point_id": "B-1-01", "kind": "简答", "front": "f2", "back": "b2"},
@@ -163,3 +163,40 @@ def test_plan_today_counts_cards(client, tmp_path):
     con.close()
     t = client.get("/api/plan/today").json()
     assert t["review_cards_due"] == 1 and t["review_units_due"] == 0
+
+
+# ---------- V5：梯队分档与队列优先级 ----------
+
+def test_queue_sorts_by_tier_first(tmp_path, monkeypatch):
+    """高梯队优先于低梯队，即使低梯队更早到期（排序即分配策略）。"""
+    con = _db(tmp_path, monkeypatch)
+    con.execute(INS_U, ("A-2-01", 0, 0, Y, T))          # tier3，更早到期
+    con.execute(INS_U, ("A-1-01", 0, 1, T, T))          # tier1，当天到期
+    con.commit()
+    from app.services import unit_review_engine as e
+
+    ids = [i["point_id"] for i in
+           e.memo_queue(con, CONTENT, review_n=60, today=T, days_left=65)["items"]]
+    assert ids.index("A-1-01") < ids.index("A-2-01")
+
+
+def test_queue_items_expose_tier_and_k(tmp_path, monkeypatch):
+    con = _db(tmp_path, monkeypatch)
+    con.execute(INS_U, ("A-1-01", 0, 0, T, T))
+    con.execute(INS_C, ("cB101", 0, T, T))
+    con.commit()
+    from app.services import unit_review_engine as e
+
+    got = {(i["kind"], i["tier"], i["k"]) for i in
+           e.memo_queue(con, CONTENT, review_n=60, today=T, days_left=65)["items"]}
+    assert ("unit", 1, 4) in got        # 第 1 梯队单元 K=4
+    assert ("card", 2, 6) in got        # 背题卡恒 K=6，tier 取所属章节
+
+
+def test_jitter_spreads_same_day_items():
+    """同日条目不应全部撞在同一天到期（Review Focus #3）。"""
+    from app.services import unit_review_engine as e
+
+    dues = {e.next_intervals(0, 4, 65, e.unit_key(f"A-1-0{i}", 0))["good"]
+            for i in range(1, 9)}
+    assert len(dues) > 1

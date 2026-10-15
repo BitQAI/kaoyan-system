@@ -57,3 +57,23 @@ def find_point(content: dict, point_id: str):
             if p["id"] == point_id:
                 return subj, chap, p
     return None
+
+
+def point_tier_map(content: dict) -> dict:
+    """考点 → 所属章节梯队（单元级调度的 K 由它决定）。"""
+    out = {}
+    for _, chap in iter_chapters(content):
+        tier = chap.get("tier", 3)
+        for p in chap.get("points", []):
+            out[p["id"]] = tier
+    return out
+
+
+def card_tier_map(content: dict) -> dict:
+    """背题卡 → 所属章节梯队（卡片挂在章级，不在考点下）。"""
+    out = {}
+    for _, chap in iter_chapters(content):
+        tier = chap.get("tier", 3)
+        for c in chap.get("cards", []):
+            out[c["id"]] = tier
+    return out

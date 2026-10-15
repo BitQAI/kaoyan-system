@@ -37,35 +37,50 @@ def _write_content(tmp_path):
     (d / "content.json").write_text(json.dumps(CONTENT, ensure_ascii=False), encoding="utf-8")
 
 
+def _plus(today: str, days: int) -> str:
+    import datetime
+    return (datetime.date.fromisoformat(today) + datetime.timedelta(days=days)).isoformat()
+
+
 def test_rate_card_transitions(tmp_path, monkeypatch):
     con = _db(tmp_path, monkeypatch)
     from app.services import unit_review_engine as e
 
-    r = e.rate_card(con, "cA101", "again", today=T, days_left=65)
+    k = e.target_k("card", 1)
+    assert k == 6
+    j = e.jitter("cA101")
+
+    r = e.rate_card(con, "cA101", "again", k, today=T, days_left=65)
     assert (r["stage"], r["due_date"], r["graduates"]) == (0, "2026-10-16", False)
 
-    r = e.rate_card(con, "cA101", "good", today=T, days_left=65)
-    assert (r["stage"], r["due_date"]) == (1, "2026-10-18")        # 0→1 +3
-    r = e.rate_card(con, "cA101", "hard", today=T, days_left=65)
-    assert (r["stage"], r["due_date"]) == (1, "2026-10-18")        # stage 不变 +3
-    r = e.rate_card(con, "cA101", "good", today=T, days_left=65)
-    assert (r["stage"], r["due_date"]) == (2, "2026-10-22")        # 1→2 +7
-    r = e.rate_card(con, "cA101", "good", today=T, days_left=65)
-    assert r["stage"] == 3 and r["graduates"] is True              # 毕业保留行
+    # good：stage 0→1，k_remain = K − 1 = 5，间隔 = (65 − j) / (2^5 − 1)
+    r = e.rate_card(con, "cA101", "good", k, today=T, days_left=65)
+    assert r["stage"] == 1 and r["graduates"] is False
+    assert r["due_date"] == _plus(T, round((65 - j) / 31))
+
+    # hard：stage 不变，间隔 = 同 stage 下 good 间隔的一半
+    r = e.rate_card(con, "cA101", "hard", k, today=T, days_left=65)
+    assert r["stage"] == 1
+    assert r["due_date"] == _plus(T, max(1, round(round((65 - j) / 31) / 2)))
 
     # 只写 card_reviews，不碰单元表
     assert con.execute("SELECT COUNT(*) c FROM unit_reviews").fetchone()["c"] == 0
 
 
-def test_rate_card_frozen(tmp_path, monkeypatch):
+def test_rate_card_graduates_at_k(tmp_path, monkeypatch):
+    """K=6 的卡走满 6 次评分即毕业；行保留（取代旧的「考前冻结」语义）。"""
     con = _db(tmp_path, monkeypatch)
     from app.services import unit_review_engine as e
 
-    e.rate_card(con, "cA101", "good", today=T, days_left=14)
-    e.rate_card(con, "cA101", "good", today=T, days_left=14)
-    r = e.rate_card(con, "cA101", "good", today=T, days_left=14)   # 冻结：停在 2
-    assert r["stage"] == 2 and r["graduates"] is False
-    assert r["due_date"] == "2026-10-18"
+    k = e.target_k("card", 1)
+    last = None
+    for _ in range(k - 1):
+        last = e.rate_card(con, "cA101", "good", k, today=T, days_left=65)
+        assert last["graduates"] is False
+    last = e.rate_card(con, "cA101", "good", k, today=T, days_left=65)
+    assert last["graduates"] is True and last["stage"] == k
+    assert con.execute("SELECT stage FROM card_reviews WHERE card_id='cA101'"
+                       ).fetchone()["stage"] == k
 
 
 def test_card_review_api_decoupled(client, tmp_path):
