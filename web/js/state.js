@@ -48,9 +48,15 @@ export function shortTitle(text) {
   return cap(t);
 }
 
+/** 展示标题：优先线索式 cue（不泄答案），缺省回退短标题。 */
+export function displayTitle(point) {
+  if (!point) return '';
+  return point.cue || shortTitle(point.text);
+}
+
 export function pointTitle(pointId) {
   const hit = state.pointIndex.get(pointId);
-  return hit ? shortTitle(hit.point.text) : pointId;
+  return hit ? displayTitle(hit.point) : pointId;
 }
 
 export function clipTitle(clipId) {
@@ -61,7 +67,7 @@ export function clipTitle(clipId) {
     return hit.chap.name + ' · 串讲' + suffix;
   }
   const part = clipId.includes('-p') ? `（${clipId.split('-p')[1]}）` : '';
-  return shortTitle(hit.point.text) + part;
+  return displayTitle(hit.point) + part;
 }
 
 const TAG_PRIORITY = ['易错', '常考', '高频', '必掌握', '重点', '基础', '机制', '理解', '了解'];

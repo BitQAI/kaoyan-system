@@ -1,5 +1,5 @@
 import { get } from './api.js';
-import { clipTitle, shortTitle, state } from './state.js';
+import { clipTitle, displayTitle, state } from './state.js';
 
 const RING_COLORS = { 812: '#b33a3a', 315: '#b96a00', 101: '#2457d6', 204: '#11845b' };
 
@@ -42,7 +42,7 @@ export async function renderToday() {
     <div class="lrow" onclick="window.kyGo('look')">
       <span class="dot" style="background:var(--brand)"></span>
       <b class="lt">看：${look.length} 个考点</b>
-      <span class="lsmall">${look.length ? shortTitle(state.pointIndex.get(look[0])?.point.text || '') : '暂无'}</span>
+      <span class="lsmall">${look.length ? displayTitle(state.pointIndex.get(look[0])?.point) : '暂无'}</span>
       <span class="caret">›</span></div>
     <div class="lrow" onclick="window.kyGo('test')">
       <span class="dot" style="background:var(--orange)"></span>

@@ -1,5 +1,5 @@
 import { get, post } from './api.js';
-import { shortTitle, state } from './state.js';
+import { displayTitle, state } from './state.js';
 
 const LS_KEY = 'ky_review_run';
 const today = () => new Date().toISOString().slice(0, 10);
@@ -73,7 +73,7 @@ function paint() {
   const units = (p && p.units) || [];
   const unitText = units[it.idx] || (p ? p.text : it.point_id);
   const crumb = hit ? `${hit.subj.name.slice(0, 8)} · ${hit.chap.name.slice(0, 14)}` : it.point_id;
-  const pos = `${shortTitle(p ? p.text : '')} · 第 ${it.idx + 1}/${units.length || '?'} 条`;
+  const pos = `${displayTitle(p)} · 第 ${it.idx + 1}/${units.length || '?'} 条`;
   const nxt = it.next || {};
   const left = session.items.length - session.i;
   box.innerHTML = `<div class="card rev-card">

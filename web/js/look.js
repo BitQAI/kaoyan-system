@@ -1,5 +1,5 @@
 import { get, post } from './api.js';
-import { shortTitle, state, tagClass } from './state.js';
+import { displayTitle, state, tagClass } from './state.js';
 
 const TIER = { 1: '第一梯队', 2: '第二梯队', 3: '第三梯队' };
 const CYCLE = [
@@ -218,7 +218,7 @@ function pointHtml(p) {
   const hasBody = !!(p.note || p.exam || (p.media || []).length);
   return `<div class="prow" id="pt-${p.id}">
     <div class="prow-main" onclick="window.kyLook.toggle('${p.id}')">
-      <div class="ptitle">${shortTitle(p.text)}</div>
+      <div class="ptitle">${displayTitle(p)}</div>
       <div class="pmeta">${chips.join('')}</div>
     </div>
     <button class="chip ${cur.cls}" onclick="event.stopPropagation(); window.kyLook.stateAsk('${p.id}', this)">${cur.label}</button>
