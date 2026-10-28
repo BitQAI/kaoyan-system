@@ -4,7 +4,7 @@
  "name": "植物生理学",
  "score": 150,
  "status": "draft",
- "generated_at": "2026-10-28T04:58:48.638017+00:00",
+ "generated_at": "2026-10-28T11:04:16.586715+00:00",
  "source_file": "2027考研_四科知识全景与章节权重.html",
  "chapters": [
   {
@@ -861,7 +861,7 @@
    ],
    "confusables": [],
    "exam_evidence": {
-    "level": "verified",
+    "level": "inferred",
     "basis": "教材绪论补足研究方法与分支",
     "sources": [
      {
@@ -1886,6 +1886,29 @@
      "point_id": "8120104",
      "front": "“液泡和过氧化物酶体都是双层膜细胞器”这一说法错在哪里",
      "back": "错误说法：液泡和过氧化物酶体都是双层膜细胞器。原因：二者均为单层膜结构；双层膜细胞器只有质体和线粒体。正确判断：液泡、溶酶体、过氧化物酶体、乙醛酸循环体、内质网、高尔基体都属于单层膜细胞器，只有质体与线粒体为双层膜。"
+    },
+    {
+     "kind": "简答",
+     "card_type": "记忆",
+     "question": "液泡在植物细胞中承担哪些功能？",
+     "answer": "①渗透调节与细胞伸长：液泡膜为单层膜，液泡渗透吸水产生膨压，驱动细胞伸长、维持细胞形态与植株挺立。②维持腔内环境：液泡膜上的质子泵把 H⁺ 泵入腔内，维持酸性环境，并在腔内积累溶质。③水解消化：液泡含多种水解酶，能分解胞内物质，功能上相当于植物细胞的溶酶体。④隔离解毒：把代谢废物、重金属离子和次生代谢物隔离在液泡中，避免毒害。⑤贮藏：贮存糖、有机酸、色素、蛋白质和离子等。",
+     "answer_points": [
+      "渗透吸水产生膨压，驱动细胞伸长、维持挺立",
+      "液泡膜质子泵泵入H⁺，维持腔内酸性环境",
+      "含多种水解酶，功能上相当于植物溶酶体",
+      "隔离废物、重金属与次生代谢物，避免毒害",
+      "贮藏糖、有机酸、色素、蛋白质和离子"
+     ],
+     "analysis": "答液泡功能时常见只写“贮藏和维持膨压”，漏掉水解消化与隔离解毒这两项植物溶酶体功能，是主要失分点。得分点在于五类功能齐全并各配一句机制：渗透调节对应膨压与细胞伸长，质子泵对应腔内酸化，水解酶对应溶酶体功能，隔离对应解毒，贮藏对应物质储备。若题目分值有限只能写三条，应优先补“水解消化＋隔离解毒”，因为这是液泡区别于其他单层膜细胞器的核心特征。",
+     "unit_refs": [
+      9,
+      8
+     ],
+     "front": "液泡在植物细胞中承担哪些功能？",
+     "back": "①渗透调节与细胞伸长：液泡膜为单层膜，液泡渗透吸水产生膨压，驱动细胞伸长、维持细胞形态与植株挺立。②维持腔内环境：液泡膜上的质子泵把 H⁺ 泵入腔内，维持酸性环境，并在腔内积累溶质。③水解消化：液泡含多种水解酶，能分解胞内物质，功能上相当于植物细胞的溶酶体。④隔离解毒：把代谢废物、重金属离子和次生代谢物隔离在液泡中，避免毒害。⑤贮藏：贮存糖、有机酸、色素、蛋白质和离子等。",
+     "difficulty": 2,
+     "point_id": "8120104",
+     "card_id": "c8120104-8"
     }
    ],
    "order": 4,
@@ -2914,7 +2937,7 @@
      "kind": "diagram",
      "caption": "共质体途径与质外体途径",
      "alt": "共质体是胞间连丝连成的原生质体连续体；质外体是细胞壁、细胞间隙和导管组成的空间",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"共质体与质外体\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120108\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">共质体途径与质外体途径</text>\n<g>\n<rect x=\"60\" y=\"90\" width=\"150\" height=\"110\" rx=\"8\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<rect x=\"245\" y=\"90\" width=\"150\" height=\"110\" rx=\"8\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<rect x=\"430\" y=\"90\" width=\"150\" height=\"110\" rx=\"8\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<circle cx=\"135\" cy=\"145\" r=\"22\" fill=\"rgba(47,143,91,.18)\"/>\n<circle cx=\"320\" cy=\"145\" r=\"22\" fill=\"rgba(47,143,91,.18)\"/>\n<circle cx=\"505\" cy=\"145\" r=\"22\" fill=\"rgba(47,143,91,.18)\"/>\n<path d=\"M210 145 L245 145\" stroke=\"currentColor\" stroke-width=\"4\"/>\n<path d=\"M395 145 L430 145\" stroke=\"currentColor\" stroke-width=\"4\"/>\n</g>\n<text x=\"135\" y=\"150\" text-anchor=\"middle\" font-size=\"11\">细胞</text>\n<text x=\"320\" y=\"150\" text-anchor=\"middle\" font-size=\"11\">细胞</text>\n<text x=\"505\" y=\"150\" text-anchor=\"middle\" font-size=\"11\">细胞</text>\n<text x=\"227\" y=\"130\" text-anchor=\"middle\" font-size=\"10\">胞间连丝</text>\n<text x=\"412\" y=\"130\" text-anchor=\"middle\" font-size=\"10\">胞间连丝</text>\n<path d=\"M135 123 L135 90\" stroke=\"currentColor\" marker-end=\"url(#mk8120108)\"/>\n<text x=\"320\" y=\"228\" text-anchor=\"middle\" font-size=\"12\">共质体：原生质体经胞间连丝连成连续体</text>\n<text x=\"320\" y=\"252\" text-anchor=\"middle\" font-size=\"12\">质外体：细胞壁、细胞间隙、导管组成的空间</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"共质体与质外体\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">共质体途径与质外体途径</text>\n<g>\n<rect x=\"60\" y=\"90\" width=\"150\" height=\"110\" rx=\"8\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<rect x=\"245\" y=\"90\" width=\"150\" height=\"110\" rx=\"8\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<rect x=\"430\" y=\"90\" width=\"150\" height=\"110\" rx=\"8\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<circle cx=\"135\" cy=\"145\" r=\"22\" fill=\"rgba(47,143,91,.18)\"/>\n<circle cx=\"320\" cy=\"145\" r=\"22\" fill=\"rgba(47,143,91,.18)\"/>\n<circle cx=\"505\" cy=\"145\" r=\"22\" fill=\"rgba(47,143,91,.18)\"/>\n<path d=\"M210 145 L245 145\" stroke=\"currentColor\" stroke-width=\"4\"/>\n<path d=\"M395 145 L430 145\" stroke=\"currentColor\" stroke-width=\"4\"/>\n</g>\n<text x=\"135\" y=\"150\" text-anchor=\"middle\" font-size=\"11\">细胞</text>\n<text x=\"320\" y=\"150\" text-anchor=\"middle\" font-size=\"11\">细胞</text>\n<text x=\"505\" y=\"150\" text-anchor=\"middle\" font-size=\"11\">细胞</text>\n<text x=\"227\" y=\"130\" text-anchor=\"middle\" font-size=\"10\">胞间连丝</text>\n<text x=\"412\" y=\"130\" text-anchor=\"middle\" font-size=\"10\">胞间连丝</text>\n<path d=\"M135 123 L135 90\" stroke=\"currentColor\"/><polygon points=\"135.0,90.0 138.2,95.6 131.8,95.6\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"228\" text-anchor=\"middle\" font-size=\"12\">共质体：原生质体经胞间连丝连成连续体</text>\n<text x=\"320\" y=\"252\" text-anchor=\"middle\" font-size=\"12\">质外体：细胞壁、细胞间隙、导管组成的空间</text>\n</svg>"
     }
    ]
   },
@@ -3420,7 +3443,7 @@
      "kind": "diagram",
      "caption": "细胞信号转导的四个基本阶段",
      "alt": "信号分子与受体结合，经跨膜转换、胞内信号网络放大，最终引起生理生化响应",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"信号转导四阶段\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120110\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">细胞信号转导的四个基本阶段</text>\n<g>\n<rect x=\"20\" y=\"80\" width=\"135\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<rect x=\"175\" y=\"80\" width=\"135\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<rect x=\"330\" y=\"80\" width=\"135\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<rect x=\"485\" y=\"80\" width=\"135\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"87\" y=\"112\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">① 受体识别</text>\n<text x=\"87\" y=\"138\" text-anchor=\"middle\" font-size=\"12\">信号分子与受体</text>\n<text x=\"87\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">特异结合</text>\n<text x=\"242\" y=\"112\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">② 跨膜转换</text>\n<text x=\"242\" y=\"138\" text-anchor=\"middle\" font-size=\"12\">胞外信号转为</text>\n<text x=\"242\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">胞内信号</text>\n<text x=\"397\" y=\"112\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">③ 胞内放大</text>\n<text x=\"397\" y=\"138\" text-anchor=\"middle\" font-size=\"12\">第二信使/磷酸化</text>\n<text x=\"397\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">级联放大整合</text>\n<text x=\"552\" y=\"112\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">④ 生理响应</text>\n<text x=\"552\" y=\"138\" text-anchor=\"middle\" font-size=\"12\">基因表达/酶活性</text>\n<text x=\"552\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">改变</text>\n</g>\n<path d=\"M155 125 L175 125\" stroke=\"currentColor\" marker-end=\"url(#mk8120110)\"/>\n<path d=\"M310 125 L330 125\" stroke=\"currentColor\" marker-end=\"url(#mk8120110)\"/>\n<path d=\"M465 125 L485 125\" stroke=\"currentColor\" marker-end=\"url(#mk8120110)\"/>\n<text x=\"320\" y=\"220\" text-anchor=\"middle\" font-size=\"12\">识别 → 转换 → 放大 → 效应；任一环节受阻都会改变响应</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"信号转导四阶段\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">细胞信号转导的四个基本阶段</text>\n<g>\n<rect x=\"20\" y=\"80\" width=\"135\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<rect x=\"175\" y=\"80\" width=\"135\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<rect x=\"330\" y=\"80\" width=\"135\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<rect x=\"485\" y=\"80\" width=\"135\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"87\" y=\"112\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">① 受体识别</text>\n<text x=\"87\" y=\"138\" text-anchor=\"middle\" font-size=\"12\">信号分子与受体</text>\n<text x=\"87\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">特异结合</text>\n<text x=\"242\" y=\"112\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">② 跨膜转换</text>\n<text x=\"242\" y=\"138\" text-anchor=\"middle\" font-size=\"12\">胞外信号转为</text>\n<text x=\"242\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">胞内信号</text>\n<text x=\"397\" y=\"112\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">③ 胞内放大</text>\n<text x=\"397\" y=\"138\" text-anchor=\"middle\" font-size=\"12\">第二信使/磷酸化</text>\n<text x=\"397\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">级联放大整合</text>\n<text x=\"552\" y=\"112\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">④ 生理响应</text>\n<text x=\"552\" y=\"138\" text-anchor=\"middle\" font-size=\"12\">基因表达/酶活性</text>\n<text x=\"552\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">改变</text>\n</g>\n<path d=\"M155 125 L175 125\" stroke=\"currentColor\"/><polygon points=\"175.0,125.0 169.4,128.2 169.4,121.8\" fill=\"currentColor\"/>\n<path d=\"M310 125 L330 125\" stroke=\"currentColor\"/><polygon points=\"330.0,125.0 324.4,128.2 324.4,121.8\" fill=\"currentColor\"/>\n<path d=\"M465 125 L485 125\" stroke=\"currentColor\"/><polygon points=\"485.0,125.0 479.4,128.2 479.4,121.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"220\" text-anchor=\"middle\" font-size=\"12\">识别 → 转换 → 放大 → 效应；任一环节受阻都会改变响应</text>\n</svg>"
     }
    ]
   },
@@ -4277,14 +4300,15 @@
      "kind": "名解",
      "card_type": "定义",
      "question": "名词解释：渗透吸水",
-     "answer": "渗透吸水是指液泡化成熟细胞依靠细胞液溶质形成的渗透势，在水势梯度驱动下吸收水分的方式。其动力来自渗透势，水分从外界高水势一侧经细胞膜进入液泡，直至内外水势平衡。它是成熟植物细胞吸水的主要形式。",
+     "answer": "渗透吸水是指液泡化成熟细胞依靠细胞液溶质形成的渗透势，在水势梯度驱动下吸收水分的方式。其前提是细胞水势低于外界溶液的水势，此时水分即经细胞膜进入细胞，直至内外水势平衡；其动力来自细胞液溶质形成的渗透势。它是成熟植物细胞吸水的主要形式。",
      "answer_points": [
       "液泡化成熟细胞的主要吸水方式",
       "动力来自细胞液溶质的渗透势",
       "水由高水势向低水势跨膜进入",
-      "是成熟细胞吸水的主要形式"
+      "是成熟细胞吸水的主要形式",
+      "前提：细胞水势低于外界溶液水势"
      ],
-     "analysis": "名解要写清动力来源与适用细胞两要素，只写“靠渗透作用吸水”过于笼统。渗透吸水的前提是细胞已液泡化、具有明显的溶质势；干种子不具备这一条件，因此不能套用。答题时点明它是主要形式，可与吸胀吸水形成主次对比。",
+     "analysis": "名解要写清动力来源与适用细胞两要素，只写“靠渗透作用吸水”过于笼统。渗透吸水的前提是细胞已液泡化、具有明显的溶质势；干种子不具备这一条件，因此不能套用。还需补一句方向性前提：只有当细胞水势低于外界溶液水势时水分才进入细胞，漏写这一句，机制描述就缺了起点。答题时点明它是主要形式，可与吸胀吸水形成主次对比。",
      "unit_refs": [
       3,
       4
@@ -4293,7 +4317,10 @@
      "card_id": "c8120203-1",
      "point_id": "8120203",
      "front": "名词解释：渗透吸水",
-     "back": "渗透吸水是指液泡化成熟细胞依靠细胞液溶质形成的渗透势，在水势梯度驱动下吸收水分的方式。其动力来自渗透势，水分从外界高水势一侧经细胞膜进入液泡，直至内外水势平衡。它是成熟植物细胞吸水的主要形式。"
+     "back": "渗透吸水是指液泡化成熟细胞依靠细胞液溶质形成的渗透势，在水势梯度驱动下吸收水分的方式。其前提是细胞水势低于外界溶液的水势，此时水分即经细胞膜进入细胞，直至内外水势平衡；其动力来自细胞液溶质形成的渗透势。它是成熟植物细胞吸水的主要形式。",
+     "merged_from": [
+      "8120203"
+     ]
     },
     {
      "kind": "名解",
@@ -4709,7 +4736,7 @@
      "kind": "diagram",
      "caption": "水通道蛋白（AQP）与水分跨膜运输",
      "alt": "水通道蛋白在膜上形成水孔，水在渗透势差驱动下快速通过，不直接耗能",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"水通道蛋白\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120215\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">水通道蛋白（AQP）</text>\n<g stroke=\"#2f8f5b\" fill=\"rgba(47,143,91,.12)\">\n<circle cx=\"60\" cy=\"100\" r=\"9\"/><circle cx=\"100\" cy=\"100\" r=\"9\"/><circle cx=\"140\" cy=\"100\" r=\"9\"/><circle cx=\"180\" cy=\"100\" r=\"9\"/><circle cx=\"220\" cy=\"100\" r=\"9\"/><circle cx=\"260\" cy=\"100\" r=\"9\"/>\n<circle cx=\"60\" cy=\"150\" r=\"9\"/><circle cx=\"100\" cy=\"150\" r=\"9\"/><circle cx=\"140\" cy=\"150\" r=\"9\"/><circle cx=\"180\" cy=\"150\" r=\"9\"/><circle cx=\"220\" cy=\"150\" r=\"9\"/><circle cx=\"260\" cy=\"150\" r=\"9\"/>\n</g>\n<rect x=\"300\" y=\"75\" width=\"60\" height=\"100\" rx=\"22\" fill=\"rgba(47,143,91,.25)\" stroke=\"#2f8f5b\"/>\n<text x=\"330\" y=\"130\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">AQP</text>\n<path d=\"M280 125 L300 125\" stroke=\"currentColor\" marker-end=\"url(#mk8120215)\"/>\n<path d=\"M360 125 L380 125\" stroke=\"currentColor\" marker-end=\"url(#mk8120215)\"/>\n<text x=\"320\" y=\"205\" text-anchor=\"middle\" font-size=\"12\">AQP 形成跨膜水孔，水顺渗透势差快速通过</text>\n<text x=\"320\" y=\"232\" text-anchor=\"middle\" font-size=\"12\">不与被转运物结合、不直接耗能；受磷酸化/pH/Ca²⁺/胁迫调节</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"水通道蛋白\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">水通道蛋白（AQP）</text>\n<g stroke=\"#2f8f5b\" fill=\"rgba(47,143,91,.12)\">\n<circle cx=\"60\" cy=\"100\" r=\"9\"/><circle cx=\"100\" cy=\"100\" r=\"9\"/><circle cx=\"140\" cy=\"100\" r=\"9\"/><circle cx=\"180\" cy=\"100\" r=\"9\"/><circle cx=\"220\" cy=\"100\" r=\"9\"/><circle cx=\"260\" cy=\"100\" r=\"9\"/>\n<circle cx=\"60\" cy=\"150\" r=\"9\"/><circle cx=\"100\" cy=\"150\" r=\"9\"/><circle cx=\"140\" cy=\"150\" r=\"9\"/><circle cx=\"180\" cy=\"150\" r=\"9\"/><circle cx=\"220\" cy=\"150\" r=\"9\"/><circle cx=\"260\" cy=\"150\" r=\"9\"/>\n</g>\n<rect x=\"300\" y=\"75\" width=\"60\" height=\"100\" rx=\"22\" fill=\"rgba(47,143,91,.25)\" stroke=\"#2f8f5b\"/>\n<text x=\"330\" y=\"130\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">AQP</text>\n<path d=\"M280 125 L300 125\" stroke=\"currentColor\"/><polygon points=\"300.0,125.0 294.4,128.2 294.4,121.8\" fill=\"currentColor\"/>\n<path d=\"M360 125 L380 125\" stroke=\"currentColor\"/><polygon points=\"380.0,125.0 374.4,128.2 374.4,121.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"205\" text-anchor=\"middle\" font-size=\"12\">AQP 形成跨膜水孔，水顺渗透势差快速通过</text>\n<text x=\"320\" y=\"232\" text-anchor=\"middle\" font-size=\"12\">不与被转运物结合、不直接耗能；受磷酸化/pH/Ca²⁺/胁迫调节</text>\n</svg>"
     }
    ]
   },
@@ -6564,6 +6591,29 @@
      "point_id": "8120209",
      "front": "木质部水分运输速度受哪些因素制约？常用哪些方法测定？",
      "back": "①受蒸腾强度制约，蒸腾越强运输越快；②受导管或管胞直径与长度影响，管径大、路径短则速度快；③受水柱连续性影响，空穴化与栓塞会阻断水流；④常用染料法、热脉冲法和同位素示踪法测定。"
+    },
+    {
+     "kind": "名解",
+     "card_type": "定义",
+     "question": "名词解释：内聚力-张力学说（蒸腾流-内聚力-张力学说）",
+     "answer": "内聚力-张力学说是解释高大植物水分上升的学说：叶片蒸腾失水使叶肉细胞水势下降并向叶脉导管吸水，导管水柱承受负压（张力）；水分子之间的内聚力以及水分子与管壁之间的附着力使水柱连续不断，因而由叶到根方向的蒸腾拉力可沿连续水柱传递，成为高大植物水分长距离上升的主要动力。若水柱因空穴化、栓塞而中断，水分运输即受阻。其核心是“蒸腾拉力—水柱张力—内聚力维持连续性”三者统一。",
+     "answer_points": [
+      "叶片蒸腾失水，叶肉细胞向导管吸水形成负压",
+      "内聚力使水柱连续，附着力使水柱贴壁不断",
+      "蒸腾拉力沿连续水柱由叶向根传递",
+      "水柱空穴化、栓塞中断则运输受阻"
+     ],
+     "analysis": "名解要写全“蒸腾拉力—水柱张力—内聚力维持连续性”这条因果链，只写“靠内聚力把水拉上去”会被判不完整。得分点是点明负压（张力）来源在叶片蒸腾，分别说明内聚力作用于水与水之间、附着力作用于水与管壁之间，并给出它是高大植物水分上升主要动力的结论。易失分处是把内聚力-张力学说与根压混为一谈，或漏掉空穴化、栓塞导致水柱中断这一限制条件。",
+     "unit_refs": [
+      5,
+      4,
+      6
+     ],
+     "front": "名词解释：内聚力-张力学说（蒸腾流-内聚力-张力学说）",
+     "back": "内聚力-张力学说是解释高大植物水分上升的学说：叶片蒸腾失水使叶肉细胞水势下降并向叶脉导管吸水，导管水柱承受负压（张力）；水分子之间的内聚力以及水分子与管壁之间的附着力使水柱连续不断，因而由叶到根方向的蒸腾拉力可沿连续水柱传递，成为高大植物水分长距离上升的主要动力。若水柱因空穴化、栓塞而中断，水分运输即受阻。其核心是“蒸腾拉力—水柱张力—内聚力维持连续性”三者统一。",
+     "difficulty": 2,
+     "point_id": "8120209",
+     "card_id": "c8120209-6"
     }
    ],
    "order": 11,
@@ -8414,7 +8464,7 @@
      "kind": "diagram",
      "caption": "17 种必需元素的分类",
      "alt": "必需元素共 17 种：大量元素 9 种，微量元素 8 种；C、H、O 来自空气和水",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"17种必需元素\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120302\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">17 种必需元素</text>\n<rect x=\"245\" y=\"55\" width=\"150\" height=\"50\" rx=\"12\" fill=\"rgba(47,143,91,.18)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"86\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\">17 种必需元素</text>\n<rect x=\"30\" y=\"130\" width=\"270\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"165\" y=\"158\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">大量元素（9 种）</text>\n<text x=\"165\" y=\"184\" text-anchor=\"middle\" font-size=\"12\">C H O N P K Ca Mg S</text>\n<text x=\"165\" y=\"208\" text-anchor=\"middle\" font-size=\"12\">含量 ≥0.1% DW</text>\n<rect x=\"340\" y=\"130\" width=\"270\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"475\" y=\"158\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">微量元素（8 种）</text>\n<text x=\"475\" y=\"184\" text-anchor=\"middle\" font-size=\"12\">Fe Mn B Zn Cu Mo Cl Ni</text>\n<text x=\"475\" y=\"208\" text-anchor=\"middle\" font-size=\"12\">含量 ≤0.01% DW</text>\n<path d=\"M300 105 L165 130\" stroke=\"currentColor\" marker-end=\"url(#mk8120302)\"/>\n<path d=\"M340 105 L475 130\" stroke=\"currentColor\" marker-end=\"url(#mk8120302)\"/>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"17种必需元素\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">17 种必需元素</text>\n<rect x=\"245\" y=\"55\" width=\"150\" height=\"50\" rx=\"12\" fill=\"rgba(47,143,91,.18)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"86\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\">17 种必需元素</text>\n<rect x=\"30\" y=\"130\" width=\"270\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"165\" y=\"158\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">大量元素（9 种）</text>\n<text x=\"165\" y=\"184\" text-anchor=\"middle\" font-size=\"12\">C H O N P K Ca Mg S</text>\n<text x=\"165\" y=\"208\" text-anchor=\"middle\" font-size=\"12\">含量 ≥0.1% DW</text>\n<rect x=\"340\" y=\"130\" width=\"270\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"475\" y=\"158\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">微量元素（8 种）</text>\n<text x=\"475\" y=\"184\" text-anchor=\"middle\" font-size=\"12\">Fe Mn B Zn Cu Mo Cl Ni</text>\n<text x=\"475\" y=\"208\" text-anchor=\"middle\" font-size=\"12\">含量 ≤0.01% DW</text>\n<path d=\"M300 105 L165 130\" stroke=\"currentColor\"/><polygon points=\"165.0,130.0 169.9,125.9 171.1,132.1\" fill=\"currentColor\"/>\n<path d=\"M340 105 L475 130\" stroke=\"currentColor\"/><polygon points=\"475.0,130.0 468.9,132.1 470.1,125.9\" fill=\"currentColor\"/>\n</svg>"
     }
    ]
   },
@@ -8670,6 +8720,51 @@
      "point_id": "8120303",
      "front": "判断：记住缺素症状即可，不必联系元素的生理功能。此说法是否正确？",
      "back": "错误。①缺素症状是元素生理功能受阻后的表现，脱离功能背症状容易混淆。②例如缺 K 的叶缘焦枯可追溯到 K⁺ 参与渗透调节，缺 Mg 的脉间失绿可追溯到 Mg 是叶绿素中心原子。③正确做法是按“功能—代谢受阻—症状部位”理解并记忆。"
+    },
+    {
+     "kind": "简答",
+     "card_type": "记忆",
+     "question": "简述 Ca 的生理作用及缺 Ca 症状。",
+     "answer": "①Ca 以 Ca²⁺ 形式参与细胞壁中果胶酸钙的形成，维持细胞壁与细胞膜的结构稳定性。②作为第二信使参与细胞信号转导，并参与细胞分裂、伸长和酶活性的调节（如钙调蛋白）。③Ca 在体内再利用性差，缺乏时症状先见于幼叶、顶芽和生长点，表现为顶芽与根尖坏死、幼叶卷曲变形，果实易出现脐腐等。",
+     "answer_points": [
+      "参与细胞壁果胶酸钙形成，稳定壁与膜结构",
+      "作为第二信使参与信号转导，如钙调蛋白",
+      "再利用性差，缺乏先见于幼叶、顶芽、生长点",
+      "缺Ca表现顶芽根尖坏死、幼叶卷曲、果实脐腐"
+     ],
+     "analysis": "按“功能—代谢受阻—症状部位”三步作答。功能要落到果胶酸钙与第二信使两条，前者管结构、后者管信号，缺一即不完整。症状必须与再利用性挂钩：钙随蒸腾流运输且在体内不能重新分配，所以缺钙先伤幼嫩部位，答成“老叶先黄”即方向性错误。果实脐腐是番茄等作物的典型例证，写上可加分，但不要写成所有作物都表现同一症状。",
+     "unit_refs": [
+      7,
+      10
+     ],
+     "front": "简述 Ca 的生理作用及缺 Ca 症状。",
+     "back": "①Ca 以 Ca²⁺ 形式参与细胞壁中果胶酸钙的形成，维持细胞壁与细胞膜的结构稳定性。②作为第二信使参与细胞信号转导，并参与细胞分裂、伸长和酶活性的调节（如钙调蛋白）。③Ca 在体内再利用性差，缺乏时症状先见于幼叶、顶芽和生长点，表现为顶芽与根尖坏死、幼叶卷曲变形，果实易出现脐腐等。",
+     "difficulty": 2,
+     "point_id": "8120303",
+     "card_id": "c8120303-9"
+    },
+    {
+     "kind": "简答",
+     "card_type": "记忆",
+     "question": "简述 Fe 与 B 的生理作用及缺素症状。",
+     "answer": "①Fe 参与细胞色素、铁硫蛋白的组成，是电子传递链的重要成分，并参与叶绿素的合成；缺 Fe 时叶绿素合成受阻，幼叶脉间失绿黄化而叶脉仍绿。②B 参与细胞壁果胶的形成、花粉萌发与花粉管伸长，并参与糖的运输；缺 B 时生长点坏死、茎尖根尖受害，花粉败育、花而不实（落花落果）。③二者在体内再利用性都差，缺乏症状均先见于幼叶、顶芽或生长点。",
+     "answer_points": [
+      "Fe是细胞色素、铁硫蛋白组分，参与电子传递",
+      "Fe参与叶绿素合成，缺Fe幼叶脉间失绿、叶脉绿",
+      "B参与细胞壁果胶形成与糖的运输",
+      "B参与花粉萌发与花粉管伸长，缺B花而不实",
+      "二者再利用性差，症状先见于幼叶与生长点"
+     ],
+     "analysis": "Fe 与 B 常被合并设问，答题要分别按“功能—症状”两栏对应，不能只背症状。Fe 的得分关键词是细胞色素与铁硫蛋白、叶绿素合成受阻，症状特征是幼叶脉间失绿而叶脉仍绿；B 的得分关键词是果胶与花粉萌发，症状特征是生长点坏死与花而不实。共同点必须点出再利用性差、症状先在幼嫩部位，这既解释了症状部位，也把二者与 N、P、K、Mg 的“老叶先表现”区分开。",
+     "unit_refs": [
+      8,
+      10
+     ],
+     "front": "简述 Fe 与 B 的生理作用及缺素症状。",
+     "back": "①Fe 参与细胞色素、铁硫蛋白的组成，是电子传递链的重要成分，并参与叶绿素的合成；缺 Fe 时叶绿素合成受阻，幼叶脉间失绿黄化而叶脉仍绿。②B 参与细胞壁果胶的形成、花粉萌发与花粉管伸长，并参与糖的运输；缺 B 时生长点坏死、茎尖根尖受害，花粉败育、花而不实（落花落果）。③二者在体内再利用性都差，缺乏症状均先见于幼叶、顶芽或生长点。",
+     "difficulty": 2,
+     "point_id": "8120303",
+     "card_id": "c8120303-10"
     }
    ],
    "order": 3,
@@ -9284,7 +9379,7 @@
      "kind": "diagram",
      "caption": "根系吸收矿质元素的途径",
      "alt": "矿质离子经根毛进入质外体或共质体，在内皮层被凯氏带阻断后转入共质体，再进入中柱导管",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"根系吸收矿质途径\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120305\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">根系吸收矿质元素的途径</text>\n<rect x=\"20\" y=\"70\" width=\"110\" height=\"130\" rx=\"12\" fill=\"rgba(47,143,91,.08)\" stroke=\"#2f8f5b\"/>\n<text x=\"75\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">土壤</text>\n<text x=\"75\" y=\"126\" text-anchor=\"middle\" font-size=\"12\">离子</text>\n<text x=\"75\" y=\"150\" text-anchor=\"middle\" font-size=\"12\">交换吸附</text>\n<rect x=\"160\" y=\"70\" width=\"140\" height=\"130\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"230\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">根毛/皮层</text>\n<text x=\"230\" y=\"126\" text-anchor=\"middle\" font-size=\"12\">质外体途径</text>\n<text x=\"230\" y=\"150\" text-anchor=\"middle\" font-size=\"12\">共质体途径</text>\n<text x=\"230\" y=\"174\" text-anchor=\"middle\" font-size=\"12\">主动吸收/选择性</text>\n<rect x=\"330\" y=\"70\" width=\"140\" height=\"130\" rx=\"12\" fill=\"rgba(178,106,0,.08)\" stroke=\"#b26a00\"/>\n<text x=\"400\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">内皮层</text>\n<text x=\"400\" y=\"126\" text-anchor=\"middle\" font-size=\"12\">凯氏带阻断</text>\n<text x=\"400\" y=\"150\" text-anchor=\"middle\" font-size=\"12\">质外体 → 共质体</text>\n<rect x=\"500\" y=\"70\" width=\"120\" height=\"130\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"560\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">中柱导管</text>\n<text x=\"560\" y=\"126\" text-anchor=\"middle\" font-size=\"12\">木质部</text>\n<text x=\"560\" y=\"150\" text-anchor=\"middle\" font-size=\"12\">向上运输</text>\n<path d=\"M130 135 L160 135\" stroke=\"currentColor\" marker-end=\"url(#mk8120305)\"/>\n<path d=\"M300 135 L330 135\" stroke=\"currentColor\" marker-end=\"url(#mk8120305)\"/>\n<path d=\"M470 135 L500 135\" stroke=\"currentColor\" marker-end=\"url(#mk8120305)\"/>\n<text x=\"320\" y=\"240\" text-anchor=\"middle\" font-size=\"12\">根毛区是吸收最活跃部位；凯氏带迫使离子转入共质体，形成选择性屏障</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"根系吸收矿质途径\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">根系吸收矿质元素的途径</text>\n<rect x=\"20\" y=\"70\" width=\"110\" height=\"130\" rx=\"12\" fill=\"rgba(47,143,91,.08)\" stroke=\"#2f8f5b\"/>\n<text x=\"75\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">土壤</text>\n<text x=\"75\" y=\"126\" text-anchor=\"middle\" font-size=\"12\">离子</text>\n<text x=\"75\" y=\"150\" text-anchor=\"middle\" font-size=\"12\">交换吸附</text>\n<rect x=\"160\" y=\"70\" width=\"140\" height=\"130\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"230\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">根毛/皮层</text>\n<text x=\"230\" y=\"126\" text-anchor=\"middle\" font-size=\"12\">质外体途径</text>\n<text x=\"230\" y=\"150\" text-anchor=\"middle\" font-size=\"12\">共质体途径</text>\n<text x=\"230\" y=\"174\" text-anchor=\"middle\" font-size=\"12\">主动吸收/选择性</text>\n<rect x=\"330\" y=\"70\" width=\"140\" height=\"130\" rx=\"12\" fill=\"rgba(178,106,0,.08)\" stroke=\"#b26a00\"/>\n<text x=\"400\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">内皮层</text>\n<text x=\"400\" y=\"126\" text-anchor=\"middle\" font-size=\"12\">凯氏带阻断</text>\n<text x=\"400\" y=\"150\" text-anchor=\"middle\" font-size=\"12\">质外体 → 共质体</text>\n<rect x=\"500\" y=\"70\" width=\"120\" height=\"130\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"560\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">中柱导管</text>\n<text x=\"560\" y=\"126\" text-anchor=\"middle\" font-size=\"12\">木质部</text>\n<text x=\"560\" y=\"150\" text-anchor=\"middle\" font-size=\"12\">向上运输</text>\n<path d=\"M130 135 L160 135\" stroke=\"currentColor\"/><polygon points=\"160.0,135.0 154.4,138.2 154.4,131.8\" fill=\"currentColor\"/>\n<path d=\"M300 135 L330 135\" stroke=\"currentColor\"/><polygon points=\"330.0,135.0 324.4,138.2 324.4,131.8\" fill=\"currentColor\"/>\n<path d=\"M470 135 L500 135\" stroke=\"currentColor\"/><polygon points=\"500.0,135.0 494.4,138.2 494.4,131.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"240\" text-anchor=\"middle\" font-size=\"12\">根毛区是吸收最活跃部位；凯氏带迫使离子转入共质体，形成选择性屏障</text>\n</svg>"
     }
    ]
   },
@@ -10149,14 +10244,15 @@
      "kind": "名解",
      "card_type": "定义",
      "question": "名词解释：需肥临界期",
-     "answer": "需肥临界期是指作物对某种养分缺乏或过量最敏感、对生长发育影响最大，且后期难以补偿的时期。此时保证养分供应是产量形成的底线，一旦缺失对生长发育损害最重，因此生产上应重点保证该时期的养分供应。",
+     "answer": "作物不同生育期对养分的吸收速率、体内分配和产量贡献不同，需肥存在时期性差异；其中对某种养分缺乏或过量最敏感、对生长发育影响最大，且后期难以补偿的时期，即为需肥临界期。此时保证养分供应是产量形成的底线，一旦缺失对生长发育损害最重，因此生产上应重点保证该时期的养分供应。",
      "answer_points": [
       "对养分缺乏或过量最敏感的时期",
       "对生长发育影响最大",
       "后期难以补偿",
-      "此时保证供应是产量形成底线"
+      "此时保证供应是产量形成底线",
+      "前提：作物需肥有时期性差异"
      ],
-     "analysis": "名解要写“时期—敏感性—影响大—难补偿”四点。临界期的关键词是“不能缺”，不是“需肥量最大”；这是与最大效率期最易混淆之处。答题若只写“需要肥料的关键时期”，没有说明缺乏后果与不可补偿性，定义就不完整。",
+     "analysis": "名解要写“时期—敏感性—影响大—难补偿”四点。临界期的关键词是“不能缺”，不是“需肥量最大”；这是与最大效率期最易混淆之处。答题若只写“需要肥料的关键时期”，没有说明缺乏后果与不可补偿性，定义就不完整。此外应先交代需肥的时期性差异这一前提：不同生育期吸收速率、分配与产量贡献不同，临界期正是在这一差异中挑出的最敏感时段。",
      "unit_refs": [
       2,
       3
@@ -10165,7 +10261,10 @@
      "card_id": "c8120307-1",
      "point_id": "8120307",
      "front": "名词解释：需肥临界期",
-     "back": "需肥临界期是指作物对某种养分缺乏或过量最敏感、对生长发育影响最大，且后期难以补偿的时期。此时保证养分供应是产量形成的底线，一旦缺失对生长发育损害最重，因此生产上应重点保证该时期的养分供应。"
+     "back": "作物不同生育期对养分的吸收速率、体内分配和产量贡献不同，需肥存在时期性差异；其中对某种养分缺乏或过量最敏感、对生长发育影响最大，且后期难以补偿的时期，即为需肥临界期。此时保证养分供应是产量形成的底线，一旦缺失对生长发育损害最重，因此生产上应重点保证该时期的养分供应。",
+     "merged_from": [
+      "8120307"
+     ]
     },
     {
      "kind": "名解",
@@ -11098,6 +11197,29 @@
      "point_id": "8120401",
      "front": "判断并说明：光合作用释放的 O₂ 来自 CO₂ 的分解。",
      "back": "①错误说法：光合作用释放的 O₂ 来自 CO₂ 的分解。②原因：总反应中 H₂O 被氧化放出 O₂，CO₂ 被还原生成碳水化合物，O₂ 的来源是水的光解而非 CO₂。③正确判断：光合放氧来自 H₂O，CO₂ 中的氧进入有机物。"
+    },
+    {
+     "kind": "名解",
+     "card_type": "定义",
+     "question": "名词解释：光合作用",
+     "answer": "光合作用是绿色细胞（含光合色素的细胞）吸收光能，同化 CO₂ 并制造有机物、同时释放 O₂ 的过程。其本质是氧化还原过程：H₂O 被氧化放出 O₂，CO₂ 被还原生成碳水化合物，总反应可写作 CO₂＋H₂O →（光能、叶绿体）→ 有机物＋O₂。光合作用是生物圈物质循环与能量流动的起点。",
+     "answer_points": [
+      "绿色细胞吸收光能，同化CO₂制造有机物",
+      "本质是氧化还原：H₂O被氧化、CO₂被还原",
+      "总反应：CO₂+H₂O→有机物+O₂",
+      "是生物圈物质循环与能量流动的起点"
+     ],
+     "analysis": "名解要写清场所（绿色细胞、叶绿体）、原料、产物与能量来源四要素，并把本质点明为氧化还原过程：水被氧化放氧、CO₂被还原成糖。只写“植物利用光能制造有机物”过于口语，会丢分。常见失分是把 O₂ 说成来自 CO₂ 的分解，这与本点另一张易错卡正好对应；结尾点出“物质循环与能量流动的起点”，可把定义提升到生理意义层面。",
+     "unit_refs": [
+      1,
+      5,
+      7
+     ],
+     "front": "名词解释：光合作用",
+     "back": "光合作用是绿色细胞（含光合色素的细胞）吸收光能，同化 CO₂ 并制造有机物、同时释放 O₂ 的过程。其本质是氧化还原过程：H₂O 被氧化放出 O₂，CO₂ 被还原生成碳水化合物，总反应可写作 CO₂＋H₂O →（光能、叶绿体）→ 有机物＋O₂。光合作用是生物圈物质循环与能量流动的起点。",
+     "difficulty": 1,
+     "point_id": "8120401",
+     "card_id": "c8120401-8"
     }
    ],
    "order": 1,
@@ -11614,6 +11736,29 @@
      "point_id": "8120403",
      "front": "叶绿素含量下降有哪两条途径？",
      "back": "①合成受阻：环境不利使底物供应不足或酶活性下降，叶绿素生成减少。②分解加快：高温、缺水等条件同时促进叶绿素分解。③两者可同时发生，因此叶片褪绿程度取决于合成与分解的净结果，不能只归因于其中一条。"
+    },
+    {
+     "kind": "简答",
+     "card_type": "过程",
+     "question": "简述叶绿素合成的主要途径及其关键中间产物。",
+     "answer": "叶绿素合成是多步酶促通路：①谷氨酸（或 α-酮戊二酸）在 ALA 合成酶催化下生成 δ-氨基酮戊酸（ALA），这是限速步骤；②两分子 ALA 缩合生成胆色素原（PBG）；③4 分子 PBG 聚合、环化生成原卟啉Ⅸ；④原卟啉Ⅸ在 Mg-螯合酶作用下插入 Mg²⁺ 生成 Mg-原卟啉Ⅸ；⑤经甲基化等修饰生成原叶绿素酸酯；⑥光照下原叶绿素酸酯被还原为叶绿素酸酯，再经植醇化生成叶绿素 a，叶绿素 a 氧化生成叶绿素 b。凡影响底物供应、酶活性或酶量的外部条件，都会在这一通路上形成限速。",
+     "answer_points": [
+      "谷氨酸经ALA合成酶生成δ-氨基酮戊酸，为限速步",
+      "两分子ALA缩合为胆色素原，再聚合成原卟啉Ⅸ",
+      "Mg-螯合酶插入Mg²⁺，生成Mg-原卟啉Ⅸ",
+      "经修饰生成原叶绿素酸酯，光下还原为叶绿素酸酯",
+      "植醇化生成叶绿素a，a氧化生成叶绿素b"
+     ],
+     "analysis": "过程题按“底物—前体—螯合—光还原—植醇化”顺序写，每一步给出酶或条件，尤其要标出 ALA 合成为限速步骤、Mg-螯合酶插入 Mg²⁺、光还原需要光照三个得分点。常见失分是把中间物顺序颠倒，或漏掉“叶绿素 b 由叶绿素 a 氧化生成”。最后补一句“底物供应、酶活性或酶量受影响都会在此通路上形成限速”，可与光照、温度、矿质等环境因子卡衔接。",
+     "unit_refs": [
+      1,
+      2
+     ],
+     "front": "简述叶绿素合成的主要途径及其关键中间产物。",
+     "back": "叶绿素合成是多步酶促通路：①谷氨酸（或 α-酮戊二酸）在 ALA 合成酶催化下生成 δ-氨基酮戊酸（ALA），这是限速步骤；②两分子 ALA 缩合生成胆色素原（PBG）；③4 分子 PBG 聚合、环化生成原卟啉Ⅸ；④原卟啉Ⅸ在 Mg-螯合酶作用下插入 Mg²⁺ 生成 Mg-原卟啉Ⅸ；⑤经甲基化等修饰生成原叶绿素酸酯；⑥光照下原叶绿素酸酯被还原为叶绿素酸酯，再经植醇化生成叶绿素 a，叶绿素 a 氧化生成叶绿素 b。凡影响底物供应、酶活性或酶量的外部条件，都会在这一通路上形成限速。",
+     "difficulty": 3,
+     "point_id": "8120403",
+     "card_id": "c8120403-8"
     }
    ],
    "order": 3,
@@ -11638,7 +11783,7 @@
      "kind": "diagram",
      "caption": "影响叶绿素合成的环境因素",
      "alt": "光照、温度、矿质营养和水分通过影响合成或分解来改变叶绿素含量",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"叶绿素合成的环境调控\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120403\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">影响叶绿素合成的环境因素</text>\n<circle cx=\"320\" cy=\"145\" r=\"52\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"140\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">叶绿素</text><text x=\"320\" y=\"160\" text-anchor=\"middle\" font-size=\"11\">合成/分解</text>\n<rect x=\"30\" y=\"45\" width=\"170\" height=\"65\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"115.0\" y=\"69\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">光照</text><text x=\"115.0\" y=\"91\" text-anchor=\"middle\" font-size=\"11.5\">光促进合成</text><text x=\"115.0\" y=\"109\" text-anchor=\"middle\" font-size=\"11.5\">暗下黄化</text><rect x=\"440\" y=\"45\" width=\"170\" height=\"65\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"525.0\" y=\"69\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">温度</text><text x=\"525.0\" y=\"91\" text-anchor=\"middle\" font-size=\"11.5\">酶活性</text><text x=\"525.0\" y=\"109\" text-anchor=\"middle\" font-size=\"11.5\">过高/过低受阻</text><rect x=\"30\" y=\"195\" width=\"170\" height=\"65\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"115.0\" y=\"219\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">矿质</text><text x=\"115.0\" y=\"241\" text-anchor=\"middle\" font-size=\"11.5\">Mg、N、Fe</text><text x=\"115.0\" y=\"259\" text-anchor=\"middle\" font-size=\"11.5\">缺则失绿</text><rect x=\"440\" y=\"195\" width=\"170\" height=\"65\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"525.0\" y=\"219\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">水分</text><text x=\"525.0\" y=\"241\" text-anchor=\"middle\" font-size=\"11.5\">缺水加速分解</text><text x=\"525.0\" y=\"259\" text-anchor=\"middle\" font-size=\"11.5\">叶片发黄</text><path d=\"M200 78 L272 120\" stroke=\"currentColor\" marker-end=\"url(#mk8120403)\"/><path d=\"M440 78 L368 120\" stroke=\"currentColor\" marker-end=\"url(#mk8120403)\"/><path d=\"M200 220 L272 170\" stroke=\"currentColor\" marker-end=\"url(#mk8120403)\"/><path d=\"M440 220 L368 170\" stroke=\"currentColor\" marker-end=\"url(#mk8120403)\"/>\n<text x=\"320\" y=\"268\" text-anchor=\"middle\" font-size=\"11\">缺 Mg 失绿、缺 N 黄化、缺 Fe 脉间失绿；光温水土共同决定叶色</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"叶绿素合成的环境调控\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">影响叶绿素合成的环境因素</text>\n<circle cx=\"320\" cy=\"145\" r=\"52\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"140\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">叶绿素</text><text x=\"320\" y=\"160\" text-anchor=\"middle\" font-size=\"11\">合成/分解</text>\n<rect x=\"30\" y=\"45\" width=\"170\" height=\"65\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"115.0\" y=\"69\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">光照</text><text x=\"115.0\" y=\"91\" text-anchor=\"middle\" font-size=\"11.5\">光促进合成</text><text x=\"115.0\" y=\"109\" text-anchor=\"middle\" font-size=\"11.5\">暗下黄化</text><rect x=\"440\" y=\"45\" width=\"170\" height=\"65\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"525.0\" y=\"69\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">温度</text><text x=\"525.0\" y=\"91\" text-anchor=\"middle\" font-size=\"11.5\">酶活性</text><text x=\"525.0\" y=\"109\" text-anchor=\"middle\" font-size=\"11.5\">过高/过低受阻</text><rect x=\"30\" y=\"195\" width=\"170\" height=\"65\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"115.0\" y=\"219\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">矿质</text><text x=\"115.0\" y=\"241\" text-anchor=\"middle\" font-size=\"11.5\">Mg、N、Fe</text><text x=\"115.0\" y=\"259\" text-anchor=\"middle\" font-size=\"11.5\">缺则失绿</text><rect x=\"440\" y=\"195\" width=\"170\" height=\"65\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"525.0\" y=\"219\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">水分</text><text x=\"525.0\" y=\"241\" text-anchor=\"middle\" font-size=\"11.5\">缺水加速分解</text><text x=\"525.0\" y=\"259\" text-anchor=\"middle\" font-size=\"11.5\">叶片发黄</text><path d=\"M200 78 L272 120\" stroke=\"currentColor\"/><polygon points=\"272.0,120.0 265.6,119.9 268.8,114.5\" fill=\"currentColor\"/><path d=\"M440 78 L368 120\" stroke=\"currentColor\"/><polygon points=\"368.0,120.0 371.2,114.5 374.4,119.9\" fill=\"currentColor\"/><path d=\"M200 220 L272 170\" stroke=\"currentColor\"/><polygon points=\"272.0,170.0 269.2,175.8 265.6,170.6\" fill=\"currentColor\"/><path d=\"M440 220 L368 170\" stroke=\"currentColor\"/><polygon points=\"368.0,170.0 374.4,170.6 370.8,175.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"268\" text-anchor=\"middle\" font-size=\"11\">缺 Mg 失绿、缺 N 黄化、缺 Fe 脉间失绿；光温水土共同决定叶色</text>\n</svg>"
     }
    ]
   },
@@ -11869,6 +12014,30 @@
      "point_id": "8120404",
      "front": "判断并说明：碳同化只能由 Rubisco 催化。",
      "back": "①错误说法：碳同化只能由 Rubisco 催化。②原因：Rubisco 是 C₃ 途径固定 CO₂ 的关键酶，但 C₄ 和 CAM 途径先由 PEPC 固定 CO₂，再交给 Rubisco 进入卡尔文循环。③正确判断：碳同化的关键酶不止 Rubisco，PEPC 也承担 CO₂ 固定。"
+    },
+    {
+     "kind": "简答",
+     "card_type": "辨析",
+     "question": "列表比较原初反应、光反应与碳同化的发生部位、条件、产物和关键酶。",
+     "answer": "①原初反应：部位在类囊体膜上的光系统（PSⅡ、PSⅠ）色素蛋白复合体；条件为光能；产物为激发能的传递与反应中心电荷分离（电子—空穴对）；不需酶催化，依靠色素与反应中心。②光反应：部位在类囊体膜；条件为光，并需水裂解补电子；产物为 ATP、NADPH 和 O₂；关键是光合电子传递链与 ATP 合酶（CF₁—CF₀）。③碳同化：部位在叶绿体基质；条件为需 ATP、NADPH 供能和还原力，CO₂ 不直接需光；产物为碳水化合物；关键酶为 Rubisco（C₃ 途径）和 PEPC（C₄、CAM 途径）。④三者前后相继，实现光能→激发能→电能→活跃化学能→稳定化学能的逐级转化。",
+     "answer_points": [
+      "原初反应：类囊体膜光系统，产物为电荷分离",
+      "光反应：类囊体膜，需光与水裂解，产ATP、NADPH、O₂",
+      "碳同化：叶绿体基质，需ATP与NADPH，产糖",
+      "关键酶：Rubisco（C₃）与PEPC（C₄、CAM）",
+      "三者前后相继，实现能量的逐级转化"
+     ],
+     "analysis": "比较题必须逐项对齐“部位—条件—产物—关键酶”四栏，缺一栏就丢一栏的分。最易错的是把原初反应与光反应合并，或把碳同化的条件写成“需光”：碳同化直接消耗的是 ATP 与 NADPH，不直接需光。关键酶要区分 C₃ 的 Rubisco 与 C₄、CAM 的 PEPC，只写 Rubisco 会被追问。结尾用“光能→激发能→电能→活跃化学能→稳定化学能”收束，体现结构与功能统一的答题高度。",
+     "unit_refs": [
+      8,
+      1,
+      7
+     ],
+     "front": "列表比较原初反应、光反应与碳同化的发生部位、条件、产物和关键酶。",
+     "back": "①原初反应：部位在类囊体膜上的光系统（PSⅡ、PSⅠ）色素蛋白复合体；条件为光能；产物为激发能的传递与反应中心电荷分离（电子—空穴对）；不需酶催化，依靠色素与反应中心。②光反应：部位在类囊体膜；条件为光，并需水裂解补电子；产物为 ATP、NADPH 和 O₂；关键是光合电子传递链与 ATP 合酶（CF₁—CF₀）。③碳同化：部位在叶绿体基质；条件为需 ATP、NADPH 供能和还原力，CO₂ 不直接需光；产物为碳水化合物；关键酶为 Rubisco（C₃ 途径）和 PEPC（C₄、CAM 途径）。④三者前后相继，实现光能→激发能→电能→活跃化学能→稳定化学能的逐级转化。",
+     "difficulty": 3,
+     "point_id": "8120404",
+     "card_id": "c8120404-8"
     }
    ],
    "order": 4,
@@ -12124,6 +12293,30 @@
      "point_id": "8120405",
      "front": "判断并说明：光补偿点时植物的光合作用已经停止。",
      "back": "①错误说法：光补偿点时植物的光合作用已经停止。②原因：光补偿点是光合速率等于呼吸速率、净 CO₂ 交换为零的状态，此时光合作用仍在进行，只是与呼吸消耗相抵。③正确判断：补偿点不是光合停止点，而是净积累为零的平衡点。"
+    },
+    {
+     "kind": "简答",
+     "card_type": "辨析",
+     "question": "为什么光补偿点、光饱和点能作为判断植物光能利用效率与生态适应性的指标？请结合阳生植物与阴生植物的差异说明。",
+     "answer": "①光补偿点与光饱和点界定了植物净积累有机物的光强区间：补偿点低说明弱光下即可净积累，耐荫性强；饱和点高说明能利用强光，光能利用潜力大。②光补偿点：阴生植物较低，阳生植物较高；阴生植物弱光下光合能力相对较强、呼吸速率较低，较弱光强即可使光合与呼吸相等，阳生植物呼吸强、补偿点高。③光饱和点：阳生植物高，阴生植物低；阳生植物叶片厚、栅栏组织发达、Rubisco 含量高，能利用强光，阴生植物在强光下易发生光抑制。④因此这两个阈值直接反映植物的光能利用策略与生态适应性，生产上阳生植物应保证充足光照，阴生植物宜适当遮荫。",
+     "answer_points": [
+      "补偿点界定净积累起点：越低越耐荫",
+      "饱和点界定利用强光的上限：越高潜力越大",
+      "阴生植物补偿点低，弱光下光合能力较强",
+      "阳生植物饱和点高，叶片厚、Rubisco含量高",
+      "两阈值共同反映光能利用策略与生态适应性"
+     ],
+     "analysis": "本题得分点是“含义—两类植物差异—成因—生产应用”四层，不能只背“阴生低、阳生高”。要说明补偿点低意味着弱光即可净积累、耐荫性强；饱和点高意味着能利用强光，且与叶片厚度、栅栏组织发达、Rubisco 含量高相关。失分点常是只给数值方向不解释成因，或漏掉阴生植物在强光下易发生光抑制。末尾落到生产上的光管理，可把结论用起来。",
+     "unit_refs": [
+      8,
+      2,
+      4
+     ],
+     "front": "为什么光补偿点、光饱和点能作为判断植物光能利用效率与生态适应性的指标？请结合阳生植物与阴生植物的差异说明。",
+     "back": "①光补偿点与光饱和点界定了植物净积累有机物的光强区间：补偿点低说明弱光下即可净积累，耐荫性强；饱和点高说明能利用强光，光能利用潜力大。②光补偿点：阴生植物较低，阳生植物较高；阴生植物弱光下光合能力相对较强、呼吸速率较低，较弱光强即可使光合与呼吸相等，阳生植物呼吸强、补偿点高。③光饱和点：阳生植物高，阴生植物低；阳生植物叶片厚、栅栏组织发达、Rubisco 含量高，能利用强光，阴生植物在强光下易发生光抑制。④因此这两个阈值直接反映植物的光能利用策略与生态适应性，生产上阳生植物应保证充足光照，阴生植物宜适当遮荫。",
+     "difficulty": 3,
+     "point_id": "8120405",
+     "card_id": "c8120405-8"
     }
    ],
    "order": 5,
@@ -12418,7 +12611,7 @@
      "kind": "diagram",
      "caption": "光呼吸的三个细胞器协同",
      "alt": "光呼吸底物乙醇酸在叶绿体形成，经过氧化物酶体、线粒体转化，释放二氧化碳",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"光呼吸途径\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120406\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">光呼吸：三个细胞器协同</text>\n<rect x=\"30\" y=\"80\" width=\"150\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"105\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">叶绿体</text>\n<text x=\"105\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">RuBP + O₂</text>\n<text x=\"105\" y=\"156\" text-anchor=\"middle\" font-size=\"12\">→ 乙醇酸</text>\n<rect x=\"245\" y=\"80\" width=\"150\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">过氧化物酶体</text>\n<text x=\"320\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">乙醇酸 → 乙醛酸</text>\n<text x=\"320\" y=\"156\" text-anchor=\"middle\" font-size=\"12\">→ 甘氨酸</text>\n<rect x=\"460\" y=\"80\" width=\"150\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"535\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">线粒体</text>\n<text x=\"535\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">甘氨酸 → 丝氨酸</text>\n<text x=\"535\" y=\"156\" text-anchor=\"middle\" font-size=\"12\">释放 CO₂</text>\n<path d=\"M180 125 L245 125\" stroke=\"currentColor\" marker-end=\"url(#mk8120406)\"/>\n<path d=\"M395 125 L460 125\" stroke=\"currentColor\" marker-end=\"url(#mk8120406)\"/>\n<text x=\"320\" y=\"220\" text-anchor=\"middle\" font-size=\"12\">光呼吸消耗 O₂、释放 CO₂，底物为乙醇酸；C₃ 植物较强</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"光呼吸途径\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">光呼吸：三个细胞器协同</text>\n<rect x=\"30\" y=\"80\" width=\"150\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"105\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">叶绿体</text>\n<text x=\"105\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">RuBP + O₂</text>\n<text x=\"105\" y=\"156\" text-anchor=\"middle\" font-size=\"12\">→ 乙醇酸</text>\n<rect x=\"245\" y=\"80\" width=\"150\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">过氧化物酶体</text>\n<text x=\"320\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">乙醇酸 → 乙醛酸</text>\n<text x=\"320\" y=\"156\" text-anchor=\"middle\" font-size=\"12\">→ 甘氨酸</text>\n<rect x=\"460\" y=\"80\" width=\"150\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"535\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">线粒体</text>\n<text x=\"535\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">甘氨酸 → 丝氨酸</text>\n<text x=\"535\" y=\"156\" text-anchor=\"middle\" font-size=\"12\">释放 CO₂</text>\n<path d=\"M180 125 L245 125\" stroke=\"currentColor\"/><polygon points=\"245.0,125.0 239.4,128.2 239.4,121.8\" fill=\"currentColor\"/>\n<path d=\"M395 125 L460 125\" stroke=\"currentColor\"/><polygon points=\"460.0,125.0 454.4,128.2 454.4,121.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"220\" text-anchor=\"middle\" font-size=\"12\">光呼吸消耗 O₂、释放 CO₂，底物为乙醇酸；C₃ 植物较强</text>\n</svg>"
     }
    ]
   },
@@ -12654,14 +12847,15 @@
      "kind": "论述",
      "card_type": "原理",
      "question": "论述光照强度—光合速率曲线各段的限制因子。",
-     "answer": "①弱光段：光反应供能不足是主要限制因子，光合速率随光强近似线性上升。②光饱和点附近：光反应供能趋于充足，Rubisco 羧化能力、RuBP 再生和 CO₂ 供应成为限制因子，曲线转平。③强光高温段：气孔关闭、CO₂ 供应下降，O₂/CO₂ 比值升高使光呼吸增强，净光合效率下降。④分析曲线时必须逐段判断限制因子，不能用一个因素解释全程。",
+     "answer": "总纲：光合速率的高低取决于光反应供能与暗反应固碳这两端的匹配程度，曲线各段正是两端限制的切换。①弱光段：光反应供能不足是主要限制因子，光合速率随光强近似线性上升。②光饱和点附近：光反应供能趋于充足，Rubisco 羧化能力、RuBP 再生和 CO₂ 供应成为限制因子，曲线转平。③强光高温段：气孔关闭、CO₂ 供应下降，O₂/CO₂ 比值升高使光呼吸增强，净光合效率下降。④分析曲线时必须逐段判断限制因子，不能用一个因素解释全程。",
      "answer_points": [
+      "总纲：光反应供能与暗反应固碳匹配",
       "弱光段受光反应供能限制",
       "饱和段受Rubisco与CO₂供应限制",
       "强光高温段气孔关闭、光呼吸增强",
       "逐段判断限制因子"
      ],
-     "analysis": "曲线分析题的核心是“分段找限制因子”。弱光段看光反应，饱和段看暗反应，强光高温段还要考虑气孔关闭与光呼吸。答题时先标出饱和点与曲线转折，再逐段解释斜率变化；若题目给出温度或 CO₂ 条件，应把它们作为叠加限制，而不是替代光强限制。这样组织可避免“一因到底”的失分。",
+     "analysis": "曲线分析题的核心是“分段找限制因子”。答题可先用一句话定性：光合速率取决于光反应供能与暗反应固碳两端的匹配，曲线分段正是这两端限制的切换；有此总纲，各段限制因子的归属才不会互相矛盾。弱光段看光反应，饱和段看暗反应，强光高温段还要考虑气孔关闭与光呼吸。答题时先标出饱和点与曲线转折，再逐段解释斜率变化；若题目给出温度或 CO₂ 条件，应把它们作为叠加限制，而不是替代光强限制。这样组织可避免“一因到底”的失分。",
      "unit_refs": [
       2,
       3,
@@ -12671,7 +12865,10 @@
      "card_id": "c8120407-8",
      "point_id": "8120407",
      "front": "论述光照强度—光合速率曲线各段的限制因子。",
-     "back": "①弱光段：光反应供能不足是主要限制因子，光合速率随光强近似线性上升。②光饱和点附近：光反应供能趋于充足，Rubisco 羧化能力、RuBP 再生和 CO₂ 供应成为限制因子，曲线转平。③强光高温段：气孔关闭、CO₂ 供应下降，O₂/CO₂ 比值升高使光呼吸增强，净光合效率下降。④分析曲线时必须逐段判断限制因子，不能用一个因素解释全程。"
+     "back": "总纲：光合速率的高低取决于光反应供能与暗反应固碳这两端的匹配程度，曲线各段正是两端限制的切换。①弱光段：光反应供能不足是主要限制因子，光合速率随光强近似线性上升。②光饱和点附近：光反应供能趋于充足，Rubisco 羧化能力、RuBP 再生和 CO₂ 供应成为限制因子，曲线转平。③强光高温段：气孔关闭、CO₂ 供应下降，O₂/CO₂ 比值升高使光呼吸增强，净光合效率下降。④分析曲线时必须逐段判断限制因子，不能用一个因素解释全程。",
+     "merged_from": [
+      "8120407"
+     ]
     }
    ],
    "order": 7,
@@ -13149,7 +13346,7 @@
      "kind": "diagram",
      "caption": "光能利用率的损失环节",
      "alt": "入射辐射经过冠层截获、光饱和、光呼吸与呼吸消耗后形成净生产力",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"光能利用率的损失环节\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120408\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">光能利用率的损失环节</text>\n<rect x=\"20\" y=\"65\" width=\"110\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"75.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">入射辐射</text><text x=\"75.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">100%</text><rect x=\"150\" y=\"65\" width=\"110\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"205.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">冠层截获</text><text x=\"205.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">反射/透射损失</text><rect x=\"280\" y=\"65\" width=\"110\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"335.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">光饱和</text><text x=\"335.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">强光浪费</text><rect x=\"410\" y=\"65\" width=\"110\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"465.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">光呼吸/呼吸</text><text x=\"465.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">消耗同化物</text><rect x=\"540\" y=\"65\" width=\"90\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"585.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">净生产</text><text x=\"585.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">经济产量</text><path d=\"M130 100 L150 100\" stroke=\"currentColor\" marker-end=\"url(#mk8120408)\"/><path d=\"M260 100 L280 100\" stroke=\"currentColor\" marker-end=\"url(#mk8120408)\"/><path d=\"M390 100 L410 100\" stroke=\"currentColor\" marker-end=\"url(#mk8120408)\"/><path d=\"M520 100 L540 100\" stroke=\"currentColor\" marker-end=\"url(#mk8120408)\"/>\n<text x=\"320\" y=\"190\" text-anchor=\"middle\" font-size=\"12\">提高途径：合理密植改善截光、选高光效品种、增施 CO₂、调控光呼吸</text>\n<text x=\"320\" y=\"218\" text-anchor=\"middle\" font-size=\"12\">光能利用率高 ≠ 经济产量高，还取决于经济系数</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"光能利用率的损失环节\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">光能利用率的损失环节</text>\n<rect x=\"20\" y=\"65\" width=\"110\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"75.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">入射辐射</text><text x=\"75.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">100%</text><rect x=\"150\" y=\"65\" width=\"110\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"205.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">冠层截获</text><text x=\"205.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">反射/透射损失</text><rect x=\"280\" y=\"65\" width=\"110\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"335.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">光饱和</text><text x=\"335.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">强光浪费</text><rect x=\"410\" y=\"65\" width=\"110\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"465.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">光呼吸/呼吸</text><text x=\"465.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">消耗同化物</text><rect x=\"540\" y=\"65\" width=\"90\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"585.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">净生产</text><text x=\"585.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">经济产量</text><path d=\"M130 100 L150 100\" stroke=\"currentColor\"/><polygon points=\"150.0,100.0 144.4,103.2 144.4,96.8\" fill=\"currentColor\"/><path d=\"M260 100 L280 100\" stroke=\"currentColor\"/><polygon points=\"280.0,100.0 274.4,103.2 274.4,96.8\" fill=\"currentColor\"/><path d=\"M390 100 L410 100\" stroke=\"currentColor\"/><polygon points=\"410.0,100.0 404.4,103.2 404.4,96.8\" fill=\"currentColor\"/><path d=\"M520 100 L540 100\" stroke=\"currentColor\"/><polygon points=\"540.0,100.0 534.4,103.2 534.4,96.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"190\" text-anchor=\"middle\" font-size=\"12\">提高途径：合理密植改善截光、选高光效品种、增施 CO₂、调控光呼吸</text>\n<text x=\"320\" y=\"218\" text-anchor=\"middle\" font-size=\"12\">光能利用率高 ≠ 经济产量高，还取决于经济系数</text>\n</svg>"
     }
    ]
   },
@@ -13708,6 +13905,31 @@
      "point_id": "8120410",
      "front": "C₄ 与 CAM 的生态适应意义是什么？",
      "back": "①两者都在 Rubisco 位点浓缩 CO₂，光呼吸弱。②水分利用效率高。③C₄ 适应高温、强光生境。④CAM 适应干旱生境，夜间开气孔固定、白天关闭气孔减少水分散失。"
+    },
+    {
+     "kind": "简答",
+     "card_type": "辨析",
+     "question": "比较 C₃、C₄、CAM 三条碳同化途径的异同。",
+     "answer": "相同点：①起点都是 CO₂ 的固定；②最终都经卡尔文循环（C₃ 途径）把 CO₂ 还原为糖。不同点：①关键酶与首产物：C₃ 由 Rubisco 固定 CO₂，首产物为 3-磷酸甘油酸；C₄、CAM 先由 PEPC 固定 CO₂，首产物为草酰乙酸（CAM 再转为苹果酸）。②分区方式：C₃ 在同一叶肉细胞、同一时间完成固定与还原；C₄ 为空间分区，叶肉细胞固定、维管束鞘细胞脱羧再固定（花环状解剖）；CAM 为时间分区，夜间固定贮存苹果酸、白天脱羧再固定。③能量消耗：C₄、CAM 需额外消耗 ATP 用于 PEP 的再生。④光呼吸与水分利用：C₄、CAM 在 Rubisco 位点浓缩 CO₂，光呼吸弱、水分利用效率高；C₃ 光呼吸明显。⑤生态适应：C₃ 适应温和湿润环境，C₄ 适应高温强光，CAM 适应干旱环境。",
+     "answer_points": [
+      "相同：起点均为CO₂固定，最终都经卡尔文循环",
+      "C₃：Rubisco固定，首产物3-磷酸甘油酸",
+      "C₄：PEPC固定，首产物草酰乙酸，空间分区",
+      "CAM：夜间固定贮苹果酸，白天脱羧，时间分区",
+      "C₄、CAM额外耗ATP，光呼吸弱、水分利用效率高",
+      "生态适应：C₃温和、C₄高温强光、CAM干旱"
+     ],
+     "analysis": "比较题最忌只列差异不写共同点。共同点要写“起点都是 CO₂ 固定、终点都经卡尔文循环”，这是三条途径可并列比较的基础。差异按“固定酶与首产物—分区方式（空间／时间）—能量消耗—光呼吸与水分利用—生态适应”五列对齐，其中空间分区与时间分区是 C₄ 与 CAM 的判别关键。常见失分是把 CAM 说成白天固定 CO₂，或漏掉 C₄、CAM 额外消耗 ATP 用于 PEP 再生。",
+     "unit_refs": [
+      1,
+      2,
+      10
+     ],
+     "front": "比较 C₃、C₄、CAM 三条碳同化途径的异同。",
+     "back": "相同点：①起点都是 CO₂ 的固定；②最终都经卡尔文循环（C₃ 途径）把 CO₂ 还原为糖。不同点：①关键酶与首产物：C₃ 由 Rubisco 固定 CO₂，首产物为 3-磷酸甘油酸；C₄、CAM 先由 PEPC 固定 CO₂，首产物为草酰乙酸（CAM 再转为苹果酸）。②分区方式：C₃ 在同一叶肉细胞、同一时间完成固定与还原；C₄ 为空间分区，叶肉细胞固定、维管束鞘细胞脱羧再固定（花环状解剖）；CAM 为时间分区，夜间固定贮存苹果酸、白天脱羧再固定。③能量消耗：C₄、CAM 需额外消耗 ATP 用于 PEP 的再生。④光呼吸与水分利用：C₄、CAM 在 Rubisco 位点浓缩 CO₂，光呼吸弱、水分利用效率高；C₃ 光呼吸明显。⑤生态适应：C₃ 适应温和湿润环境，C₄ 适应高温强光，CAM 适应干旱环境。",
+     "difficulty": 3,
+     "point_id": "8120410",
+     "card_id": "c8120410-10"
     }
    ],
    "order": 11,
@@ -14728,7 +14950,7 @@
      "kind": "diagram",
      "caption": "有氧呼吸的三个阶段",
      "alt": "糖酵解在细胞质，三羧酸循环在线粒体基质，电子传递与氧化磷酸化在线粒体内膜",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"有氧呼吸三阶段\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120503\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">有氧呼吸的三个阶段</text>\n<rect x=\"20\" y=\"80\" width=\"180\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"110\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">糖酵解</text>\n<text x=\"110\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">细胞质</text>\n<text x=\"110\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">葡萄糖 → 丙酮酸</text>\n<text x=\"110\" y=\"178\" text-anchor=\"middle\" font-size=\"12\">产 NADH + 少量 ATP</text>\n<rect x=\"230\" y=\"80\" width=\"180\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">三羧酸循环</text>\n<text x=\"320\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">线粒体基质</text>\n<text x=\"320\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">丙酮酸 → CO₂</text>\n<text x=\"320\" y=\"178\" text-anchor=\"middle\" font-size=\"12\">产 NADH/FADH₂</text>\n<rect x=\"440\" y=\"80\" width=\"180\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"530\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">电子传递</text>\n<text x=\"530\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">线粒体内膜</text>\n<text x=\"530\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">NADH/FADH₂ → O₂</text>\n<text x=\"530\" y=\"178\" text-anchor=\"middle\" font-size=\"12\">氧化磷酸化产 ATP</text>\n<path d=\"M200 130 L230 130\" stroke=\"currentColor\" marker-end=\"url(#mk8120503)\"/>\n<path d=\"M410 130 L440 130\" stroke=\"currentColor\" marker-end=\"url(#mk8120503)\"/>\n<text x=\"320\" y=\"225\" text-anchor=\"middle\" font-size=\"12\">三个阶段逐步释放能量；O₂ 只在第三阶段作为最终电子受体</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"有氧呼吸三阶段\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">有氧呼吸的三个阶段</text>\n<rect x=\"20\" y=\"80\" width=\"180\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"110\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">糖酵解</text>\n<text x=\"110\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">细胞质</text>\n<text x=\"110\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">葡萄糖 → 丙酮酸</text>\n<text x=\"110\" y=\"178\" text-anchor=\"middle\" font-size=\"12\">产 NADH + 少量 ATP</text>\n<rect x=\"230\" y=\"80\" width=\"180\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">三羧酸循环</text>\n<text x=\"320\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">线粒体基质</text>\n<text x=\"320\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">丙酮酸 → CO₂</text>\n<text x=\"320\" y=\"178\" text-anchor=\"middle\" font-size=\"12\">产 NADH/FADH₂</text>\n<rect x=\"440\" y=\"80\" width=\"180\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"530\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">电子传递</text>\n<text x=\"530\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">线粒体内膜</text>\n<text x=\"530\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">NADH/FADH₂ → O₂</text>\n<text x=\"530\" y=\"178\" text-anchor=\"middle\" font-size=\"12\">氧化磷酸化产 ATP</text>\n<path d=\"M200 130 L230 130\" stroke=\"currentColor\"/><polygon points=\"230.0,130.0 224.4,133.2 224.4,126.8\" fill=\"currentColor\"/>\n<path d=\"M410 130 L440 130\" stroke=\"currentColor\"/><polygon points=\"440.0,130.0 434.4,133.2 434.4,126.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"225\" text-anchor=\"middle\" font-size=\"12\">三个阶段逐步释放能量；O₂ 只在第三阶段作为最终电子受体</text>\n</svg>"
     }
    ]
   },
@@ -14950,7 +15172,7 @@
      "kind": "diagram",
      "caption": "磷酸戊糖途径的两个阶段",
      "alt": "葡萄糖-6-磷酸经氧化阶段产生 NADPH 和二氧化碳，再经非氧化阶段生成磷酸戊糖",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"磷酸戊糖途径\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120504\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">磷酸戊糖途径（PPP）</text>\n<rect x=\"30\" y=\"75\" width=\"150\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"105.0\" y=\"99\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">葡萄糖-6-磷酸</text><rect x=\"220\" y=\"60\" width=\"180\" height=\"110\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"310.0\" y=\"84\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">氧化阶段</text><text x=\"310.0\" y=\"106\" text-anchor=\"middle\" font-size=\"11.5\">G6PDH 脱氢</text><text x=\"310.0\" y=\"124\" text-anchor=\"middle\" font-size=\"11.5\">产 NADPH</text><text x=\"310.0\" y=\"142\" text-anchor=\"middle\" font-size=\"11.5\">释放 CO₂</text><rect x=\"440\" y=\"60\" width=\"170\" height=\"110\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"525.0\" y=\"84\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">非氧化阶段</text><text x=\"525.0\" y=\"106\" text-anchor=\"middle\" font-size=\"11.5\">转酮/转醛</text><text x=\"525.0\" y=\"124\" text-anchor=\"middle\" font-size=\"11.5\">核糖-5-磷酸</text><text x=\"525.0\" y=\"142\" text-anchor=\"middle\" font-size=\"11.5\">再生糖磷酸</text><path d=\"M180 115 L220 115\" stroke=\"currentColor\" marker-end=\"url(#mk8120504)\"/><path d=\"M400 115 L440 115\" stroke=\"currentColor\" marker-end=\"url(#mk8120504)\"/>\n<text x=\"320\" y=\"215\" text-anchor=\"middle\" font-size=\"12\">意义：提供 NADPH（还原力）与磷酸戊糖（核酸/辅酶原料）</text>\n<text x=\"320\" y=\"242\" text-anchor=\"middle\" font-size=\"12\">参与抗病、木质素合成；幼嫩组织占比大，老年组织占比小</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"磷酸戊糖途径\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">磷酸戊糖途径（PPP）</text>\n<rect x=\"30\" y=\"75\" width=\"150\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"105.0\" y=\"99\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">葡萄糖-6-磷酸</text><rect x=\"220\" y=\"60\" width=\"180\" height=\"110\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"310.0\" y=\"84\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">氧化阶段</text><text x=\"310.0\" y=\"106\" text-anchor=\"middle\" font-size=\"11.5\">G6PDH 脱氢</text><text x=\"310.0\" y=\"124\" text-anchor=\"middle\" font-size=\"11.5\">产 NADPH</text><text x=\"310.0\" y=\"142\" text-anchor=\"middle\" font-size=\"11.5\">释放 CO₂</text><rect x=\"440\" y=\"60\" width=\"170\" height=\"110\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"525.0\" y=\"84\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">非氧化阶段</text><text x=\"525.0\" y=\"106\" text-anchor=\"middle\" font-size=\"11.5\">转酮/转醛</text><text x=\"525.0\" y=\"124\" text-anchor=\"middle\" font-size=\"11.5\">核糖-5-磷酸</text><text x=\"525.0\" y=\"142\" text-anchor=\"middle\" font-size=\"11.5\">再生糖磷酸</text><path d=\"M180 115 L220 115\" stroke=\"currentColor\"/><polygon points=\"220.0,115.0 214.4,118.2 214.4,111.8\" fill=\"currentColor\"/><path d=\"M400 115 L440 115\" stroke=\"currentColor\"/><polygon points=\"440.0,115.0 434.4,118.2 434.4,111.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"215\" text-anchor=\"middle\" font-size=\"12\">意义：提供 NADPH（还原力）与磷酸戊糖（核酸/辅酶原料）</text>\n<text x=\"320\" y=\"242\" text-anchor=\"middle\" font-size=\"12\">参与抗病、木质素合成；幼嫩组织占比大，老年组织占比小</text>\n</svg>"
     }
    ]
   },
@@ -15410,7 +15632,7 @@
      "kind": "diagram",
      "caption": "抗氰呼吸的交替氧化酶支路",
      "alt": "电子自泛醌经交替氧化酶直接传给氧，绕过复合体 III 和 IV，P/O 约为 1，能量多以热散失",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"抗氰呼吸\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120509\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">抗氰呼吸：交替氧化酶支路</text>\n<rect x=\"20\" y=\"70\" width=\"90\" height=\"60\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"65\" y=\"98\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">NADH</text><text x=\"65\" y=\"120\" text-anchor=\"middle\" font-size=\"11\">复合体 I</text>\n<rect x=\"150\" y=\"70\" width=\"80\" height=\"60\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"190\" y=\"105\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">UQ</text>\n<rect x=\"270\" y=\"55\" width=\"90\" height=\"45\" rx=\"8\" fill=\"rgba(47,143,91,.08)\" stroke=\"#2f8f5b\"/>\n<text x=\"315\" y=\"83\" text-anchor=\"middle\" font-size=\"11\">复合体 III</text>\n<rect x=\"395\" y=\"55\" width=\"70\" height=\"45\" rx=\"8\" fill=\"rgba(47,143,91,.08)\" stroke=\"#2f8f5b\"/>\n<text x=\"430\" y=\"83\" text-anchor=\"middle\" font-size=\"11\">Cyt c</text>\n<rect x=\"495\" y=\"55\" width=\"80\" height=\"45\" rx=\"8\" fill=\"rgba(47,143,91,.08)\" stroke=\"#2f8f5b\"/>\n<text x=\"535\" y=\"83\" text-anchor=\"middle\" font-size=\"11\">复合体 IV</text>\n<rect x=\"270\" y=\"140\" width=\"100\" height=\"50\" rx=\"8\" fill=\"rgba(178,106,0,.10)\" stroke=\"#b26a00\"/>\n<text x=\"320\" y=\"165\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\">交替氧化酶</text>\n<text x=\"320\" y=\"182\" text-anchor=\"middle\" font-size=\"10\">AOX（不泵质子）</text>\n<path d=\"M110 100 L150 100\" stroke=\"currentColor\" marker-end=\"url(#mk8120509)\"/>\n<path d=\"M230 100 L270 78\" stroke=\"currentColor\" marker-end=\"url(#mk8120509)\"/>\n<path d=\"M360 78 L395 78\" stroke=\"currentColor\" marker-end=\"url(#mk8120509)\"/>\n<path d=\"M465 78 L495 78\" stroke=\"currentColor\" marker-end=\"url(#mk8120509)\"/>\n<path d=\"M230 100 L270 165\" stroke=\"currentColor\" marker-end=\"url(#mk8120509)\"/>\n<text x=\"575\" y=\"83\" font-size=\"11\">→ O₂</text>\n<text x=\"385\" y=\"175\" font-size=\"11\">→ O₂ + 热</text>\n<text x=\"320\" y=\"230\" text-anchor=\"middle\" font-size=\"12\">主路 P/O 较高；AOX 支路 P/O≈1，可被 SHAM/nPG 抑制</text>\n<text x=\"320\" y=\"255\" text-anchor=\"middle\" font-size=\"12\">意义：产热、抗逆、果实成熟、电子溢流分流</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"抗氰呼吸\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">抗氰呼吸：交替氧化酶支路</text>\n<rect x=\"20\" y=\"70\" width=\"90\" height=\"60\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"65\" y=\"98\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">NADH</text><text x=\"65\" y=\"120\" text-anchor=\"middle\" font-size=\"11\">复合体 I</text>\n<rect x=\"150\" y=\"70\" width=\"80\" height=\"60\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"190\" y=\"105\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">UQ</text>\n<rect x=\"270\" y=\"55\" width=\"90\" height=\"45\" rx=\"8\" fill=\"rgba(47,143,91,.08)\" stroke=\"#2f8f5b\"/>\n<text x=\"315\" y=\"83\" text-anchor=\"middle\" font-size=\"11\">复合体 III</text>\n<rect x=\"395\" y=\"55\" width=\"70\" height=\"45\" rx=\"8\" fill=\"rgba(47,143,91,.08)\" stroke=\"#2f8f5b\"/>\n<text x=\"430\" y=\"83\" text-anchor=\"middle\" font-size=\"11\">Cyt c</text>\n<rect x=\"495\" y=\"55\" width=\"80\" height=\"45\" rx=\"8\" fill=\"rgba(47,143,91,.08)\" stroke=\"#2f8f5b\"/>\n<text x=\"535\" y=\"83\" text-anchor=\"middle\" font-size=\"11\">复合体 IV</text>\n<rect x=\"270\" y=\"140\" width=\"100\" height=\"50\" rx=\"8\" fill=\"rgba(178,106,0,.10)\" stroke=\"#b26a00\"/>\n<text x=\"320\" y=\"165\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\">交替氧化酶</text>\n<text x=\"320\" y=\"182\" text-anchor=\"middle\" font-size=\"10\">AOX（不泵质子）</text>\n<path d=\"M110 100 L150 100\" stroke=\"currentColor\"/><polygon points=\"150.0,100.0 144.4,103.2 144.4,96.8\" fill=\"currentColor\"/>\n<path d=\"M230 100 L270 78\" stroke=\"currentColor\"/><polygon points=\"270.0,78.0 266.6,83.5 263.6,77.9\" fill=\"currentColor\"/>\n<path d=\"M360 78 L395 78\" stroke=\"currentColor\"/><polygon points=\"395.0,78.0 389.4,81.2 389.4,74.8\" fill=\"currentColor\"/>\n<path d=\"M465 78 L495 78\" stroke=\"currentColor\"/><polygon points=\"495.0,78.0 489.4,81.2 489.4,74.8\" fill=\"currentColor\"/>\n<path d=\"M230 100 L270 165\" stroke=\"currentColor\"/><polygon points=\"270.0,165.0 264.4,161.9 269.7,158.6\" fill=\"currentColor\"/>\n<text x=\"575\" y=\"83\" font-size=\"11\">→ O₂</text>\n<text x=\"385\" y=\"175\" font-size=\"11\">→ O₂ + 热</text>\n<text x=\"320\" y=\"230\" text-anchor=\"middle\" font-size=\"12\">主路 P/O 较高；AOX 支路 P/O≈1，可被 SHAM/nPG 抑制</text>\n<text x=\"320\" y=\"255\" text-anchor=\"middle\" font-size=\"12\">意义：产热、抗逆、果实成熟、电子溢流分流</text>\n</svg>"
     }
    ]
   },
@@ -16317,7 +16539,7 @@
      "kind": "diagram",
      "caption": "光合作用与呼吸作用的相互联系",
      "alt": "光合放氧供呼吸、呼吸放二氧化碳供光合；光合储能、呼吸释能；二者共用中间产物",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"光合与呼吸联系\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120510\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">光合与呼吸的相互联系</text>\n<rect x=\"50\" y=\"70\" width=\"180\" height=\"120\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"140\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">光合作用</text>\n<text x=\"140\" y=\"128\" text-anchor=\"middle\" font-size=\"11\">CO₂ + H₂O → 有机物 + O₂</text>\n<text x=\"140\" y=\"152\" text-anchor=\"middle\" font-size=\"11\">光能 → 化学能</text>\n<text x=\"140\" y=\"176\" text-anchor=\"middle\" font-size=\"11\">叶绿体</text>\n<rect x=\"410\" y=\"70\" width=\"180\" height=\"120\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"500\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">呼吸作用</text>\n<text x=\"500\" y=\"128\" text-anchor=\"middle\" font-size=\"11\">有机物 + O₂ → CO₂ + H₂O</text>\n<text x=\"500\" y=\"152\" text-anchor=\"middle\" font-size=\"11\">化学能 → ATP</text>\n<text x=\"500\" y=\"176\" text-anchor=\"middle\" font-size=\"11\">细胞质/线粒体</text>\n<path d=\"M230 105 L410 105\" stroke=\"currentColor\" marker-end=\"url(#mk8120510)\"/>\n<text x=\"320\" y=\"95\" text-anchor=\"middle\" font-size=\"11\">有机物、O₂</text>\n<path d=\"M410 155 L230 155\" stroke=\"currentColor\" marker-end=\"url(#mk8120510)\"/>\n<text x=\"320\" y=\"175\" text-anchor=\"middle\" font-size=\"11\">CO₂、H₂O</text>\n<text x=\"320\" y=\"230\" text-anchor=\"middle\" font-size=\"12\">共用 ADP、NADP⁺ 与三碳至七碳糖中间产物；速率相互制约</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"光合与呼吸联系\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">光合与呼吸的相互联系</text>\n<rect x=\"50\" y=\"70\" width=\"180\" height=\"120\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"140\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">光合作用</text>\n<text x=\"140\" y=\"128\" text-anchor=\"middle\" font-size=\"11\">CO₂ + H₂O → 有机物 + O₂</text>\n<text x=\"140\" y=\"152\" text-anchor=\"middle\" font-size=\"11\">光能 → 化学能</text>\n<text x=\"140\" y=\"176\" text-anchor=\"middle\" font-size=\"11\">叶绿体</text>\n<rect x=\"410\" y=\"70\" width=\"180\" height=\"120\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"500\" y=\"100\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">呼吸作用</text>\n<text x=\"500\" y=\"128\" text-anchor=\"middle\" font-size=\"11\">有机物 + O₂ → CO₂ + H₂O</text>\n<text x=\"500\" y=\"152\" text-anchor=\"middle\" font-size=\"11\">化学能 → ATP</text>\n<text x=\"500\" y=\"176\" text-anchor=\"middle\" font-size=\"11\">细胞质/线粒体</text>\n<path d=\"M230 105 L410 105\" stroke=\"currentColor\"/><polygon points=\"410.0,105.0 404.4,108.2 404.4,101.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"95\" text-anchor=\"middle\" font-size=\"11\">有机物、O₂</text>\n<path d=\"M410 155 L230 155\" stroke=\"currentColor\"/><polygon points=\"230.0,155.0 235.6,151.8 235.6,158.2\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"175\" text-anchor=\"middle\" font-size=\"11\">CO₂、H₂O</text>\n<text x=\"320\" y=\"230\" text-anchor=\"middle\" font-size=\"12\">共用 ADP、NADP⁺ 与三碳至七碳糖中间产物；速率相互制约</text>\n</svg>"
     }
    ]
   },
@@ -17332,7 +17554,7 @@
      "kind": "diagram",
      "caption": "韧皮部装载、压力流与卸出",
      "alt": "源端装载使筛管膨压升高，库端卸出使膨压降低，压力差推动同化物从源流向库",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"韧皮部装载与卸出\" xmlns=\"http://www.w3.org/2000/svg\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120606\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"30\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">韧皮部装载与卸出</text>\n<rect x=\"30\" y=\"95\" width=\"120\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"90\" y=\"130\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">源（叶）</text>\n<text x=\"90\" y=\"155\" text-anchor=\"middle\" font-size=\"12\">光合产物</text>\n<rect x=\"250\" y=\"110\" width=\"140\" height=\"60\" rx=\"30\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"145\" text-anchor=\"middle\" font-size=\"13\">筛管-伴胞</text>\n<rect x=\"490\" y=\"95\" width=\"120\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"550\" y=\"130\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">库（果/根）</text>\n<text x=\"550\" y=\"155\" text-anchor=\"middle\" font-size=\"12\">消耗或贮藏</text>\n<path d=\"M150 140 L250 140\" stroke=\"currentColor\" marker-end=\"url(#mk8120606)\"/>\n<text x=\"200\" y=\"125\" text-anchor=\"middle\" font-size=\"12\">装载（逆浓度、耗能）</text>\n<path d=\"M390 140 L490 140\" stroke=\"currentColor\" marker-end=\"url(#mk8120606)\"/>\n<text x=\"440\" y=\"125\" text-anchor=\"middle\" font-size=\"12\">卸出</text>\n<text x=\"320\" y=\"215\" text-anchor=\"middle\" font-size=\"12\">源端膨压高 → 库端膨压低 → 压力流</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"韧皮部装载与卸出\" xmlns=\"http://www.w3.org/2000/svg\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"30\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">韧皮部装载与卸出</text>\n<rect x=\"30\" y=\"95\" width=\"120\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"90\" y=\"130\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">源（叶）</text>\n<text x=\"90\" y=\"155\" text-anchor=\"middle\" font-size=\"12\">光合产物</text>\n<rect x=\"250\" y=\"110\" width=\"140\" height=\"60\" rx=\"30\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"145\" text-anchor=\"middle\" font-size=\"13\">筛管-伴胞</text>\n<rect x=\"490\" y=\"95\" width=\"120\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"550\" y=\"130\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">库（果/根）</text>\n<text x=\"550\" y=\"155\" text-anchor=\"middle\" font-size=\"12\">消耗或贮藏</text>\n<path d=\"M150 140 L250 140\" stroke=\"currentColor\"/><polygon points=\"250.0,140.0 244.4,143.2 244.4,136.8\" fill=\"currentColor\"/>\n<text x=\"200\" y=\"125\" text-anchor=\"middle\" font-size=\"12\">装载（逆浓度、耗能）</text>\n<path d=\"M390 140 L490 140\" stroke=\"currentColor\"/><polygon points=\"490.0,140.0 484.4,143.2 484.4,136.8\" fill=\"currentColor\"/>\n<text x=\"440\" y=\"125\" text-anchor=\"middle\" font-size=\"12\">卸出</text>\n<text x=\"320\" y=\"215\" text-anchor=\"middle\" font-size=\"12\">源端膨压高 → 库端膨压低 → 压力流</text>\n</svg>"
     }
    ]
   },
@@ -17832,7 +18054,7 @@
      "kind": "diagram",
      "caption": "源、库、流",
      "alt": "源是制造同化物的器官，库是消耗或贮藏同化物的器官，流是连接源库的韧皮部运输",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"源-库-流\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120603\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">源—库—流</text>\n<rect x=\"30\" y=\"85\" width=\"150\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"105\" y=\"115\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\">源</text>\n<text x=\"105\" y=\"142\" text-anchor=\"middle\" font-size=\"12\">功能叶</text>\n<text x=\"105\" y=\"164\" text-anchor=\"middle\" font-size=\"12\">制造/输出同化物</text>\n<rect x=\"245\" y=\"105\" width=\"150\" height=\"60\" rx=\"30\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"130\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\">流</text>\n<text x=\"320\" y=\"152\" text-anchor=\"middle\" font-size=\"12\">韧皮部筛管</text>\n<rect x=\"460\" y=\"85\" width=\"150\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"535\" y=\"115\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\">库</text>\n<text x=\"535\" y=\"142\" text-anchor=\"middle\" font-size=\"12\">果实/种子/根</text>\n<text x=\"535\" y=\"164\" text-anchor=\"middle\" font-size=\"12\">消耗/贮藏同化物</text>\n<path d=\"M180 135 L245 135\" stroke=\"currentColor\" marker-end=\"url(#mk8120603)\"/>\n<path d=\"M395 135 L460 135\" stroke=\"currentColor\" marker-end=\"url(#mk8120603)\"/>\n<text x=\"320\" y=\"225\" text-anchor=\"middle\" font-size=\"12\">源强看输出能力，库强看输入能力；流由源库膨压差驱动</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"源-库-流\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">源—库—流</text>\n<rect x=\"30\" y=\"85\" width=\"150\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"105\" y=\"115\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\">源</text>\n<text x=\"105\" y=\"142\" text-anchor=\"middle\" font-size=\"12\">功能叶</text>\n<text x=\"105\" y=\"164\" text-anchor=\"middle\" font-size=\"12\">制造/输出同化物</text>\n<rect x=\"245\" y=\"105\" width=\"150\" height=\"60\" rx=\"30\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"130\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\">流</text>\n<text x=\"320\" y=\"152\" text-anchor=\"middle\" font-size=\"12\">韧皮部筛管</text>\n<rect x=\"460\" y=\"85\" width=\"150\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"535\" y=\"115\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\">库</text>\n<text x=\"535\" y=\"142\" text-anchor=\"middle\" font-size=\"12\">果实/种子/根</text>\n<text x=\"535\" y=\"164\" text-anchor=\"middle\" font-size=\"12\">消耗/贮藏同化物</text>\n<path d=\"M180 135 L245 135\" stroke=\"currentColor\"/><polygon points=\"245.0,135.0 239.4,138.2 239.4,131.8\" fill=\"currentColor\"/>\n<path d=\"M395 135 L460 135\" stroke=\"currentColor\"/><polygon points=\"460.0,135.0 454.4,138.2 454.4,131.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"225\" text-anchor=\"middle\" font-size=\"12\">源强看输出能力，库强看输入能力；流由源库膨压差驱动</text>\n</svg>"
     }
    ]
   },
@@ -18455,14 +18677,15 @@
      "kind": "简答",
      "card_type": "过程",
      "question": "压力流动学说链条中，源端与库端筛管的膨压为何一升一降？",
-     "answer": "①源端装载蔗糖，筛管内溶质浓度升高、水势下降，水自相邻木质部渗入，膨压升高；②库端持续卸出并运走同化物，溶质浓度降低、水势回升，水外流返回木质部，膨压降低；③两端因此形成稳定的膨压差，成为集流的动力。关键在于水分进出筛管这一中间环节。",
+     "answer": "①源端为成熟功能叶，光合合成蔗糖并以蔗糖为运输形式装载进筛管—伴胞复合体，筛管内溶质浓度升高、水势下降，水自相邻木质部渗入，膨压升高；②库端持续卸出并运走同化物，溶质浓度降低、水势回升，水外流返回木质部，膨压降低；③两端因此形成稳定的膨压差，成为集流的动力。关键在于水分进出筛管这一中间环节。",
      "answer_points": [
-      "源端装载：浓度升高、水势下降",
+      "源端＝成熟功能叶，运输形式为蔗糖",
+      "装载使浓度升高、水势下降",
       "水渗入筛管，源端膨压升高",
       "库端卸出：浓度降低、水势回升",
       "水外流，库端膨压降低"
      ],
-     "analysis": "本题聚焦链条中“膨压为何变化”这一环，答题必须写出“浓度→水势→水分移动→膨压”的完整推导，不能只给结论。源端与库端要对称着写，方向相反：源端进水增压，库端出水降压。漏掉水分移动，就等于跳过了把浓度差转化为压力差的关键一步。",
+     "analysis": "本题聚焦链条中“膨压为何变化”这一环，答题必须写出“浓度→水势→水分移动→膨压”的完整推导，不能只给结论。源端要写全三要素：部位为成熟功能叶、运输形式为蔗糖、装载部位为筛管—伴胞复合体，只写“源端装载蔗糖”会漏掉运输形式与装载结构两个得分点。源端与库端要对称着写，方向相反：源端进水增压，库端出水降压。漏掉水分移动，就等于跳过了把浓度差转化为压力差的关键一步。",
      "unit_refs": [
       3,
       4,
@@ -18472,7 +18695,10 @@
      "card_id": "c81206M01-2",
      "point_id": "81206M01",
      "front": "压力流动学说链条中，源端与库端筛管的膨压为何一升一降？",
-     "back": "①源端装载蔗糖，筛管内溶质浓度升高、水势下降，水自相邻木质部渗入，膨压升高；②库端持续卸出并运走同化物，溶质浓度降低、水势回升，水外流返回木质部，膨压降低；③两端因此形成稳定的膨压差，成为集流的动力。关键在于水分进出筛管这一中间环节。"
+     "back": "①源端为成熟功能叶，光合合成蔗糖并以蔗糖为运输形式装载进筛管—伴胞复合体，筛管内溶质浓度升高、水势下降，水自相邻木质部渗入，膨压升高；②库端持续卸出并运走同化物，溶质浓度降低、水势回升，水外流返回木质部，膨压降低；③两端因此形成稳定的膨压差，成为集流的动力。关键在于水分进出筛管这一中间环节。",
+     "merged_from": [
+      "81206M01"
+     ]
     },
     {
      "kind": "简答",
@@ -19475,6 +19701,28 @@
      "point_id": "8120704",
      "front": "易错辨析：器官对生长素的敏感性顺序是茎＞芽＞根。",
      "back": "错误说法：器官对生长素的敏感性为茎＞芽＞根。原因：根对生长素最敏感，芽次之，茎最不敏感。正确判断：敏感性顺序为根＞芽＞茎，因此同一浓度对茎可能仍在促进范围，对根却已产生抑制。"
+    },
+    {
+     "kind": "简答",
+     "card_type": "记忆",
+     "question": "生长素（IAA）以什么物质为前体？经哪条途径合成？",
+     "answer": "①前体：色氨酸（Trp）是 IAA 合成的主要前体。②吲哚丙酮酸途径：色氨酸先经转氨基生成吲哚丙酮酸，再脱羧生成吲哚乙醛，最后由吲哚乙醛氧化生成吲哚乙酸（IAA）。③合成部位：主要在幼嫩茎尖、幼叶和发育中的种子等生长旺盛部位。④合成后经极性运输送到作用部位，并与结合态的储藏/失活、氧化降解共同维持体内 IAA 水平的动态平衡。",
+     "answer_points": [
+      "主要前体为色氨酸（Trp）",
+      "吲哚丙酮酸途径：Trp→吲哚丙酮酸→吲哚乙醛",
+      "吲哚乙醛氧化生成吲哚乙酸（IAA）",
+      "合成部位：幼嫩茎尖、幼叶与发育中的种子"
+     ],
+     "analysis": "本条属记忆型简答，得分点集中在前体与三步中间物：色氨酸→吲哚丙酮酸→吲哚乙醛→IAA，任一环缺失都算链条不全。常见失分是把前体写成酪氨酸或苯丙氨酸，或把合成部位说成成熟叶片。补一句“合成后经极性运输到作用部位，与结合态储藏和氧化降解共同维持 IAA 水平动态平衡”，可把单点记忆接到本点的两重性与顶端优势两张卡上。",
+     "unit_refs": [
+      1,
+      2
+     ],
+     "front": "生长素（IAA）以什么物质为前体？经哪条途径合成？",
+     "back": "①前体：色氨酸（Trp）是 IAA 合成的主要前体。②吲哚丙酮酸途径：色氨酸先经转氨基生成吲哚丙酮酸，再脱羧生成吲哚乙醛，最后由吲哚乙醛氧化生成吲哚乙酸（IAA）。③合成部位：主要在幼嫩茎尖、幼叶和发育中的种子等生长旺盛部位。④合成后经极性运输送到作用部位，并与结合态的储藏/失活、氧化降解共同维持体内 IAA 水平的动态平衡。",
+     "difficulty": 2,
+     "point_id": "8120704",
+     "card_id": "c8120704-7"
     }
    ],
    "order": 4,
@@ -19727,7 +19975,7 @@
      "kind": "diagram",
      "caption": "生长素酸生长理论",
      "alt": "生长素激活质膜氢离子泵，细胞壁酸化，扩展蛋白活化使壁松弛，膨压驱动细胞伸长",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"酸生长理论\" xmlns=\"http://www.w3.org/2000/svg\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120705\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"30\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">酸生长理论</text>\n<g font-size=\"12.5\" text-anchor=\"middle\">\n<rect x=\"20\" y=\"80\" width=\"100\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"70\" y=\"108\" font-weight=\"700\">IAA</text><text x=\"70\" y=\"132\">受体结合</text>\n<rect x=\"145\" y=\"80\" width=\"110\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"200\" y=\"108\" font-weight=\"700\">H⁺-ATPase</text><text x=\"200\" y=\"132\">泵出 H⁺</text>\n<rect x=\"280\" y=\"80\" width=\"110\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"335\" y=\"108\" font-weight=\"700\">壁酸化</text><text x=\"335\" y=\"132\">扩展蛋白活化</text>\n<rect x=\"415\" y=\"80\" width=\"100\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"465\" y=\"108\" font-weight=\"700\">壁松弛</text><text x=\"465\" y=\"132\">可塑性↑</text>\n<rect x=\"540\" y=\"80\" width=\"80\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"580\" y=\"108\" font-weight=\"700\">伸长</text><text x=\"580\" y=\"132\">膨压驱动</text>\n</g>\n<path d=\"M120 115 L145 115\" stroke=\"currentColor\" marker-end=\"url(#mk8120705)\"/>\n<path d=\"M255 115 L280 115\" stroke=\"currentColor\" marker-end=\"url(#mk8120705)\"/>\n<path d=\"M390 115 L415 115\" stroke=\"currentColor\" marker-end=\"url(#mk8120705)\"/>\n<path d=\"M515 115 L540 115\" stroke=\"currentColor\" marker-end=\"url(#mk8120705)\"/>\n<text x=\"320\" y=\"210\" text-anchor=\"middle\" font-size=\"12\">细胞壁松弛 + 水进入 → 不可逆伸长；高浓度则抑制</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"酸生长理论\" xmlns=\"http://www.w3.org/2000/svg\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"30\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">酸生长理论</text>\n<g font-size=\"12.5\" text-anchor=\"middle\">\n<rect x=\"20\" y=\"80\" width=\"100\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"70\" y=\"108\" font-weight=\"700\">IAA</text><text x=\"70\" y=\"132\">受体结合</text>\n<rect x=\"145\" y=\"80\" width=\"110\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"200\" y=\"108\" font-weight=\"700\">H⁺-ATPase</text><text x=\"200\" y=\"132\">泵出 H⁺</text>\n<rect x=\"280\" y=\"80\" width=\"110\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"335\" y=\"108\" font-weight=\"700\">壁酸化</text><text x=\"335\" y=\"132\">扩展蛋白活化</text>\n<rect x=\"415\" y=\"80\" width=\"100\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"465\" y=\"108\" font-weight=\"700\">壁松弛</text><text x=\"465\" y=\"132\">可塑性↑</text>\n<rect x=\"540\" y=\"80\" width=\"80\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"580\" y=\"108\" font-weight=\"700\">伸长</text><text x=\"580\" y=\"132\">膨压驱动</text>\n</g>\n<path d=\"M120 115 L145 115\" stroke=\"currentColor\"/><polygon points=\"145.0,115.0 139.4,118.2 139.4,111.8\" fill=\"currentColor\"/>\n<path d=\"M255 115 L280 115\" stroke=\"currentColor\"/><polygon points=\"280.0,115.0 274.4,118.2 274.4,111.8\" fill=\"currentColor\"/>\n<path d=\"M390 115 L415 115\" stroke=\"currentColor\"/><polygon points=\"415.0,115.0 409.4,118.2 409.4,111.8\" fill=\"currentColor\"/>\n<path d=\"M515 115 L540 115\" stroke=\"currentColor\"/><polygon points=\"540.0,115.0 534.4,118.2 534.4,111.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"210\" text-anchor=\"middle\" font-size=\"12\">细胞壁松弛 + 水进入 → 不可逆伸长；高浓度则抑制</text>\n</svg>"
     }
    ]
   },
@@ -19927,7 +20175,7 @@
      "kind": "diagram",
      "caption": "赤霉素的分布与运输",
      "alt": "赤霉素在幼叶、根尖和发育种子中合成，经木质部和韧皮部运输，无极性运输",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"赤霉素的分布与运输\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120706\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">赤霉素的分布与运输</text>\n<rect x=\"30\" y=\"65\" width=\"160\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"110.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">合成部位</text><text x=\"110.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">幼叶、根尖</text><text x=\"110.0\" y=\"129\" text-anchor=\"middle\" font-size=\"11.5\">发育中的种子</text><rect x=\"230\" y=\"65\" width=\"180\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"320.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">运输</text><text x=\"320.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">木质部/韧皮部</text><text x=\"320.0\" y=\"129\" text-anchor=\"middle\" font-size=\"11.5\">无极性运输</text><rect x=\"450\" y=\"65\" width=\"160\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"530.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">作用部位</text><text x=\"530.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">茎节间</text><text x=\"530.0\" y=\"129\" text-anchor=\"middle\" font-size=\"11.5\">种子/芽</text><path d=\"M190 110 L230 110\" stroke=\"currentColor\" marker-end=\"url(#mk8120706)\"/><path d=\"M410 110 L450 110\" stroke=\"currentColor\" marker-end=\"url(#mk8120706)\"/>\n<text x=\"320\" y=\"205\" text-anchor=\"middle\" font-size=\"12\">GA 与 IAA 的关键区别：IAA 有极性运输，GA 无极性运输</text>\n<text x=\"320\" y=\"232\" text-anchor=\"middle\" font-size=\"12\">主要效应：促进节间伸长、打破休眠、诱导抽薹开花、诱导 α-淀粉酶</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"赤霉素的分布与运输\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">赤霉素的分布与运输</text>\n<rect x=\"30\" y=\"65\" width=\"160\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"110.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">合成部位</text><text x=\"110.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">幼叶、根尖</text><text x=\"110.0\" y=\"129\" text-anchor=\"middle\" font-size=\"11.5\">发育中的种子</text><rect x=\"230\" y=\"65\" width=\"180\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"320.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">运输</text><text x=\"320.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">木质部/韧皮部</text><text x=\"320.0\" y=\"129\" text-anchor=\"middle\" font-size=\"11.5\">无极性运输</text><rect x=\"450\" y=\"65\" width=\"160\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"530.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">作用部位</text><text x=\"530.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">茎节间</text><text x=\"530.0\" y=\"129\" text-anchor=\"middle\" font-size=\"11.5\">种子/芽</text><path d=\"M190 110 L230 110\" stroke=\"currentColor\"/><polygon points=\"230.0,110.0 224.4,113.2 224.4,106.8\" fill=\"currentColor\"/><path d=\"M410 110 L450 110\" stroke=\"currentColor\"/><polygon points=\"450.0,110.0 444.4,113.2 444.4,106.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"205\" text-anchor=\"middle\" font-size=\"12\">GA 与 IAA 的关键区别：IAA 有极性运输，GA 无极性运输</text>\n<text x=\"320\" y=\"232\" text-anchor=\"middle\" font-size=\"12\">主要效应：促进节间伸长、打破休眠、诱导抽薹开花、诱导 α-淀粉酶</text>\n</svg>"
     }
    ]
   },
@@ -20124,6 +20372,28 @@
      "point_id": "8120707",
      "front": "易错辨析：赤霉素促进生长的主要方式是促进细胞分裂。",
      "back": "错误说法：GA主要通过促进细胞分裂使植株长高。原因：GA的主要效应是促进细胞伸长、使节间明显加长，其信号链为GID1–DELLA–PIF，启动细胞壁松弛与伸展相关基因。正确判断：GA以促进细胞伸长为主，外源施用常出现徒长，并可使矮生突变体恢复野生型。"
+    },
+    {
+     "kind": "简答",
+     "card_type": "记忆",
+     "question": "赤霉素在植物体的哪些部位合成？经什么途径合成？",
+     "answer": "①合成部位：未成熟种子、幼根、幼茎顶端等幼嫩、生长旺盛的组织；②化学本质：二萜类酸性化合物；③合成途径：以贝壳杉烯为关键中间体的贝壳杉烯途径（GGPP→贝壳杉烯→赤霉素）；④合成后经韧皮部（也可经木质部）、无明显极性运输到作用部位起效。",
+     "answer_points": [
+      "合成部位：未成熟种子、幼根、幼茎顶端等幼嫩组织",
+      "化学本质为二萜类酸性化合物",
+      "贝壳杉烯途径：GGPP→贝壳杉烯→赤霉素",
+      "经木质部和韧皮部运输，无明显极性"
+     ],
+     "analysis": "得分点是“部位—化学本质—途径—运输”四要素。部位要强调幼嫩、生长旺盛的组织，写成“成熟叶片”即错；途径的关键中间物是贝壳杉烯，答不出它等于没答途径。运输方式与生长素恰成对照：GA 无明显极性、可双向，这是常考的对比点。若题目要求与 IAA 比较，可在末尾补“合成前体不同（色氨酸对 GGPP）、运输极性不同”两句，直接对上比较题。",
+     "unit_refs": [
+      1,
+      2
+     ],
+     "front": "赤霉素在植物体的哪些部位合成？经什么途径合成？",
+     "back": "①合成部位：未成熟种子、幼根、幼茎顶端等幼嫩、生长旺盛的组织；②化学本质：二萜类酸性化合物；③合成途径：以贝壳杉烯为关键中间体的贝壳杉烯途径（GGPP→贝壳杉烯→赤霉素）；④合成后经韧皮部（也可经木质部）、无明显极性运输到作用部位起效。",
+     "difficulty": 2,
+     "point_id": "8120707",
+     "card_id": "c8120707-6"
     }
    ],
    "order": 7,
@@ -20350,7 +20620,7 @@
      "kind": "diagram",
      "caption": "赤霉素诱导糊粉层合成 α-淀粉酶",
      "alt": "赤霉素作用于糊粉层细胞，诱导α-淀粉酶合成，水解胚乳淀粉为糖，供胚萌发；脱落酸拮抗",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"GA诱导α-淀粉酶\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120708\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">赤霉素诱导 α-淀粉酶</text>\n<rect x=\"20\" y=\"80\" width=\"120\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"80\" y=\"108\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">GA</text>\n<text x=\"80\" y=\"134\" text-anchor=\"middle\" font-size=\"12\">胚分泌</text>\n<rect x=\"170\" y=\"80\" width=\"150\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"245\" y=\"108\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">糊粉层细胞</text>\n<text x=\"245\" y=\"134\" text-anchor=\"middle\" font-size=\"12\">受体识别 → 基因表达</text>\n<rect x=\"350\" y=\"80\" width=\"130\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"415\" y=\"108\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">α-淀粉酶</text>\n<text x=\"415\" y=\"134\" text-anchor=\"middle\" font-size=\"12\">合成增加</text>\n<rect x=\"510\" y=\"80\" width=\"110\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"565\" y=\"108\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">淀粉水解</text>\n<text x=\"565\" y=\"134\" text-anchor=\"middle\" font-size=\"12\">→ 糖</text>\n<path d=\"M140 120 L170 120\" stroke=\"currentColor\" marker-end=\"url(#mk8120708)\"/>\n<path d=\"M320 120 L350 120\" stroke=\"currentColor\" marker-end=\"url(#mk8120708)\"/>\n<path d=\"M480 120 L510 120\" stroke=\"currentColor\" marker-end=\"url(#mk8120708)\"/>\n<text x=\"320\" y=\"205\" text-anchor=\"middle\" font-size=\"12\">糖供给胚萌发；ABA 抑制 α-淀粉酶，维持休眠</text>\n<text x=\"320\" y=\"235\" text-anchor=\"middle\" font-size=\"12\">GA 与 ABA 在种子萌发上拮抗</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"GA诱导α-淀粉酶\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">赤霉素诱导 α-淀粉酶</text>\n<rect x=\"20\" y=\"80\" width=\"120\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"80\" y=\"108\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">GA</text>\n<text x=\"80\" y=\"134\" text-anchor=\"middle\" font-size=\"12\">胚分泌</text>\n<rect x=\"170\" y=\"80\" width=\"150\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"245\" y=\"108\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">糊粉层细胞</text>\n<text x=\"245\" y=\"134\" text-anchor=\"middle\" font-size=\"12\">受体识别 → 基因表达</text>\n<rect x=\"350\" y=\"80\" width=\"130\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"415\" y=\"108\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">α-淀粉酶</text>\n<text x=\"415\" y=\"134\" text-anchor=\"middle\" font-size=\"12\">合成增加</text>\n<rect x=\"510\" y=\"80\" width=\"110\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"565\" y=\"108\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">淀粉水解</text>\n<text x=\"565\" y=\"134\" text-anchor=\"middle\" font-size=\"12\">→ 糖</text>\n<path d=\"M140 120 L170 120\" stroke=\"currentColor\"/><polygon points=\"170.0,120.0 164.4,123.2 164.4,116.8\" fill=\"currentColor\"/>\n<path d=\"M320 120 L350 120\" stroke=\"currentColor\"/><polygon points=\"350.0,120.0 344.4,123.2 344.4,116.8\" fill=\"currentColor\"/>\n<path d=\"M480 120 L510 120\" stroke=\"currentColor\"/><polygon points=\"510.0,120.0 504.4,123.2 504.4,116.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"205\" text-anchor=\"middle\" font-size=\"12\">糖供给胚萌发；ABA 抑制 α-淀粉酶，维持休眠</text>\n<text x=\"320\" y=\"235\" text-anchor=\"middle\" font-size=\"12\">GA 与 ABA 在种子萌发上拮抗</text>\n</svg>"
     }
    ]
   },
@@ -20971,6 +21241,52 @@
      "point_id": "8120711",
      "front": "易错辨析：三重反应在任何绿色幼苗上都能观察到。",
      "back": "错误说法：三重反应在绿色幼苗或任何条件下都能观察到。原因：三重反应是黄化幼苗在乙烯作用下的典型反应，需暗培养形成黄化苗；绿色幼苗与暗培养黄化苗的形态基础不同。正确判断：观察三重反应应以黄化幼苗为材料，表现为茎变短增粗、横向生长、顶端弯钩加剧。"
+    },
+    {
+     "kind": "名解",
+     "card_type": "定义",
+     "question": "名词解释：乙烯",
+     "answer": "乙烯是植物体内合成的气态不饱和烃，分子式 C₂H₄，属气态激素。它在成熟果实、衰老组织和分生组织中含量较高，以气体扩散方式在器官间运输，不表现极性运输。主要生理效应包括促进果实成熟、引起黄化幼苗三重反应（茎变短增粗、横向生长、顶端弯钩加剧）、促进器官脱落和抑制伸长生长。",
+     "answer_points": [
+      "化学本质：气态不饱和烃，分子式C₂H₄",
+      "属气态激素，以气体扩散在器官间运输",
+      "成熟果实、衰老组织与分生组织中含量较高",
+      "促进果实成熟、器官脱落，抑制伸长生长",
+      "引起黄化幼苗三重反应"
+     ],
+     "analysis": "名解要写全“化学本质—存在部位—运输方式—主要效应”四层。最容易丢分的是化学本质：C₂H₄ 是气态不饱和烃，只写“一种气体激素”而不给分子式，会被判不完整。运输方式要写“气体扩散、无极性运输”，与生长素的极性运输正好对照。效应列三到四条即可，三重反应是标志性效应，写上能体现对乙烯特异性的理解。",
+     "unit_refs": [
+      1,
+      2,
+      3
+     ],
+     "front": "名词解释：乙烯",
+     "back": "乙烯是植物体内合成的气态不饱和烃，分子式 C₂H₄，属气态激素。它在成熟果实、衰老组织和分生组织中含量较高，以气体扩散方式在器官间运输，不表现极性运输。主要生理效应包括促进果实成熟、引起黄化幼苗三重反应（茎变短增粗、横向生长、顶端弯钩加剧）、促进器官脱落和抑制伸长生长。",
+     "difficulty": 1,
+     "point_id": "8120711",
+     "card_id": "c8120711-6"
+    },
+    {
+     "kind": "简答",
+     "card_type": "原理",
+     "question": "乙烯的受体是什么？位于细胞的什么部位？感知乙烯后引起哪些响应？",
+     "answer": "①乙烯受体是位于内质网膜上的蛋白，代表性受体为 ETR1；②乙烯与受体结合后被感知，启动细胞内的信号转导；③信号引起呼吸跃变、细胞壁水解酶活性升高以及色素与香味物质的变化，从而催熟果实。易错点：受体在内质网膜上，不在细胞膜上。",
+     "answer_points": [
+      "受体为内质网膜上的蛋白，代表为ETR1",
+      "乙烯与受体结合后被感知，启动胞内信号转导",
+      "信号促呼吸跃变、细胞壁水解酶活性升高",
+      "进而引起色素与香味物质变化，催熟果实"
+     ],
+     "analysis": "本题分数集中在两个细节：受体名称 ETR1 与亚细胞定位（内质网膜）。把受体写在质膜或线粒体膜上是典型失分点，也与“乙烯经气体扩散进入细胞后在内膜系统被感知”的机制不符。答题顺序应为“受体是谁—在哪—结合后启动什么—最终产生什么效应”，把信号转导与果实成熟的效应链连起来，避免只答“乙烯促进成熟”这类无信息量的结论。",
+     "unit_refs": [
+      7,
+      8
+     ],
+     "front": "乙烯的受体是什么？位于细胞的什么部位？感知乙烯后引起哪些响应？",
+     "back": "①乙烯受体是位于内质网膜上的蛋白，代表性受体为 ETR1；②乙烯与受体结合后被感知，启动细胞内的信号转导；③信号引起呼吸跃变、细胞壁水解酶活性升高以及色素与香味物质的变化，从而催熟果实。易错点：受体在内质网膜上，不在细胞膜上。",
+     "difficulty": 2,
+     "point_id": "8120711",
+     "card_id": "c8120711-7"
     }
    ],
    "order": 11,
@@ -21133,15 +21449,16 @@
      "kind": "简答",
      "card_type": "原理",
      "question": "举例说明植物激素间的协同与拮抗关系。",
-     "answer": "①协同：生长素与赤霉素共同促进茎的伸长；细胞分裂素与生长素共同促进愈伤组织分化。②拮抗：生长素维持顶端优势而细胞分裂素促进侧芽萌发；赤霉素促进种子萌发而脱落酸维持休眠；乙烯促进成熟衰老而细胞分裂素延缓衰老。③因此同一生理过程常由多种激素共同调控，表现为协同或拮抗。",
+     "answer": "同一生理过程往往受多种激素共同调控，某激素浓度变化还会改变细胞对另一激素的敏感性，因此激素间关系表现为协同或拮抗。①协同：生长素与赤霉素共同促进茎的伸长；细胞分裂素与生长素共同促进愈伤组织分化。②拮抗：生长素维持顶端优势而细胞分裂素促进侧芽萌发；赤霉素促进种子萌发而脱落酸维持休眠；乙烯促进成熟衰老而细胞分裂素延缓衰老。③因此同一生理过程常由多种激素共同调控，表现为协同或拮抗。",
      "answer_points": [
+      "同一生理过程常由多种激素共同调控",
       "协同：IAA与GA共同促茎伸长",
       "协同：CK与IAA促愈伤组织分化",
       "拮抗：IAA顶端优势 vs CK促侧芽",
       "拮抗：GA促萌发 vs ABA维持休眠",
       "拮抗：乙烯促衰老 vs CK延缓衰老"
      ],
-     "analysis": "答题结构应是“先定义、再各举两例、最后点明意义”。每例都要写清两种激素及同一生理过程，只写激素名称不写作用方向会失分。协同与拮抗的判断标准是效果同向还是相反，而不是激素种类。末尾补一句“多激素共同调控形成动态平衡”，可把举例提升为规律。",
+     "analysis": "答题结构应是“先立原则、再各举例、最后点明意义”。开篇先写总纲：同一生理过程常受多种激素共同调控，某激素浓度变化可改变细胞对另一激素的敏感性，协同与拮抗都是这一原则的表现，先立原则再举例层次更清楚。每例都要写清两种激素及同一生理过程，只写激素名称不写作用方向会失分。协同与拮抗的判断标准是效果同向还是相反，而不是激素种类。末尾补一句“多激素共同调控形成动态平衡”，可把举例提升为规律。",
      "unit_refs": [
       2,
       5,
@@ -21151,7 +21468,10 @@
      "card_id": "c8120712-3",
      "point_id": "8120712",
      "front": "举例说明植物激素间的协同与拮抗关系。",
-     "back": "①协同：生长素与赤霉素共同促进茎的伸长；细胞分裂素与生长素共同促进愈伤组织分化。②拮抗：生长素维持顶端优势而细胞分裂素促进侧芽萌发；赤霉素促进种子萌发而脱落酸维持休眠；乙烯促进成熟衰老而细胞分裂素延缓衰老。③因此同一生理过程常由多种激素共同调控，表现为协同或拮抗。"
+     "back": "同一生理过程往往受多种激素共同调控，某激素浓度变化还会改变细胞对另一激素的敏感性，因此激素间关系表现为协同或拮抗。①协同：生长素与赤霉素共同促进茎的伸长；细胞分裂素与生长素共同促进愈伤组织分化。②拮抗：生长素维持顶端优势而细胞分裂素促进侧芽萌发；赤霉素促进种子萌发而脱落酸维持休眠；乙烯促进成熟衰老而细胞分裂素延缓衰老。③因此同一生理过程常由多种激素共同调控，表现为协同或拮抗。",
+     "merged_from": [
+      "8120712"
+     ]
     },
     {
      "kind": "简答",
@@ -21417,6 +21737,52 @@
      "point_id": "8120713",
      "front": "易错辨析：乙烯利属于生长抑制剂。",
      "back": "错误说法：乙烯利是生长抑制剂。原因：乙烯利是释放乙烯的调节剂，主要促进成熟、脱落与三重反应，并不以破坏顶端优势、抑制顶端分生组织为分类依据。正确判断：生长抑制剂的关键是破坏顶端优势且不能被GA逆转；乙烯利不属于该类别。"
+    },
+    {
+     "kind": "简答",
+     "card_type": "辨析",
+     "question": "辨析：植物激素与植物生长调节剂的异同。",
+     "answer": "相同点：两者都具有植物激素活性，经受体或激素信号途径调控生长发育，作用机制相通。不同点：①来源不同——植物激素由植物体内合成，调节剂为人工合成；②使用方式不同——调节剂需外源施用；③作用途径更宽——调节剂除与受体结合外，还可干扰内源激素的合成、运输与信号转导。结论：二者不可混同，调节剂不能替代栽培措施，并须注意残留。",
+     "answer_points": [
+      "相同点：均具激素活性，作用机制相通",
+      "来源不同：激素体内合成，调节剂人工合成",
+      "使用方式不同：调节剂需外源施用",
+      "调节剂还可干扰内源激素的合成、运输与信号"
+     ],
+     "analysis": "辨析题必须先立相同点，再列差异，最后给结论，三段式缺一即结构失分。相同点的核心是作用机制相通：都经受体与激素信号途径起效。差异按“来源—使用方式—作用途径宽窄”三条对齐，其中“调节剂可干扰内源激素的合成、运输与信号”最易被忽略，也最能体现深度。结论要落到不可混同、不可替代栽培措施并注意残留，避免只作概念区分。",
+     "unit_refs": [
+      2,
+      1,
+      4
+     ],
+     "front": "辨析：植物激素与植物生长调节剂的异同。",
+     "back": "相同点：两者都具有植物激素活性，经受体或激素信号途径调控生长发育，作用机制相通。不同点：①来源不同——植物激素由植物体内合成，调节剂为人工合成；②使用方式不同——调节剂需外源施用；③作用途径更宽——调节剂除与受体结合外，还可干扰内源激素的合成、运输与信号转导。结论：二者不可混同，调节剂不能替代栽培措施，并须注意残留。",
+     "difficulty": 2,
+     "point_id": "8120713",
+     "card_id": "c8120713-6"
+    },
+    {
+     "kind": "简答",
+     "card_type": "过程",
+     "question": "植物生长调节剂通过怎样的作用链条调控植物生长发育？",
+     "answer": "①刺激环节：药剂外施后先附着并进入器官组织；②信号环节：药剂与受体结合，或干扰内源激素的合成、运输与信号转导；③效应环节：最终改变细胞的分裂、伸长与分化，在株高、分枝、开花、坐果、成熟等性状上表现出形态效应。该链条说明调节剂虽是外源物质，仍沿植物激素的信号通路起作用。",
+     "answer_points": [
+      "刺激环节：药剂附着并进入器官组织",
+      "信号环节：与受体结合或干扰内源激素系统",
+      "效应环节：改变细胞分裂、伸长与分化",
+      "最终在株高、分枝、开花、坐果、成熟上表现"
+     ],
+     "analysis": "本题考“外源药剂如何沿激素通路起作用”，答案是三段链条：刺激—信号—效应。得分点是每段都写清“发生在哪、做了什么”，尤其信号环节要写出“与受体结合或干扰内源激素合成、运输与信号转导”两条路径，只写“起作用”等于空答。常见失分是把链条写成药剂种类罗列。末尾点明“调节剂虽为外源物质仍走植物激素信号通路”，可直接支撑激素与调节剂机制相通的易错点。",
+     "unit_refs": [
+      4,
+      3,
+      5
+     ],
+     "front": "植物生长调节剂通过怎样的作用链条调控植物生长发育？",
+     "back": "①刺激环节：药剂外施后先附着并进入器官组织；②信号环节：药剂与受体结合，或干扰内源激素的合成、运输与信号转导；③效应环节：最终改变细胞的分裂、伸长与分化，在株高、分枝、开花、坐果、成熟等性状上表现出形态效应。该链条说明调节剂虽是外源物质，仍沿植物激素的信号通路起作用。",
+     "difficulty": 2,
+     "point_id": "8120713",
+     "card_id": "c8120713-7"
     }
    ],
    "order": 13,
@@ -23429,7 +23795,7 @@
      "kind": "diagram",
      "caption": "顶端优势与根冠比",
      "alt": "顶芽产生的生长素向下运输抑制侧芽萌发，形成顶端优势；根冠比反映地下部与地上部的平衡",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"顶端优势与根冠比\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120807\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">顶端优势与根冠比</text>\n<rect x=\"40\" y=\"60\" width=\"260\" height=\"170\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"170\" y=\"88\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">顶端优势</text>\n<path d=\"M170 105 L170 190\" stroke=\"currentColor\" stroke-width=\"3\" marker-end=\"url(#mk8120807)\"/>\n<circle cx=\"170\" cy=\"105\" r=\"10\" fill=\"rgba(47,143,91,.30)\" stroke=\"#2f8f5b\"/>\n<path d=\"M145 135 L120 120\" stroke=\"currentColor\" marker-end=\"url(#mk8120807)\"/>\n<path d=\"M195 135 L220 120\" stroke=\"currentColor\" marker-end=\"url(#mk8120807)\"/>\n<text x=\"170\" y=\"220\" text-anchor=\"middle\" font-size=\"12\">顶芽 IAA 向下运输 → 侧芽受抑</text>\n<rect x=\"340\" y=\"60\" width=\"260\" height=\"170\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"470\" y=\"88\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">根冠比</text>\n<rect x=\"420\" y=\"110\" width=\"100\" height=\"55\" rx=\"8\" fill=\"rgba(47,143,91,.18)\" stroke=\"#2f8f5b\"/>\n<text x=\"470\" y=\"143\" text-anchor=\"middle\" font-size=\"12\">地上部</text>\n<rect x=\"420\" y=\"175\" width=\"100\" height=\"40\" rx=\"8\" fill=\"rgba(47,143,91,.12)\" stroke=\"#2f8f5b\"/>\n<text x=\"470\" y=\"200\" text-anchor=\"middle\" font-size=\"12\">根系</text>\n<text x=\"470\" y=\"240\" text-anchor=\"middle\" font-size=\"12\">根冠比 = 根干重 / 冠干重</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"顶端优势与根冠比\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">顶端优势与根冠比</text>\n<rect x=\"40\" y=\"60\" width=\"260\" height=\"170\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"170\" y=\"88\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">顶端优势</text>\n<path d=\"M170 105 L170 190\" stroke=\"currentColor\" stroke-width=\"3\"/><polygon points=\"170.0,190.0 166.8,184.4 173.2,184.4\" fill=\"currentColor\"/>\n<circle cx=\"170\" cy=\"105\" r=\"10\" fill=\"rgba(47,143,91,.30)\" stroke=\"#2f8f5b\"/>\n<path d=\"M145 135 L120 120\" stroke=\"currentColor\"/><polygon points=\"120.0,120.0 126.4,120.2 123.2,125.6\" fill=\"currentColor\"/>\n<path d=\"M195 135 L220 120\" stroke=\"currentColor\"/><polygon points=\"220.0,120.0 216.8,125.6 213.6,120.2\" fill=\"currentColor\"/>\n<text x=\"170\" y=\"220\" text-anchor=\"middle\" font-size=\"12\">顶芽 IAA 向下运输 → 侧芽受抑</text>\n<rect x=\"340\" y=\"60\" width=\"260\" height=\"170\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"470\" y=\"88\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">根冠比</text>\n<rect x=\"420\" y=\"110\" width=\"100\" height=\"55\" rx=\"8\" fill=\"rgba(47,143,91,.18)\" stroke=\"#2f8f5b\"/>\n<text x=\"470\" y=\"143\" text-anchor=\"middle\" font-size=\"12\">地上部</text>\n<rect x=\"420\" y=\"175\" width=\"100\" height=\"40\" rx=\"8\" fill=\"rgba(47,143,91,.12)\" stroke=\"#2f8f5b\"/>\n<text x=\"470\" y=\"200\" text-anchor=\"middle\" font-size=\"12\">根系</text>\n<text x=\"470\" y=\"240\" text-anchor=\"middle\" font-size=\"12\">根冠比 = 根干重 / 冠干重</text>\n</svg>"
     }
    ]
   },
@@ -23950,6 +24316,29 @@
      "point_id": "8120809",
      "front": "易错：认为“避荫反应是Pfr升高引起的”，错在哪里？",
      "back": "①错误说法：遮荫使Pfr升高而触发避荫反应。②原因：遮荫时远红光比例升高、R/FR下降，Pr增多而Pfr减少。③正确判断：避荫反应由R/FR下降、Pfr减少触发，表现为茎快速伸长、分枝减少、叶柄上举。"
+    },
+    {
+     "kind": "简答",
+     "card_type": "原理",
+     "question": "光敏色素的 Pr 与 Pfr 两种构型如何相互转化？各吸收什么波长的光？",
+     "answer": "①Pr 型吸收红光（约 660 nm）后转变为 Pfr 构型；②Pfr 吸收远红光（约 730 nm）或经暗逆转又变回 Pr 型；③Pfr 为生理活跃型，Pfr 占总色素的比例是细胞的光信号计；④据此，红光促进需光种子萌发，远红光可逆转该效应。易错：不是 Pfr 吸红光变 Pr，而是 Pfr 吸远红光（或暗逆转）回变 Pr。",
+     "answer_points": [
+      "Pr吸收红光（约660 nm）转变为Pfr",
+      "Pfr吸收远红光（约730 nm）或暗逆转变回Pr",
+      "Pfr为生理活跃型，其占比是细胞的光信号计",
+      "红光促需光种子萌发，远红光可逆转该效应"
+     ],
+     "analysis": "本题是数值型得分点，两个吸收峰必须写准：Pr 吸 660 nm 红光变 Pfr，Pfr 吸 730 nm 远红光（或经暗逆转）回 Pr，方向写反即全错。还要说明 Pfr 是生理活跃型，其占比构成光信号计，这解释了 R/FR 比值为何能传递光环境信息。最后用需光种子萌发与远红光逆转作例证，把构型转化落到可观察的生理效应上。",
+     "unit_refs": [
+      5,
+      6,
+      7
+     ],
+     "front": "光敏色素的 Pr 与 Pfr 两种构型如何相互转化？各吸收什么波长的光？",
+     "back": "①Pr 型吸收红光（约 660 nm）后转变为 Pfr 构型；②Pfr 吸收远红光（约 730 nm）或经暗逆转又变回 Pr 型；③Pfr 为生理活跃型，Pfr 占总色素的比例是细胞的光信号计；④据此，红光促进需光种子萌发，远红光可逆转该效应。易错：不是 Pfr 吸红光变 Pr，而是 Pfr 吸远红光（或暗逆转）回变 Pr。",
+     "difficulty": 2,
+     "point_id": "8120809",
+     "card_id": "c8120809-9"
     }
    ],
    "order": 9,
@@ -23980,7 +24369,7 @@
      "kind": "diagram",
      "caption": "光敏色素 Pr 与 Pfr 的可逆互变",
      "alt": "红光使 Pr 转为 Pfr，远红光或黑暗使 Pfr 转回 Pr；Pfr 是生理活性型",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"光敏色素的可逆互变\" xmlns=\"http://www.w3.org/2000/svg\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120809\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"30\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">光敏色素的可逆互变</text>\n<circle cx=\"180\" cy=\"130\" r=\"55\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\" stroke-width=\"2\"/>\n<text x=\"180\" y=\"125\" text-anchor=\"middle\" font-size=\"18\" font-weight=\"700\">Pr</text>\n<text x=\"180\" y=\"150\" text-anchor=\"middle\" font-size=\"12\">红光吸收型</text>\n<circle cx=\"460\" cy=\"130\" r=\"55\" fill=\"rgba(47,143,91,.18)\" stroke=\"#2f8f5b\" stroke-width=\"2\"/>\n<text x=\"460\" y=\"125\" text-anchor=\"middle\" font-size=\"18\" font-weight=\"700\">Pfr</text>\n<text x=\"460\" y=\"150\" text-anchor=\"middle\" font-size=\"12\">生理活性型</text>\n<path d=\"M240 105 Q320 65 400 105\" fill=\"none\" stroke=\"currentColor\" marker-end=\"url(#mk8120809)\"/>\n<text x=\"320\" y=\"70\" text-anchor=\"middle\" font-size=\"12\">红光 660 nm</text>\n<path d=\"M400 155 Q320 195 240 155\" fill=\"none\" stroke=\"currentColor\" marker-end=\"url(#mk8120809)\"/>\n<text x=\"320\" y=\"210\" text-anchor=\"middle\" font-size=\"12\">远红光 730 nm / 暗逆转</text>\n<text x=\"320\" y=\"250\" text-anchor=\"middle\" font-size=\"12\">Pfr 比例反映夜长，是光信号计</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"光敏色素的可逆互变\" xmlns=\"http://www.w3.org/2000/svg\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"30\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">光敏色素的可逆互变</text>\n<circle cx=\"180\" cy=\"130\" r=\"55\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\" stroke-width=\"2\"/>\n<text x=\"180\" y=\"125\" text-anchor=\"middle\" font-size=\"18\" font-weight=\"700\">Pr</text>\n<text x=\"180\" y=\"150\" text-anchor=\"middle\" font-size=\"12\">红光吸收型</text>\n<circle cx=\"460\" cy=\"130\" r=\"55\" fill=\"rgba(47,143,91,.18)\" stroke=\"#2f8f5b\" stroke-width=\"2\"/>\n<text x=\"460\" y=\"125\" text-anchor=\"middle\" font-size=\"18\" font-weight=\"700\">Pfr</text>\n<text x=\"460\" y=\"150\" text-anchor=\"middle\" font-size=\"12\">生理活性型</text>\n<path d=\"M240 105 Q320 65 400 105\" fill=\"none\" stroke=\"currentColor\"/><polygon points=\"400.0,105.0 393.6,105.3 396.4,99.7\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"70\" text-anchor=\"middle\" font-size=\"12\">红光 660 nm</text>\n<path d=\"M400 155 Q320 195 240 155\" fill=\"none\" stroke=\"currentColor\"/><polygon points=\"240.0,155.0 246.4,154.7 243.6,160.3\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"210\" text-anchor=\"middle\" font-size=\"12\">远红光 730 nm / 暗逆转</text>\n<text x=\"320\" y=\"250\" text-anchor=\"middle\" font-size=\"12\">Pfr 比例反映夜长，是光信号计</text>\n</svg>"
     }
    ]
   },
@@ -24583,14 +24972,15 @@
      "kind": "简答",
      "card_type": "辨析",
      "question": "光周期诱导与春化作用在感受部位上的最关键区别是什么？",
-     "answer": "最关键区别→光周期由成熟叶片感受，春化（低温）由茎端生长点或萌动的胚感受。①光周期：成熟叶片中的光受体感知昼夜相对长度，产生成花信号后经韧皮部运至茎端；②春化：低温由茎尖、根尖等分生组织细胞及萌动胚感知，叶片不是春化感受部位；③两者成花转变都发生在茎端分生组织，但信号入口不同。",
+     "answer": "最关键区别→光周期由成熟叶片感受，春化（低温）由茎端生长点或萌动的胚感受。①光周期：成熟叶片中的光受体感知昼夜相对长度，产生成花信号即成花素（FT 蛋白类物质），经韧皮部运至茎端；②春化：低温由茎尖、根尖等分生组织细胞及萌动胚感知，叶片不是春化感受部位；③两者成花转变都发生在茎端分生组织，但信号入口不同。",
      "answer_points": [
       "光周期感受部位：成熟叶片",
+      "成花信号为成花素（FT蛋白类物质）",
       "春化感受部位：茎端生长点或萌动胚",
       "春化不由叶片感受",
       "两者成花转变均在茎端"
      ],
-     "analysis": "这是本章最高频的易混点，答题必须写“最关键区别”并直接给部位对应关系，不能只说“两者不同”。记忆时可抓住“光在叶、冷在芽”：光周期靠叶片捕光，春化靠分生组织感受低温。若把春化部位写成叶片，整道题的逻辑都会随之出错。",
+     "analysis": "这是本章最高频的易混点，答题必须写“最关键区别”并直接给部位对应关系，不能只说“两者不同”。记忆时可抓住“光在叶、冷在芽”：光周期靠叶片捕光，春化靠分生组织感受低温。还要点明成花信号的物质身份——即成花素，主要候选为 FT 蛋白类物质，只写“产生成花信号”而不给身份会被追问。若把春化部位写成叶片，整道题的逻辑都会随之出错。",
      "unit_refs": [
       5,
       6
@@ -24599,7 +24989,10 @@
      "card_id": "c8120902-3",
      "point_id": "8120902",
      "front": "光周期诱导与春化作用在感受部位上的最关键区别是什么？",
-     "back": "最关键区别→光周期由成熟叶片感受，春化（低温）由茎端生长点或萌动的胚感受。①光周期：成熟叶片中的光受体感知昼夜相对长度，产生成花信号后经韧皮部运至茎端；②春化：低温由茎尖、根尖等分生组织细胞及萌动胚感知，叶片不是春化感受部位；③两者成花转变都发生在茎端分生组织，但信号入口不同。"
+     "back": "最关键区别→光周期由成熟叶片感受，春化（低温）由茎端生长点或萌动的胚感受。①光周期：成熟叶片中的光受体感知昼夜相对长度，产生成花信号即成花素（FT 蛋白类物质），经韧皮部运至茎端；②春化：低温由茎尖、根尖等分生组织细胞及萌动胚感知，叶片不是春化感受部位；③两者成花转变都发生在茎端分生组织，但信号入口不同。",
+     "merged_from": [
+      "8120902"
+     ]
     },
     {
      "kind": "简答",
@@ -24960,7 +25353,7 @@
      "kind": "diagram",
      "caption": "春化作用的条件与感受部位",
      "alt": "低温是春化的主要条件，还需水分、氧气和糖分；感受部位是茎尖生长点；高温可去春化",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"春化作用\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8120903\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">春化作用</text>\n<rect x=\"40\" y=\"80\" width=\"160\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"120\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">低温诱导</text>\n<text x=\"120\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">0–10 ℃，持续数天</text>\n<text x=\"120\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">+ 水分/氧气/糖分</text>\n<rect x=\"250\" y=\"80\" width=\"160\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"330\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">茎尖生长点</text>\n<text x=\"330\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">感受低温</text>\n<text x=\"330\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">分生组织</text>\n<rect x=\"460\" y=\"80\" width=\"150\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"535\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">春化完成</text>\n<text x=\"535\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">具备成花能力</text>\n<text x=\"535\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">仍需适宜光周期</text>\n<path d=\"M200 130 L250 130\" stroke=\"currentColor\" marker-end=\"url(#mk8120903)\"/>\n<path d=\"M410 130 L460 130\" stroke=\"currentColor\" marker-end=\"url(#mk8120903)\"/>\n<path d=\"M330 180 L330 215\" stroke=\"currentColor\" marker-end=\"url(#mk8120903)\"/>\n<text x=\"330\" y=\"238\" text-anchor=\"middle\" font-size=\"12\">高温去春化：春化未完成前遇高温，效应消失；可再春化</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"春化作用\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">春化作用</text>\n<rect x=\"40\" y=\"80\" width=\"160\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"120\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">低温诱导</text>\n<text x=\"120\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">0–10 ℃，持续数天</text>\n<text x=\"120\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">+ 水分/氧气/糖分</text>\n<rect x=\"250\" y=\"80\" width=\"160\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"330\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">茎尖生长点</text>\n<text x=\"330\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">感受低温</text>\n<text x=\"330\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">分生组织</text>\n<rect x=\"460\" y=\"80\" width=\"150\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"535\" y=\"110\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">春化完成</text>\n<text x=\"535\" y=\"136\" text-anchor=\"middle\" font-size=\"12\">具备成花能力</text>\n<text x=\"535\" y=\"158\" text-anchor=\"middle\" font-size=\"12\">仍需适宜光周期</text>\n<path d=\"M200 130 L250 130\" stroke=\"currentColor\"/><polygon points=\"250.0,130.0 244.4,133.2 244.4,126.8\" fill=\"currentColor\"/>\n<path d=\"M410 130 L460 130\" stroke=\"currentColor\"/><polygon points=\"460.0,130.0 454.4,133.2 454.4,126.8\" fill=\"currentColor\"/>\n<path d=\"M330 180 L330 215\" stroke=\"currentColor\"/><polygon points=\"330.0,215.0 326.9,209.4 333.1,209.4\" fill=\"currentColor\"/>\n<text x=\"330\" y=\"238\" text-anchor=\"middle\" font-size=\"12\">高温去春化：春化未完成前遇高温，效应消失；可再春化</text>\n</svg>"
     }
    ]
   },
@@ -26605,7 +26998,7 @@
      "kind": "diagram",
      "caption": "花粉与柱头的识别",
      "alt": "花粉落到柱头后水合萌发；亲和花粉被接受，不亲和花粉被拒绝，表现为自交不亲和",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"花粉与柱头识别\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8121002\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">花粉与柱头的识别</text>\n<rect x=\"30\" y=\"65\" width=\"150\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"105.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">花粉落到柱头</text><text x=\"105.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">黏附、水合</text><rect x=\"220\" y=\"65\" width=\"190\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"315.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">识别反应</text><text x=\"315.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">亲和 vs 不亲和</text><text x=\"315.0\" y=\"129\" text-anchor=\"middle\" font-size=\"11.5\">柱头分泌蛋白</text><rect x=\"450\" y=\"65\" width=\"160\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"530.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">结果</text><text x=\"530.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">亲和：萌发</text><text x=\"530.0\" y=\"129\" text-anchor=\"middle\" font-size=\"11.5\">不亲和：拒绝</text><path d=\"M180 105 L220 105\" stroke=\"currentColor\" marker-end=\"url(#mk8121002)\"/><path d=\"M410 105 L450 105\" stroke=\"currentColor\" marker-end=\"url(#mk8121002)\"/>\n<text x=\"320\" y=\"200\" text-anchor=\"middle\" font-size=\"12\">自交不亲和：同一基因型花粉被柱头识别并拒绝，防止近交衰退</text>\n<text x=\"320\" y=\"227\" text-anchor=\"middle\" font-size=\"12\">识别物质基础：花粉壁蛋白与柱头表面糖蛋白/受体</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"花粉与柱头识别\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">花粉与柱头的识别</text>\n<rect x=\"30\" y=\"65\" width=\"150\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"105.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">花粉落到柱头</text><text x=\"105.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">黏附、水合</text><rect x=\"220\" y=\"65\" width=\"190\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"315.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">识别反应</text><text x=\"315.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">亲和 vs 不亲和</text><text x=\"315.0\" y=\"129\" text-anchor=\"middle\" font-size=\"11.5\">柱头分泌蛋白</text><rect x=\"450\" y=\"65\" width=\"160\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"530.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">结果</text><text x=\"530.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">亲和：萌发</text><text x=\"530.0\" y=\"129\" text-anchor=\"middle\" font-size=\"11.5\">不亲和：拒绝</text><path d=\"M180 105 L220 105\" stroke=\"currentColor\"/><polygon points=\"220.0,105.0 214.4,108.2 214.4,101.8\" fill=\"currentColor\"/><path d=\"M410 105 L450 105\" stroke=\"currentColor\"/><polygon points=\"450.0,105.0 444.4,108.2 444.4,101.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"200\" text-anchor=\"middle\" font-size=\"12\">自交不亲和：同一基因型花粉被柱头识别并拒绝，防止近交衰退</text>\n<text x=\"320\" y=\"227\" text-anchor=\"middle\" font-size=\"12\">识别物质基础：花粉壁蛋白与柱头表面糖蛋白/受体</text>\n</svg>"
     }
    ]
   },
@@ -26708,13 +27101,14 @@
      "kind": "简答",
      "card_type": "过程",
      "question": "授粉受精后，子房会发生哪些生理生化变化？",
-     "answer": "①激素变化：生长素、赤霉素与细胞分裂素合成明显增强；②代谢增强：子房呼吸速率升高，为合成提供能量与碳架，核酸与蛋白质合成加快；③生长与形态：细胞分裂与膨大增强，子房迅速膨大发育为果实。",
+     "answer": "①激素变化：生长素、赤霉素与细胞分裂素合成明显增强，激素把子房由开花转向果实，驱动子房代谢方向的整体改变；②代谢增强：子房呼吸速率升高，为合成提供能量与碳架，核酸与蛋白质合成加快；③生长与形态：细胞分裂与膨大增强，子房迅速膨大发育为果实。",
      "answer_points": [
       "三类激素合成增强",
+      "激素使子房由开花转向果实，驱动代谢方向改变",
       "呼吸升高、核酸蛋白合成加快",
       "细胞分裂膨大、子房发育为果"
      ],
-     "analysis": "答题宜按“激素→代谢→形态”三层，体现信号驱动代谢、代谢支撑生长的顺序。呼吸升高在此是为合成供能供碳架，而非成熟时的呼吸跃变。易错是只写“子房变大”而缺机制，或把三类激素写成只有生长素。",
+     "analysis": "答题宜按“激素→代谢→形态”三层，体现信号驱动代谢、代谢支撑生长的顺序。第①层不能只写“合成增强”，应点明激素是把子房由开花转向果实的信号，驱动代谢方向整体改变，这一句是②③两层的因果前提。呼吸升高在此是为合成供能供碳架，而非成熟时的呼吸跃变。易错是只写“子房变大”而缺机制，或把三类激素写成只有生长素。",
      "unit_refs": [
       2,
       4,
@@ -26724,7 +27118,10 @@
      "card_id": "c8121003-2",
      "point_id": "8121003",
      "front": "授粉受精后，子房会发生哪些生理生化变化？",
-     "back": "①激素变化：生长素、赤霉素与细胞分裂素合成明显增强；②代谢增强：子房呼吸速率升高，为合成提供能量与碳架，核酸与蛋白质合成加快；③生长与形态：细胞分裂与膨大增强，子房迅速膨大发育为果实。"
+     "back": "①激素变化：生长素、赤霉素与细胞分裂素合成明显增强，激素把子房由开花转向果实，驱动子房代谢方向的整体改变；②代谢增强：子房呼吸速率升高，为合成提供能量与碳架，核酸与蛋白质合成加快；③生长与形态：细胞分裂与膨大增强，子房迅速膨大发育为果实。",
+     "merged_from": [
+      "8121003"
+     ]
     },
     {
      "kind": "简答",
@@ -27081,7 +27478,7 @@
      "kind": "diagram",
      "caption": "双受精与花粉管导向",
      "alt": "花粉在柱头萌发，花粉管经花柱与助细胞 LURE 信号导向珠孔，释放两个精细胞分别与卵和中央细胞融合",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"双受精\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8121010\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">双受精与花粉管导向</text>\n<circle cx=\"80\" cy=\"90\" r=\"22\" fill=\"rgba(47,143,91,.20)\" stroke=\"#2f8f5b\"/>\n<text x=\"80\" y=\"95\" text-anchor=\"middle\" font-size=\"11\">花粉</text>\n<path d=\"M100 100 C180 120 220 160 280 180\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" marker-end=\"url(#mk8121010)\"/>\n<text x=\"190\" y=\"135\" font-size=\"11\">花粉管</text>\n<rect x=\"270\" y=\"140\" width=\"150\" height=\"90\" rx=\"40\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"345\" y=\"170\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">胚囊</text>\n<text x=\"345\" y=\"195\" text-anchor=\"middle\" font-size=\"11\">助细胞 LURE 导向</text>\n<text x=\"345\" y=\"215\" text-anchor=\"middle\" font-size=\"11\">珠孔进入</text>\n<path d=\"M420 175 L490 145\" stroke=\"currentColor\" marker-end=\"url(#mk8121010)\"/>\n<path d=\"M420 195 L490 225\" stroke=\"currentColor\" marker-end=\"url(#mk8121010)\"/>\n<rect x=\"490\" y=\"120\" width=\"120\" height=\"55\" rx=\"10\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"550\" y=\"145\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\">卵细胞</text>\n<text x=\"550\" y=\"165\" text-anchor=\"middle\" font-size=\"11\">→ 合子（2n）</text>\n<rect x=\"490\" y=\"195\" width=\"120\" height=\"55\" rx=\"10\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"550\" y=\"220\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\">中央细胞</text>\n<text x=\"550\" y=\"240\" text-anchor=\"middle\" font-size=\"11\">→ 胚乳（3n）</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"双受精\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">双受精与花粉管导向</text>\n<circle cx=\"80\" cy=\"90\" r=\"22\" fill=\"rgba(47,143,91,.20)\" stroke=\"#2f8f5b\"/>\n<text x=\"80\" y=\"95\" text-anchor=\"middle\" font-size=\"11\">花粉</text>\n<path d=\"M100 100 C180 120 220 160 280 180\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/><polygon points=\"280.0,180.0 273.7,181.2 275.7,175.2\" fill=\"currentColor\"/>\n<text x=\"190\" y=\"135\" font-size=\"11\">花粉管</text>\n<rect x=\"270\" y=\"140\" width=\"150\" height=\"90\" rx=\"40\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"345\" y=\"170\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">胚囊</text>\n<text x=\"345\" y=\"195\" text-anchor=\"middle\" font-size=\"11\">助细胞 LURE 导向</text>\n<text x=\"345\" y=\"215\" text-anchor=\"middle\" font-size=\"11\">珠孔进入</text>\n<path d=\"M420 175 L490 145\" stroke=\"currentColor\"/><polygon points=\"490.0,145.0 486.1,150.1 483.6,144.3\" fill=\"currentColor\"/>\n<path d=\"M420 195 L490 225\" stroke=\"currentColor\"/><polygon points=\"490.0,225.0 483.6,225.7 486.1,219.9\" fill=\"currentColor\"/>\n<rect x=\"490\" y=\"120\" width=\"120\" height=\"55\" rx=\"10\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"550\" y=\"145\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\">卵细胞</text>\n<text x=\"550\" y=\"165\" text-anchor=\"middle\" font-size=\"11\">→ 合子（2n）</text>\n<rect x=\"490\" y=\"195\" width=\"120\" height=\"55\" rx=\"10\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"550\" y=\"220\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\">中央细胞</text>\n<text x=\"550\" y=\"240\" text-anchor=\"middle\" font-size=\"11\">→ 胚乳（3n）</text>\n</svg>"
     }
    ]
   },
@@ -27859,7 +28256,7 @@
      "kind": "diagram",
      "caption": "果实成熟时的物质转化",
      "alt": "果实成熟时淀粉转糖、有机酸下降、单宁减少、果胶降解、色素与芳香物质形成，乙烯和呼吸跃变参与调控",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"果实成熟的物质转化\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8121006\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">果实成熟时的物质转化</text>\n<rect x=\"250\" y=\"70\" width=\"140\" height=\"80\" rx=\"40\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"108\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\">果实成熟</text>\n<text x=\"320\" y=\"132\" text-anchor=\"middle\" font-size=\"11\">乙烯 / 呼吸跃变</text>\n<g font-size=\"12\">\n<text x=\"40\" y=\"85\">淀粉 → 可溶性糖（变甜）</text>\n<text x=\"40\" y=\"115\">有机酸下降（酸味减少）</text>\n<text x=\"40\" y=\"145\">单宁氧化/凝结（涩味消失）</text>\n<text x=\"40\" y=\"175\">果胶降解（由硬变软）</text>\n<text x=\"40\" y=\"205\">色素/芳香物质形成（色泽、香味）</text>\n</g>\n<path d=\"M250 110 L210 85\" stroke=\"currentColor\" marker-end=\"url(#mk8121006)\"/>\n<path d=\"M250 115 L210 115\" stroke=\"currentColor\" marker-end=\"url(#mk8121006)\"/>\n<path d=\"M250 120 L210 145\" stroke=\"currentColor\" marker-end=\"url(#mk8121006)\"/>\n<path d=\"M250 125 L210 175\" stroke=\"currentColor\" marker-end=\"url(#mk8121006)\"/>\n<path d=\"M250 130 L210 205\" stroke=\"currentColor\" marker-end=\"url(#mk8121006)\"/>\n<text x=\"320\" y=\"240\" text-anchor=\"middle\" font-size=\"12\">乙烯启动成熟；呼吸跃变型果实有呼吸高峰</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"果实成熟的物质转化\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">果实成熟时的物质转化</text>\n<rect x=\"250\" y=\"70\" width=\"140\" height=\"80\" rx=\"40\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"108\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\">果实成熟</text>\n<text x=\"320\" y=\"132\" text-anchor=\"middle\" font-size=\"11\">乙烯 / 呼吸跃变</text>\n<g font-size=\"12\">\n<text x=\"40\" y=\"85\">淀粉 → 可溶性糖（变甜）</text>\n<text x=\"40\" y=\"115\">有机酸下降（酸味减少）</text>\n<text x=\"40\" y=\"145\">单宁氧化/凝结（涩味消失）</text>\n<text x=\"40\" y=\"175\">果胶降解（由硬变软）</text>\n<text x=\"40\" y=\"205\">色素/芳香物质形成（色泽、香味）</text>\n</g>\n<path d=\"M250 110 L210 85\" stroke=\"currentColor\"/><polygon points=\"210.0,85.0 216.4,85.3 213.1,90.6\" fill=\"currentColor\"/>\n<path d=\"M250 115 L210 115\" stroke=\"currentColor\"/><polygon points=\"210.0,115.0 215.6,111.8 215.6,118.2\" fill=\"currentColor\"/>\n<path d=\"M250 120 L210 145\" stroke=\"currentColor\"/><polygon points=\"210.0,145.0 213.1,139.4 216.4,144.7\" fill=\"currentColor\"/>\n<path d=\"M250 125 L210 175\" stroke=\"currentColor\"/><polygon points=\"210.0,175.0 211.0,168.7 216.0,172.6\" fill=\"currentColor\"/>\n<path d=\"M250 130 L210 205\" stroke=\"currentColor\"/><polygon points=\"210.0,205.0 209.9,198.6 215.4,201.5\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"240\" text-anchor=\"middle\" font-size=\"12\">乙烯启动成熟；呼吸跃变型果实有呼吸高峰</text>\n</svg>"
     }
    ]
   },
@@ -28695,7 +29092,7 @@
      "kind": "diagram",
      "caption": "器官脱落与离层调控",
      "alt": "离层两侧生长素梯度决定是否脱落；远轴端高、近轴端低时不脱落，反之脱落；乙烯促进离层水解酶",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"器官脱落与离层\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8121009\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">器官脱落与离层调控</text>\n<rect x=\"80\" y=\"60\" width=\"480\" height=\"50\" rx=\"8\" fill=\"rgba(47,143,91,.12)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"90\" text-anchor=\"middle\" font-size=\"13\">叶柄 / 离区</text>\n<rect x=\"80\" y=\"130\" width=\"220\" height=\"60\" rx=\"8\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"190\" y=\"155\" text-anchor=\"middle\" font-size=\"12\">远轴端 IAA 高</text>\n<text x=\"190\" y=\"177\" text-anchor=\"middle\" font-size=\"12\">近轴端 IAA 低 → 不脱落</text>\n<rect x=\"340\" y=\"130\" width=\"220\" height=\"60\" rx=\"8\" fill=\"rgba(178,106,0,.08)\" stroke=\"#b26a00\"/>\n<text x=\"450\" y=\"155\" text-anchor=\"middle\" font-size=\"12\">远轴端 IAA 低</text>\n<text x=\"450\" y=\"177\" text-anchor=\"middle\" font-size=\"12\">近轴端 IAA 高 → 脱落</text>\n<path d=\"M320 110 L190 130\" stroke=\"currentColor\" marker-end=\"url(#mk8121009)\"/>\n<path d=\"M320 110 L450 130\" stroke=\"currentColor\" marker-end=\"url(#mk8121009)\"/>\n<text x=\"320\" y=\"225\" text-anchor=\"middle\" font-size=\"12\">乙烯促进离层细胞合成纤维素酶/果胶酶，水解细胞壁</text>\n<text x=\"320\" y=\"250\" text-anchor=\"middle\" font-size=\"12\">生长素梯度学说：看离层两侧浓度比，不只看绝对量</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"器官脱落与离层\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">器官脱落与离层调控</text>\n<rect x=\"80\" y=\"60\" width=\"480\" height=\"50\" rx=\"8\" fill=\"rgba(47,143,91,.12)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"90\" text-anchor=\"middle\" font-size=\"13\">叶柄 / 离区</text>\n<rect x=\"80\" y=\"130\" width=\"220\" height=\"60\" rx=\"8\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"190\" y=\"155\" text-anchor=\"middle\" font-size=\"12\">远轴端 IAA 高</text>\n<text x=\"190\" y=\"177\" text-anchor=\"middle\" font-size=\"12\">近轴端 IAA 低 → 不脱落</text>\n<rect x=\"340\" y=\"130\" width=\"220\" height=\"60\" rx=\"8\" fill=\"rgba(178,106,0,.08)\" stroke=\"#b26a00\"/>\n<text x=\"450\" y=\"155\" text-anchor=\"middle\" font-size=\"12\">远轴端 IAA 低</text>\n<text x=\"450\" y=\"177\" text-anchor=\"middle\" font-size=\"12\">近轴端 IAA 高 → 脱落</text>\n<path d=\"M320 110 L190 130\" stroke=\"currentColor\"/><polygon points=\"190.0,130.0 195.1,126.0 196.0,132.3\" fill=\"currentColor\"/>\n<path d=\"M320 110 L450 130\" stroke=\"currentColor\"/><polygon points=\"450.0,130.0 444.0,132.3 444.9,126.0\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"225\" text-anchor=\"middle\" font-size=\"12\">乙烯促进离层细胞合成纤维素酶/果胶酶，水解细胞壁</text>\n<text x=\"320\" y=\"250\" text-anchor=\"middle\" font-size=\"12\">生长素梯度学说：看离层两侧浓度比，不只看绝对量</text>\n</svg>"
     }
    ]
   },
@@ -30236,7 +30633,7 @@
      "kind": "diagram",
      "caption": "逆境对植物生理代谢的影响",
      "alt": "逆境引起膜透性增大、光合下降、呼吸紊乱、酶活性与渗透调节物质变化",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"逆境对生理代谢的影响\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8121105\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">逆境对生理代谢的影响</text>\n<rect x=\"240\" y=\"55\" width=\"160\" height=\"55\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"320.0\" y=\"79\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">逆境胁迫</text><rect x=\"30\" y=\"135\" width=\"170\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"115.0\" y=\"159\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">膜系统</text><text x=\"115.0\" y=\"181\" text-anchor=\"middle\" font-size=\"11.5\">透性增大</text><text x=\"115.0\" y=\"199\" text-anchor=\"middle\" font-size=\"11.5\">膜脂过氧化</text><rect x=\"235\" y=\"135\" width=\"170\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"320.0\" y=\"159\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">光合/呼吸</text><text x=\"320.0\" y=\"181\" text-anchor=\"middle\" font-size=\"11.5\">光合下降</text><text x=\"320.0\" y=\"199\" text-anchor=\"middle\" font-size=\"11.5\">呼吸先升后降</text><rect x=\"440\" y=\"135\" width=\"170\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"525.0\" y=\"159\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">酶与溶质</text><text x=\"525.0\" y=\"181\" text-anchor=\"middle\" font-size=\"11.5\">酶活性改变</text><text x=\"525.0\" y=\"199\" text-anchor=\"middle\" font-size=\"11.5\">渗透调节物质积累</text><path d=\"M280 110 L200 135\" stroke=\"currentColor\" marker-end=\"url(#mk8121105)\"/><path d=\"M320 110 L320 135\" stroke=\"currentColor\" marker-end=\"url(#mk8121105)\"/><path d=\"M360 110 L440 135\" stroke=\"currentColor\" marker-end=\"url(#mk8121105)\"/>\n<text x=\"320\" y=\"250\" text-anchor=\"middle\" font-size=\"11\">最终表现为生长受抑、产量下降；膜与活性氧是共同枢纽</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"逆境对生理代谢的影响\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">逆境对生理代谢的影响</text>\n<rect x=\"240\" y=\"55\" width=\"160\" height=\"55\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"320.0\" y=\"79\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">逆境胁迫</text><rect x=\"30\" y=\"135\" width=\"170\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"115.0\" y=\"159\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">膜系统</text><text x=\"115.0\" y=\"181\" text-anchor=\"middle\" font-size=\"11.5\">透性增大</text><text x=\"115.0\" y=\"199\" text-anchor=\"middle\" font-size=\"11.5\">膜脂过氧化</text><rect x=\"235\" y=\"135\" width=\"170\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"320.0\" y=\"159\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">光合/呼吸</text><text x=\"320.0\" y=\"181\" text-anchor=\"middle\" font-size=\"11.5\">光合下降</text><text x=\"320.0\" y=\"199\" text-anchor=\"middle\" font-size=\"11.5\">呼吸先升后降</text><rect x=\"440\" y=\"135\" width=\"170\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"525.0\" y=\"159\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">酶与溶质</text><text x=\"525.0\" y=\"181\" text-anchor=\"middle\" font-size=\"11.5\">酶活性改变</text><text x=\"525.0\" y=\"199\" text-anchor=\"middle\" font-size=\"11.5\">渗透调节物质积累</text><path d=\"M280 110 L200 135\" stroke=\"currentColor\"/><polygon points=\"200.0,135.0 204.4,130.3 206.3,136.3\" fill=\"currentColor\"/><path d=\"M320 110 L320 135\" stroke=\"currentColor\"/><polygon points=\"320.0,135.0 316.9,129.4 323.1,129.4\" fill=\"currentColor\"/><path d=\"M360 110 L440 135\" stroke=\"currentColor\"/><polygon points=\"440.0,135.0 433.7,136.3 435.6,130.3\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"250\" text-anchor=\"middle\" font-size=\"11\">最终表现为生长受抑、产量下降；膜与活性氧是共同枢纽</text>\n</svg>"
     }
    ]
   },
@@ -30474,7 +30871,7 @@
      "kind": "diagram",
      "caption": "渗透调节与抗氧化系统的双重防御",
      "alt": "逆境下植物积累脯氨酸、甜菜碱等渗透调节物质维持膨压，同时用SOD、CAT、POD清除活性氧",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"渗透调节与抗氧化\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8121106\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">逆境下的双重防御</text>\n<rect x=\"240\" y=\"55\" width=\"160\" height=\"50\" rx=\"12\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"86\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\">逆境胁迫</text>\n<rect x=\"30\" y=\"140\" width=\"270\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"165\" y=\"168\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">渗透调节</text>\n<text x=\"165\" y=\"194\" text-anchor=\"middle\" font-size=\"12\">积累脯氨酸、甜菜碱、可溶性糖</text>\n<text x=\"165\" y=\"218\" text-anchor=\"middle\" font-size=\"12\">降低渗透势，维持吸水与膨压</text>\n<rect x=\"340\" y=\"140\" width=\"270\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"475\" y=\"168\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">抗氧化系统</text>\n<text x=\"475\" y=\"194\" text-anchor=\"middle\" font-size=\"12\">SOD、CAT、POD 清除 ROS</text>\n<text x=\"475\" y=\"218\" text-anchor=\"middle\" font-size=\"12\">保护膜脂，减少过氧化</text>\n<path d=\"M280 105 L165 140\" stroke=\"currentColor\" marker-end=\"url(#mk8121106)\"/>\n<path d=\"M360 105 L475 140\" stroke=\"currentColor\" marker-end=\"url(#mk8121106)\"/>\n<text x=\"320\" y=\"268\" text-anchor=\"middle\" font-size=\"11\">两条通路并行：一条保水，一条保膜</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"渗透调节与抗氧化\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">逆境下的双重防御</text>\n<rect x=\"240\" y=\"55\" width=\"160\" height=\"50\" rx=\"12\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"86\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"700\">逆境胁迫</text>\n<rect x=\"30\" y=\"140\" width=\"270\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"165\" y=\"168\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">渗透调节</text>\n<text x=\"165\" y=\"194\" text-anchor=\"middle\" font-size=\"12\">积累脯氨酸、甜菜碱、可溶性糖</text>\n<text x=\"165\" y=\"218\" text-anchor=\"middle\" font-size=\"12\">降低渗透势，维持吸水与膨压</text>\n<rect x=\"340\" y=\"140\" width=\"270\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"475\" y=\"168\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">抗氧化系统</text>\n<text x=\"475\" y=\"194\" text-anchor=\"middle\" font-size=\"12\">SOD、CAT、POD 清除 ROS</text>\n<text x=\"475\" y=\"218\" text-anchor=\"middle\" font-size=\"12\">保护膜脂，减少过氧化</text>\n<path d=\"M280 105 L165 140\" stroke=\"currentColor\"/><polygon points=\"165.0,140.0 169.4,135.4 171.3,141.4\" fill=\"currentColor\"/>\n<path d=\"M360 105 L475 140\" stroke=\"currentColor\"/><polygon points=\"475.0,140.0 468.7,141.4 470.6,135.4\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"268\" text-anchor=\"middle\" font-size=\"11\">两条通路并行：一条保水，一条保膜</text>\n</svg>"
     }
    ]
   },
@@ -30756,7 +31153,7 @@
      "kind": "diagram",
      "caption": "渗透调节的机制与物质",
      "alt": "逆境下积累无机离子和有机溶质，降低渗透势、维持膨压与吸水能力",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"渗透调节\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8121112\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">渗透调节的机制</text>\n<rect x=\"30\" y=\"65\" width=\"150\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"105\" y=\"95\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">逆境</text>\n<text x=\"105\" y=\"120\" text-anchor=\"middle\" font-size=\"11\">干旱/盐渍/低温</text>\n<rect x=\"220\" y=\"55\" width=\"200\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"82\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">积累溶质</text>\n<text x=\"320\" y=\"106\" text-anchor=\"middle\" font-size=\"11\">无机：K⁺、Cl⁻</text>\n<text x=\"320\" y=\"128\" text-anchor=\"middle\" font-size=\"11\">有机：脯氨酸、甜菜碱、糖</text>\n<rect x=\"460\" y=\"55\" width=\"150\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"535\" y=\"85\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">降低 Ψs</text>\n<text x=\"535\" y=\"110\" text-anchor=\"middle\" font-size=\"11\">维持吸水</text>\n<text x=\"535\" y=\"132\" text-anchor=\"middle\" font-size=\"11\">维持膨压</text>\n<path d=\"M180 105 L220 105\" stroke=\"currentColor\" marker-end=\"url(#mk8121112)\"/>\n<path d=\"M420 105 L460 105\" stroke=\"currentColor\" marker-end=\"url(#mk8121112)\"/>\n<text x=\"320\" y=\"200\" text-anchor=\"middle\" font-size=\"12\">有机溶质条件：小分子、高溶解度、生理 pH 不带电、高浓度无毒</text>\n<text x=\"320\" y=\"230\" text-anchor=\"middle\" font-size=\"12\">脯氨酸/甜菜碱还兼有保护酶与膜的作用</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"渗透调节\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">渗透调节的机制</text>\n<rect x=\"30\" y=\"65\" width=\"150\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"105\" y=\"95\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">逆境</text>\n<text x=\"105\" y=\"120\" text-anchor=\"middle\" font-size=\"11\">干旱/盐渍/低温</text>\n<rect x=\"220\" y=\"55\" width=\"200\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"82\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">积累溶质</text>\n<text x=\"320\" y=\"106\" text-anchor=\"middle\" font-size=\"11\">无机：K⁺、Cl⁻</text>\n<text x=\"320\" y=\"128\" text-anchor=\"middle\" font-size=\"11\">有机：脯氨酸、甜菜碱、糖</text>\n<rect x=\"460\" y=\"55\" width=\"150\" height=\"100\" rx=\"12\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"535\" y=\"85\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">降低 Ψs</text>\n<text x=\"535\" y=\"110\" text-anchor=\"middle\" font-size=\"11\">维持吸水</text>\n<text x=\"535\" y=\"132\" text-anchor=\"middle\" font-size=\"11\">维持膨压</text>\n<path d=\"M180 105 L220 105\" stroke=\"currentColor\"/><polygon points=\"220.0,105.0 214.4,108.2 214.4,101.8\" fill=\"currentColor\"/>\n<path d=\"M420 105 L460 105\" stroke=\"currentColor\"/><polygon points=\"460.0,105.0 454.4,108.2 454.4,101.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"200\" text-anchor=\"middle\" font-size=\"12\">有机溶质条件：小分子、高溶解度、生理 pH 不带电、高浓度无毒</text>\n<text x=\"320\" y=\"230\" text-anchor=\"middle\" font-size=\"12\">脯氨酸/甜菜碱还兼有保护酶与膜的作用</text>\n</svg>"
     }
    ]
   },
@@ -31042,7 +31439,7 @@
      "kind": "diagram",
      "caption": "活性氧的产生与抗氧化清除",
      "alt": "叶绿体、线粒体、过氧化物酶体和 RBOH 产生 ROS；SOD 转化超氧阴离子，CAT、APX、GPX 和 AsA-GSH 循环清除过氧化氢",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"ROS 与抗氧化\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8121113\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">活性氧的产生与清除</text>\n<rect x=\"20\" y=\"60\" width=\"180\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"110\" y=\"88\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">产生部位</text>\n<text x=\"110\" y=\"112\" text-anchor=\"middle\" font-size=\"11\">叶绿体/线粒体</text>\n<text x=\"110\" y=\"134\" text-anchor=\"middle\" font-size=\"11\">过氧化物酶体/RBOH</text>\n<rect x=\"230\" y=\"60\" width=\"140\" height=\"90\" rx=\"12\" fill=\"rgba(178,106,0,.10)\" stroke=\"#b26a00\"/>\n<text x=\"300\" y=\"88\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">ROS</text>\n<text x=\"300\" y=\"112\" text-anchor=\"middle\" font-size=\"11\">O₂·⁻、H₂O₂</text>\n<text x=\"300\" y=\"134\" text-anchor=\"middle\" font-size=\"11\">·OH、¹O₂</text>\n<rect x=\"400\" y=\"60\" width=\"210\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"505\" y=\"88\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">清除系统</text>\n<text x=\"505\" y=\"112\" text-anchor=\"middle\" font-size=\"11\">SOD → H₂O₂</text>\n<text x=\"505\" y=\"134\" text-anchor=\"middle\" font-size=\"11\">CAT/APX/GPX + AsA-GSH</text>\n<path d=\"M200 105 L230 105\" stroke=\"currentColor\" marker-end=\"url(#mk8121113)\"/>\n<path d=\"M370 105 L400 105\" stroke=\"currentColor\" marker-end=\"url(#mk8121113)\"/>\n<text x=\"320\" y=\"200\" text-anchor=\"middle\" font-size=\"12\">低浓度 ROS：信号分子；高浓度：膜脂过氧化、蛋白/核酸损伤</text>\n<text x=\"320\" y=\"230\" text-anchor=\"middle\" font-size=\"12\">抗氧化能力决定逆境下膜系统能否维持</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"ROS 与抗氧化\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">活性氧的产生与清除</text>\n<rect x=\"20\" y=\"60\" width=\"180\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"110\" y=\"88\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">产生部位</text>\n<text x=\"110\" y=\"112\" text-anchor=\"middle\" font-size=\"11\">叶绿体/线粒体</text>\n<text x=\"110\" y=\"134\" text-anchor=\"middle\" font-size=\"11\">过氧化物酶体/RBOH</text>\n<rect x=\"230\" y=\"60\" width=\"140\" height=\"90\" rx=\"12\" fill=\"rgba(178,106,0,.10)\" stroke=\"#b26a00\"/>\n<text x=\"300\" y=\"88\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">ROS</text>\n<text x=\"300\" y=\"112\" text-anchor=\"middle\" font-size=\"11\">O₂·⁻、H₂O₂</text>\n<text x=\"300\" y=\"134\" text-anchor=\"middle\" font-size=\"11\">·OH、¹O₂</text>\n<rect x=\"400\" y=\"60\" width=\"210\" height=\"90\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"505\" y=\"88\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">清除系统</text>\n<text x=\"505\" y=\"112\" text-anchor=\"middle\" font-size=\"11\">SOD → H₂O₂</text>\n<text x=\"505\" y=\"134\" text-anchor=\"middle\" font-size=\"11\">CAT/APX/GPX + AsA-GSH</text>\n<path d=\"M200 105 L230 105\" stroke=\"currentColor\"/><polygon points=\"230.0,105.0 224.4,108.2 224.4,101.8\" fill=\"currentColor\"/>\n<path d=\"M370 105 L400 105\" stroke=\"currentColor\"/><polygon points=\"400.0,105.0 394.4,108.2 394.4,101.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"200\" text-anchor=\"middle\" font-size=\"12\">低浓度 ROS：信号分子；高浓度：膜脂过氧化、蛋白/核酸损伤</text>\n<text x=\"320\" y=\"230\" text-anchor=\"middle\" font-size=\"12\">抗氧化能力决定逆境下膜系统能否维持</text>\n</svg>"
     }
    ]
   },
@@ -31256,7 +31653,7 @@
      "kind": "diagram",
      "caption": "交叉适应的概念与机制",
      "alt": "经历一种逆境后通过 ABA、ROS 信号和共同保护物质提高对另一些逆境的抗性",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"交叉适应\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8121114\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">交叉适应</text>\n<rect x=\"40\" y=\"70\" width=\"150\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"115\" y=\"98\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">一种逆境</text>\n<text x=\"115\" y=\"122\" text-anchor=\"middle\" font-size=\"11\">如干旱锻炼</text>\n<rect x=\"245\" y=\"70\" width=\"150\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"98\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">ABA / ROS 信号</text>\n<text x=\"320\" y=\"122\" text-anchor=\"middle\" font-size=\"11\">共同信号网络</text>\n<rect x=\"450\" y=\"70\" width=\"150\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"525\" y=\"98\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">另一种抗性</text>\n<text x=\"525\" y=\"122\" text-anchor=\"middle\" font-size=\"11\">如抗冷性提高</text>\n<path d=\"M190 105 L245 105\" stroke=\"currentColor\" marker-end=\"url(#mk8121114)\"/>\n<path d=\"M395 105 L450 105\" stroke=\"currentColor\" marker-end=\"url(#mk8121114)\"/>\n<rect x=\"180\" y=\"170\" width=\"280\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"198\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">共同保护物质</text>\n<text x=\"320\" y=\"222\" text-anchor=\"middle\" font-size=\"11\">脯氨酸、LEA 蛋白、抗氧化酶</text>\n<path d=\"M320 140 L320 170\" stroke=\"currentColor\" marker-end=\"url(#mk8121114)\"/>\n<text x=\"320\" y=\"265\" text-anchor=\"middle\" font-size=\"11\">交叉适应 ≠ 抗性锻炼：前者跨逆境，后者针对同一逆境</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"交叉适应\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">交叉适应</text>\n<rect x=\"40\" y=\"70\" width=\"150\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"115\" y=\"98\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">一种逆境</text>\n<text x=\"115\" y=\"122\" text-anchor=\"middle\" font-size=\"11\">如干旱锻炼</text>\n<rect x=\"245\" y=\"70\" width=\"150\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"98\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">ABA / ROS 信号</text>\n<text x=\"320\" y=\"122\" text-anchor=\"middle\" font-size=\"11\">共同信号网络</text>\n<rect x=\"450\" y=\"70\" width=\"150\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.16)\" stroke=\"#2f8f5b\"/>\n<text x=\"525\" y=\"98\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\">另一种抗性</text>\n<text x=\"525\" y=\"122\" text-anchor=\"middle\" font-size=\"11\">如抗冷性提高</text>\n<path d=\"M190 105 L245 105\" stroke=\"currentColor\"/><polygon points=\"245.0,105.0 239.4,108.2 239.4,101.8\" fill=\"currentColor\"/>\n<path d=\"M395 105 L450 105\" stroke=\"currentColor\"/><polygon points=\"450.0,105.0 444.4,108.2 444.4,101.8\" fill=\"currentColor\"/>\n<rect x=\"180\" y=\"170\" width=\"280\" height=\"70\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"320\" y=\"198\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"700\">共同保护物质</text>\n<text x=\"320\" y=\"222\" text-anchor=\"middle\" font-size=\"11\">脯氨酸、LEA 蛋白、抗氧化酶</text>\n<path d=\"M320 140 L320 170\" stroke=\"currentColor\"/><polygon points=\"320.0,170.0 316.9,164.4 323.1,164.4\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"265\" text-anchor=\"middle\" font-size=\"11\">交叉适应 ≠ 抗性锻炼：前者跨逆境，后者针对同一逆境</text>\n</svg>"
     }
    ]
   },
@@ -31517,7 +31914,7 @@
      "kind": "diagram",
      "caption": "提高植物抗逆性的途径",
      "alt": "通过抗性育种、抗逆锻炼、生长调节剂和栽培管理提高植物抗逆性",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"提高抗逆性的途径\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8121107\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">提高植物抗逆性的途径</text>\n<rect x=\"30\" y=\"65\" width=\"130\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"95.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">抗性育种</text><text x=\"95.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">选育抗逆品种</text><rect x=\"180\" y=\"65\" width=\"130\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"245.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">抗逆锻炼</text><text x=\"245.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">低温/干旱锻炼</text><rect x=\"330\" y=\"65\" width=\"130\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"395.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">生长调节剂</text><text x=\"395.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">ABA、BR 等</text><rect x=\"480\" y=\"65\" width=\"130\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"545.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">栽培管理</text><text x=\"545.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">施肥/灌水/遮阴</text><path d=\"M95 145 L280 185\" stroke=\"currentColor\" marker-end=\"url(#mk8121107)\"/><path d=\"M245 145 L300 185\" stroke=\"currentColor\" marker-end=\"url(#mk8121107)\"/><path d=\"M395 145 L340 185\" stroke=\"currentColor\" marker-end=\"url(#mk8121107)\"/><path d=\"M545 145 L360 185\" stroke=\"currentColor\" marker-end=\"url(#mk8121107)\"/><rect x=\"230\" y=\"185\" width=\"180\" height=\"55\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"320.0\" y=\"209\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">抗逆性提高</text><text x=\"320.0\" y=\"231\" text-anchor=\"middle\" font-size=\"11.5\">膜稳定、渗透调节、抗氧化</text>\n<text x=\"320\" y=\"265\" text-anchor=\"middle\" font-size=\"11\">四条途径常配合使用；锻炼与品种是基础，调节剂与栽培是短期手段</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"提高抗逆性的途径\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"28\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">提高植物抗逆性的途径</text>\n<rect x=\"30\" y=\"65\" width=\"130\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"95.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">抗性育种</text><text x=\"95.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">选育抗逆品种</text><rect x=\"180\" y=\"65\" width=\"130\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"245.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">抗逆锻炼</text><text x=\"245.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">低温/干旱锻炼</text><rect x=\"330\" y=\"65\" width=\"130\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"395.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">生长调节剂</text><text x=\"395.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">ABA、BR 等</text><rect x=\"480\" y=\"65\" width=\"130\" height=\"80\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"545.0\" y=\"89\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">栽培管理</text><text x=\"545.0\" y=\"111\" text-anchor=\"middle\" font-size=\"11.5\">施肥/灌水/遮阴</text><path d=\"M95 145 L280 185\" stroke=\"currentColor\"/><polygon points=\"280.0,185.0 273.9,186.9 275.2,180.7\" fill=\"currentColor\"/><path d=\"M245 145 L300 185\" stroke=\"currentColor\"/><polygon points=\"300.0,185.0 293.6,184.3 297.3,179.2\" fill=\"currentColor\"/><path d=\"M395 145 L340 185\" stroke=\"currentColor\"/><polygon points=\"340.0,185.0 342.7,179.2 346.4,184.3\" fill=\"currentColor\"/><path d=\"M545 145 L360 185\" stroke=\"currentColor\"/><polygon points=\"360.0,185.0 364.8,180.7 366.1,186.9\" fill=\"currentColor\"/><rect x=\"230\" y=\"185\" width=\"180\" height=\"55\" rx=\"12\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/><text x=\"320.0\" y=\"209\" text-anchor=\"middle\" font-size=\"12.5\" font-weight=\"700\">抗逆性提高</text><text x=\"320.0\" y=\"231\" text-anchor=\"middle\" font-size=\"11.5\">膜稳定、渗透调节、抗氧化</text>\n<text x=\"320\" y=\"265\" text-anchor=\"middle\" font-size=\"11\">四条途径常配合使用；锻炼与品种是基础，调节剂与栽培是短期手段</text>\n</svg>"
     }
    ]
   },
@@ -32648,7 +33045,7 @@
      "kind": "diagram",
      "caption": "干旱伤害链条",
      "alt": "干旱导致原生质脱水、气孔关闭、光合下降；同时活性氧爆发引起膜脂过氧化和膜透性增大",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"干旱伤害链条\" xmlns=\"http://www.w3.org/2000/svg\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk8121111\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"30\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">干旱伤害链条</text>\n<g font-size=\"12.5\" text-anchor=\"middle\">\n<rect x=\"20\" y=\"70\" width=\"120\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"80\" y=\"98\" font-weight=\"700\">干旱</text><text x=\"80\" y=\"122\">土壤/大气缺水</text>\n<rect x=\"175\" y=\"70\" width=\"120\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"235\" y=\"98\" font-weight=\"700\">原生质脱水</text><text x=\"235\" y=\"122\">膨压下降</text>\n<rect x=\"330\" y=\"70\" width=\"120\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"390\" y=\"98\" font-weight=\"700\">气孔关闭</text><text x=\"390\" y=\"122\">CO₂ 吸收减少</text>\n<rect x=\"485\" y=\"70\" width=\"120\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"545\" y=\"98\" font-weight=\"700\">光合下降</text><text x=\"545\" y=\"122\">生长受抑</text>\n<rect x=\"175\" y=\"180\" width=\"275\" height=\"60\" rx=\"10\" fill=\"rgba(178,106,0,.10)\" stroke=\"#b26a00\"/>\n<text x=\"312\" y=\"205\" font-weight=\"700\">活性氧爆发 → 膜脂过氧化</text>\n<text x=\"312\" y=\"228\">膜透性增大、酶失活</text>\n</g>\n<path d=\"M140 105 L175 105\" stroke=\"currentColor\" marker-end=\"url(#mk8121111)\"/>\n<path d=\"M295 105 L330 105\" stroke=\"currentColor\" marker-end=\"url(#mk8121111)\"/>\n<path d=\"M450 105 L485 105\" stroke=\"currentColor\" marker-end=\"url(#mk8121111)\"/>\n<path d=\"M235 140 L235 180\" stroke=\"currentColor\" marker-end=\"url(#mk8121111)\"/>\n<text x=\"320\" y=\"265\" text-anchor=\"middle\" font-size=\"12\">原生质脱水是旱害核心；ROS 是共同枢纽</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"干旱伤害链条\" xmlns=\"http://www.w3.org/2000/svg\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"30\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">干旱伤害链条</text>\n<g font-size=\"12.5\" text-anchor=\"middle\">\n<rect x=\"20\" y=\"70\" width=\"120\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"80\" y=\"98\" font-weight=\"700\">干旱</text><text x=\"80\" y=\"122\">土壤/大气缺水</text>\n<rect x=\"175\" y=\"70\" width=\"120\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"235\" y=\"98\" font-weight=\"700\">原生质脱水</text><text x=\"235\" y=\"122\">膨压下降</text>\n<rect x=\"330\" y=\"70\" width=\"120\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"390\" y=\"98\" font-weight=\"700\">气孔关闭</text><text x=\"390\" y=\"122\">CO₂ 吸收减少</text>\n<rect x=\"485\" y=\"70\" width=\"120\" height=\"70\" rx=\"10\" fill=\"rgba(47,143,91,.10)\" stroke=\"#2f8f5b\"/>\n<text x=\"545\" y=\"98\" font-weight=\"700\">光合下降</text><text x=\"545\" y=\"122\">生长受抑</text>\n<rect x=\"175\" y=\"180\" width=\"275\" height=\"60\" rx=\"10\" fill=\"rgba(178,106,0,.10)\" stroke=\"#b26a00\"/>\n<text x=\"312\" y=\"205\" font-weight=\"700\">活性氧爆发 → 膜脂过氧化</text>\n<text x=\"312\" y=\"228\">膜透性增大、酶失活</text>\n</g>\n<path d=\"M140 105 L175 105\" stroke=\"currentColor\"/><polygon points=\"175.0,105.0 169.4,108.2 169.4,101.8\" fill=\"currentColor\"/>\n<path d=\"M295 105 L330 105\" stroke=\"currentColor\"/><polygon points=\"330.0,105.0 324.4,108.2 324.4,101.8\" fill=\"currentColor\"/>\n<path d=\"M450 105 L485 105\" stroke=\"currentColor\"/><polygon points=\"485.0,105.0 479.4,108.2 479.4,101.8\" fill=\"currentColor\"/>\n<path d=\"M235 140 L235 180\" stroke=\"currentColor\"/><polygon points=\"235.0,180.0 231.8,174.4 238.2,174.4\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"265\" text-anchor=\"middle\" font-size=\"12\">原生质脱水是旱害核心；ROS 是共同枢纽</text>\n</svg>"
     }
    ]
   },
@@ -32893,7 +33290,7 @@
      "kind": "diagram",
      "caption": "冷害的膜脂相变",
      "alt": "常温下膜呈液晶态、选择透性正常；低温下膜脂转为凝胶态，膜收缩、透性增大、离子外渗",
-     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"冷害的膜脂相变\" xmlns=\"http://www.w3.org/2000/svg\" style=\"font-family:inherit;color:inherit\"><defs><marker id=\"mk81211M01\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"currentColor\"/></marker></defs>\n<text x=\"320\" y=\"30\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">冷害的膜脂相变</text>\n<g font-size=\"12.5\" text-anchor=\"middle\">\n<rect x=\"30\" y=\"70\" width=\"250\" height=\"150\" rx=\"12\" fill=\"rgba(47,143,91,.08)\" stroke=\"#2f8f5b\"/>\n<text x=\"155\" y=\"98\" font-weight=\"700\">常温：液晶态</text>\n<g stroke=\"currentColor\" fill=\"none\">\n<circle cx=\"80\" cy=\"130\" r=\"8\"/><circle cx=\"120\" cy=\"130\" r=\"8\"/><circle cx=\"160\" cy=\"130\" r=\"8\"/><circle cx=\"200\" cy=\"130\" r=\"8\"/><circle cx=\"240\" cy=\"130\" r=\"8\"/>\n<circle cx=\"80\" cy=\"165\" r=\"8\"/><circle cx=\"120\" cy=\"165\" r=\"8\"/><circle cx=\"160\" cy=\"165\" r=\"8\"/><circle cx=\"200\" cy=\"165\" r=\"8\"/><circle cx=\"240\" cy=\"165\" r=\"8\"/>\n</g>\n<text x=\"155\" y=\"205\">膜流动、选择透性正常</text>\n<rect x=\"360\" y=\"70\" width=\"250\" height=\"150\" rx=\"12\" fill=\"rgba(47,143,91,.08)\" stroke=\"#2f8f5b\"/>\n<text x=\"485\" y=\"98\" font-weight=\"700\">低温：凝胶态</text>\n<g stroke=\"currentColor\" fill=\"none\">\n<circle cx=\"400\" cy=\"130\" r=\"8\"/><circle cx=\"430\" cy=\"130\" r=\"8\"/><circle cx=\"460\" cy=\"130\" r=\"8\"/><circle cx=\"490\" cy=\"130\" r=\"8\"/><circle cx=\"520\" cy=\"130\" r=\"8\"/><circle cx=\"550\" cy=\"130\" r=\"8\"/>\n<circle cx=\"400\" cy=\"160\" r=\"8\"/><circle cx=\"430\" cy=\"160\" r=\"8\"/><circle cx=\"460\" cy=\"160\" r=\"8\"/><circle cx=\"490\" cy=\"160\" r=\"8\"/><circle cx=\"520\" cy=\"160\" r=\"8\"/><circle cx=\"550\" cy=\"160\" r=\"8\"/>\n</g>\n<text x=\"485\" y=\"205\">膜收缩、透性增大、离子外渗</text>\n</g>\n<path d=\"M280 145 L360 145\" stroke=\"currentColor\" marker-end=\"url(#mk81211M01)\"/>\n<text x=\"320\" y=\"250\" text-anchor=\"middle\" font-size=\"12\">相变温度以下：液晶态 → 凝胶态 → 代谢紊乱</text>\n</svg>"
+     "svg": "<svg viewBox=\"0 0 640 280\" role=\"img\" aria-label=\"冷害的膜脂相变\" xmlns=\"http://www.w3.org/2000/svg\" style=\"font-family:inherit;color:inherit\">\n<text x=\"320\" y=\"30\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"700\">冷害的膜脂相变</text>\n<g font-size=\"12.5\" text-anchor=\"middle\">\n<rect x=\"30\" y=\"70\" width=\"250\" height=\"150\" rx=\"12\" fill=\"rgba(47,143,91,.08)\" stroke=\"#2f8f5b\"/>\n<text x=\"155\" y=\"98\" font-weight=\"700\">常温：液晶态</text>\n<g stroke=\"currentColor\" fill=\"none\">\n<circle cx=\"80\" cy=\"130\" r=\"8\"/><circle cx=\"120\" cy=\"130\" r=\"8\"/><circle cx=\"160\" cy=\"130\" r=\"8\"/><circle cx=\"200\" cy=\"130\" r=\"8\"/><circle cx=\"240\" cy=\"130\" r=\"8\"/>\n<circle cx=\"80\" cy=\"165\" r=\"8\"/><circle cx=\"120\" cy=\"165\" r=\"8\"/><circle cx=\"160\" cy=\"165\" r=\"8\"/><circle cx=\"200\" cy=\"165\" r=\"8\"/><circle cx=\"240\" cy=\"165\" r=\"8\"/>\n</g>\n<text x=\"155\" y=\"205\">膜流动、选择透性正常</text>\n<rect x=\"360\" y=\"70\" width=\"250\" height=\"150\" rx=\"12\" fill=\"rgba(47,143,91,.08)\" stroke=\"#2f8f5b\"/>\n<text x=\"485\" y=\"98\" font-weight=\"700\">低温：凝胶态</text>\n<g stroke=\"currentColor\" fill=\"none\">\n<circle cx=\"400\" cy=\"130\" r=\"8\"/><circle cx=\"430\" cy=\"130\" r=\"8\"/><circle cx=\"460\" cy=\"130\" r=\"8\"/><circle cx=\"490\" cy=\"130\" r=\"8\"/><circle cx=\"520\" cy=\"130\" r=\"8\"/><circle cx=\"550\" cy=\"130\" r=\"8\"/>\n<circle cx=\"400\" cy=\"160\" r=\"8\"/><circle cx=\"430\" cy=\"160\" r=\"8\"/><circle cx=\"460\" cy=\"160\" r=\"8\"/><circle cx=\"490\" cy=\"160\" r=\"8\"/><circle cx=\"520\" cy=\"160\" r=\"8\"/><circle cx=\"550\" cy=\"160\" r=\"8\"/>\n</g>\n<text x=\"485\" y=\"205\">膜收缩、透性增大、离子外渗</text>\n</g>\n<path d=\"M280 145 L360 145\" stroke=\"currentColor\"/><polygon points=\"360.0,145.0 354.4,148.2 354.4,141.8\" fill=\"currentColor\"/>\n<text x=\"320\" y=\"250\" text-anchor=\"middle\" font-size=\"12\">相变温度以下：液晶态 → 凝胶态 → 代谢紊乱</text>\n</svg>"
     }
    ]
   }

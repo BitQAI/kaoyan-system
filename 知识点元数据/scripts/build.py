@@ -135,6 +135,19 @@ def _src(v):
     return out
 
 
+def _write_slices(sid, doc):
+    """按章写 subjects/<sid>/chapters/，保持 <sid>.json 为唯一入口。"""
+    import split_subject
+    manifest, parts = split_subject.split_doc(doc)
+    outdir = META / 'subjects' / sid / 'chapters'
+    outdir.mkdir(exist_ok=True)
+    (outdir / '_manifest.json').write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+    for cid, chunk in parts.items():
+        (outdir / f'{cid}.json').write_text(
+            json.dumps(chunk, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+
+
 def build():
     ext = json.loads((BUILD / 'extract.json').read_text(encoding='utf-8'))
     src_file = ext['source']['file']
@@ -282,6 +295,7 @@ def build():
         }
         op = META / 'subjects' / sid / f'{sid}.json'
         op.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding='utf-8')
+        _write_slices(sid, doc)
         n_units = sum(len(p['units']) for p in out_points)
         n_cards = sum(len(p['cards']) for p in out_points)
         print(f"  {op.relative_to(ROOT)}  {op.stat().st_size:,} bytes  "
