@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2027考研 · 315《化学（农）》与 云农大812《植物生理学》真题题型实测与演示</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#fff; --ink:#16202c; --muted:#5b6a7d; --line:#dfe4ea;
+  --acc:#0f6fb8; --acc2:#0a4f80; --ok:#1d7a4c; --warn:#a8620a; --bad:#a32020;
+  --chem:#2d6a4f; --org:#7a4a1e; --plant:#2f6d3f; --bg2:#eef2f6;
+  --mono:"SF Mono",ui-monospace,Menlo,Consolas,"Noto Sans Mono CJK SC",monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.72 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 90px}
+header.top{background:linear-gradient(135deg,#0a4f80,#0f6fb8 55%,#1784c4);color:#fff;padding:34px 0 26px;margin-bottom:22px}
+header.top .wrap{padding-bottom:0}
+header.top h1{margin:0 0 8px;font-size:25px;line-height:1.4;letter-spacing:.2px}
+header.top .sub{margin:0;opacity:.92;font-size:14px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.badge{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:999px;
+  padding:3px 11px;font-size:12.5px;white-space:nowrap}
+.badge b{font-weight:600}
+h2{font-size:20px;margin:38px 0 6px;padding-bottom:8px;border-bottom:2px solid var(--acc);color:var(--acc2)}
+h3{font-size:16.5px;margin:26px 0 8px;color:#123c5e}
+h4{font-size:14.5px;margin:18px 0 6px;color:#2b4a63}
+p{margin:8px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+.note{background:#fbfcfe;border-left:4px solid var(--acc);padding:10px 14px;margin:12px 0;border-radius:0 6px 6px 0;font-size:13.6px;color:#33475b}
+.note.warn{border-left-color:var(--warn);background:#fffaf3;color:#5c4318}
+.note.ok{border-left-color:var(--ok);background:#f4fbf7;color:#204f37}
+.note.bad{border-left-color:var(--bad);background:#fff6f6;color:#6d2020}
+table{width:100%;border-collapse:collapse;font-size:13.4px;margin:10px 0;background:#fff}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:#eef3f8;font-weight:600;color:#1c3f5c}
+tbody tr:nth-child(even){background:#fafbfd}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+.tw table{border:0;margin:0}
+.tw table th:first-child,.tw table td:first-child{white-space:nowrap}
+code,.mono{font-family:var(--mono);font-size:.93em}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin:16px 0}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 15px;border-top:3px solid var(--acc)}
+.kpi .k{font-size:12.5px;color:var(--muted)}
+.kpi .v{font-size:23px;font-weight:700;margin:3px 0 1px;line-height:1.25}
+.kpi .d{font-size:12.5px;color:var(--muted)}
+.kpi.chem{border-top-color:var(--chem)} .kpi.plant{border-top-color:var(--plant)}
+.tabs{display:flex;gap:6px;border-bottom:2px solid var(--line);margin:20px 0 0;flex-wrap:wrap}
+.tab{border:1px solid var(--line);border-bottom:none;background:#e9edf2;color:#43566b;padding:9px 18px;border-radius:8px 8px 0 0;
+  cursor:pointer;font-size:14.5px;font-weight:600}
+.tab[aria-selected="true"]{background:#fff;color:var(--acc2);border-color:var(--acc);border-bottom:2px solid #fff;margin-bottom:-2px}
+.panel{display:none} .panel.on{display:block}
+.bar{height:9px;background:var(--acc);border-radius:5px;display:inline-block;vertical-align:middle;min-width:3px;max-width:100%}
+.bar.chem{background:var(--chem)} .bar.plant{background:var(--plant)} .bar.gray{background:#9aa8b6}
+.brow{display:grid;grid-template-columns:190px 1fr 92px;gap:9px;align-items:center;margin:5px 0;font-size:13.3px}
+.brow>*{min-width:0}
+.brow .n{color:#33475b;overflow-wrap:anywhere}
+.brow .v{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.ctrl{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:12px 0;padding:11px 13px;background:#f1f5f9;border:1px solid var(--line);border-radius:9px}
+.ctrl label{font-size:13px;color:#43566b}
+select,input[type=search]{font:inherit;font-size:13.4px;padding:6px 9px;border:1px solid #c4ceda;border-radius:7px;background:#fff;color:var(--ink)}
+input[type=search]{min-width:230px}
+.btn{font:inherit;font-size:13px;padding:6px 13px;border:1px solid #b9c6d4;background:#fff;border-radius:7px;cursor:pointer;color:#2c4258}
+.btn:hover{background:#e8eff6}
+.count{font-size:13px;color:var(--muted);margin-left:auto}
+.q{border:1px solid var(--line);border-left:4px solid var(--chem);border-radius:8px;background:#fff;margin:9px 0;overflow:hidden}
+.q.organic{border-left-color:var(--org)}
+.q .qh{display:flex;gap:9px;align-items:baseline;padding:9px 13px;background:#f7fafc;cursor:pointer;flex-wrap:wrap}
+.q .qn{font-weight:700;color:var(--acc2);min-width:34px;font-variant-numeric:tabular-nums}
+.q .qs{flex:1;min-width:220px;font-size:14px}
+.q .tag{font-size:11.5px;padding:2px 8px;border-radius:999px;background:#e6eef6;color:#26527c;white-space:nowrap;border:1px solid #cfdded}
+.q .tag.chem{background:#e7f2ec;color:#1d5a3f;border-color:#c6dfd1}
+.q .tag.org{background:#f7efe5;color:#7a4a1e;border-color:#e6d5bf}
+.q .qb{padding:11px 13px 13px;border-top:1px dashed #e2e8ef;display:none}
+.q.open .qb{display:block}
+.q .opts{margin:6px 0 4px;padding-left:2px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px 14px}
+.q .opts span{font-size:13.4px}
+.q .meta{font-size:12.6px;color:var(--muted);margin-top:7px;padding-top:7px;border-top:1px dotted #dde4ec}
+.q .meta b{color:#405a72}
+.gloss{background:#f7f9fb;border:1px solid var(--line);border-radius:7px;padding:9px 12px;font-size:13px;color:#3b4f63;margin:8px 0}
+.gloss b{color:#1d3d59}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+.chip{font-size:12.2px;padding:2px 8px;border-radius:6px;background:#f0f4f8;border:1px solid #dde5ee;color:#37506a}
+.chip.g{background:#e8f4ed;border-color:#cfe6d9;color:#226244}
+.chip.o{background:#f8f0e6;border-color:#e8d9c4;color:#7b5323}
+table.tight td,table.tight th{padding:5px 8px;font-size:12.8px}
+.lv{display:inline-block;font-size:11.5px;padding:1px 7px;border-radius:4px;border:1px solid;white-space:nowrap}
+.lv.A{background:#e6f4ec;color:#18653f;border-color:#c4e2d2}
+.lv.B{background:#eaf1f8;color:#1d4f80;border-color:#cbdcec}
+.lv.C{background:#fbf1e2;color:#8a5a12;border-color:#eeddc4}
+.lv.D{background:#fdeeee;color:#952626;border-color:#f2d2d2}
+.src{font-size:13px}
+.src a{color:#115e94;word-break:break-all}
+.st{font-variant-numeric:tabular-nums;white-space:nowrap}
+ul.tight{margin:6px 0 6px 20px;padding:0} ul.tight li{margin:3px 0}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.6px}
+@media (max-width:760px){
+  .brow{grid-template-columns:118px 1fr 74px;gap:6px;font-size:12.4px}
+  header.top h1{font-size:20px}
+  .ctrl{gap:7px} input[type=search]{min-width:150px;width:100%}
+  .count{margin-left:0;width:100%}
+}
+@media print{
+  body{background:#fff} .ctrl,.tabs{display:none}
+  .panel{display:block!important}
+  .q .qb{display:block!important}
+  .card,.q{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1>315《化学（农）》与 云南农业大学 812《植物生理学》——真题与题型实测演示</h1>
+    <p class="sub">基于本地既有调研资料 + 本轮真实抓取核验（2026-10-22）。所有题面、题型比例、大纲文字均来自可回溯原件；推断部分单独标注。</p>
+    <div class="badges">
+      <span class="badge">315 <b>2025 原卷 50 题</b>已抓取（考研帮 PDF，6 页）</span>
+      <span class="badge">315 <b>58 题结构</b>经 2022 题库二次印证</span>
+      <span class="badge">812 <b>官方大纲</b> md5 与官网附件一致</span>
+      <span class="badge">812 <b>本校真题</b>公开渠道核验 = 未获取</span>
+      <span class="badge">参照卷 <b>414</b> 2010/2015 真题全文已抓取</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="kpis">
+    <div class="kpi chem">
+      <div class="k">315 现行卷面结构</div><div class="v">60 / 40 / 50</div>
+      <div class="d">选择 30×2 ｜ 填空 20×2 ｜ 计算·分析·合成 8 题 = 150 分</div>
+    </div>
+    <div class="kpi chem">
+      <div class="k">315 真题原文可读度</div><div class="v">50 / 58</div>
+      <div class="d">2025 卷选择+填空 50 题可逐题识读；综合题 8 题（50 分）未公开</div>
+    </div>
+    <div class="kpi plant">
+      <div class="k">812 官方题型比例</div><div class="v">20 / 60 / 20</div>
+      <div class="d">名词解释 ≈20% ｜ 简答 ≈60% ｜ 论述 ≈20%（官方大纲原文）</div>
+    </div>
+    <div class="kpi plant">
+      <div class="k">812 本校真题</div><div class="v">0 份</div>
+      <div class="d">官网只发大纲不发卷；渠道核验未获本校真题 → 只能"推算 + 参照"</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>怎么读这份演示：</b>标记 <span class="lv A">A 官方原件</span> <span class="lv B">B 第三方原始扫描/题库</span>
+    <span class="lv C">C 机构归纳</span> <span class="lv D">D 本地推断</span>。
+    凡是 D 级内容都写在明确标为"推断/预测"的区块里，不会伪装成真题事实。
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-t="t315">315 化学（农）</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="t812">812 植物生理学</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="tsrc">溯源与抓取日志</button>
+  </div>
+
+  <!-- ================= 315 ================= -->
+  <section class="panel on" id="t315">
+
+    <h2>一、315 卷面到底长什么样</h2>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>卷面单元</th><th>题量</th><th>分值</th><th>原卷措辞 / 口径来源</th><th>证据</th></tr></thead>
+        <tbody>
+          <tr><td>一、单项选择题</td><td>1–30</td><td class="st">2 分/题 = 60</td><td>2025 原卷首页："第 1~30 小题，每小题 2 分，共 60 分"；2022 题库"选择题：1~30小题，每小题2分，共60分"</td><td><span class="lv A">A</span> <span class="lv B">B</span></td></tr>
+          <tr><td>二、填空题</td><td>31–50</td><td class="st">2 分/题 = 40</td><td>2025 原卷第 5 页："第 31~50 小题，每小题 2 分，共 40 分"</td><td><span class="lv A">A</span></td></tr>
+          <tr><td>三、计算、分析与合成题</td><td>51–58</td><td class="st">共 50 分</td><td>2022 题库："计算、分析与合成题：51-58小题，共50分"；新东方/启航 2026–2027 口径一致</td><td><span class="lv B">B</span> <span class="lv C">C</span></td></tr>
+          <tr><td colspan="2">合计</td><td class="st"><b>150 分 / 180 分钟</b></td><td>全国统一命题（农学门类统考）</td><td><span class="lv B">B</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4>分值分布（现行结构）</h4>
+      <div class="brow"><span class="n">选择 30 题 × 2</span><span><span class="bar chem" style="width:40%"></span></span><span class="v">60 分</span></div>
+      <div class="brow"><span class="n">填空 20 题 × 2</span><span><span class="bar chem" style="width:26.7%"></span></span><span class="v">40 分</span></div>
+      <div class="brow"><span class="n">计算·分析·合成 8 题</span><span><span class="bar chem" style="width:33.3%"></span></span><span class="v">50 分</span></div>
+      <div class="note" style="margin-bottom:0">
+        <b>内容配比：</b>无机及分析化学 ≈ 50% ｜ 有机化学 ≈ 50%（新东方/启航 2026–2027 口径，<span class="lv C">C</span>）。
+        本地既有报告用 2025 真题逐题归类反查，2025 选择题 1–15 全部落在无机、16–30 全部落在有机，空填 31–41 无机、42–50 有机，与 50/50 完全吻合。
+      </div>
+    </div>
+
+    <h2>二、2025 真题逐题原卷（真实抓取，可筛选）</h2>
+    <p style="color:var(--muted);font-size:13.6px">
+      以下 <b>50 道题的题干与选项逐字取自考研帮公开的 2025 年《315 化学（农）》真题扫描 PDF</b>（6 页，本轮下载 498,828 字节）。
+      结构式/图示题以文字转写并注明"图示"。点击任一题展开查看归类与说明。
+    </p>
+
+    <div class="ctrl">
+      <label>题型
+        <select id="fType"><option value="">全部</option><option value="选择">选择（1–30）</option><option value="填空">填空（31–50）</option></select>
+      </label>
+      <label>板块
+        <select id="fBlock"><option value="">全部</option><option value="无机">无机及分析化学</option><option value="有机">有机化学</option></select>
+      </label>
+      <label>章节
+        <select id="fChap"><option value="">全部</option></select>
+      </label>
+      <input type="search" id="fText" placeholder="搜索题干 / 考点关键词，如 缓冲液、Kf、异构">
+      <button class="btn" id="fReset">重置</button>
+      <span class="count" id="fCount"></span>
+    </div>
+
+    <div id="qList"></div>
+
+    <h2>三、2025 单年真实章节分布（按原卷 50 题统计）</h2>
+    <p style="color:var(--muted);font-size:13.4px">下图不是"官方权重"，而是把上面 50 道真题按章归类后的<strong>实际占分</strong>。每题 2 分。</p>
+    <div class="card">
+      <div id="distChart"></div>
+      <div class="note warn" style="margin-bottom:0">
+        <b>读法与风险（<span class="lv D">D</span>）：</b>单年 100 分样本，章分布只能作"起点"不能当"定论"；综合题 8 题（50 分）未公开，
+        所在章节完全未知，因此涉及计算/合成大题的章（酸碱滴定、氧化还原、配位、羧酸与衍生物、立体化学）在上面的分数是<strong>偏低</strong>的。
+      </div>
+    </div>
+
+    <h2>四、原卷核验：本地既有报告 vs 本轮抓取</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>核验点</th><th>本地既有报告结论</th><th>原卷实测</th><th>结论</th></tr></thead>
+        <tbody>
+          <tr><td>题型结构 60/40/50</td><td>选择 30×2、填空 20×2、综合 8 题 50 分</td><td>原卷明示"1~30 每题 2 分共 60 分""31~50 每题 2 分共 40 分"；题库印证 51–58 共 50 分</td><td><span class="lv A">A</span> 成立</td></tr>
+          <tr><td>无机/有机 = 50/50</td><td>选择 1–15 无机、16–30 有机</td><td>原卷逐题核对：1–15 全无机，16 起（脂类）转有机，无一例外</td><td><span class="lv A">A</span> 成立</td></tr>
+          <tr><td>50 题逐题归类表</td><td>列出 1–50 每题考点概要</td><td>逐题比对原卷题面，考点概要与原卷一致</td><td><span class="lv A">A</span> 成立</td></tr>
+          <tr><td>第 38 题</td><td>记为"与 36 题重复（回忆版录入重复）"</td><td><strong>原卷扫描件本身</strong>第 36、38 题题干相同（Mg(OH)₂ 饱和溶液中加 MgCl₂ 后 pH 变化），非仅转录失误</td><td><span class="lv B">B</span> <b>需更新</b>：重复来自公开原卷，报告中"回忆版录入重复"的归因应改为"公开原卷即重复（排印或转录）"</td></tr>
+          <tr><td>第 15 题选项</td><td><b>既有报告未记</b></td><td>原卷第 15 题的 <b>C、D 两个选项文字完全相同</b>（均为"+17.6 kJ·mol⁻¹，0 kJ·mol⁻¹"）——高倍放大原卷复核确认</td><td><span class="lv B">B</span> <b>本轮新增发现</b>：2025 原卷存在两处排印/录入瑕疵（15 题 C-D 重复、36 与 38 题干重复），属原卷问题而非资料问题</td></tr>
+          <tr><td>综合题 8 题（50 分）</td><td>标为风险：题目文本缺失</td><td>考研帮公开 PDF 仅 6 页，止于填空 50 题，无第三大题</td><td><span class="lv A">A</span> 成立</td></tr>
+          <tr><td>禁带计算器</td><td>2025 起不允许使用计算器（学信网转载四川省教育考试院说明）</td><td>本次未重抓该公告，原报告已引官方口径</td><td><span class="lv C">C</span> 沿用</td></tr>
+          <tr><td>315 参考书目</td><td><b>既有报告未列</b></td><td>赵士铎《普通化学》(第四版)、《普通化学学习指导》(第二版)、《定量分析简明教程》(第三版)、李楠《有机化学》(第2版)；配套《化学复习指南暨习题解析》《化学历年真题与全真模拟解析》(中国农业大学出版社)</td><td><span class="lv C">C</span> <b>本轮补充</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= 812 ================= -->
+  <section class="panel" id="t812">
+
+    <h2>一、812 官方卷面结构（大纲原文）</h2>
+    <div class="gloss">
+      <b>《云南农业大学硕士研究生入学考试〈812 植物生理学〉考试大纲》原文摘录</b><br>
+      命题方式：<b>招生单位自命题</b>｜科目类别：初试｜满分：<b>150</b><br>
+      考试方式：<b>闭卷笔试</b>，考试时间 <b>3 小时</b>。<br>
+      试卷题型结构：<b>1．名词解释：占总分的 20% 左右；2．简答题：占总分的 60% 左右；3．论述题：占总分的 20% 左右。</b>
+    </div>
+    <div class="note ok">
+      <b>原件一致性已核验：</b>本轮从云南农业大学研究生处官网《关于公布2027年硕士研究生招生考试初试自命题科目考试大纲的通知》下载的官方附件
+      <code>812植物生理学.pdf</code>，与仓库本地文件《812植物生理学》考试大纲.pdf 的 MD5 <b>完全一致（f1abcbcf395ad92566d636db010ed0d5）</b>——本地资料即官方原件，非第三方整理稿。
+    </div>
+
+    <div class="card">
+      <h4>题型配比（官方）</h4>
+      <div class="brow"><span class="n">名词解释 ≈20%</span><span><span class="bar plant" style="width:20%"></span></span><span class="v">≈30 分</span></div>
+      <div class="brow"><span class="n">简答题 ≈60%</span><span><span class="bar plant" style="width:60%"></span></span><span class="v">≈90 分</span></div>
+      <div class="brow"><span class="n">论述题 ≈20%</span><span><span class="bar plant" style="width:20%"></span></span><span class="v">≈30 分</span></div>
+      <p style="font-size:13.2px;color:var(--muted);margin-top:10px">
+        官方只给<b>比例</b>，不给题数与每题分值。上表右列为按 150 分换算的估算（<span class="lv D">D</span> 本地推断），
+        实际可能是 10×3 / 6×15 / 2×15 等多种切分，务必以考场信息为准。
+      </p>
+    </div>
+
+    <h2>二、812 本校真题：本轮真实渠道核验结果</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>渠道</th><th>核验方式</th><th>结果</th><th>证据</th></tr></thead>
+        <tbody>
+          <tr><td>云南农业大学研究生处官网</td><td>抓取 2027 自命题大纲通知页 + 812 附件</td><td><b>只有大纲，没有卷子</b>：官网发布《812植物生理学.pdf》（2 页大纲）</td><td><span class="lv A">A</span></td></tr>
+          <tr><td>官网科目调整公告</td><td>抓取 2026-06-04《关于2027年硕士研究生招生部分招生专业及初试科目调整的公告》</td><td>热带作物学院 095400 林业：812 <b>植物生理与生物化学 → 植物生理学</b>（去掉生化）</td><td><span class="lv A">A</span></td></tr>
+          <tr><td>考研帮 / 学科网 / 圣才 / 中国考研网 等资料商</td><td>检索"云南农业大学 812 植物生理学 真题""903 植物生理与生物化学 真题"</td><td><b>仅售大纲、参考书、课件</b>；中国考研网云农大页列有"903 植物生理与生物化学"资料，<b>无 812 真题条目</b></td><td><span class="lv B">B</span></td></tr>
+          <tr><td>公开网页 / 论坛 / 视频站</td><td>检索网传"云农大植物生理学试卷"</td><td>未获得任何可核验的 812 原卷或回忆版</td><td><span class="lv B">B</span></td></tr>
+          <tr><td colspan="2"><b>结论</b></td><td><b>812 本校真题公开渠道 = 未获取</b>。网传"812 试卷"无法验证来源，本地报告已提示其疑为 AI 伪造</td><td><span class="lv D">D</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note warn">
+      <b>这意味着 812 的"真题"只能这样获得：</b>
+      ① 官方大纲原文（题型比例 + 考试范围，已核验原件）；
+      ② 同为植物生理学的<b>统考 414 真题</b>（题型最接近，可直接映射）；
+      ③ 兄弟院校自命题卷型（华农 805 / 西南林大 712 / 南农 / 浙农林）。
+      下面把 ② 的真实卷面与题面完整列出。
+    </div>
+
+    <h2>三、参照卷：414《植物生理学与生物化学》真实真题（题型最接近）</h2>
+    <p style="color:var(--muted);font-size:13.6px">
+      414 是农学门类统考里唯一的植物生理学卷，题型为<b>选择 + 简答 + 实验 + 分析论述</b>，与 812 的"名解/简答/论述"三段式可直接对照。
+      以下题面取自新东方在线公开的 2015 与 2010 年真题全文。
+    </p>
+
+    <div class="card">
+      <h4>2015 年 414 · 植物生理学部分卷面结构</h4>
+      <div class="tw"><table class="tight">
+        <thead><tr><th>卷面单元</th><th>题号</th><th>分值</th></tr></thead>
+        <tbody>
+          <tr><td>一、单项选择题</td><td>1–15</td><td class="st">1 分/题 = 15</td></tr>
+          <tr><td>二、简答题</td><td>16–18</td><td class="st">8 分/题 = 24</td></tr>
+          <tr><td>三、实验题</td><td>19</td><td class="st">10 分</td></tr>
+          <tr><td>四、分析论述题</td><td>20–21</td><td class="st">13 分/题 = 26</td></tr>
+          <tr><td colspan="2">植物生理学小计</td><td class="st"><b>75 分</b>（生物化学部分同构 75 分）</td></tr>
+        </tbody>
+      </table></div>
+      <h4 style="margin-top:14px">2015 年真题原题（节选，真实题面）</h4>
+      <ul class="tight">
+        <li><b>选择（1 分）</b>·具有引导花粉管定向生长作用的矿质离子是：A.Zn²⁺　B.Ca²⁺　C.Mn²⁺　D.Cu²⁺</li>
+        <li><b>选择（1 分）</b>·引起植物向光性弯曲最有效的光是：A.蓝光　B.绿光　C.黄光　D.红光</li>
+        <li><b>选择（1 分）</b>·若要使我国北方地区菊花提前开花，可对正常生长的菊花植株进行：A.低温处理　B.高温处理　C.短日照处理　D.长日照处理</li>
+        <li><b>简答（8 分）</b>·应用溶液培养法培养植物时一般应注意哪些事项？</li>
+        <li><b>简答（8 分）</b>·逆境胁迫下，植物组织中丙二醛含量可反映细胞膜受损伤的程度，为什么？</li>
+        <li><b>分析论述（13 分）</b>·类囊体膜上的蛋白质合体有哪些？请阐述它们的功能。</li>
+        <li><b>分析论述（13 分）</b>·论述植物营养生长与生殖生长的相关性。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h4>2010 年 414 · 植物生理学部分（真实题面，含实验题）</h4>
+      <ul class="tight">
+        <li><b>选择</b>·G-蛋白是一类具有重要生理调节功能的蛋白质，它在细胞信号转导中的作用是：A 作为细胞质膜上的受体感受胞外信号　B 经胞受体激活后完成信号的跨膜转换　C 作为第二信号　D 作为蛋白激酶磷酸化靶蛋白</li>
+        <li><b>选择</b>·下列学说中用于解释韧皮部有机物运输机制的是：A 化学渗透学说　B 内聚力-张力学说　C 酸生长学说　D <b>压力流动学说</b></li>
+        <li><b>选择</b>·C₄ 植物光和碳同化过程中，从叶肉细胞通过胞间连丝运输到维管束鞘细胞的 C₄-二羧酸是：A 天冬氨酸或草酰乙酸　B 草酰乙酸或苹果酸　C 苹果酸或天冬氨酸　D 草酰乙酸或琥珀酸</li>
+        <li><b>简答</b>·举出一个细胞分裂素能延缓细胞叶片衰老的实验证据，并分析其延缓叶片衰老的原因。</li>
+        <li><b>简答</b>·经过抗旱锻炼的植物，在抗旱性增强的同时，对其它逆境的抗性也增强，为什么？</li>
+        <li><b>实验题（10 分）</b>·用小流液法测定某种植物叶片的水势，得到如下实验数据（试管编号 1–6；蔗糖溶液浓度 0 / 0.2 / 0.4 / 0.6 / 0.8 / 1.0；小液滴 ↓↓↓↑↑↑）</li>
+        <li><b>分析论述</b>·论述土壤因素对植物根系吸收矿质离子的影响。</li>
+        <li><b>分析论述</b>·论述高等植物体内主要色素的生理作用。</li>
+      </ul>
+      <div class="note" style="margin-bottom:0">
+        <b>对 812 的直接映射（<span class="lv D">D</span> 推断）：</b>414 的"简答 8 分"≈812 的简答段，"分析论述 13 分"≈812 的论述段；
+        414 的实验题是 812 大纲里没有的单元（812 大纲无实验操作条目），因此 812 不会照搬 414 的四段式。
+      </div>
+    </div>
+
+    <h2>四、812 逐章名解 / 简答 / 论述候选（<span class="lv D">D</span> 本地推断）</h2>
+    <p style="color:var(--muted);font-size:13.4px">
+      依据官方大纲 104 条目 + 414 四年真题归类 + 兄弟院校题型口径推算。名解候选偏"概念定义"，简答/论述偏"可展开的体系"。
+    </p>
+    <div id="p812list"></div>
+
+    <h2>五、网传"812 真题"验真四步法</h2>
+    <div class="card">
+      <ul class="tight">
+        <li><b>1. 对题型比例</b>：官方只有名解/简答/论述三段（20/60/20）。若某卷出现"选择题""判断题"占比很高，优先怀疑非 812 原卷（更像 414 或本科卷）。</li>
+        <li><b>2. 对年份与科目名</b>：2027 起 812 改为纯《植物生理学》；2025–2026 的 812 曾是"植物生理与生物化学"<b>合卷</b>。带生化内容的卷只能对应 2025/2026，不能当作 2027 卷。</li>
+        <li><b>3. 对大纲覆盖</b>：用仓库官方大纲（md5 已核）逐条比对：光合、呼吸、激素、逆境、水分、矿质、成花、生殖成熟、衰老、脱落、休眠、矿质运输等 12 个单元是否被覆盖；覆盖不全的卷多半不是原卷。</li>
+        <li><b>4. 对参考书</b>：官方参考书 5 本（Taiz 第5版中译 / 毛自朝第2版 / 武维华第3版 / 李合生第3版 / 王忠）。凡题目细节超出这 5 本教材的（如具体图表数据、某校内部讲义编号），多半是编的。</li>
+      </ul>
+      <div class="note warn" style="margin-bottom:0">
+        <b>当前结论：</b>截至本轮抓取（2026-10-22），未找到任何一份可核验的 812 原卷或回忆版。
+        网络上流传的"云农大植物生理学试卷"无法通过上述四步校验，<b>不建议作为备考依据</b>。
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 溯源 ================= -->
+  <section class="panel" id="tsrc">
+    <h2>抓取日志（本轮真实抓取，2026-10-22）</h2>
+    <div class="tw"><table>
+      <thead><tr><th>#</th><th>来源</th><th>URL</th><th>抓取结果</th><th>校验</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>考研帮 · 2025 315 化学（农）真题 PDF</td><td class="src"><a href="https://doc.kmf.com/ky_material/8c/82/8c82aed54e674e9d5f09e0bd32de29cf.pdf" target="_blank" rel="noopener">doc.kmf.com/ky_material/8c/82/8c82aed54e674e9d5f09e0bd32de29cf.pdf</a></td><td>HTTP 200，498,828 字节，PDF 1.7 / 6 页（纯扫描件，无文本层）→ 转图逐页读题</td><td>SHA-256 e032b541…3400<br>MD5 a76ffde0…95718</td></tr>
+        <tr><td>2</td><td>云农大研究生处 · 2027 自命题大纲通知</td><td class="src"><a href="https://yjs.ynau.edu.cn/info/1012/6545.htm" target="_blank" rel="noopener">yjs.ynau.edu.cn/info/1012/6545.htm</a></td><td>HTTP 200；附件列表含《812植物生理学.pdf》</td><td>页面标题/日期与本地报告一致</td></tr>
+        <tr><td>3</td><td>同上 · 812 大纲官方附件</td><td class="src"><a href="https://yjs.ynau.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&amp;owner=1541555822&amp;wbfileid=2F6C91D7863122D0827684839A579600" target="_blank" rel="noopener">…download.jsp?wbfileid=2F6C91D…</a></td><td>HTTP 200，172,729 字节，2 页 PDF → pdftotext 提取题型与范围原文</td><td><b>MD5 f1abcbcf…0ed0d5 = 本地《812 考试大纲》</b> ✔</td></tr>
+        <tr><td>4</td><td>云农大研究生处 · 2027 初试科目调整公告</td><td class="src"><a href="https://yjs.ynau.edu.cn/info/1012/6515.htm" target="_blank" rel="noopener">yjs.ynau.edu.cn/info/1012/6515.htm</a></td><td>HTTP 200；表内"812 植物生理与生物化学 → 812 植物生理学"</td><td>官方公告</td></tr>
+        <tr><td>5</td><td>新东方在线 · 2015 年 414 植物生理学与生物化学真题</td><td class="src"><a href="https://kaoyan.koolearn.com/20141230/851281.html" target="_blank" rel="noopener">kaoyan.koolearn.com/20141230/851281.html</a></td><td>HTTP 200；含四段式卷面结构与真实题面</td><td>2015 卷结构</td></tr>
+        <tr><td>6</td><td>新东方在线 · 2010 年农学专业课真题（414）</td><td class="src"><a href="https://kaoyan.koolearn.com/20140701/821740.html" target="_blank" rel="noopener">kaoyan.koolearn.com/20140701/821740.html</a></td><td>HTTP 200；含实验题卷面与真实题面</td><td>2010 卷结构</td></tr>
+        <tr><td>7</td><td>希赛网题库 · 2022 年 315 化学（农）真题</td><td class="src"><a href="https://wangxiao.xisaiwang.com/tiku2/tp30397744.html" target="_blank" rel="noopener">wangxiao.xisaiwang.com/tiku2/tp30397744.html</a></td><td>HTTP 200；总题数 58、180 分钟、题型结构文字（选择 1–30 / 填空 31–50 / 计算·分析·合成 51–58）</td><td>结构二次印证</td></tr>
+        <tr><td>8</td><td>新东方在线 · 2026 年 315 统考科目及参考书</td><td class="src"><a href="https://kaoyan.koolearn.com/20250304/1808154.html" target="_blank" rel="noopener">kaoyan.koolearn.com/20250304/1808154.html</a></td><td>HTTP 200；题型结构 + 4 本参考书 + 2 本指南</td><td>参考书补缺</td></tr>
+        <tr><td>9</td><td>启航考研 · 2027 年 315 化学（农）统考科目</td><td class="src"><a href="https://jixun.iqihang.com/info/zykzd/nongxue/2026713507.html" target="_blank" rel="noopener">jixun.iqihang.com/info/zykzd/nongxue/2026713507.html</a></td><td>HTTP 200；2027 仍为 60/40/50 结构</td><td>结构一致</td></tr>
+        <tr><td>10</td><td>中国考研网 · 云南农业大学专业课资料目录</td><td class="src"><a href="https://www.chinakaoyan.com/note/SchoolShow/id/58/pagenum/3.shtml" target="_blank" rel="noopener">chinakaoyan.com/note/SchoolShow/id/58/pagenum/3.shtml</a></td><td>HTTP 200；列有 903 植物生理与生物化学资料，<b>无 812 真题条目</b></td><td>反证：812 无在售真题</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>本地既有资料（本次演示的数据底座）</h2>
+    <div class="tw"><table>
+      <thead><tr><th>文件</th><th>本演示引用之处</th></tr></thead>
+      <tbody>
+        <tr><td>2027考研_315化学农_章节权重深度调研.html（§3 证据B：2025 真题逐题归类；§7 题型×章节）</td><td>50 题归类表、章节分布、题型策略、权重区间</td></tr>
+        <tr><td>2027考研_云南农业大学812植物生理学_章节权重深度调研.html（§3 命题惯例；§4 云农大线索；§6 逐章卡片；§7 题型预测）</td><td>812 题型结构、科目沿革、逐章名解/简答/论述候选</td></tr>
+        <tr><td>《812植物生理学》考试大纲.pdf</td><td>官方大纲原件（本轮 md5 已与官网附件核对一致）</td></tr>
+        <tr><td>2027考研_四科知识全景与章节权重.html / 统考三科大纲知识点全景.html</td><td>315/812 在四科中的位置与跨科安排</td></tr>
+      </tbody>
+    </table></div>
+
+    <footer>
+      演示页生成于 2026-10-22 · 数据来源见上表 · 315 真题题面为公开扫描件逐字转写（结构图以文字描述并注明"图示"），仅供个人备考研究使用。
+    </footer>
+  </section>
+
+</div>
+
+<script>
+/* ===================== 数据：315 · 2025 原卷 50 题 ===================== */
+const CHAP = {
+ '溶胶':'第一章 溶液和胶体','热力':'第二章 化学热力学基础','速率平衡':'第三章 反应速率与化学平衡',
+ '结构':'第四章 物质结构','分析':'第五章 分析化学概论','酸碱':'第六章 酸碱平衡与滴定法',
+ '沉淀':'第七章 沉淀溶解平衡与滴定法','氧化还原':'第八章 氧化还原与滴定法','配位':'第九章 配位化合物与滴定法',
+ '分光':'第十章 分光光度法','电势':'第十一章 电势分析法',
+ '有机概论':'有机第一章 有机化学概论','烷烃':'有机第二章 饱和脂肪烃','烯炔':'有机第三章 不饱和脂肪烃',
+ '芳烃':'有机第四章 芳香烃','立体':'有机第五章 旋光异构','卤代烃':'有机第六章 卤代烃',
+ '醇酚醚':'有机第七章 醇酚醚','醛酮':'有机第八章 醛酮醌','羧酸':'有机第九章 羧酸及羧酸衍生物',
+ '胺':'有机第十章 胺','杂环':'有机第十一章 杂环化合物','糖':'有机第十二章 糖类',
+ '氨基酸':'有机第十三章 氨基酸与肽','脂类':'有机第十四章 脂类','有机实验':'有机第十五章 有机化学实验'
+};
+const Q = [
+{q:1,t:'选择',c:'溶胶',s:'在污水处理中，带负电的胶体污染物常用于电解质沉淀，下列聚沉能力最弱的物质是',o:['A. Al₂(SO₄)₃','B. FeCl₃','C. MgSO₄','D. KCl'],k:'聚沉能力：高价阳离子＞同价＞低价的反离子起主要作用，KCl 最弱'},
+{q:2,t:'选择',c:'热力',s:'298 K 时，下列物质的 ΔfHm 不等于 0 的是',o:['A. Fe(s)','B. C(石墨)','C. Ne(g)','D. Cl₂(l)'],k:'单质标准态生成焓为 0；Ne(g) 为 0，Cl₂(l) 非标准态'},
+{q:3,t:'选择',c:'热力',s:'NaCl 的溶解度为 6 mol/L，在 1 L 水中放入 1 mol 的 NaCl 固体，则 NaCl(s)→Na⁺(aq)+Cl⁻(aq) 的变化正确的是',o:['A. ΔS>0，ΔG>0','B. ΔS<0，ΔG>0','C. ΔS>0，ΔG<0','D. ΔS<0，ΔG<0'],k:'溶解熵增；未饱和故 ΔG<0（ΔG=RTlnQ，Q<Ksp）'},
+{q:4,t:'选择',c:'酸碱',s:'0.5 g 的下列物质稀释 5 倍，下列溶液 pH 变化最小的是',o:['A. NaOH','B. HAc','C. NH₄Cl','D. NH₄Ac'],k:'NaOH 强碱 pH 变化最大；醋酸铵为弱酸弱碱盐，pH 变化最小'},
+{q:5,t:'选择',c:'速率平衡',s:'反应 2NO(g)+O₂(g)=2NO₂(g)，在 739 K 时达到反应平衡，若只升高温度，则反应',o:['A. 正向移动','B. 逆向移动','C. ΔrG⊖ 变小','D. K⊖ 变大'],k:'该反应放热（正向 ΔH<0），升温 K↓、平衡逆移'},
+{q:6,t:'选择',c:'氧化还原',s:'碘量法中提前加入 KI，以下哪个解释不合理？',o:['A. 防止 I₂ 发生歧化','B. 生成 I₃⁻','C. 防止 I₂ 挥发','D. 增加溶解度'],k:'加 KI 的目的是生成 I₃⁻ 溶解 I₂、减少挥发；"增加溶解度"指 I₂ 而非 KI'},
+{q:7,t:'选择',c:'结构',s:'判断 P-Cl、Si-Cl、S-Cl 三种化学键极性从大到小的排序是',o:['A. PCl>SiCl>SCl','B. SiCl>SCl>PCl','C. SiCl>PCl>SCl','D. PCl>SCl>SiCl'],k:'电负性差 Δχ：Si–Cl(1.26) > P–Cl(0.97) > S–Cl(0.58) → 键极性 Si–Cl > P–Cl > S–Cl（选 C）'},
+{q:8,t:'选择',c:'结构',s:'在多电子原子的具有下列各组量子数 (n,l,m,mₛ) 的电子中，其中能量最高的是',o:['A. (3,0,0,1/2)','B. (3,1,2,−1/2)','C. (2,1,−1,−1/2)','D. (3,2,1,+1/2)'],k:'多电子原子能量取决于 n+l 与 n；D 的 n=3,l=2 最高'},
+{q:9,t:'选择',c:'酸碱',s:'用 NaOH 标准溶液滴定一元弱酸时，若将弱酸浓度稀释 10 倍，则滴定在 99.98% 和 100.02% 时，pH 值变化比未稀释时',o:['A. 增大；增大','B. 减小；减小','C. 不变；减小','D. 增大；不变'],k:'稀释使酸度降低，化学计量点前后突跃范围均收窄'},
+{q:10,t:'选择',c:'配位',s:'如果 [M(NH₃)₂]⁺ 的 Kf⊖ = a，[M(CN)₂]⁻ 的 Kf⊖ = b，则反应 [M(NH₃)₂]⁺ + 2CN⁻ = [M(CN)₂]⁻ + 2NH₃ 的平衡常数 K⊖ 是',o:['A. a−b','B. b−a','C. a/b','D. b/a'],k:'K = b/a（生成常数之比）'},
+{q:11,t:'选择',c:'配位',s:'Fe 和 F 形成外轨型配合物 [FeF₆]⁴⁻ 和内轨型配合物 [FeCN₆]⁴⁻，下列说法不正确的是',o:['A. 都是八面体型','B. [FeF₆]⁴⁻ 的溶解度比 [FeCN₆]⁴⁻ 小','C. [FeF₆]⁴⁻ 的 Kf 值比 [FeCN₆]⁴⁻ 小','D. [FeF₆]⁴⁻ 的孤对电子比 [FeCN₆]⁴⁻ 的孤对电子少'],k:'CN⁻ 强场、低自旋 d²sp³，Kf 更大、溶解度更小'},
+{q:12,t:'选择',c:'结构',s:'NH₃ 获得质子变成 NH₄⁺，构型变化为',o:['A. 从三角锥形到正方形','B. 从三角锥形到正四面体','C. 从三角形正方形','D. 从三角形到正四面体'],k:'孤对电子转化为成键电子对 → sp³ 正四面体'},
+{q:13,t:'选择',c:'酸碱',s:'已知磷酸：pKa1=2.1；pKa2=7.2；pKa3=12.4；碳酸：pKa1=6.38；pKa2=10.33。若要配置 pH=2.5 的缓冲液，应选用的缓冲对为',o:['A. H₃PO₄-H₂PO₄⁻','B. H₂CO₃-HCO₃⁻','C. H₂PO₄⁻-HPO₄²⁻','D. HCO₃⁻-CO₃²⁻'],k:'选 pKa 最接近 2.5 的酸碱对：H₃PO₄/H₂PO₄⁻（pKa1=2.1）'},
+{q:14,t:'选择',c:'氧化还原',s:'已知 φ⊖(MnO₄⁻/MnO₄²⁻)=0.56 V，φ⊖(MnO₄⁻/MnO₂)=1.68 V，φ⊖(MnO₂/Mn²⁺)=1.22 V，其中 ①MnO₄²⁻、②MnO₂、③Mn²⁺ 的还原性由大到小排序是',o:['A. ①②③','B. ①③②','C. ③②①','D. ③①②'],k:'还原性强者对应电势小：①MnO₄²⁻(0.56 V) > ③Mn²⁺(MnO₂/Mn²⁺=1.22 V) > ②MnO₂(MnO₄⁻/MnO₂=1.68 V) → ①③②（选 B）'},
+{q:15,t:'选择',c:'热力',s:'298 K、定压条件下，1 mol 白磷和 1 mol 红磷与足量 Cl₂(g) 完全反应生成 PCl₃(s) 时，ΔrHm 分别为 −447.1 kJ·mol⁻¹ 和 −429 kJ·mol⁻¹。白磷和红磷的 ΔfHm(298 K) 分别为',o:['A. 0 kJ·mol⁻¹，−17.6 kJ·mol⁻¹','B. 0 kJ·mol⁻¹，+17.6 kJ·mol⁻¹','C. +17.6 kJ·mol⁻¹，0','D. +17.6 kJ·mol⁻¹，0'],k:'白磷为标准态，ΔfHm=0；红磷 ΔfHm=+17.6 kJ·mol⁻¹（盖斯定律）。<b>原卷本题 C、D 两选项文字完全相同</b>（排印重复）'},
+{q:16,t:'选择',c:'脂类',s:'以下是不饱和脂肪酸的是',o:['A. 月桂酸','B. 软脂酸','C. 硬脂酸','D. 油酸'],k:'月桂酸/软脂酸/硬脂酸为饱和；油酸为 18:1 不饱和'},
+{q:17,t:'选择',c:'糖',s:'构成直链淀粉的单糖和化学键是',o:['A. 果糖 α-1,4 糖苷键','B. 果糖 β-1,4 糖苷键','C. 葡萄糖 α-1,4 糖苷键','D. 葡萄糖 β-1,4 糖苷键'],k:'直链淀粉 = α-D-葡萄糖 + α-1,4 糖苷键'},
+{q:18,t:'选择',c:'羧酸',s:'证明乙酰乙酸酯的烯醇式互变异构的试剂是',o:['A. 氨水','B. 溴水','C. 三氯化铁','D. 高锰酸钾'],k:'烯醇式给出酚羟基显色 → FeCl₃'},
+{q:19,t:'选择',c:'醇酚醚',s:'下列化合物中存在分子内氢键的是（图示：A. 邻-甲基苯酚　B. 邻-苯二酚　C. 对-氯苯酚　D. 邻-甲基环己醇）',o:[],k:'邻位双官能团可形成分子内氢键；图中 A/B/C/D 结构式以文字转写'},
+{q:20,t:'选择',c:'醛酮',s:'下列化合物中与 HCN 发生亲核加成反应最快的是',o:['A. CH₃CHO','B. BrCH₂CHO','C. CH₃CH₂CHO','D. BrCH₂CH₂CHO'],k:'吸电子基（Br）提升羰基碳 electrophilicity → 醛最快'},
+{q:21,t:'选择',c:'醇酚醚',s:'可以用于鉴别苯酚和苯甲酸的试剂是',o:['A. 盐酸','B. 溴水','C. 硫酸铜溶液','D. 氢氧化钠溶液'],k:'苯酚 + 溴水 → 白色沉淀 2,4,6-三溴苯酚；苯甲酸不反应'},
+{q:22,t:'选择',c:'烯炔',s:'2-丁炔和 1,3-丁二烯二者之间属于什么异构？',o:['A. 官能团异构','B. 碳架异构','C. 位置异构','D. 顺反异构'],k:'C₄H₆ 互为位置异构'},
+{q:23,t:'选择',c:'羧酸',s:'下列两种化合物在浓硫酸中加热反应生成〔3-氯-2-甲基苯甲酸正丙酯〕的是（选项均为该酯与 1-丙醇/2-丙醇的组合，差别在苯环上 Cl 与 CH₃ 的相对位置）',o:[],k:'Fischer 酯化；需由邻位定位效应确定 Cl 与 CH₃ 位置，选项以图示给出'},
+{q:24,t:'选择',c:'有机实验',s:'从茶叶中提取咖啡因实验用到的抽滤装置是',o:['A. 索氏提取器','B. 精馏装置','C. 布氏漏斗','D. 蒸馏操作'],k:'抽滤 = 布氏漏斗 + 抽滤瓶 + 安全瓶'},
+{q:25,t:'选择',c:'卤代烃',s:'下列化合物中，在碱性条件下最易发生消除反应的是（A. 2-溴丁烷　B. 2-丁醇　C. 2-溴-2-甲基丙烷　D. 2-甲基-2-丙醇）',o:[],k:'叔卤代烷（溴代叔丁烷）E2 最易；醇在碱性条件下主要取代'},
+{q:26,t:'选择',c:'烷烃',s:'下列物质熔点最低的是（A. 正庚烷　B. 异辛烷　C. 新戊烷　D. 2,3-二甲基丁烷）',o:[],k:'熔点：分子对称性高者高。新戊烷 −16.6 ℃ 最高；2,3-二甲基丁烷约 −99 ℃ 最低（正庚烷约 −90.5 ℃、异辛烷约 −70 ℃）'},
+{q:27,t:'选择',c:'芳烃',s:'物质〔N-苯甲酰基苯胺〕发生亲电取代最容易发生的位置是（图示：苯环编号 1—4）',o:['A. 1','B. 2','C. 3','D. 4'],k:'—NHCOCON 基团为邻/对位定位基，酰氨基使邻对位电子云密度升高'},
+{q:28,t:'选择',c:'立体',s:'物质〔图示：含 Cl、CH₃、OH 的双环萜类骨架〕的分子中手性碳原子的个数为',o:['A. 2','B. 3','C. 4','D. 5'],k:'逐个标出连四个不同基团的饱和碳；骨架以文字转写'},
+{q:29,t:'选择',c:'杂环',s:'物质 ①吡咯　②吡啶　③哌啶 碱性从强到弱的顺序是',o:['A. ①②③','B. ①③②','C. ③②①','D. ③①②'],k:'哌啶（强脂肪胺）＞吡啶＞吡咯（孤对成键，几乎无碱性）'},
+{q:30,t:'选择',c:'糖',s:'组成乳糖的两个单糖是',o:['A. D-2-脱氧核糖和 D-半乳糖','B. D-甘露糖和 D-半乳糖','C. D-葡萄糖和 D-半乳糖','D. D-果糖和 D-半乳糖'],k:'乳糖 = β-D-半乳糖 + D-葡萄糖（还原性二糖）'},
+{q:31,t:'填空',c:'配位',s:'[Fe(C₂O₄)₃]³⁻ 的配位数是 ______。',o:[],k:'3 个草酸根各为双齿配体 → 配位数 6'},
+{q:32,t:'填空',c:'分析',s:'Na₂CO₃ 中含有少量杂质 Na₂O，用该 Na₂CO₃ 滴定 HCl，滴定结果会 ______（填"偏高"、"偏低"或"不影响"）。',o:[],k:'Na₂O 与水生成 NaOH，按 1 mol Na₂O → 2 mol NaOH 计，当量多 → 消耗酸多 → 结果偏高'},
+{q:33,t:'填空',c:'速率平衡',s:'某反应 lnk ~ 1/T 的关系是一条直线（图中：1/T=3.3×10³ K⁻¹ 时 lnk=4.8；1/T=3.6×10³ K⁻¹ 时 lnk=1.8），则该反应的活化能 Ea = ______ kJ/mol。',o:[],k:'lnk = −Ea/(RT) + C；斜率 = (1.8−4.8)/(3.6−3.3)×10⁻³ = −10000，Ea = 10000R ≈ 83.1 kJ/mol'},
+{q:34,t:'填空',c:'分光',s:'某物质降解前用 1 cm 的比色皿测得吸光度为 0.460，降解后用 5 cm 的比色皿测得吸光度为 0.345，则该物质的降解率为 ______。',o:[],k:'A=εbc；降解前 c₁=0.460/(ε×1)，降解后 c₂=0.345/(ε×5)，降解率 = 1−c₂/c₁ = 1−0.069/0.460 = 85%'},
+{q:35,t:'填空',c:'结构',s:'萘在升华中需要克服的分子间作用力类型是 ______。',o:[],k:'萘为非极性分子 → 色散力（范德华力）'},
+{q:36,t:'填空',c:'沉淀',s:'向饱和的 Mg(OH)₂ 中加入一定量的 MgCl₂ 固体，则溶液的 pH 值将 ______（填"增大"、"减小"或"不变"）。',o:[],k:'同离子效应使溶解平衡左移，[OH⁻] 减小 → pH 减小'},
+{q:37,t:'填空',c:'速率平衡',s:'已知反应的速率方程为 v = kc²(A)c²(B)，则速率常数 k 的单位是 ______。',o:[],k:'v 为浓度/时间 → k 单位 = (mol·L⁻¹)⁻³·s⁻¹'},
+{q:38,t:'填空',c:'沉淀',s:'向饱和 Mg(OH)₂ 中加入 MgCl₂ 固体，溶液的 pH 值将 ______（填"增大"、"减小"或"不变"）。',o:[],k:'<b>原卷第 38 题题干与第 36 题相同</b>——公开扫描件即如此，非仅转录失误'},
+{q:39,t:'填空',c:'酸碱',s:'浓度为 0.10 mol/L 的弱酸 HA 的 pH = 3.00，该酸的电离常数为 Ka⊖ 为 ______。',o:[],k:'c(H⁺)=10⁻³ → Ka = (10⁻³)²/(0.1−10⁻³) ≈ 1.01×10⁻⁵'},
+{q:40,t:'填空',c:'氧化还原',s:'已知 φ⊖(Cu²⁺/Cu⁺)=0.15 V，φ⊖(Cu²⁺/Cu)=0.35 V，则 φ⊖(Cu⁺/Cu) = ______。',o:[],k:'2×0.35 = 0.15 + 1×φ⊖(Cu⁺/Cu) → φ⊖ = 0.55 V'},
+{q:41,t:'填空',c:'结构',s:'二氧化碳分子中心原子的杂化轨道数为 ______。',o:[],k:'CO₂ 中心 C 为 sp 杂化 → 2 个杂化轨道'},
+{q:42,t:'填空',c:'芳烃',s:'完成反应式（只写主产物）：苯乙酮 —(Br₂/FeBr₃)→ ______。',o:[],k:'芳环溴代（—COCH₃ 为间位定位基 → 产 3-溴苯乙酮）'},
+{q:43,t:'填空',c:'胺',s:'完成反应式（只写主产物）：苯胺 —((CH₃CO)₂O)→ ______。',o:[],k:'N-乙酰化 → 乙酰苯胺（乙酰氨基苯）'},
+{q:44,t:'填空',c:'羧酸',s:'完成反应式（只写主产物）：环己烷-1,2-二乙酸 —(Ba(OH)₂, Δ)→ ______。',o:[],k:'二元羧酸钙盐热分解 → 环己烯 + 碳酸钡'},
+{q:45,t:'填空',c:'羧酸',s:'化合物 ①4-甲氧基苯甲酸　②4-硝基苯甲酸　③4-氯苯甲酸，酸性最强的是 ______（填序号）。',o:[],k:'电子效应：—OCH₃ 供电子（最弱）＞—Cl 吸电子较弱＞—NO₂ 强吸电子（最强）→ ②'},
+{q:46,t:'填空',c:'烯炔',s:'E-丁烯二醛的结构式为 ______。',o:[],k:'(E)-CH₃CH=CHCHO，标注 E 构型'},
+{q:47,t:'填空',c:'醛酮',s:'完成反应式（只写主产物）：苯甲醛 + PhMgBr —(1) 干醚；(2) H₂O/H⁺→ ______。',o:[],k:'格林纳反应 → 二苯甲醇 C₆H₅CH(OH)C₆H₅'},
+{q:48,t:'填空',c:'烷烃',s:'〔图示：CH₃CH(CH₃)CH₂CH(CH₂CH₃)CH₂CH₃〕的系统命名是 ______。',o:[],k:'取最长链 6C → 3,4-二甲基己烷'},
+{q:49,t:'填空',c:'羧酸',s:'完成反应式（只写主产物）：苯甲酸乙酯 + 乙酰乙酸乙酯 —(CH₃CH₂ONa, H₂O/H⁺)→ ______。',o:[],k:'Claisen 酯缩合（交叉酯缩合）→ β-酮酸酯类产物'},
+{q:50,t:'填空',c:'立体',s:'抗癌药物紫杉醇〔图示〕的合成是用螯合物固定锂的构型，从背面进攻，新生成产物上的手性碳构型为 ______ 型。',o:[],k:'背面进攻 → 手性翻转 → R/S 互换，需判断产物为 R 型还是 S 型'}
+];
+
+/* ===================== 数据：812 逐章预测 ===================== */
+const P812 = [
+ {ch:'绪论',w:'1 分 · 区间 0–3',t:'第三梯队',
+  m:['植物生理学（定义/内容）'],s:['植物生理学的研究内容与分支（低概率）'],l:['—']},
+ {ch:'第一章 植物细胞的结构与功能',w:'6 分 · 区间 3–10',t:'第三梯队',
+  m:['植物细胞全能性','共质体 / 质外体','胞间连丝','细胞信号转导','生物膜','细胞浆（胶体/液晶性质）'],
+  s:['细胞壁的结构与功能','生物膜的结构特点与功能','胞间连丝的结构与功能','细胞信号转导的基本阶段'],
+  l:['细胞的信号转导（与激素/逆境交叉）']},
+ {ch:'第二章 植物的水分代谢',w:'13 分 · 区间 9–17',t:'第二梯队',
+  m:['水势','渗透势 / 压力势 / 衬质势','自由水与束缚水','蒸腾作用','根压','内聚力学说','水分临界期','吐水 / 伤流'],
+  s:['水势的组成及各组分含义','植物根系吸水的途径与动力','蒸腾作用的生理意义与调节','气孔运动的机理（三种学说）','作物需水规律与合理灌溉指标'],
+  l:['气孔开闭机理及其调控（多年高频）','水分平衡与作物水分管理']},
+ {ch:'第三章 植物的矿质营养',w:'13 分 · 区间 9–17',t:'第二梯队',
+  m:['必需元素','大量元素 / 微量元素','载体蛋白','离子泵（H⁺-ATP 酶）','共运输','生理酸性盐 / 生理碱性盐','营养临界期'],
+  s:['确定必需元素的标准与 17 种必需元素','根系吸收矿质元素的特点与过程','溶质跨膜运输的方式','主要元素的作用与缺素症状'],
+  l:['矿质元素吸收机制与转运','氮素营养与作物产量（结合施肥）']},
+ {ch:'第四章 植物的光合作用',w:'23 分 · 区间 16–28',t:'第一梯队',
+  m:['光合作用','光饱和点 / 光补偿点','CO₂ 补偿点','光呼吸','光合磷酸化','原初反应','C₃/C₄/CAM 植物','光能利用率','量子效率'],
+  s:['叶绿体色素的种类与光学特性','影响光合作用的因素','光呼吸的过程与生理意义','光合作用三阶段概要'],
+  l:['C₃、C₄、CAM 植物的光合特性比较（几乎每年涉及）','光能利用率与产量潜力','提高作物光能利用率的途径']},
+ {ch:'第五章 植物的呼吸作用',w:'12 分 · 区间 8–16',t:'第二梯队',
+  m:['呼吸作用','呼吸商','磷酸戊糖途径（PPP）','抗氰呼吸','呼吸跃变','末端氧化酶','有氧 / 无氧呼吸'],
+  s:['呼吸代谢多样性及其意义','影响呼吸作用的因素','PPP 的生理意义','有氧呼吸与无氧呼吸途径概要'],
+  l:['呼吸作用与农产品贮藏 / 作物栽培（呼吸跃变应用）']},
+ {ch:'第六章 有机物质的运输与分配',w:'8 分 · 区间 4–12',t:'第三梯队',
+  m:['源-库单位','压力流动学说','收缩蛋白学说','韧皮部装载','同化物'],
+  s:['有机物运输的形式与途径','有机物运输机理（压力流动学说）','同化物的分配规律与调控'],
+  l:['光合产物分配与经济产量（源库关系）']},
+ {ch:'第七章 植物的生长物质',w:'20 分 · 区间 13–24',t:'第一梯队',
+  m:['植物激素','植物生长调节剂','极性运输','酸生长理论','三重反应','细胞分裂素','脱落酸','乙烯','激素受体'],
+  s:['生长素的分布、运输与生理效应','赤霉素的生理效应与 α-淀粉酶诱导','细胞分裂素/ABA/乙烯的生理效应','五大类激素的相互作用'],
+  l:['植物激素间的相互关系与作用机理','植物生长调节剂在农业生产中的应用','酸生长理论实验证据']},
+ {ch:'第八章 植物的营养生长',w:'12 分 · 区间 8–16',t:'第二梯队',
+  m:['生长大周期','顶端优势','生长的相关性','光敏色素','植物组织培养','分化与发育','种子休眠 / 萌发'],
+  s:['种子萌发的条件与生理生化变化','植物生长的周期性','植物生长的相关性','光敏色素的结构与生理作用'],
+  l:['顶端优势与生长的相关性（如"根深叶茂"）','光敏色素与光形态建成']},
+ {ch:'第九章 植物的成花生理',w:'13 分 · 区间 9–17',t:'第二梯队',
+  m:['春化作用','光周期现象','光周期诱导','花熟状态','临界日长','长日 / 短日植物','光敏色素'],
+  s:['春化作用的条件与应用','光周期反应类型与感受部位','植物感受春化/光周期的部位与时期'],
+  l:['光周期理论在农业生产上的应用（南农、浙农林均考过）','春化作用与成花诱导途径']},
+ {ch:'第十章 生殖、成熟与衰老生理',w:'13 分 · 区间 8–17',t:'第二梯队',
+  m:['呼吸跃变','种子休眠','植物衰老','器官脱落','单性结实','果实成熟','程序性细胞死亡（PCD）'],
+  s:['种子休眠的原因与破眠措施','果实成熟的生理生化变化','植物衰老时的生理生化变化','花粉与柱头的识别'],
+  l:['果实成熟 / 叶片衰老的调控机制（南农考过"衰老调控机制"）']},
+ {ch:'第十一章 植物的逆境生理',w:'16 分 · 区间 11–21',t:'第一梯队',
+  m:['逆境','抗逆性','渗透调节','冷害 / 冻害','旱害','抗寒锻炼','活性氧','逆境蛋白'],
+  s:['逆境对植物生理代谢的影响','植物对逆境的生理适应（渗透调节）','抗寒锻炼与低温适应','干旱伤害植物的机理'],
+  l:['提高植物抗逆性的途径及生理依据','干旱 / 低温胁迫的伤害机理与适应']}
+];
+
+/* ===================== 渲染 ===================== */
+const $=(s,r)=>(r||document).querySelector(s), $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+function chapFull(c){return CHAP[c]||c;}
+function blockOf(c){return ['溶胶','热力','速率平衡','结构','分析','酸碱','沉淀','氧化还原','配位','分光','电势'].indexOf(c)>=0?'无机':'有机';}
+
+function renderQ(){
+  const list=$('#qList');
+  list.innerHTML=Q.map(q=>{
+    const bk=blockOf(q.c);
+    const opts=q.o&&q.o.length?('<div class="opts">'+q.o.map(o=>'<span>'+o+'</span>').join('')+'</div>'):'';
+    return '<div class="q '+(bk==='有机'?'organic':'')+'" data-t="'+q.t+'" data-b="'+bk+'" data-c="'+q.c+'">'
+      +'<div class="qh"><span class="qn">'+q.q+'</span>'
+      +'<span class="qs">'+esc(q.s)+'</span>'
+      +'<span class="tag '+(bk==='有机'?'org':'chem')+'">'+esc(chapFull(q.c))+'</span>'
+      +'<span class="tag">'+(q.t==='选择'?'选择 · 2 分':'填空 · 2 分')+'</span></div>'
+      +'<div class="qb">'+opts
+      +'<div class="meta"><b>考点提示：</b>'+q.k+'<br><b>章节归类：</b>'+esc(chapFull(q.c))+'（归类为本地整理，非官方公布）</div></div></div>';
+  }).join('');
+  $$('#qList .qh').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
+}
+
+function fillChapSelect(){
+  const seen=[];Q.forEach(q=>{if(seen.indexOf(q.c)<0)seen.push(q.c);});
+  seen.sort((a,b)=>a.localeCompare(b,'zh'));
+  $('#fChap').innerHTML='<option value="">全部</option>'+seen.map(c=>'<option value="'+c+'">'+esc(chapFull(c))+'</option>').join('');
+}
+
+function applyFilter(){
+  const t=$('#fType').value,b=$('#fBlock').value,c=$('#fChap').value,q=$('#fText').value.trim().toLowerCase();
+  let n=0;
+  $$('#qList .q').forEach(el=>{
+    const okT=!t||el.dataset.t===t, okB=!b||el.dataset.b===b, okC=!c||el.dataset.c===c;
+    const okQ=!q||el.textContent.toLowerCase().indexOf(q)>=0;
+    const vis=okT&&okB&&okC&&okQ; el.style.display=vis?'':'none'; if(vis)n++;
+  });
+  $('#fCount').textContent='显示 '+n+' / '+Q.length+' 题';
+}
+
+function renderDist(){
+  const map={};
+  Q.forEach(q=>{map[q.c]=(map[q.c]||0)+2;});
+  const rows=Object.keys(map).map(k=>({k:k,v:map[k]})).sort((a,b)=>b.v-a.v||a.k.localeCompare(b.k,'zh'));
+  const max=Math.max.apply(null,rows.map(r=>r.v));
+  const inorg=rows.filter(r=>['溶胶','热力','速率平衡','结构','分析','酸碱','沉淀','氧化还原','配位','分光','电势'].indexOf(r.k)>=0);
+  const org=rows.filter(r=>['溶胶','热力','速率平衡','结构','分析','酸碱','沉淀','氧化还原','配位','分光','电势'].indexOf(r.k)<0);
+  function blk(list,title,cls){
+    const sum=list.reduce((s,r)=>s+r.v,0);
+    return '<h4 style="margin-top:12px">'+title+'　合计 '+sum+' 分</h4>'+list.map(r=>
+      '<div class="brow"><span class="n">'+esc(chapFull(r.k))+'</span>'
+      +'<span><span class="bar '+cls+'" style="width:'+(r.v/max*100).toFixed(1)+'%"></span></span>'
+      +'<span class="v">'+r.v+' 分</span></div>').join('');
+  }
+  $('#distChart').innerHTML=blk(inorg,'无机及分析化学','chem')+blk(org,'有机化学','org');
+}
+
+function render812(){
+  $('#p812list').innerHTML=P812.map(p=>{
+    const tier=p.t==='第一梯队'?'#1d7a4c':(p.t==='第二梯队'?'#1d4f80':'#5b6a7d');
+    return '<div class="card" style="border-left:4px solid '+tier+'">'
+      +'<h4 style="margin-top:0;color:#1c3f5c">'+esc(p.ch)+'　<span style="font-weight:400;color:var(--muted);font-size:13px">权重中心 '+esc(p.w)+' · '+esc(p.t)+'</span></h4>'
+      +'<div style="font-size:13.4px"><b style="color:#1d5a3f">名词解释候选：</b>'+p.m.map(x=>'<span class="chip g">'+esc(x)+'</span>').join(' ')+'</div>'
+      +'<div style="font-size:13.4px;margin-top:7px"><b style="color:#1d4f80">简答预测：</b>'+p.s.map(x=>'<span class="chip">'+esc(x)+'</span>').join(' ')+'</div>'
+      +'<div style="font-size:13.4px;margin-top:7px"><b style="color:#7b5323">论述预测：</b>'+p.l.map(x=>'<span class="chip o">'+esc(x)+'</span>').join(' ')+'</div></div>';
+  }).join('');
+}
+
+/* tabs */
+$$('.tab').forEach(t=>t.addEventListener('click',()=>{
+  $$('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+  t.setAttribute('aria-selected','true');
+  $$('.panel').forEach(p=>p.classList.remove('on'));
+  $('#'+t.dataset.t).classList.add('on');
+  window.scrollTo({top:0,behavior:'instant'});
+}));
+
+/* init */
+renderQ(); fillChapSelect(); applyFilter(); renderDist(); render812();
+['fType','fBlock','fChap'].forEach(id=>$('#'+id).addEventListener('change',applyFilter));
+$('#fText').addEventListener('input',applyFilter);
+$('#fReset').addEventListener('click',()=>{['fType','fBlock','fChap'].forEach(id=>$('#'+id).value='');$('#fText').value='';applyFilter();});
+</script>
+</body>
+</html>

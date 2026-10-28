@@ -1,0 +1,193 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ky-point/2.0",
+  "title": "考研知识点元数据（机洗真源）",
+  "type": "object",
+  "required": ["schema", "subject", "name", "chapters", "points"],
+  "properties": {
+    "schema": { "const": "ky-point/2.0" },
+    "subject": { "enum": ["101", "204", "315", "812"] },
+    "name": { "type": "string" },
+    "score": { "type": "integer" },
+    "status": { "enum": ["draft", "final"] },
+    "generated_at": { "type": "string" },
+    "source_file": { "type": "string" },
+
+    "chapters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "module", "tier", "weight_center", "weight_basis", "entry_count"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(101|204|315|812)-\\d{2}$" },
+          "name": { "type": "string", "minLength": 1 },
+          "module": { "type": "string" },
+          "tier": { "enum": [1, 2, 3] },
+          "weight_center": { "type": "number", "minimum": 0 },
+          "weight_range": {
+            "type": ["array", "null"],
+            "items": { "type": "number" },
+            "minItems": 2, "maxItems": 2
+          },
+          "weight_basis": { "enum": ["官方", "推算", "人工估计"] },
+          "entry_count": { "type": "integer", "minimum": 0 },
+          "note": { "type": "string" },
+          "outline": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["index", "level", "text"],
+              "properties": {
+                "index": { "type": "integer" },
+                "level": { "enum": ["掌握", "理解", "了解"] },
+                "text": { "type": "string" }
+              }
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "chapter", "point", "title", "explain", "exam",
+                     "keywords", "priority", "source", "spoken", "tts",
+                     "exam_types", "listen", "cards"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(101|204|315|812)\\d{2}(\\d{2}|M\\d{2})$" },
+          "chapter": { "type": "string", "pattern": "^(101|204|315|812)-\\d{2}$" },
+          "point": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "title": { "type": "string", "minLength": 1, "maxLength": 20 },
+          "explain": { "type": "string", "minLength": 1 },
+          "exam": { "type": "string", "minLength": 1 },
+          "keywords": {
+            "type": "array", "minItems": 3, "maxItems": 8,
+            "items": { "type": "string" }
+          },
+          "priority": { "enum": ["★", "●", "○"] },
+          "tags": {
+            "type": "array", "maxItems": 3,
+            "items": { "type": "string" }
+          },
+          "source": {
+            "type": "object",
+            "required": ["ref", "file", "section"],
+            "properties": {
+              "ref": { "type": "string", "minLength": 1 },
+              "file": { "type": "string", "minLength": 1 },
+              "section": { "type": "string", "minLength": 1 },
+              "basis": { "type": "string" },
+              "outline": { "type": "string" }
+            },
+            "additionalProperties": false
+          },
+          "spoken": { "type": "string" },
+          "tts": {
+            "type": "object",
+            "required": ["enabled", "max_chars", "est_sec", "clips"],
+            "properties": {
+              "enabled": { "type": "boolean" },
+              "max_chars": { "type": "integer", "minimum": 1 },
+              "est_sec": { "type": "number", "minimum": 0 },
+              "measured_sec": { "type": "number", "minimum": 0 },
+              "voice": {
+                "type": "object",
+                "properties": {
+                  "reference_id": { "type": "string" },
+                  "name": { "type": "string" },
+                  "model": { "type": "string" },
+                  "format": { "type": "string" },
+                  "sample_rate": { "type": "integer" },
+                  "bitrate": { "type": "integer" },
+                  "lang": { "type": "string" }
+                },
+                "additionalProperties": false
+              },
+              "clips": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["clip_id", "text", "est_sec"],
+                  "properties": {
+                    "clip_id": { "type": "string" },
+                    "text": { "type": "string" },
+                    "est_sec": { "type": "number", "minimum": 0 },
+                    "file": { "type": "string" },
+                    "bytes": { "type": "integer", "minimum": 0 },
+                    "dur_sec": { "type": "number", "minimum": 0 }
+                  }
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "units": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "exam_types": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "该点可能出现的真题题型（cards[].kind 去重）"
+          },
+          "listen": {
+            "type": "object",
+            "required": ["card_id", "kind", "script", "audio"],
+            "properties": {
+              "card_id": { "type": "string" },
+              "kind": { "type": "string" },
+              "script": { "type": "string", "minLength": 1 },
+              "audio": { "enum": ["ready", "pending", "none"] }
+            },
+            "additionalProperties": false
+          },
+          "cards": {
+            "type": "array",
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "required": ["card_id", "kind", "question", "answer", "analysis",
+                           "front", "back"],
+              "properties": {
+                "card_id": {
+                  "type": "string",
+                  "pattern": "^c(101|204|315|812)\\d{2}(\\d{2}|M\\d{2})-\\d+$",
+                  "description": "全局唯一，形如 c8120101-1（c + point_id + '-' + 点内序号，从 1 起）"
+                },
+                "kind": { "type": "string" },
+                "question": { "type": "string", "minLength": 1 },
+                "options": {
+                  "type": "array",
+                  "minItems": 4,
+                  "maxItems": 4,
+                  "items": { "type": "string" },
+                  "description": "仅 kind=选择 使用，固定 A–D 四项"
+                },
+                "answer": { "type": "string", "minLength": 1 },
+                "analysis": { "type": "string", "minLength": 1 },
+                "front": { "type": "string" },
+                "back": { "type": "string" },
+                "point_id": { "type": "string" }
+              },
+              "additionalProperties": false
+            }
+          },
+          "media": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "src": { "type": "string" },
+                "kind": { "type": "string" }
+              }
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

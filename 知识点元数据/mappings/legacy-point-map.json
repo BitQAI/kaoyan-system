@@ -1,0 +1,3270 @@
+{
+ "schema": "ky-legacy-map/1.0",
+ "note": "旧 content.json point_id → 新元数据 id；按考点文本逐字匹配。一对一 = 旧点在新数据中原样保留；新增 = 新数据有而旧数据没有。",
+ "counts": {
+  "legacy_total": 511,
+  "new_total": 524,
+  "one_to_one": 481,
+  "legacy_unmapped": 30,
+  "ambiguous": 0,
+  "new_added": 43
+ },
+ "one_to_one": [
+  {
+   "legacy_id": "812-00-01",
+   "new_id": "8120001",
+   "chapter": "812-00",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-00-02",
+   "new_id": "8120002",
+   "chapter": "812-00",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-00-03",
+   "new_id": "8120003",
+   "chapter": "812-00",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-01-01",
+   "new_id": "8120101",
+   "chapter": "812-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-01-02",
+   "new_id": "8120102",
+   "chapter": "812-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-01-03",
+   "new_id": "8120103",
+   "chapter": "812-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-01-04",
+   "new_id": "8120104",
+   "chapter": "812-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-01-05",
+   "new_id": "8120105",
+   "chapter": "812-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-01-06",
+   "new_id": "8120106",
+   "chapter": "812-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-01-07",
+   "new_id": "8120107",
+   "chapter": "812-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-01-08",
+   "new_id": "8120108",
+   "chapter": "812-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-01-09",
+   "new_id": "8120109",
+   "chapter": "812-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-01-10",
+   "new_id": "8120110",
+   "chapter": "812-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-01-m1",
+   "new_id": "81201M01",
+   "chapter": "812-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-02-01",
+   "new_id": "8120201",
+   "chapter": "812-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-02-02",
+   "new_id": "8120202",
+   "chapter": "812-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-02-03",
+   "new_id": "8120203",
+   "chapter": "812-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-02-06",
+   "new_id": "8120206",
+   "chapter": "812-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-02-07",
+   "new_id": "8120207",
+   "chapter": "812-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-02-10",
+   "new_id": "8120210",
+   "chapter": "812-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-02-11",
+   "new_id": "8120211",
+   "chapter": "812-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-02-12",
+   "new_id": "8120212",
+   "chapter": "812-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-02-m1",
+   "new_id": "81202M01",
+   "chapter": "812-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-03-01",
+   "new_id": "8120301",
+   "chapter": "812-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-03-02",
+   "new_id": "8120302",
+   "chapter": "812-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-03-03",
+   "new_id": "8120303",
+   "chapter": "812-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-03-04",
+   "new_id": "8120304",
+   "chapter": "812-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-03-05",
+   "new_id": "8120305",
+   "chapter": "812-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-03-06",
+   "new_id": "8120306",
+   "chapter": "812-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-03-07",
+   "new_id": "8120307",
+   "chapter": "812-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-03-08",
+   "new_id": "8120308",
+   "chapter": "812-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-03-m1",
+   "new_id": "81203M01",
+   "chapter": "812-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-04-01",
+   "new_id": "8120401",
+   "chapter": "812-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-04-02",
+   "new_id": "8120402",
+   "chapter": "812-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-04-03",
+   "new_id": "8120403",
+   "chapter": "812-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-04-04",
+   "new_id": "8120404",
+   "chapter": "812-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-04-05",
+   "new_id": "8120405",
+   "chapter": "812-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-04-06",
+   "new_id": "8120406",
+   "chapter": "812-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-04-07",
+   "new_id": "8120407",
+   "chapter": "812-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-04-08",
+   "new_id": "8120408",
+   "chapter": "812-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-04-09",
+   "new_id": "8120409",
+   "chapter": "812-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-05-01",
+   "new_id": "8120501",
+   "chapter": "812-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-05-02",
+   "new_id": "8120502",
+   "chapter": "812-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-05-03",
+   "new_id": "8120503",
+   "chapter": "812-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-05-04",
+   "new_id": "8120504",
+   "chapter": "812-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-05-05",
+   "new_id": "8120505",
+   "chapter": "812-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-05-06",
+   "new_id": "8120506",
+   "chapter": "812-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-05-07",
+   "new_id": "8120507",
+   "chapter": "812-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-05-08",
+   "new_id": "8120508",
+   "chapter": "812-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-05-m1",
+   "new_id": "81205M01",
+   "chapter": "812-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-06-01",
+   "new_id": "8120601",
+   "chapter": "812-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-06-02",
+   "new_id": "8120602",
+   "chapter": "812-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-06-03",
+   "new_id": "8120603",
+   "chapter": "812-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-06-04",
+   "new_id": "8120604",
+   "chapter": "812-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-06-05",
+   "new_id": "8120605",
+   "chapter": "812-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-06-m1",
+   "new_id": "81206M01",
+   "chapter": "812-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-07-04",
+   "new_id": "8120704",
+   "chapter": "812-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-07-07",
+   "new_id": "8120707",
+   "chapter": "812-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-07-09",
+   "new_id": "8120709",
+   "chapter": "812-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-07-10",
+   "new_id": "8120710",
+   "chapter": "812-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-07-11",
+   "new_id": "8120711",
+   "chapter": "812-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-07-12",
+   "new_id": "8120712",
+   "chapter": "812-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-07-13",
+   "new_id": "8120713",
+   "chapter": "812-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-07-m1",
+   "new_id": "81207M01",
+   "chapter": "812-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-08-01",
+   "new_id": "8120801",
+   "chapter": "812-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-08-02",
+   "new_id": "8120802",
+   "chapter": "812-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-08-03",
+   "new_id": "8120803",
+   "chapter": "812-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-08-04",
+   "new_id": "8120804",
+   "chapter": "812-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-08-05",
+   "new_id": "8120805",
+   "chapter": "812-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-08-06",
+   "new_id": "8120806",
+   "chapter": "812-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-08-07",
+   "new_id": "8120807",
+   "chapter": "812-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-08-08",
+   "new_id": "8120808",
+   "chapter": "812-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-08-09",
+   "new_id": "8120809",
+   "chapter": "812-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-08-m1",
+   "new_id": "81208M01",
+   "chapter": "812-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-09-01",
+   "new_id": "8120901",
+   "chapter": "812-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-09-02",
+   "new_id": "8120902",
+   "chapter": "812-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-09-03",
+   "new_id": "8120903",
+   "chapter": "812-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-09-06",
+   "new_id": "8120906",
+   "chapter": "812-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-09-m1",
+   "new_id": "81209M01",
+   "chapter": "812-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-10-03",
+   "new_id": "8121003",
+   "chapter": "812-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-10-04",
+   "new_id": "8121004",
+   "chapter": "812-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-10-05",
+   "new_id": "8121005",
+   "chapter": "812-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-10-06",
+   "new_id": "8121006",
+   "chapter": "812-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-10-07",
+   "new_id": "8121007",
+   "chapter": "812-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-10-08",
+   "new_id": "8121008",
+   "chapter": "812-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-10-09",
+   "new_id": "8121009",
+   "chapter": "812-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-10-m1",
+   "new_id": "81210M01",
+   "chapter": "812-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-11-02",
+   "new_id": "8121102",
+   "chapter": "812-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-11-04",
+   "new_id": "8121104",
+   "chapter": "812-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-11-05",
+   "new_id": "8121105",
+   "chapter": "812-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-11-06",
+   "new_id": "8121106",
+   "chapter": "812-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-11-07",
+   "new_id": "8121107",
+   "chapter": "812-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-11-08",
+   "new_id": "8121108",
+   "chapter": "812-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-11-09",
+   "new_id": "8121109",
+   "chapter": "812-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-11-10",
+   "new_id": "8121110",
+   "chapter": "812-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-11-11",
+   "new_id": "8121111",
+   "chapter": "812-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "812-11-m1",
+   "new_id": "81211M01",
+   "chapter": "812-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-01-01",
+   "new_id": "3150101",
+   "chapter": "315-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-01-02",
+   "new_id": "3150102",
+   "chapter": "315-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-01-03",
+   "new_id": "3150103",
+   "chapter": "315-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-01-04",
+   "new_id": "3150104",
+   "chapter": "315-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-01-05",
+   "new_id": "3150105",
+   "chapter": "315-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-02-01",
+   "new_id": "3150201",
+   "chapter": "315-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-02-02",
+   "new_id": "3150202",
+   "chapter": "315-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-02-03",
+   "new_id": "3150203",
+   "chapter": "315-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-02-04",
+   "new_id": "3150204",
+   "chapter": "315-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-02-06",
+   "new_id": "3150206",
+   "chapter": "315-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-02-07",
+   "new_id": "3150207",
+   "chapter": "315-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-03-01",
+   "new_id": "3150301",
+   "chapter": "315-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-03-02",
+   "new_id": "3150302",
+   "chapter": "315-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-03-03",
+   "new_id": "3150303",
+   "chapter": "315-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-03-04",
+   "new_id": "3150304",
+   "chapter": "315-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-03-06",
+   "new_id": "3150306",
+   "chapter": "315-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-03-07",
+   "new_id": "3150307",
+   "chapter": "315-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-03-08",
+   "new_id": "3150308",
+   "chapter": "315-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-04-01",
+   "new_id": "3150401",
+   "chapter": "315-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-04-02",
+   "new_id": "3150402",
+   "chapter": "315-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-04-03",
+   "new_id": "3150403",
+   "chapter": "315-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-04-04",
+   "new_id": "3150404",
+   "chapter": "315-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-04-05",
+   "new_id": "3150405",
+   "chapter": "315-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-04-06",
+   "new_id": "3150406",
+   "chapter": "315-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-04-07",
+   "new_id": "3150407",
+   "chapter": "315-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-04-08",
+   "new_id": "3150408",
+   "chapter": "315-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-04-09",
+   "new_id": "3150409",
+   "chapter": "315-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-04-11",
+   "new_id": "3150411",
+   "chapter": "315-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-04-12",
+   "new_id": "3150412",
+   "chapter": "315-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-05-01",
+   "new_id": "3150501",
+   "chapter": "315-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-05-02",
+   "new_id": "3150502",
+   "chapter": "315-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-05-03",
+   "new_id": "3150503",
+   "chapter": "315-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-05-04",
+   "new_id": "3150504",
+   "chapter": "315-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-05-05",
+   "new_id": "3150505",
+   "chapter": "315-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-05-06",
+   "new_id": "3150506",
+   "chapter": "315-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-05-07",
+   "new_id": "3150507",
+   "chapter": "315-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-05-08",
+   "new_id": "3150508",
+   "chapter": "315-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-06-01",
+   "new_id": "3150601",
+   "chapter": "315-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-06-02",
+   "new_id": "3150602",
+   "chapter": "315-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-06-03",
+   "new_id": "3150603",
+   "chapter": "315-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-06-04",
+   "new_id": "3150604",
+   "chapter": "315-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-06-05",
+   "new_id": "3150605",
+   "chapter": "315-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-06-06",
+   "new_id": "3150606",
+   "chapter": "315-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-06-07",
+   "new_id": "3150607",
+   "chapter": "315-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-06-08",
+   "new_id": "3150608",
+   "chapter": "315-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-06-09",
+   "new_id": "3150609",
+   "chapter": "315-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-06-10",
+   "new_id": "3150610",
+   "chapter": "315-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-07-01",
+   "new_id": "3150701",
+   "chapter": "315-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-07-02",
+   "new_id": "3150702",
+   "chapter": "315-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-07-03",
+   "new_id": "3150703",
+   "chapter": "315-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-07-04",
+   "new_id": "3150704",
+   "chapter": "315-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-07-05",
+   "new_id": "3150705",
+   "chapter": "315-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-07-06",
+   "new_id": "3150706",
+   "chapter": "315-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-07-07",
+   "new_id": "3150707",
+   "chapter": "315-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-07-08",
+   "new_id": "3150708",
+   "chapter": "315-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-08-01",
+   "new_id": "3150801",
+   "chapter": "315-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-08-02",
+   "new_id": "3150802",
+   "chapter": "315-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-08-03",
+   "new_id": "3150803",
+   "chapter": "315-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-08-04",
+   "new_id": "3150804",
+   "chapter": "315-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-08-05",
+   "new_id": "3150805",
+   "chapter": "315-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-08-06",
+   "new_id": "3150806",
+   "chapter": "315-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-08-07",
+   "new_id": "3150807",
+   "chapter": "315-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-08-09",
+   "new_id": "3150809",
+   "chapter": "315-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-09-01",
+   "new_id": "3150901",
+   "chapter": "315-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-09-02",
+   "new_id": "3150902",
+   "chapter": "315-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-09-03",
+   "new_id": "3150903",
+   "chapter": "315-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-09-04",
+   "new_id": "3150904",
+   "chapter": "315-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-09-05",
+   "new_id": "3150905",
+   "chapter": "315-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-09-06",
+   "new_id": "3150906",
+   "chapter": "315-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-09-07",
+   "new_id": "3150907",
+   "chapter": "315-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-09-08",
+   "new_id": "3150908",
+   "chapter": "315-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-09-09",
+   "new_id": "3150909",
+   "chapter": "315-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-09-10",
+   "new_id": "3150910",
+   "chapter": "315-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-10-01",
+   "new_id": "3151001",
+   "chapter": "315-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-10-02",
+   "new_id": "3151002",
+   "chapter": "315-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-10-03",
+   "new_id": "3151003",
+   "chapter": "315-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-10-04",
+   "new_id": "3151004",
+   "chapter": "315-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-10-05",
+   "new_id": "3151005",
+   "chapter": "315-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-10-06",
+   "new_id": "3151006",
+   "chapter": "315-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-10-07",
+   "new_id": "3151007",
+   "chapter": "315-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-11-01",
+   "new_id": "3151101",
+   "chapter": "315-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-11-02",
+   "new_id": "3151102",
+   "chapter": "315-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-11-03",
+   "new_id": "3151103",
+   "chapter": "315-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-12-01",
+   "new_id": "3151201",
+   "chapter": "315-12",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-12-02",
+   "new_id": "3151202",
+   "chapter": "315-12",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-12-03",
+   "new_id": "3151203",
+   "chapter": "315-12",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-12-04",
+   "new_id": "3151204",
+   "chapter": "315-12",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-13-01",
+   "new_id": "3151301",
+   "chapter": "315-13",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-13-02",
+   "new_id": "3151302",
+   "chapter": "315-13",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-13-03",
+   "new_id": "3151303",
+   "chapter": "315-13",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-13-04",
+   "new_id": "3151304",
+   "chapter": "315-13",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-13-05",
+   "new_id": "3151305",
+   "chapter": "315-13",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-13-06",
+   "new_id": "3151306",
+   "chapter": "315-13",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-13-07",
+   "new_id": "3151307",
+   "chapter": "315-13",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-13-08",
+   "new_id": "3151308",
+   "chapter": "315-13",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-13-09",
+   "new_id": "3151309",
+   "chapter": "315-13",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-14-01",
+   "new_id": "3151401",
+   "chapter": "315-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-14-03",
+   "new_id": "3151404",
+   "chapter": "315-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-14-04",
+   "new_id": "3151405",
+   "chapter": "315-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-14-05",
+   "new_id": "3151406",
+   "chapter": "315-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-14-06",
+   "new_id": "3151407",
+   "chapter": "315-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-14-07",
+   "new_id": "3151408",
+   "chapter": "315-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-14-08",
+   "new_id": "3151409",
+   "chapter": "315-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-14-09",
+   "new_id": "3151410",
+   "chapter": "315-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-14-10",
+   "new_id": "3151411",
+   "chapter": "315-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-15-01",
+   "new_id": "3151501",
+   "chapter": "315-15",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-15-02",
+   "new_id": "3151502",
+   "chapter": "315-15",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-15-03",
+   "new_id": "3151503",
+   "chapter": "315-15",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-15-04",
+   "new_id": "3151504",
+   "chapter": "315-15",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-15-05",
+   "new_id": "3151505",
+   "chapter": "315-15",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-15-06",
+   "new_id": "3151506",
+   "chapter": "315-15",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-15-07",
+   "new_id": "3151507",
+   "chapter": "315-15",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-15-08",
+   "new_id": "3151508",
+   "chapter": "315-15",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-16-01",
+   "new_id": "3151601",
+   "chapter": "315-16",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-16-02",
+   "new_id": "3151602",
+   "chapter": "315-16",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-16-03",
+   "new_id": "3151603",
+   "chapter": "315-16",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-16-04",
+   "new_id": "3151604",
+   "chapter": "315-16",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-16-05",
+   "new_id": "3151605",
+   "chapter": "315-16",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-16-06",
+   "new_id": "3151606",
+   "chapter": "315-16",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-17-01",
+   "new_id": "3151701",
+   "chapter": "315-17",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-17-03",
+   "new_id": "3151703",
+   "chapter": "315-17",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-17-04",
+   "new_id": "3151704",
+   "chapter": "315-17",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-17-05",
+   "new_id": "3151705",
+   "chapter": "315-17",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-17-06",
+   "new_id": "3151706",
+   "chapter": "315-17",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-18-01",
+   "new_id": "3151801",
+   "chapter": "315-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-18-02",
+   "new_id": "3151802",
+   "chapter": "315-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-18-03",
+   "new_id": "3151803",
+   "chapter": "315-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-18-05",
+   "new_id": "3151805",
+   "chapter": "315-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-18-06",
+   "new_id": "3151806",
+   "chapter": "315-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-18-08",
+   "new_id": "3151808",
+   "chapter": "315-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-18-09",
+   "new_id": "3151809",
+   "chapter": "315-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-18-10",
+   "new_id": "3151810",
+   "chapter": "315-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-19-01",
+   "new_id": "3151901",
+   "chapter": "315-19",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-19-03",
+   "new_id": "3151903",
+   "chapter": "315-19",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-19-04",
+   "new_id": "3151904",
+   "chapter": "315-19",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-19-05",
+   "new_id": "3151905",
+   "chapter": "315-19",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-19-06",
+   "new_id": "3151906",
+   "chapter": "315-19",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-20-01",
+   "new_id": "3152001",
+   "chapter": "315-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-20-02",
+   "new_id": "3152002",
+   "chapter": "315-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-20-03",
+   "new_id": "3152003",
+   "chapter": "315-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-20-05",
+   "new_id": "3152005",
+   "chapter": "315-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-20-06",
+   "new_id": "3152006",
+   "chapter": "315-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-20-07",
+   "new_id": "3152007",
+   "chapter": "315-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-20-08",
+   "new_id": "3152008",
+   "chapter": "315-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-20-09",
+   "new_id": "3152009",
+   "chapter": "315-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-20-10",
+   "new_id": "3152010",
+   "chapter": "315-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-20-11",
+   "new_id": "3152011",
+   "chapter": "315-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-20-12",
+   "new_id": "3152012",
+   "chapter": "315-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-20-13",
+   "new_id": "3152013",
+   "chapter": "315-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-21-01",
+   "new_id": "3152101",
+   "chapter": "315-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-21-02",
+   "new_id": "3152102",
+   "chapter": "315-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-21-03",
+   "new_id": "3152103",
+   "chapter": "315-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-21-04",
+   "new_id": "3152104",
+   "chapter": "315-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-21-05",
+   "new_id": "3152105",
+   "chapter": "315-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-21-06",
+   "new_id": "3152106",
+   "chapter": "315-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-21-08",
+   "new_id": "3152108",
+   "chapter": "315-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-22-01",
+   "new_id": "3152201",
+   "chapter": "315-22",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-22-02",
+   "new_id": "3152202",
+   "chapter": "315-22",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-22-03",
+   "new_id": "3152203",
+   "chapter": "315-22",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-22-04",
+   "new_id": "3152204",
+   "chapter": "315-22",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-22-05",
+   "new_id": "3152205",
+   "chapter": "315-22",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-22-06",
+   "new_id": "3152206",
+   "chapter": "315-22",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-23-01",
+   "new_id": "3152301",
+   "chapter": "315-23",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-23-02",
+   "new_id": "3152302",
+   "chapter": "315-23",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-23-03",
+   "new_id": "3152303",
+   "chapter": "315-23",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-23-04",
+   "new_id": "3152304",
+   "chapter": "315-23",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-23-05",
+   "new_id": "3152305",
+   "chapter": "315-23",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-23-06",
+   "new_id": "3152306",
+   "chapter": "315-23",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-23-07",
+   "new_id": "3152307",
+   "chapter": "315-23",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-24-01",
+   "new_id": "3152401",
+   "chapter": "315-24",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-24-02",
+   "new_id": "3152402",
+   "chapter": "315-24",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-24-03",
+   "new_id": "3152403",
+   "chapter": "315-24",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-24-04",
+   "new_id": "3152404",
+   "chapter": "315-24",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-25-01",
+   "new_id": "3152501",
+   "chapter": "315-25",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-25-02",
+   "new_id": "3152502",
+   "chapter": "315-25",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-25-03",
+   "new_id": "3152503",
+   "chapter": "315-25",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-25-04",
+   "new_id": "3152504",
+   "chapter": "315-25",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-26-01",
+   "new_id": "3152601",
+   "chapter": "315-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-26-02",
+   "new_id": "3152602",
+   "chapter": "315-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-26-03",
+   "new_id": "3152603",
+   "chapter": "315-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-26-04",
+   "new_id": "3152604",
+   "chapter": "315-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-26-05",
+   "new_id": "3152605",
+   "chapter": "315-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-26-06",
+   "new_id": "3152606",
+   "chapter": "315-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "315-26-07",
+   "new_id": "3152607",
+   "chapter": "315-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-01-01",
+   "new_id": "1010101",
+   "chapter": "101-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-01-02",
+   "new_id": "1010102",
+   "chapter": "101-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-01-03",
+   "new_id": "1010103",
+   "chapter": "101-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-01-04",
+   "new_id": "1010104",
+   "chapter": "101-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-02-01",
+   "new_id": "1010201",
+   "chapter": "101-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-02-02",
+   "new_id": "1010202",
+   "chapter": "101-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-02-03",
+   "new_id": "1010203",
+   "chapter": "101-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-02-04",
+   "new_id": "1010204",
+   "chapter": "101-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-02-05",
+   "new_id": "1010205",
+   "chapter": "101-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-02-06",
+   "new_id": "1010206",
+   "chapter": "101-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-02-07",
+   "new_id": "1010207",
+   "chapter": "101-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-02-08",
+   "new_id": "1010208",
+   "chapter": "101-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-02-10",
+   "new_id": "1010211",
+   "chapter": "101-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-02-11",
+   "new_id": "1010212",
+   "chapter": "101-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-02-12",
+   "new_id": "1010213",
+   "chapter": "101-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-03-01",
+   "new_id": "1010301",
+   "chapter": "101-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-03-03",
+   "new_id": "1010304",
+   "chapter": "101-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-03-04",
+   "new_id": "1010305",
+   "chapter": "101-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-03-05",
+   "new_id": "1010306",
+   "chapter": "101-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-03-06",
+   "new_id": "1010307",
+   "chapter": "101-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-03-07",
+   "new_id": "1010308",
+   "chapter": "101-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-03-08",
+   "new_id": "1010309",
+   "chapter": "101-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-03-09",
+   "new_id": "1010310",
+   "chapter": "101-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-03-10",
+   "new_id": "1010311",
+   "chapter": "101-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-04-02",
+   "new_id": "1010403",
+   "chapter": "101-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-04-03",
+   "new_id": "1010404",
+   "chapter": "101-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-04-04",
+   "new_id": "1010405",
+   "chapter": "101-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-04-05",
+   "new_id": "1010406",
+   "chapter": "101-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-04-06",
+   "new_id": "1010407",
+   "chapter": "101-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-04-07",
+   "new_id": "1010408",
+   "chapter": "101-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-04-08",
+   "new_id": "1010409",
+   "chapter": "101-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-05-01",
+   "new_id": "1010501",
+   "chapter": "101-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-05-02",
+   "new_id": "1010502",
+   "chapter": "101-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-05-03",
+   "new_id": "1010503",
+   "chapter": "101-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-05-04",
+   "new_id": "1010504",
+   "chapter": "101-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-05-05",
+   "new_id": "1010505",
+   "chapter": "101-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-05-06",
+   "new_id": "1010506",
+   "chapter": "101-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-05-07",
+   "new_id": "1010507",
+   "chapter": "101-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-06-01",
+   "new_id": "1010601",
+   "chapter": "101-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-06-02",
+   "new_id": "1010602",
+   "chapter": "101-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-06-03",
+   "new_id": "1010603",
+   "chapter": "101-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-06-04",
+   "new_id": "1010604",
+   "chapter": "101-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-06-05",
+   "new_id": "1010605",
+   "chapter": "101-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-06-06",
+   "new_id": "1010606",
+   "chapter": "101-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-06-07",
+   "new_id": "1010607",
+   "chapter": "101-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-07-01",
+   "new_id": "1010701",
+   "chapter": "101-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-07-02",
+   "new_id": "1010702",
+   "chapter": "101-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-07-03",
+   "new_id": "1010703",
+   "chapter": "101-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-07-04",
+   "new_id": "1010704",
+   "chapter": "101-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-07-05",
+   "new_id": "1010705",
+   "chapter": "101-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-08-01",
+   "new_id": "1010801",
+   "chapter": "101-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-08-02",
+   "new_id": "1010802",
+   "chapter": "101-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-08-03",
+   "new_id": "1010803",
+   "chapter": "101-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-08-04",
+   "new_id": "1010804",
+   "chapter": "101-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-09-01",
+   "new_id": "1010901",
+   "chapter": "101-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-09-02",
+   "new_id": "1010902",
+   "chapter": "101-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-09-03",
+   "new_id": "1010903",
+   "chapter": "101-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-10-01",
+   "new_id": "1011001",
+   "chapter": "101-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-10-02",
+   "new_id": "1011002",
+   "chapter": "101-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-10-03",
+   "new_id": "1011003",
+   "chapter": "101-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-10-04",
+   "new_id": "1011004",
+   "chapter": "101-10",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-11-01",
+   "new_id": "1011101",
+   "chapter": "101-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-11-02",
+   "new_id": "1011102",
+   "chapter": "101-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-11-03",
+   "new_id": "1011103",
+   "chapter": "101-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-11-04",
+   "new_id": "1011104",
+   "chapter": "101-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-11-05",
+   "new_id": "1011105",
+   "chapter": "101-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-11-06",
+   "new_id": "1011106",
+   "chapter": "101-11",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-12-01",
+   "new_id": "1011201",
+   "chapter": "101-12",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-12-02",
+   "new_id": "1011202",
+   "chapter": "101-12",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-12-03",
+   "new_id": "1011203",
+   "chapter": "101-12",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-13-01",
+   "new_id": "1011301",
+   "chapter": "101-13",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-13-02",
+   "new_id": "1011302",
+   "chapter": "101-13",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-13-03",
+   "new_id": "1011303",
+   "chapter": "101-13",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-14-01",
+   "new_id": "1011401",
+   "chapter": "101-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-14-02",
+   "new_id": "1011402",
+   "chapter": "101-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-14-03",
+   "new_id": "1011403",
+   "chapter": "101-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-14-04",
+   "new_id": "1011404",
+   "chapter": "101-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-14-05",
+   "new_id": "1011405",
+   "chapter": "101-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-14-06",
+   "new_id": "1011406",
+   "chapter": "101-14",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-15-02",
+   "new_id": "1011503",
+   "chapter": "101-15",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-15-03",
+   "new_id": "1011504",
+   "chapter": "101-15",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-16-01",
+   "new_id": "1011601",
+   "chapter": "101-16",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-16-02",
+   "new_id": "1011602",
+   "chapter": "101-16",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-16-03",
+   "new_id": "1011603",
+   "chapter": "101-16",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-17-01",
+   "new_id": "1011701",
+   "chapter": "101-17",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-17-02",
+   "new_id": "1011702",
+   "chapter": "101-17",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-18-01",
+   "new_id": "1011801",
+   "chapter": "101-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-18-02",
+   "new_id": "1011802",
+   "chapter": "101-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-18-03",
+   "new_id": "1011803",
+   "chapter": "101-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-18-04",
+   "new_id": "1011804",
+   "chapter": "101-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-18-05",
+   "new_id": "1011805",
+   "chapter": "101-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-18-06",
+   "new_id": "1011806",
+   "chapter": "101-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-18-07",
+   "new_id": "1011807",
+   "chapter": "101-18",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-19-01",
+   "new_id": "1011901",
+   "chapter": "101-19",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-19-02",
+   "new_id": "1011902",
+   "chapter": "101-19",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-19-03",
+   "new_id": "1011903",
+   "chapter": "101-19",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-19-04",
+   "new_id": "1011904",
+   "chapter": "101-19",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-19-05",
+   "new_id": "1011905",
+   "chapter": "101-19",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-19-06",
+   "new_id": "1011906",
+   "chapter": "101-19",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-20-01",
+   "new_id": "1012001",
+   "chapter": "101-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-20-02",
+   "new_id": "1012002",
+   "chapter": "101-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-20-03",
+   "new_id": "1012003",
+   "chapter": "101-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-20-04",
+   "new_id": "1012004",
+   "chapter": "101-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-20-05",
+   "new_id": "1012005",
+   "chapter": "101-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-20-07",
+   "new_id": "1012008",
+   "chapter": "101-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-20-08",
+   "new_id": "1012009",
+   "chapter": "101-20",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-21-01",
+   "new_id": "1012101",
+   "chapter": "101-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-21-02",
+   "new_id": "1012102",
+   "chapter": "101-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-21-03",
+   "new_id": "1012103",
+   "chapter": "101-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-21-04",
+   "new_id": "1012104",
+   "chapter": "101-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-21-05",
+   "new_id": "1012105",
+   "chapter": "101-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-21-06",
+   "new_id": "1012106",
+   "chapter": "101-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-21-07",
+   "new_id": "1012107",
+   "chapter": "101-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-21-08",
+   "new_id": "1012108",
+   "chapter": "101-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-21-09",
+   "new_id": "1012109",
+   "chapter": "101-21",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-22-01",
+   "new_id": "1012201",
+   "chapter": "101-22",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-22-02",
+   "new_id": "1012202",
+   "chapter": "101-22",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-22-03",
+   "new_id": "1012203",
+   "chapter": "101-22",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-22-04",
+   "new_id": "1012204",
+   "chapter": "101-22",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-23-01",
+   "new_id": "1012301",
+   "chapter": "101-23",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-23-02",
+   "new_id": "1012302",
+   "chapter": "101-23",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-23-03",
+   "new_id": "1012303",
+   "chapter": "101-23",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-23-04",
+   "new_id": "1012304",
+   "chapter": "101-23",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-23-05",
+   "new_id": "1012305",
+   "chapter": "101-23",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-23-06",
+   "new_id": "1012306",
+   "chapter": "101-23",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-24-01",
+   "new_id": "1012401",
+   "chapter": "101-24",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-24-02",
+   "new_id": "1012402",
+   "chapter": "101-24",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-24-03",
+   "new_id": "1012403",
+   "chapter": "101-24",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-24-04",
+   "new_id": "1012404",
+   "chapter": "101-24",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-25-01",
+   "new_id": "1012501",
+   "chapter": "101-25",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-25-02",
+   "new_id": "1012502",
+   "chapter": "101-25",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-25-03",
+   "new_id": "1012503",
+   "chapter": "101-25",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-25-04",
+   "new_id": "1012504",
+   "chapter": "101-25",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-25-05",
+   "new_id": "1012505",
+   "chapter": "101-25",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-25-06",
+   "new_id": "1012506",
+   "chapter": "101-25",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-25-07",
+   "new_id": "1012507",
+   "chapter": "101-25",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-26-01",
+   "new_id": "1012601",
+   "chapter": "101-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-26-02",
+   "new_id": "1012602",
+   "chapter": "101-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-26-03",
+   "new_id": "1012603",
+   "chapter": "101-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-26-04",
+   "new_id": "1012604",
+   "chapter": "101-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-26-05",
+   "new_id": "1012605",
+   "chapter": "101-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-26-06",
+   "new_id": "1012606",
+   "chapter": "101-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-26-07",
+   "new_id": "1012607",
+   "chapter": "101-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-26-09",
+   "new_id": "1012610",
+   "chapter": "101-26",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-27-01",
+   "new_id": "1012701",
+   "chapter": "101-27",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-27-02",
+   "new_id": "1012702",
+   "chapter": "101-27",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-27-03",
+   "new_id": "1012703",
+   "chapter": "101-27",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-27-04",
+   "new_id": "1012704",
+   "chapter": "101-27",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "101-27-05",
+   "new_id": "1012705",
+   "chapter": "101-27",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-01-01",
+   "new_id": "2040101",
+   "chapter": "204-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-01-02",
+   "new_id": "2040102",
+   "chapter": "204-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-01-03",
+   "new_id": "2040103",
+   "chapter": "204-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-01-04",
+   "new_id": "2040104",
+   "chapter": "204-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-01-05",
+   "new_id": "2040105",
+   "chapter": "204-01",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-02-01",
+   "new_id": "2040201",
+   "chapter": "204-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-02-02",
+   "new_id": "2040202",
+   "chapter": "204-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-02-03",
+   "new_id": "2040203",
+   "chapter": "204-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-02-04",
+   "new_id": "2040204",
+   "chapter": "204-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-02-05",
+   "new_id": "2040205",
+   "chapter": "204-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-02-06",
+   "new_id": "2040206",
+   "chapter": "204-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-02-07",
+   "new_id": "2040207",
+   "chapter": "204-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-02-08",
+   "new_id": "2040208",
+   "chapter": "204-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-02-09",
+   "new_id": "2040209",
+   "chapter": "204-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-02-10",
+   "new_id": "2040210",
+   "chapter": "204-02",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-03-01",
+   "new_id": "2040301",
+   "chapter": "204-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-03-02",
+   "new_id": "2040302",
+   "chapter": "204-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-03-03",
+   "new_id": "2040303",
+   "chapter": "204-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-03-04",
+   "new_id": "2040304",
+   "chapter": "204-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-03-05",
+   "new_id": "2040305",
+   "chapter": "204-03",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-04-01",
+   "new_id": "2040401",
+   "chapter": "204-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-04-02",
+   "new_id": "2040402",
+   "chapter": "204-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-04-03",
+   "new_id": "2040403",
+   "chapter": "204-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-04-04",
+   "new_id": "2040404",
+   "chapter": "204-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-04-05",
+   "new_id": "2040405",
+   "chapter": "204-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-04-06",
+   "new_id": "2040406",
+   "chapter": "204-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-04-07",
+   "new_id": "2040407",
+   "chapter": "204-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-04-08",
+   "new_id": "2040408",
+   "chapter": "204-04",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-05-01",
+   "new_id": "2040501",
+   "chapter": "204-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-05-02",
+   "new_id": "2040502",
+   "chapter": "204-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-05-03",
+   "new_id": "2040503",
+   "chapter": "204-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-05-04",
+   "new_id": "2040504",
+   "chapter": "204-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-05-05",
+   "new_id": "2040505",
+   "chapter": "204-05",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-06-01",
+   "new_id": "2040601",
+   "chapter": "204-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-06-02",
+   "new_id": "2040602",
+   "chapter": "204-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-06-03",
+   "new_id": "2040603",
+   "chapter": "204-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-06-04",
+   "new_id": "2040604",
+   "chapter": "204-06",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-07-01",
+   "new_id": "2040701",
+   "chapter": "204-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-07-02",
+   "new_id": "2040702",
+   "chapter": "204-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-07-03",
+   "new_id": "2040703",
+   "chapter": "204-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-07-04",
+   "new_id": "2040704",
+   "chapter": "204-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-07-05",
+   "new_id": "2040705",
+   "chapter": "204-07",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-08-01",
+   "new_id": "2040801",
+   "chapter": "204-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-08-02",
+   "new_id": "2040802",
+   "chapter": "204-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-08-03",
+   "new_id": "2040803",
+   "chapter": "204-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-08-04",
+   "new_id": "2040804",
+   "chapter": "204-08",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-09-01",
+   "new_id": "2040901",
+   "chapter": "204-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-09-02",
+   "new_id": "2040902",
+   "chapter": "204-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-09-03",
+   "new_id": "2040903",
+   "chapter": "204-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-09-04",
+   "new_id": "2040904",
+   "chapter": "204-09",
+   "status": "一对一"
+  },
+  {
+   "legacy_id": "204-09-05",
+   "new_id": "2040905",
+   "chapter": "204-09",
+   "status": "一对一"
+  }
+ ],
+ "legacy_unmapped": [
+  {
+   "legacy_id": "812-02-04",
+   "chapter": "812-02",
+   "text": "植物根系对水分的吸收（主动吸水与根压、被动吸水与蒸腾拉力；两种吸水在不同条件下各自主导）"
+  },
+  {
+   "legacy_id": "812-02-08",
+   "chapter": "812-02",
+   "text": "植物体内水分的运输途径（共质体、质外体、维管束；根压与蒸腾拉力）与运输速度"
+  },
+  {
+   "legacy_id": "812-04-10",
+   "chapter": "812-04",
+   "text": "C3、C4、CAM 三条碳同化途径的差别（首产物与酶系、解剖与时间分区）。"
+  },
+  {
+   "legacy_id": "812-04-m1",
+   "chapter": "812-04",
+   "text": "机制：光反应产 ATP + NADPH 供 C3 循环（卡尔文循环）还原三碳糖。C4 途径由 PEPC 先在叶肉细胞固定 CO₂、维管束鞘细胞再释放供给卡尔文循环（\"CO₂ 泵\"）；CAM 以昼夜时间分区（夜间开气孔固定、白天关闭气孔同化）——两者都是对高温干旱环境的适应。"
+  },
+  {
+   "legacy_id": "812-07-01",
+   "chapter": "812-07",
+   "text": "生长物质概述（植物激素：内源产生、非营养性、微量高效、可移动；植物生长调节剂为人工合成类似物）"
+  },
+  {
+   "legacy_id": "812-07-03",
+   "chapter": "812-07",
+   "text": "生长素（分布、极性运输与代谢；生长素促进伸长生长的作用机理）"
+  },
+  {
+   "legacy_id": "812-07-06",
+   "chapter": "812-07",
+   "text": "赤霉素（分布及运输；诱导 α-淀粉酶的作用机理）"
+  },
+  {
+   "legacy_id": "812-09-04",
+   "chapter": "812-09",
+   "text": "光周期与光周期现象的定义（昼夜相对长度对成花的效应）、光周期反应类型（短日植物、长日植物、日中性植物；临界日长）、光周期诱导（诱导周期数与光周期刺激的可传递性）、感受光周期的部位（叶片）与成花信号的传递，光周期现象的应用（引种、人工调节花期、杂交育种）"
+  },
+  {
+   "legacy_id": "812-10-01",
+   "chapter": "812-10",
+   "text": "花粉与柱头的生理特点（花粉含水量低、贮藏物质丰富、寿命有限；柱头分泌粘液与识别蛋白），花粉与柱头的识别（自交不亲和的识别与拒绝机制要点）"
+  },
+  {
+   "legacy_id": "812-11-01",
+   "chapter": "812-11",
+   "text": "逆境与逆境种类（温度逆境：冷害、冻害、热害；盐碱、病害、环境污染等）"
+  },
+  {
+   "legacy_id": "315-02-05",
+   "chapter": "315-02",
+   "text": "ΔrH°、ΔrS°、ΔrG°等反应热力学量计算及盖斯定律"
+  },
+  {
+   "legacy_id": "315-03-05",
+   "chapter": "315-03",
+   "text": "ΔrG°与K的关系"
+  },
+  {
+   "legacy_id": "315-04-10",
+   "chapter": "315-04",
+   "text": "不等性sp³杂化与NH3、H2O"
+  },
+  {
+   "legacy_id": "315-08-08",
+   "chapter": "315-08",
+   "text": "K2Cr2O7法、KMnO4法、碘量法"
+  },
+  {
+   "legacy_id": "315-13-10",
+   "chapter": "315-13",
+   "text": "烷烃和环烷烃的物理性质（沸点、熔点随相对分子质量变化，支链使沸点降低）"
+  },
+  {
+   "legacy_id": "315-14-02",
+   "chapter": "315-14",
+   "text": "烯烃命名、顺反/Z/E、次序规则；炔烃命名"
+  },
+  {
+   "legacy_id": "315-17-02",
+   "chapter": "315-17",
+   "text": "与H2O/NaOH、NaCN、RONa、NH3/胺、AgNO3/乙醇亲核取代"
+  },
+  {
+   "legacy_id": "315-18-04",
+   "chapter": "315-18",
+   "text": "HX、三卤化磷、五卤化磷、SOCl2、Lucas试剂"
+  },
+  {
+   "legacy_id": "315-18-07",
+   "chapter": "315-18",
+   "text": "硝化、磺化、卤代、氧化、FeCl3显色"
+  },
+  {
+   "legacy_id": "315-19-02",
+   "chapter": "315-19",
+   "text": "HCN、NaHSO3、RMgX、ROH/H+、氨的衍生物、水等亲核加成"
+  },
+  {
+   "legacy_id": "315-19-07",
+   "chapter": "315-19",
+   "text": "醛、酮、醌的物理性质（沸点与羰基极性和分子间作用力的关系）"
+  },
+  {
+   "legacy_id": "315-20-04",
+   "chapter": "315-20",
+   "text": "羧酸LiAlH4还原"
+  },
+  {
+   "legacy_id": "315-20-14",
+   "chapter": "315-20",
+   "text": "羧酸、羧酸衍生物、取代酸的物理性质（氢键对沸点和水溶性的影响）"
+  },
+  {
+   "legacy_id": "315-21-07",
+   "chapter": "315-21",
+   "text": "与H2O、H3PO2、CuX、CuCN反应及偶联"
+  },
+  {
+   "legacy_id": "101-02-09",
+   "chapter": "101-02",
+   "text": "发展的实质、新事物与旧事物；辩证否定"
+  },
+  {
+   "legacy_id": "101-03-02",
+   "chapter": "101-03",
+   "text": "实践是认识的基础；认识本质"
+  },
+  {
+   "legacy_id": "101-04-01",
+   "chapter": "101-04",
+   "text": "社会存在与社会意识及相对独立性；社会形态"
+  },
+  {
+   "legacy_id": "101-15-01",
+   "chapter": "101-15",
+   "text": "新时代历史方位和社会主要矛盾变化；总任务"
+  },
+  {
+   "legacy_id": "101-20-06",
+   "chapter": "101-20",
+   "text": "共同富裕与民生；生态文明"
+  },
+  {
+   "legacy_id": "101-26-08",
+   "chapter": "101-26",
+   "text": "法律权利义务；法治思维"
+  }
+ ],
+ "ambiguous": [],
+ "new_added": [
+  {
+   "new_id": "8120204",
+   "chapter": "812-02",
+   "text": "植物根系对水分的吸收（主动吸水与根压、被动吸水与蒸腾拉力"
+  },
+  {
+   "new_id": "8120205",
+   "chapter": "812-02",
+   "text": "两种吸水在不同条件下各自主导）"
+  },
+  {
+   "new_id": "8120208",
+   "chapter": "812-02",
+   "text": "植物体内水分的运输途径（共质体、质外体、维管束"
+  },
+  {
+   "new_id": "8120209",
+   "chapter": "812-02",
+   "text": "根压与蒸腾拉力）与运输速度"
+  },
+  {
+   "new_id": "81202M02",
+   "chapter": "812-02",
+   "text": "易错提示：纯水水势为 0；溶液渗透势为负；成熟细胞压力势为正（质壁分离时趋 0）；衬质势在干种子中占主导。主动吸水的判据是\"根压与伤流\"，被动吸水由蒸腾拉力驱动。"
+  },
+  {
+   "new_id": "8120410",
+   "chapter": "812-04",
+   "text": "C₃、C₄、CAM 三条碳同化途径的差别（首产物与酶系、解剖与时间分区）。"
+  },
+  {
+   "new_id": "81204M01",
+   "chapter": "812-04",
+   "text": "机制：光反应产 ATP + NADPH 供 C₃ 循环（卡尔文循环）还原三碳糖。C₄ 途径由 PEPC 先在叶肉细胞固定 CO₂、维管束鞘细胞再释放供给卡尔文循环（\"CO₂ 泵\"）；CAM 以昼夜时间分区（夜间开气孔固定、白天关闭气孔同化）——两者都是对高温干旱环境的适应。"
+  },
+  {
+   "new_id": "8120701",
+   "chapter": "812-07",
+   "text": "生长物质概述（植物激素：内源产生、非营养性、微量高效、可移动"
+  },
+  {
+   "new_id": "8120702",
+   "chapter": "812-07",
+   "text": "植物生长调节剂为人工合成类似物）"
+  },
+  {
+   "new_id": "8120703",
+   "chapter": "812-07",
+   "text": "生长素（分布、极性运输与代谢"
+  },
+  {
+   "new_id": "8120705",
+   "chapter": "812-07",
+   "text": "生长素促进伸长生长的作用机理）"
+  },
+  {
+   "new_id": "8120706",
+   "chapter": "812-07",
+   "text": "赤霉素（分布及运输"
+  },
+  {
+   "new_id": "8120708",
+   "chapter": "812-07",
+   "text": "诱导 α-淀粉酶的作用机理）"
+  },
+  {
+   "new_id": "8120904",
+   "chapter": "812-09",
+   "text": "光周期与光周期现象的定义（昼夜相对长度对成花的效应）、光周期反应类型（短日植物、长日植物、日中性植物"
+  },
+  {
+   "new_id": "8120905",
+   "chapter": "812-09",
+   "text": "临界日长）、光周期诱导（诱导周期数与光周期刺激的可传递性）、感受光周期的部位（叶片）与成花信号的传递，光周期现象的应用（引种、人工调节花期、杂交育种）"
+  },
+  {
+   "new_id": "8121001",
+   "chapter": "812-10",
+   "text": "花粉与柱头的生理特点（花粉含水量低、贮藏物质丰富、寿命有限"
+  },
+  {
+   "new_id": "8121002",
+   "chapter": "812-10",
+   "text": "柱头分泌粘液与识别蛋白），花粉与柱头的识别（自交不亲和的识别与拒绝机制要点）"
+  },
+  {
+   "new_id": "8121101",
+   "chapter": "812-11",
+   "text": "逆境与逆境种类（温度逆境：冷害、冻害、热害"
+  },
+  {
+   "new_id": "8121103",
+   "chapter": "812-11",
+   "text": "盐碱、病害、环境污染等）"
+  },
+  {
+   "new_id": "3150205",
+   "chapter": "315-02",
+   "text": "ΔᵣH°、ΔᵣS°、ΔᵣG°等反应热力学量计算及盖斯定律"
+  },
+  {
+   "new_id": "3150305",
+   "chapter": "315-03",
+   "text": "ΔᵣG°与K的关系"
+  },
+  {
+   "new_id": "3150410",
+   "chapter": "315-04",
+   "text": "不等性sp³杂化与NH₃、H₂O"
+  },
+  {
+   "new_id": "3150808",
+   "chapter": "315-08",
+   "text": "K₂Cr₂O₇法、KMnO₄法、碘量法"
+  },
+  {
+   "new_id": "3151402",
+   "chapter": "315-14",
+   "text": "烯烃命名、顺反/Z/E、次序规则"
+  },
+  {
+   "new_id": "3151403",
+   "chapter": "315-14",
+   "text": "炔烃命名"
+  },
+  {
+   "new_id": "3151702",
+   "chapter": "315-17",
+   "text": "与H₂O/NaOH、NaCN、RONa、NH₃/胺、AgNO₃/乙醇亲核取代"
+  },
+  {
+   "new_id": "3151804",
+   "chapter": "315-18",
+   "text": "HX、三卤化磷、五卤化磷、SOCl₂、Lucas试剂"
+  },
+  {
+   "new_id": "3151807",
+   "chapter": "315-18",
+   "text": "硝化、磺化、卤代、氧化、FeCl₃显色"
+  },
+  {
+   "new_id": "3151902",
+   "chapter": "315-19",
+   "text": "HCN、NaHSO₃、RMgX、ROH/H⁺、氨的衍生物、水等亲核加成"
+  },
+  {
+   "new_id": "3152004",
+   "chapter": "315-20",
+   "text": "羧酸LiAlH₄还原"
+  },
+  {
+   "new_id": "3152107",
+   "chapter": "315-21",
+   "text": "与H₂O、H₃PO₂、CuX、CuCN反应及偶联"
+  },
+  {
+   "new_id": "1010209",
+   "chapter": "101-02",
+   "text": "发展的实质、新事物与旧事物"
+  },
+  {
+   "new_id": "1010210",
+   "chapter": "101-02",
+   "text": "辩证否定"
+  },
+  {
+   "new_id": "1010302",
+   "chapter": "101-03",
+   "text": "实践是认识的基础"
+  },
+  {
+   "new_id": "1010303",
+   "chapter": "101-03",
+   "text": "认识本质"
+  },
+  {
+   "new_id": "1010401",
+   "chapter": "101-04",
+   "text": "社会存在与社会意识及相对独立性"
+  },
+  {
+   "new_id": "1010402",
+   "chapter": "101-04",
+   "text": "社会形态"
+  },
+  {
+   "new_id": "1011501",
+   "chapter": "101-15",
+   "text": "新时代历史方位和社会主要矛盾变化"
+  },
+  {
+   "new_id": "1011502",
+   "chapter": "101-15",
+   "text": "总任务"
+  },
+  {
+   "new_id": "1012006",
+   "chapter": "101-20",
+   "text": "共同富裕与民生"
+  },
+  {
+   "new_id": "1012007",
+   "chapter": "101-20",
+   "text": "生态文明"
+  },
+  {
+   "new_id": "1012608",
+   "chapter": "101-26",
+   "text": "法律权利义务"
+  },
+  {
+   "new_id": "1012609",
+   "chapter": "101-26",
+   "text": "法治思维"
+  }
+ ]
+}
