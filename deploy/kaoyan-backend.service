@@ -1,0 +1,13 @@
+[Unit]
+Description=Kaoyan study app backend (FastAPI)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/Users/huajun/Sync/master_eaxm/backend
+ExecStart=/Users/huajun/Sync/master_eaxm/backend/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

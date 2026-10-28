@@ -10,6 +10,29 @@
     "8766"
    ],
    "port": 8766
+  },
+  {
+   "name": "backend",
+   "runtimeExecutable": "backend/.venv/bin/uvicorn",
+   "runtimeArgs": [
+    "app.main:app",
+    "--port",
+    "8000",
+    "--app-dir",
+    "backend"
+   ],
+   "port": 8000
+  },
+  {
+   "name": "frontend",
+   "runtimeExecutable": "npm",
+   "runtimeArgs": [
+    "--prefix",
+    "frontend",
+    "run",
+    "dev"
+   ],
+   "port": 3000
   }
  ]
 }

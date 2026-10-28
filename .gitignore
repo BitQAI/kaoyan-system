@@ -21,3 +21,16 @@ venv/
 # 临时导出
 *.tmp
 *.log
+
+# 运行时数据库与产物
+data/
+
+# 前端
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+
+# 密钥
+.env
+
