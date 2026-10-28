@@ -1,0 +1,34 @@
+{"id":"1011902","prerequisites":["1011901","1011501"],"related":["1011903","1011904"],"confusables":[{"name":"高质量发展 vs 高速增长","point_id":null,"distinction":"高质量发展以质量效益、创新、绿色、共享为标尺；高速增长以GDP增速为标尺"}]}
+{"id":"1011903","prerequisites":["1011902","1011806"],"related":["1011901","1011904"],"confusables":[{"name":"国内大循环 vs 闭关自守","point_id":null,"distinction":"国内大循环是开放条件下的主体，仍以双循环相互促进；闭关自守排斥国际循环"}]}
+{"id":"1011904","prerequisites":["1011902"],"related":["1011906","1011905"],"confusables":[{"name":"新质生产力 vs 传统生产力","point_id":null,"distinction":"新质生产力以技术革命性突破、全要素生产率大幅提升为标志；传统生产力靠要素规模投入"}]}
+{"id":"1011905","prerequisites":["1011603","1011902"],"related":["1011906","1011904"],"confusables":[{"name":"三大战略 vs 三大强国","point_id":null,"distinction":"三大战略是科教兴国、人才强国、创新驱动发展；三大强国是教育强国、科技强国、人才强国"}]}
+{"id":"1011906","prerequisites":["1011905"],"related":["1011902","1011904"],"confusables":[{"name":"科技自立自强 vs 闭关自守","point_id":null,"distinction":"自立自强指关键核心技术自主可控，仍坚持开放合作；闭关自守拒绝国际科技交流"}]}
+{"id":"1012001","prerequisites":[],"related":["1012002","1012005"],"confusables":[{"name":"全过程人民民主 vs 选举民主","point_id":null,"distinction":"全过程覆盖选举、协商、决策、管理、监督各环节；选举民主主要停留在投票环节"}]}
+{"id":"1012002","prerequisites":["1012001"],"related":["1012003"],"confusables":[{"name":"根本政治制度 vs 基本政治制度","point_id":null,"distinction":"根本政治制度专指人民代表大会制度；基本政治制度指政党制度、民族区域自治、基层群众自治"}]}
+{"id":"1012003","prerequisites":["1011602"],"related":["1012001","1012002"],"confusables":[{"name":"法治体系 vs 法律体系","point_id":null,"distinction":"法治体系含法律规范、实施、监督、保障、党内法规五体系；法律体系仅指静态规范文本"},{"name":"依法治国 vs 依宪治国","point_id":"1012610","distinction":"依法治国是基本方略总称；依宪治国是首要要求，宪法是治国安邦总章程"}]}
+{"id":"1012004","prerequisites":["1011601"],"related":["1011702"],"confusables":[{"name":"创造性转化 vs 创新性发展","point_id":null,"distinction":"创造性转化改造传统文化形式并赋予新内涵；创新性发展补充、拓展、完善其内涵"}]}
+{"id":"1012005","prerequisites":["1011804"],"related":["1012006","1012001"],"confusables":[{"name":"社会治理 vs 社会管理","point_id":null,"distinction":"治理是党委领导、多元主体共建共治共享；管理是政府单一主体自上而下管控"}]}
+{"id":"1012006","prerequisites":["1012005"],"related":["1011803"],"confusables":[{"name":"共同富裕 vs 平均主义","point_id":null,"distinction":"共同富裕是全体人民富裕但非同步同等富裕，允许先富带后富；平均主义否认差别"}]}
+{"id":"1012007","prerequisites":["1011702"],"related":["1012008","1012009"],"confusables":[{"name":"生态文明 vs 绿色发展","point_id":"1011901","distinction":"生态文明是文明形态和建设目标；绿色发展是新发展理念中的发展方式与路径"}]}
+{"id":"1012008","prerequisites":["1012007"],"related":["1012009"],"confusables":[{"name":"两山理念 vs 生态优先","point_id":null,"distinction":"两山理念讲生态与经济辩证统一、可相互转化；生态优先讲保护在开发之前的次序"}]}
+{"id":"1012009","prerequisites":["1012007","1012008"],"related":["1011902"],"confusables":[{"name":"碳达峰 vs 碳中和","point_id":null,"distinction":"碳达峰是CO2排放达到峰值后转降，2030年前；碳中和是排放与吸收抵消净零，2060年前"}]}
+{"id":"1012101","prerequisites":[],"related":["1012102","1012103"],"confusables":[{"name":"传统安全 vs 非传统安全","point_id":"1012103","distinction":"传统安全指政治、军事、国土安全；非传统安全指经济、网络、生态、生物、数据等"}]}
+{"id":"1012102","prerequisites":["1012101"],"related":["1012103","1011902"],"confusables":[{"name":"统筹发展和安全 vs 先发展后安全","point_id":null,"distinction":"统筹是发展和安全一体之两翼、同步推进；先发展后安全把安全当作发展的后续代价"}]}
+{"id":"1012103","prerequisites":["1012101"],"related":["1012102"],"confusables":[{"name":"人民安全 vs 政治安全","point_id":"1012101","distinction":"人民安全是宗旨，回答为了谁；政治安全是根本，核心是政权安全和制度安全"}]}
+{"id":"1012104","prerequisites":["1011801"],"related":["1012105"],"confusables":[{"name":"党指挥枪 vs 军队国家化","point_id":null,"distinction":"党指挥枪要求军队置于党的绝对领导之下；军队国家化主张军队脱离党的领导，是错误的"}]}
+{"id":"1012105","prerequisites":["1012104"],"related":["1012101"],"confusables":[{"name":"听党指挥 vs 能打胜仗","point_id":null,"distinction":"听党指挥是灵魂，决定政治方向；能打胜仗是核心，是强军目标的根本指向"}]}
+{"id":"1012106","prerequisites":["1012101"],"related":["1012107"],"confusables":[{"name":"一国 vs 两制","point_id":null,"distinction":"一国是前提和基础，两制在一国之内；中央全面管治权与高度自治权有机统一"}]}
+{"id":"1012107","prerequisites":[],"related":["1012106"],"confusables":[{"name":"一个中国原则 vs 九二共识","point_id":null,"distinction":"一个中国原则是两岸关系政治基础；九二共识是其体现，核心是两岸同属一个中国"},{"name":"和平统一 vs 不承诺放弃武力","point_id":null,"distinction":"不承诺放弃使用武力针对台独分裂行径和外部干涉，绝非针对台湾同胞"}]}
+{"id":"1012108","prerequisites":[],"related":["1012702"],"confusables":[{"name":"人类命运共同体 vs 新型国际关系","point_id":null,"distinction":"新型国际关系是路径，即相互尊重、公平正义、合作共赢；人类命运共同体是目标"}]}
+{"id":"1012109","prerequisites":["1011801"],"related":["1011802"],"confusables":[{"name":"自我革命 vs 全面从严治党","point_id":null,"distinction":"自我革命是党的鲜明品格和内在要求；全面从严治党是其在新形势下的实践形态"}]}
+{"id":"1012201","prerequisites":[],"related":["1012202"],"confusables":[{"name":"半殖民地 vs 殖民地","point_id":null,"distinction":"半殖民地形式上保留独立政府和部分主权，实际受列强控制；殖民地主权完全丧失"}]}
+{"id":"1012202","prerequisites":["1012201"],"related":["1012203"],"confusables":[{"name":"洋务运动 vs 戊戌维新","point_id":null,"distinction":"洋务运动是地主阶级洋务派中体西用、器物层面；戊戌维新是资产阶级维新派制度改良"},{"name":"太平天国 vs 洋务运动","point_id":null,"distinction":"太平天国是农民阶级反封建反侵略的政权；洋务运动是地主阶级维护清朝统治的自救"}]}
+{"id":"1012203","prerequisites":["1012202"],"related":["1012204"],"confusables":[{"name":"旧三民主义 vs 新三民主义","point_id":"1012302","distinction":"旧三民主义（1905）无明确反帝、民生为平均地权；新三民主义（1924）明确反帝反封建、联俄联共扶助农工"},{"name":"辛亥革命 vs 戊戌维新","point_id":"1012202","distinction":"辛亥革命是资产阶级革命派武装推翻帝制；戊戌维新是改良派依靠皇帝自上而下变法"}]}
+{"id":"1012204","prerequisites":["1012202","1012203"],"related":["1012301"],"confusables":[{"name":"旧民主主义革命 vs 新民主主义革命","point_id":"1012301","distinction":"以领导阶级为界：旧由资产阶级领导（1840—1919）；新由无产阶级领导（1919起）"}]}
+{"id":"1012301","prerequisites":["1012204"],"related":["1012302"],"confusables":[{"name":"新文化运动 vs 五四运动","point_id":null,"distinction":"新文化运动是1915年起资产阶级性质的思想启蒙；五四运动是1919年彻底反帝反封建的爱国运动"}]}
+{"id":"1012302","prerequisites":["1012301"],"related":["1012303"],"confusables":[{"name":"党内合作 vs 党外合作","point_id":"1012304","distinction":"第一次国共合作是共产党员以个人身份加入国民党的党内合作；抗日统一战线是党外合作"}]}
+{"id":"1012303","prerequisites":["1012302"],"related":["1012304"],"confusables":[{"name":"城市中心道路 vs 农村包围城市","point_id":"1011104","distinction":"城市中心照搬俄国十月革命；农村包围城市立足半殖民地半封建国情，以农民为革命主力"}]}
+{"id":"1012304","prerequisites":["1012303"],"related":["1012305"],"confusables":[{"name":"正面战场 vs 敌后战场","point_id":null,"distinction":"正面战场由国民党军队担负大规模阵地战；敌后战场由共产党领导游击战，相持阶段后成主战场"}]}
+{"id":"1012305","prerequisites":["1012304"],"related":["1012306"],"confusables":[{"name":"五四指示 vs 中国土地法大纲","point_id":null,"distinction":"五四指示（1946）由减租减息转向耕者有其田但不彻底；土地法大纲（1947）废除封建剥削、平分土地"}]}
+{"id":"1012306","prerequisites":["1012305"],"related":["1012401"],"confusables":[{"name":"新中国成立 vs 社会主义制度确立","point_id":"1012401","distinction":"1949年新中国成立结束半殖民地半封建社会、进入新民主主义社会；1956年三大改造完成才确立社会主义制度"}]}
+{"id":"1012401","prerequisites":["1012306"],"related":["1012402"],"confusables":[{"name":"新民主主义社会 vs 社会主义社会","point_id":"1012306","distinction":"1949—1956新民主主义社会是过渡社会，五种经济成分并存；1956年后为社会主义社会"},{"name":"一化三改 vs 三大改造","point_id":null,"distinction":"一化三改是过渡时期总路线，含工业化与三改造；三大改造仅指对农业、手工业、资本主义工商业的改造"}]}

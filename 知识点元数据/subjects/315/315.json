@@ -4,7 +4,7 @@
  "name": "315 化学（农）",
  "score": 150,
  "status": "draft",
- "generated_at": "2026-10-28T12:56:17.258321+00:00",
+ "generated_at": "2026-10-28T13:40:04.723309+00:00",
  "source_file": "2027考研_四科知识全景与章节权重.html",
  "chapters": [
   {
@@ -539,8 +539,16 @@
    ],
    "order": 1,
    "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "related": [
+    "3150104"
+   ],
+   "confusables": [
+    {
+     "name": "真溶液 vs 胶体",
+     "point_id": "3150104",
+     "distinction": "分散质粒径 1 nm 为界：真溶液<1 nm、胶体 1~100 nm，胶体有丁达尔效应"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 分散系的分类及特点。」要求了解（对齐置信度 0.51）",
@@ -773,8 +781,16 @@
    ],
    "order": 2,
    "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "related": [
+    "3150103"
+   ],
+   "confusables": [
+    {
+     "name": "物质的量浓度 vs 质量摩尔浓度",
+     "point_id": null,
+     "distinction": "前者 mol·L⁻¹，随温度变；后者 mol·kg⁻¹ 溶剂，不随温度变"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 物质的量浓度、物质的量分数和质量摩尔浓度的」要求掌握（对齐置信度 0.61）",
@@ -1023,9 +1039,17 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
+   "prerequisites": [
+    "3150102"
+   ],
    "related": [],
-   "confusables": [],
+   "confusables": [
+    {
+     "name": "沸点升高 vs 凝固点降低",
+     "point_id": null,
+     "distinction": "同一溶液两者方向相反、比例常数不同：水的 Kb=0.512、Kf=1.86"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -1260,9 +1284,19 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150101"
+   ],
+   "related": [
+    "3150105"
+   ],
+   "confusables": [
+    {
+     "name": "胶粒 vs 胶团",
+     "point_id": null,
+     "distinction": "胶粒=胶核+吸附层，带电、电泳移动；胶团=胶粒+扩散层，整体电中性"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 胶体的特性及胶团结构式的书写。」要求掌握（对齐置信度 0.51）",
@@ -1512,9 +1546,17 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
+   "prerequisites": [
+    "3150104"
+   ],
    "related": [],
-   "confusables": [],
+   "confusables": [
+    {
+     "name": "聚沉值 vs 聚沉能力",
+     "point_id": null,
+     "distinction": "聚沉值是使溶胶聚沉所需电解质的最低浓度，数值越小聚沉能力越强，互为倒数"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 溶胶的稳定性与聚沉。」要求掌握（对齐置信度 0.34）",
@@ -1751,8 +1793,16 @@
    ],
    "order": 1,
    "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "related": [
+    "3150202"
+   ],
+   "confusables": [
+    {
+     "name": "状态函数 vs 途径函数",
+     "point_id": null,
+     "distinction": "状态函数变化只由始末态决定、与途径无关；Q、W 是途径函数，随途径不同"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 热力学能、焓、熵及吉布斯自由能等状态函数的」要求了解（对齐置信度 0.56）",
@@ -1980,9 +2030,19 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150201"
+   ],
+   "related": [
+    "3150203"
+   ],
+   "confusables": [
+    {
+     "name": "ΔU=Q+W vs ΔU=Q−W",
+     "point_id": null,
+     "distinction": "W 取环境对体系做功为正时用 ΔU=Q+W；取体系对环境做功为正时改用 ΔU=Q−W"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 热力学第一定律的计算：恒压热与焓变、恒容热」要求掌握（对齐置信度 1.00）",
@@ -2210,9 +2270,19 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150202"
+   ],
+   "related": [
+    "3150204"
+   ],
+   "confusables": [
+    {
+     "name": "Q_V vs Q_p",
+     "point_id": null,
+     "distinction": "Qp=QV+Δn_gRT，Δn_g 只计气态物种的计量数之差；无气相时 Qp=QV"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 热力学第一定律的计算：恒压热与焓变、恒容热」要求掌握（对齐置信度 0.60）",
@@ -2471,8 +2541,12 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
+   "prerequisites": [
+    "3150203"
+   ],
+   "related": [
+    "3150205"
+   ],
    "confusables": [],
    "exam_evidence": {
     "level": "verified",
@@ -2699,9 +2773,19 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150204"
+   ],
+   "related": [
+    "3150206"
+   ],
+   "confusables": [
+    {
+     "name": "ΔrH° vs ΔfH°",
+     "point_id": "3150204",
+     "distinction": "ΔrH° 是整反应按计量数加权求和的结果；ΔfH° 是 1 mol 物质由最稳定单质生成的焓变"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -2936,9 +3020,19 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150205"
+   ],
+   "related": [
+    "3150207"
+   ],
+   "confusables": [
+    {
+     "name": "ΔG vs ΔG°",
+     "point_id": "3150306",
+     "distinction": "ΔG 针对任意状态、直接判实际方向；ΔG° 只对应标准态，判标准态趋势"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 化学反应热、热化学方程式、反应进度、标准态」要求掌握（对齐置信度 0.44）",
@@ -3164,9 +3258,19 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150205"
+   ],
+   "related": [
+    "3150206"
+   ],
+   "confusables": [
+    {
+     "name": "最低自发温度 vs 最高自发温度",
+     "point_id": null,
+     "distinction": "ΔH>0、ΔS>0 需 T>ΔH/ΔS；ΔH<0、ΔS<0 需 T<ΔH/ΔS"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 吉布斯—亥姆霍兹方程的计算及温度对反应自发」要求掌握（对齐置信度 0.95）",
@@ -3453,8 +3557,21 @@
    ],
    "order": 1,
    "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "related": [
+    "3150302"
+   ],
+   "confusables": [
+    {
+     "name": "反应级数 vs 化学计量数",
+     "point_id": null,
+     "distinction": "级数由实验速率方程中浓度指数定，可为 0 或分数；计量数由配平式定，为整数"
+    },
+    {
+     "name": "活化能 vs 反应热",
+     "point_id": null,
+     "distinction": "Ea 是活化分子与反应物平均能量之差，恒为正；ΔH 是始末态能量差，可正可负"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「理解 化学反应速率、基元反应、复杂反应、反应级数」要求理解（对齐置信度 0.92）",
@@ -3681,9 +3798,19 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150301"
+   ],
+   "related": [
+    "3150304"
+   ],
+   "confusables": [
+    {
+     "name": "速率方程 vs 平衡常数式",
+     "point_id": "3150304",
+     "distinction": "速率方程用反应物浓度、指数为反应级数；K 用平衡浓度、指数为计量数"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 质量作用定律及化学反应速率方程式的书写。」要求掌握（对齐置信度 0.94）",
@@ -3910,9 +4037,20 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150301",
+    "3150302"
+   ],
+   "related": [
+    "3150307"
+   ],
+   "confusables": [
+    {
+     "name": "催化剂 vs 温度对K的影响",
+     "point_id": "3150307",
+     "distinction": "催化剂同等降低正逆 Ea、K 不变；升温改变 K，放热反应 K 减小"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 浓度、温度及催化剂对化学反应速率的影响。」要求掌握（对齐置信度 0.86）",
@@ -4143,8 +4281,17 @@
    ],
    "order": 4,
    "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "related": [
+    "3150305",
+    "3150308"
+   ],
+   "confusables": [
+    {
+     "name": "K° vs Kc、Kp",
+     "point_id": "3150308",
+     "distinction": "K° 用 c/c°、p/p° 代换后量纲一；Kc、Kp 带量纲，换算需乘 (RT/p°)^Δn"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 平衡常数的意义及表达式的书写。」要求掌握（对齐置信度 0.62）",
@@ -4373,9 +4520,21 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150205",
+    "3150206"
+   ],
+   "related": [
+    "3150304",
+    "3150306"
+   ],
+   "confusables": [
+    {
+     "name": "ΔrG° vs ΔrG",
+     "point_id": "3150306",
+     "distinction": "ΔrG°=−RTlnK° 只定标准态趋势；ΔrG=ΔrG°+RTlnQ 定任意状态方向"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 ΔrGm 与 ΔK 的关系及应用。」要求掌握（对齐置信度 0.62）",
@@ -4602,9 +4761,19 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150305"
+   ],
+   "related": [
+    "3150307"
+   ],
+   "confusables": [
+    {
+     "name": "反应商 Q vs K°",
+     "point_id": "3150307",
+     "distinction": "Q<K° 正向自发，Q>K° 逆向；Q 随浓度压力改变，K° 只随温度变"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 化学等温方程式和平衡常数的有关计算。」要求掌握（对齐置信度 0.83）",
@@ -4852,9 +5021,20 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150304",
+    "3150306"
+   ],
+   "related": [
+    "3150305"
+   ],
+   "confusables": [
+    {
+     "name": "恒容充惰气 vs 恒压充惰气",
+     "point_id": null,
+     "distinction": "恒容充 He 各组分分压不变、平衡不移动；恒压充 He 体积增大、向气体分子数多的一侧移动"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -5105,9 +5285,17 @@
     }
    ],
    "order": 8,
-   "prerequisites": [],
+   "prerequisites": [
+    "3150304"
+   ],
    "related": [],
-   "confusables": [],
+   "confusables": [
+    {
+     "name": "反应相加 vs 相减的K",
+     "point_id": "3150304",
+     "distinction": "两反应相加 K 相乘；相减 K 相除；方程式乘 n 则 K 取 n 次方"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 多重平衡规则。」要求掌握（对齐置信度 0.61）",
@@ -5364,8 +5552,16 @@
    ],
    "order": 1,
    "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "related": [
+    "3150402"
+   ],
+   "confusables": [
+    {
+     "name": "波函数 ψ vs 电子云",
+     "point_id": null,
+     "distinction": "ψ 有正负号、是概率幅；其模平方为概率密度，恒非负，只表现为疏密"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 波粒二象性、量子性（量子化）、波函数（原子」要求了解（对齐置信度 0.88）",
@@ -5596,9 +5792,19 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150401"
+   ],
+   "related": [
+    "3150403"
+   ],
+   "confusables": [
+    {
+     "name": "原子轨道 vs 电子状态",
+     "point_id": "3150403",
+     "distinction": "确定轨道只需 n、l、m 三个量子数；确定电子状态还须加 mₛ"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 四个量子数的意义，掌握其取值规则。」要求了解（对齐置信度 0.83）",
@@ -5803,8 +6009,12 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
+   "prerequisites": [
+    "3150402"
+   ],
+   "related": [
+    "3150404"
+   ],
    "confusables": [],
    "exam_evidence": {
     "level": "verified",
@@ -6056,9 +6266,20 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150401",
+    "3150402"
+   ],
+   "related": [
+    "3150405"
+   ],
+   "confusables": [
+    {
+     "name": "泡利原理 vs 洪特规则",
+     "point_id": null,
+     "distinction": "泡利限制同一轨道内最多 2 个电子且自旋相反；洪特管简并轨道先单占且自旋平行"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 基态原子核外电子排布原理及方法。」要求掌握（对齐置信度 0.58）",
@@ -6307,8 +6528,12 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
+   "prerequisites": [
+    "3150404"
+   ],
+   "related": [
+    "3150406"
+   ],
    "confusables": [],
    "exam_evidence": {
     "level": "verified",
@@ -6577,9 +6802,19 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150405"
+   ],
+   "related": [
+    "3150411"
+   ],
+   "confusables": [
+    {
+     "name": "第一电离能 vs 电负性",
+     "point_id": "3150411",
+     "distinction": "I₁ 是气态原子失去一个电子的能量；电负性是分子中吸引成键电子的能力，不能互相替代"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「理解 离子键与共价键的特征及区别，掌握 σ 键和」要求理解（对齐置信度 1.00）",
@@ -6808,9 +7043,19 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150406"
+   ],
+   "related": [
+    "3150408"
+   ],
+   "confusables": [
+    {
+     "name": "离子键 vs 共价键",
+     "point_id": "3150411",
+     "distinction": "本质是电子转移 vs 共用电子对；离子键无方向性和饱和性，共价键有"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「理解 离子键与共价键的特征及区别，掌握 σ 键和」要求理解（对齐置信度 1.00）",
@@ -7063,9 +7308,19 @@
     }
    ],
    "order": 8,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150407"
+   ],
+   "related": [
+    "3150409"
+   ],
+   "confusables": [
+    {
+     "name": "σ键 vs π键",
+     "point_id": null,
+     "distinction": "σ 头碰头、重叠大、可绕键轴旋转；π 肩并肩、重叠小、不能旋转，易断做加成"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 等性 s-p 杂化轨道（sp、sp²、sp」要求掌握（对齐置信度 0.58）",
@@ -7321,9 +7576,20 @@
     }
    ],
    "order": 9,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150401",
+    "3150408"
+   ],
+   "related": [
+    "3150410"
+   ],
+   "confusables": [
+    {
+     "name": "sp² vs sp³ 构型",
+     "point_id": null,
+     "distinction": "sp² 得 3 个轨道、平面三角形、键角 120°；sp³ 得 4 个、正四面体、109.5°"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 等性 s-p 杂化轨道（sp、sp²、sp」要求掌握（对齐置信度 0.58）",
@@ -7534,9 +7800,19 @@
     }
    ],
    "order": 10,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150409"
+   ],
+   "related": [
+    "3150411"
+   ],
+   "confusables": [
+    {
+     "name": "等性 vs 不等性 sp³",
+     "point_id": "3150409",
+     "distinction": "4 个杂化轨道全成键为等性；含孤对电子（NH₃ 1 对、H₂O 2 对）为不等性，键角被压缩"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 元素电负性差值与键极性、偶极矩与分子极性的」要求掌握（对齐置信度 0.89）",
@@ -7764,9 +8040,20 @@
     }
    ],
    "order": 11,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150406",
+    "3150410"
+   ],
+   "related": [
+    "3150412"
+   ],
+   "confusables": [
+    {
+     "name": "键极性 vs 分子极性",
+     "point_id": "3150409",
+     "distinction": "键有极性但键偶极矩矢量和为零时分子非极性，如 CO₂、BF₃；须看构型是否对称"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 元素电负性差值与键极性、偶极矩与分子极性的」要求掌握（对齐置信度 0.89）",
@@ -8016,9 +8303,22 @@
     }
    ],
    "order": 12,
-   "prerequisites": [],
+   "prerequisites": [
+    "3150411"
+   ],
    "related": [],
-   "confusables": [],
+   "confusables": [
+    {
+     "name": "氢键 vs 范德华力",
+     "point_id": null,
+     "distinction": "氢键有方向性和饱和性、约 10~40 kJ·mol⁻¹；范德华力无方向性且更弱（<5 kJ·mol⁻¹）"
+    },
+    {
+     "name": "分子内氢键 vs 分子间氢键",
+     "point_id": null,
+     "distinction": "分子间氢键升高熔沸点；分子内氢键降低熔沸点，如邻硝基苯酚低于对位"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 元素电负性差值与键极性、偶极矩与分子极性的」要求掌握（对齐置信度 0.89）",
@@ -8245,8 +8545,17 @@
    ],
    "order": 1,
    "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "related": [
+    "3150502",
+    "3150503"
+   ],
+   "confusables": [
+    {
+     "name": "系统误差 vs 随机误差",
+     "point_id": "3150502",
+     "distinction": "系统误差单向、可测、可校正；随机误差双向、不可消除，只能靠增加平行次数减小"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -8476,9 +8785,24 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150501"
+   ],
+   "related": [
+    "3150503"
+   ],
+   "confusables": [
+    {
+     "name": "准确度 vs 精密度",
+     "point_id": "3150501",
+     "distinction": "准确度由系统误差决定、对真值；精密度由随机误差决定、看平行测定间，高精密度不等于高准确度"
+    },
+    {
+     "name": "绝对误差 vs 相对误差",
+     "point_id": "3150503",
+     "distinction": "绝对误差带单位、有正负；相对误差为绝对误差除以真值，无量纲，便于不同量级比较"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 误差分类与减免方法，精密度与准确度的关系。」要求掌握（对齐置信度 0.83）",
@@ -8681,9 +9005,25 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150501",
+    "3150502"
+   ],
+   "related": [
+    "3150504"
+   ],
+   "confusables": [
+    {
+     "name": "绝对误差 vs 绝对偏差",
+     "point_id": null,
+     "distinction": "误差以真值或标准值为基准 E=x−μ；偏差以平均值为基准 d=x−x̄"
+    },
+    {
+     "name": "准确度 vs 精密度",
+     "point_id": "3150502",
+     "distinction": "准确度由系统误差决定、看误差大小；精密度由随机误差决定、看偏差大小"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -8918,9 +9258,24 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150503"
+   ],
+   "related": [
+    "3150508"
+   ],
+   "confusables": [
+    {
+     "name": "有效数字 vs 小数位数",
+     "point_id": null,
+     "distinction": "lgx 的小数位数等于真数的有效数字位数；pH 只计小数部分"
+    },
+    {
+     "name": "四舍六入五成双 vs 四舍五入",
+     "point_id": null,
+     "distinction": "尾数恰为 5 且其后无数字时，前一位奇数进、偶数舍；非 5 仍按常规修约"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 有效数字及运算规则。」要求掌握（对齐置信度 0.51）",
@@ -9148,8 +9503,17 @@
    ],
    "order": 5,
    "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "related": [
+    "3150506",
+    "3150507"
+   ],
+   "confusables": [
+    {
+     "name": "化学计量点 vs 滴定终点",
+     "point_id": null,
+     "distinction": "计量点由计量关系算出、为理论值；终点由指示剂变色实测，两者之差为终点误差"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 滴定分析基本概念和原理，滴定反应的要求与滴」要求掌握（对齐置信度 0.48）",
@@ -9374,9 +9738,19 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150505"
+   ],
+   "related": [
+    "3150508"
+   ],
+   "confusables": [
+    {
+     "name": "返滴定 vs 置换滴定",
+     "point_id": null,
+     "distinction": "返滴定是回滴剩余滴定剂（n待测=n总−n余）；置换滴定是试剂置换出定量产物再滴定"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -9607,9 +9981,19 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150505"
+   ],
+   "related": [
+    "3150508"
+   ],
+   "confusables": [
+    {
+     "name": "基准物质 vs 标准溶液",
+     "point_id": "3150508",
+     "distinction": "基准物质是可直接称量的纯试剂（纯度≥99.9%）；标准溶液是已定值的溶液"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 滴定分析基本概念和原理，滴定反应的要求与滴」要求掌握（对齐置信度 1.00）",
@@ -9837,9 +10221,20 @@
     }
    ],
    "order": 8,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150505",
+    "3150507"
+   ],
+   "related": [
+    "3150506"
+   ],
+   "confusables": [
+    {
+     "name": "直接配制法 vs 标定法",
+     "point_id": null,
+     "distinction": "直接法称基准物质定容即得准确浓度；标定法先配近似浓度，再用基准物质标定"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 滴定分析基本概念和原理，滴定反应的要求与滴」要求掌握（对齐置信度 0.64）",
@@ -10087,8 +10482,17 @@
    ],
    "order": 1,
    "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "related": [
+    "3150602",
+    "3150603"
+   ],
+   "confusables": [
+    {
+     "name": "Ka vs Kb",
+     "point_id": null,
+     "distinction": "同一共轭对 Ka·Kb=Kw；酸越强其共轭碱的 Kb 越小"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 质子条件式的书写，掌握弱酸、弱碱和两性物质」要求掌握（对齐置信度 1.00）",
@@ -10314,9 +10718,20 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150601"
+   ],
+   "related": [
+    "3150603",
+    "3150605"
+   ],
+   "confusables": [
+    {
+     "name": "质子条件式 vs 电荷平衡式",
+     "point_id": null,
+     "distinction": "PBE 以零水准按得失质子数守恒列式；电荷平衡按正负电荷总浓度相等列式"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 质子条件式的书写，掌握弱酸、弱碱和两性物质」要求掌握（对齐置信度 1.00）",
@@ -10523,9 +10938,21 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150601",
+    "3150602"
+   ],
+   "related": [
+    "3150604",
+    "3150605"
+   ],
+   "confusables": [
+    {
+     "name": "最简式 vs 近似式",
+     "point_id": null,
+     "distinction": "cKa≥20Kw 且 c/Ka≥500 时用最简式；否则须用含解离项的近似式"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 质子酸、质子碱、稀释定律、同离子效应、共轭」要求掌握（对齐置信度 0.67）",
@@ -10730,9 +11157,20 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150601",
+    "3150603"
+   ],
+   "related": [
+    "3150704"
+   ],
+   "confusables": [
+    {
+     "name": "同离子效应 vs 盐效应",
+     "point_id": null,
+     "distinction": "同离子效应使解离度、溶解度减小；盐效应因离子强度增大而略增"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 质子酸、质子碱、稀释定律、同离子效应、共轭」要求掌握（对齐置信度 0.67）",
@@ -10981,9 +11419,20 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150603",
+    "3150604"
+   ],
+   "related": [
+    "3150607"
+   ],
+   "confusables": [
+    {
+     "name": "缓冲容量 vs 缓冲范围",
+     "point_id": null,
+     "distinction": "缓冲容量看抗酸碱能力，缓冲比=1 时最大；缓冲范围是 pH=pKa±1 的区间"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 缓冲溶液的类型、配制、有关计算，了解其在农」要求掌握（对齐置信度 0.36）",
@@ -11210,9 +11659,26 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150505",
+    "3150601"
+   ],
+   "related": [
+    "3150607",
+    "3150608"
+   ],
+   "confusables": [
+    {
+     "name": "酸碱指示剂 vs 氧化还原指示剂",
+     "point_id": "3150807",
+     "distinction": "前者随 pH 变色（范围 pK(HIn)±1）；后者随电极电势变色（E°′±0.059/n）"
+    },
+    {
+     "name": "变色点 vs 化学计量点",
+     "point_id": "3150505",
+     "distinction": "变色点是 pH=pK(HIn)±1 的实测区间；计量点由计量关系算出"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 酸碱指示剂的变色原理及常用指示剂。掌握一元」要求掌握（对齐置信度 0.64）",
@@ -11437,9 +11903,26 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150603",
+    "3150606"
+   ],
+   "related": [
+    "3150608",
+    "3150610"
+   ],
+   "confusables": [
+    {
+     "name": "滴定突跃 vs 指示剂变色范围",
+     "point_id": "3150606",
+     "distinction": "突跃是计量点前后 ±0.1% 的 pH 区间；变色范围须落在突跃内才可用"
+    },
+    {
+     "name": "半中和点 vs 化学计量点",
+     "point_id": null,
+     "distinction": "半中和点 pH=pKa（缓冲比 1:1）；计量点由产物水解决定，滴定弱酸时为碱性"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 一元弱酸（碱）能否被准确滴定的条件，多元弱」要求掌握（对齐置信度 0.64）",
@@ -11643,9 +12126,20 @@
     }
    ],
    "order": 8,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150607"
+   ],
+   "related": [
+    "3150609",
+    "3150610"
+   ],
+   "confusables": [
+    {
+     "name": "一元判据 vs 多元分步判据",
+     "point_id": "3150609",
+     "distinction": "一元只看 cKa≥10⁻⁸；多元还须相邻两级 Ka 之比≥10⁵ 才能分步"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 一元弱酸（碱）能否被准确滴定的条件，多元弱」要求掌握（对齐置信度 0.64）",
@@ -11870,9 +12364,21 @@
     }
    ],
    "order": 9,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150603",
+    "3150608"
+   ],
+   "related": [
+    "3150607",
+    "3150610"
+   ],
+   "confusables": [
+    {
+     "name": "分步判据 vs 单级判据",
+     "point_id": "3150608",
+     "distinction": "cKa≥10⁻⁸ 判本级能否滴准；Ka₁/Ka₂≥10⁵（ΔpKa≥5）判两级能否分开"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 一元弱酸（碱）能否被准确滴定的条件，多元弱」要求掌握（对齐置信度 0.64）",
@@ -12101,9 +12607,20 @@
     }
    ],
    "order": 10,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150606",
+    "3150607"
+   ],
+   "related": [
+    "3150608"
+   ],
+   "confusables": [
+    {
+     "name": "双指示剂法 vs 单指示剂法",
+     "point_id": null,
+     "distinction": "双指示剂先酚酞后甲基橙，由两段体积比判混合碱组成；单指示剂只得总碱量"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 酸碱滴定的有关计算。」要求掌握（对齐置信度 0.57）",
@@ -12326,9 +12843,25 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150304"
+   ],
+   "related": [
+    "3150702",
+    "3150703"
+   ],
+   "confusables": [
+    {
+     "name": "Ksp vs 溶解度 S",
+     "point_id": "3150702",
+     "distinction": "Ksp 只随温度变、与浓度无关；S 是饱和溶液的物质的量浓度，受同离子效应影响"
+    },
+    {
+     "name": "Ksp vs 离子积 Q",
+     "point_id": "3150703",
+     "distinction": "Ksp 是平衡常数、定值；Q 是任意时刻的离子积，Q>Ksp 才析出沉淀"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -12552,9 +13085,20 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150701"
+   ],
+   "related": [
+    "3150703",
+    "3150704"
+   ],
+   "confusables": [
+    {
+     "name": "同类型 vs 不同类型沉淀",
+     "point_id": "3150705",
+     "distinction": "同类型可直接比 Ksp（越小越难溶）；不同类型须换算为 S 或开始沉淀所需离子浓度"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -12787,9 +13331,21 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150701",
+    "3150702"
+   ],
+   "related": [
+    "3150704",
+    "3150705"
+   ],
+   "confusables": [
+    {
+     "name": "Q vs Ksp",
+     "point_id": "3150701",
+     "distinction": "Q 随浓度改变，用于判断沉淀生成或溶解；Ksp 恒定，仅随温度变"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -13016,9 +13572,26 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150701",
+    "3150702"
+   ],
+   "related": [
+    "3150604",
+    "3150703"
+   ],
+   "confusables": [
+    {
+     "name": "同离子效应 vs 盐效应",
+     "point_id": "3150604",
+     "distinction": "同离子使溶解度减小；盐效应因离子强度增大使溶解度略增"
+    },
+    {
+     "name": "酸效应 vs 配位效应",
+     "point_id": null,
+     "distinction": "酸效应质子化弱酸根（CO₃²⁻、C₂O₄²⁻）；配位效应与金属离子成可溶配合物"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -13241,9 +13814,25 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150703",
+    "3150704"
+   ],
+   "related": [
+    "3150706"
+   ],
+   "confusables": [
+    {
+     "name": "分步沉淀 vs 沉淀转化",
+     "point_id": "3150706",
+     "distinction": "分步沉淀是多种离子先后析出；沉淀转化是已生成沉淀溶解并转为另一种沉淀"
+    },
+    {
+     "name": "开始沉淀 vs 沉淀完全",
+     "point_id": null,
+     "distinction": "开始沉淀按 Q=Ksp 算所需沉淀剂浓度；沉淀完全按残留≤10⁻⁵ mol/L 算"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -13448,9 +14037,20 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150701",
+    "3150703"
+   ],
+   "related": [
+    "3150705"
+   ],
+   "confusables": [
+    {
+     "name": "沉淀转化 vs 沉淀溶解",
+     "point_id": null,
+     "distinction": "转化需加入能与原沉淀离子生成更难溶物的试剂；溶解只需使 Q<Ksp"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 分步沉淀及其简单应用，了解沉淀转化的条件。」要求掌握（对齐置信度 0.80）",
@@ -13673,9 +14273,20 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150505",
+    "3150701"
+   ],
+   "related": [
+    "3150708"
+   ],
+   "confusables": [
+    {
+     "name": "银量法 vs 沉淀滴定",
+     "point_id": "3150708",
+     "distinction": "银量法专指以 AgNO₃ 为滴定剂的沉淀滴定；沉淀滴定还包括其他沉淀剂体系"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 沉淀滴定法的原理、银量法［莫尔（Mohr）」要求了解（对齐置信度 0.57）",
@@ -13904,9 +14515,22 @@
     }
    ],
    "order": 8,
-   "prerequisites": [],
+   "prerequisites": [
+    "3150707"
+   ],
    "related": [],
-   "confusables": [],
+   "confusables": [
+    {
+     "name": "莫尔法 vs 佛尔哈德法",
+     "point_id": null,
+     "distinction": "莫尔法用 K₂CrO₄、中性或弱碱性直接滴 Cl⁻；佛尔哈德法用铁铵矾、酸性返滴"
+    },
+    {
+     "name": "佛尔哈德法 vs 法扬斯法",
+     "point_id": null,
+     "distinction": "佛尔哈德法是返滴定（NH₄SCN 滴过量 Ag⁺）；法扬斯法用吸附指示剂直接滴定"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 沉淀滴定法的原理、银量法［莫尔（Mohr）」要求了解（对齐置信度 0.65）",
@@ -14152,8 +14776,17 @@
    ],
    "order": 1,
    "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "related": [
+    "3150802",
+    "3150803"
+   ],
+   "confusables": [
+    {
+     "name": "氧化数 vs 化合价",
+     "point_id": null,
+     "distinction": "氧化数是按电负性人为分配的形式电荷，可为分数；化合价是实际成键数"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 氧化数、氧化与还原、氧化态、还原态、氧化还」要求掌握（对齐置信度 1.00）",
@@ -14378,9 +15011,25 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150801"
+   ],
+   "related": [
+    "3150803",
+    "3150805"
+   ],
+   "confusables": [
+    {
+     "name": "原电池 vs 电解池",
+     "point_id": null,
+     "distinction": "原电池负极发生氧化（即阳极）；电解池阳极接电源正极"
+    },
+    {
+     "name": "阳极 vs 正极",
+     "point_id": null,
+     "distinction": "阳极按氧化反应定义；正极按电极电势高定义，原电池中二者所指相反"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 用电池符号表示原电池及原电池电动势的计算。」要求掌握（对齐置信度 0.35）",
@@ -14606,9 +15255,21 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150801",
+    "3150802"
+   ],
+   "related": [
+    "3150804",
+    "3150805"
+   ],
+   "confusables": [
+    {
+     "name": "φ° vs 条件电极电势 φ°′",
+     "point_id": "3150807",
+     "distinction": "φ° 取标准态活度=1；φ°′ 用浓度代替活度并含酸效应、配位效应系数"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 能斯特方程式及浓度（或分压）、酸度对电极电」要求掌握（对齐置信度 0.75）",
@@ -14834,9 +15495,20 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150803"
+   ],
+   "related": [
+    "3150805",
+    "3150806"
+   ],
+   "confusables": [
+    {
+     "name": "φ°判向 vs E判向",
+     "point_id": null,
+     "distinction": "标准态直接比 φ°；非标准态须先用能斯特方程求 E 再判 ΔE 正负"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 电极电势的应用（判断氧化剂或还原剂的相对强」要求掌握（对齐置信度 0.68）",
@@ -15059,9 +15731,26 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150803",
+    "3150804"
+   ],
+   "related": [
+    "3150305",
+    "3150806"
+   ],
+   "confusables": [
+    {
+     "name": "φ° vs ΔG°",
+     "point_id": null,
+     "distinction": "φ° 是强度性质，半反应乘系数不变；ΔG°、K° 随方程式写法改变"
+    },
+    {
+     "name": "E° vs K°",
+     "point_id": null,
+     "distinction": "由 ΔG°=−nFE°=−RTlnK° 得 lgK°=nE°/0.0592，n 取配平后电子总数"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 标准电极电势与氧化还原反应平衡常数的关系。」要求掌握（对齐置信度 0.88）",
@@ -15284,9 +15973,23 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
+   "prerequisites": [
+    "3150804",
+    "3150805"
+   ],
    "related": [],
-   "confusables": [],
+   "confusables": [
+    {
+     "name": "相邻 φ° vs 不相邻 φ°",
+     "point_id": null,
+     "distinction": "φ° 不能直接相加，须按 ΔG°=−nFφ° 加权得 (n₁φ₁+n₂φ₂)/(n₁+n₂)"
+    },
+    {
+     "name": "歧化 vs 归中",
+     "point_id": null,
+     "distinction": "中间态右侧 φ° 大于左侧则歧化；左侧大于右侧则歧化逆向、实为归中"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 元素标准电势图及其应用。」要求掌握（对齐置信度 0.58）",
@@ -15507,9 +16210,25 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150803",
+    "3150804"
+   ],
+   "related": [
+    "3150808"
+   ],
+   "confusables": [
+    {
+     "name": "氧化还原指示剂 vs 专属指示剂",
+     "point_id": "3150808",
+     "distinction": "前者随电极电势变色；淀粉等专属指示剂靠与 I₂ 生成蓝色配合物显色"
+    },
+    {
+     "name": "氧化还原指示剂 vs 酸碱指示剂",
+     "point_id": "3150606",
+     "distinction": "前者变色看 E（E°′±0.059/n）；后者变色看 pH（pK±1）"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 氧化还原滴定法的特点，氧化还原指示剂分类。」要求了解（对齐置信度 1.00）",
@@ -15735,9 +16454,26 @@
     }
    ],
    "order": 8,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150804",
+    "3150807"
+   ],
+   "related": [
+    "3150805",
+    "3150809"
+   ],
+   "confusables": [
+    {
+     "name": "直接碘量法 vs 间接碘量法",
+     "point_id": null,
+     "distinction": "直接法用 I₂ 滴还原剂；间接法加过量 KI 析出 I₂ 后用 Na₂S₂O₃ 滴定"
+    },
+    {
+     "name": "KMnO₄法 vs K₂Cr₂O₇法",
+     "point_id": null,
+     "distinction": "KMnO₄ 自身指示、须标定且酸度严格；K₂Cr₂O₇ 可直接配基准液但需指示剂"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 常用的氧化还原滴定方法（重铬酸钾法、高锰酸」要求掌握（对齐置信度 0.57）",
@@ -15960,9 +16696,18 @@
     }
    ],
    "order": 9,
-   "prerequisites": [],
+   "prerequisites": [
+    "3150508",
+    "3150808"
+   ],
    "related": [],
-   "confusables": [],
+   "confusables": [
+    {
+     "name": "基本单元 z vs 计量系数",
+     "point_id": null,
+     "distinction": "z 取错则结果按比例偏差，如酸性 KMnO₄ 应为 z=5 而非 3"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 常用的氧化还原滴定方法（重铬酸钾法、高锰酸」要求掌握（对齐置信度 0.57）",
@@ -16188,9 +16933,25 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150407"
+   ],
+   "related": [
+    "3150902",
+    "3150906"
+   ],
+   "confusables": [
+    {
+     "name": "配位数 vs 配体数",
+     "point_id": null,
+     "distinction": "配位数是配位原子总数；双齿配体 1 个分子占 2 个配位数"
+    },
+    {
+     "name": "内界 vs 外界",
+     "point_id": null,
+     "distinction": "内界配离子难解离、不与沉淀剂反应；外界离子可自由解离"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 配合物定义、组成及命名。」要求掌握（对齐置信度 0.54）",
@@ -16414,9 +17175,20 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150901",
+    "3150409"
+   ],
+   "related": [
+    "3150903"
+   ],
+   "confusables": [
+    {
+     "name": "价键理论 vs 晶体场理论",
+     "point_id": null,
+     "distinction": "前者用杂化轨道与磁矩判断内/外轨型；后者用分裂能Δ解释颜色和高自旋"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「理解 配合物的价键理论要点，掌握有关外轨型配合物」要求理解（对齐置信度 0.75）",
@@ -16641,9 +17413,18 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
+   "prerequisites": [
+    "3150902",
+    "3150409"
+   ],
    "related": [],
-   "confusables": [],
+   "confusables": [
+    {
+     "name": "内轨型 vs 外轨型",
+     "point_id": "3150902",
+     "distinction": "内轨型用(n-1)d参与杂化，未成对电子少、磁矩低；外轨型用nd"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「理解 配合物的价键理论要点，掌握有关外轨型配合物」要求理解（对齐置信度 0.75）",
@@ -16872,9 +17653,21 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150308",
+    "3150701",
+    "3150803"
+   ],
+   "related": [
+    "3150905"
+   ],
+   "confusables": [
+    {
+     "name": "配位溶解 vs 沉淀转化",
+     "point_id": "3150706",
+     "distinction": "配位溶解生成可溶配合物降低自由Mⁿ⁺；沉淀转化由Ksp较大的沉淀转为Ksp较小的"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 配位平衡与其他平衡的关系，掌握影响配位平衡」要求掌握（对齐置信度 0.80）",
@@ -17103,9 +17896,21 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150904",
+    "3150601"
+   ],
+   "related": [
+    "3150907",
+    "3150908"
+   ],
+   "confusables": [
+    {
+     "name": "K稳 vs K′稳",
+     "point_id": "3150907",
+     "distinction": "K稳是标准态下的常数；K′稳=K稳/(αM·αY)，随pH与副反应变化"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 配位平衡与其他平衡的关系，掌握影响配位平衡」要求掌握（对齐置信度 0.80）",
@@ -17330,9 +18135,20 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150901",
+    "3150201"
+   ],
+   "related": [
+    "3150907"
+   ],
+   "confusables": [
+    {
+     "name": "螯合物 vs 简单配合物",
+     "point_id": "3150901",
+     "distinction": "螯合物由多齿配体成环，同组成下稳定性明显高于单齿配合物"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 螯合物的结构特点及螯合效应。」要求了解（对齐置信度 0.70）",
@@ -17554,9 +18370,21 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150906",
+    "3150601"
+   ],
+   "related": [
+    "3150905",
+    "3150908"
+   ],
+   "confusables": [
+    {
+     "name": "酸效应 vs 配位效应",
+     "point_id": "3150908",
+     "distinction": "酸效应是H⁺占据Y⁴⁻使[Y]下降；配位效应是M被其他配体占用"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 配位滴定法的特点及 EDTA 的性质。」要求了解（对齐置信度 0.80）",
@@ -17783,9 +18611,21 @@
     }
    ],
    "order": 8,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150905",
+    "3150907"
+   ],
+   "related": [
+    "3150909",
+    "3150910"
+   ],
+   "confusables": [
+    {
+     "name": "lgK′ vs lg(cK′)",
+     "point_id": "3150905",
+     "distinction": "判据用lg(cK′)≥6（c以mol/L计）；单看lgK′≥8不能保证准确滴定"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 单一金属离子能被准确滴定的条件，配位滴定所」要求掌握（对齐置信度 0.75）",
@@ -18010,9 +18850,20 @@
     }
    ],
    "order": 9,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150907",
+    "3150908"
+   ],
+   "related": [
+    "3150910"
+   ],
+   "confusables": [
+    {
+     "name": "金属指示剂 vs 酸碱指示剂",
+     "point_id": "3150606",
+     "distinction": "前者与M生成有色配合物，按pM突跃变色；后者按pH变色"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 金属指示剂的变色原理，常用指示剂及指示剂使」要求了解（对齐置信度 0.88）",
@@ -18258,9 +19109,21 @@
     }
    ],
    "order": 10,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150506",
+    "3150907",
+    "3150908"
+   ],
+   "related": [
+    "3150909"
+   ],
+   "confusables": [
+    {
+     "name": "返滴定 vs 置换滴定",
+     "point_id": "3150506",
+     "distinction": "返滴定先加过量EDTA再回滴剩余量；置换滴定先置换出等量金属再滴定"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 配位滴定的方式和应用。」要求掌握（对齐置信度 1.00）",
@@ -18538,8 +19401,17 @@
    ],
    "order": 1,
    "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "related": [
+    "3151003",
+    "3151004"
+   ],
+   "confusables": [
+    {
+     "name": "吸收曲线 vs 工作曲线",
+     "point_id": "3151004",
+     "distinction": "横坐标分别为波长和浓度；吸收曲线选λmax，工作曲线用于定量"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 朗伯—比耳定律及应用。掌握摩尔吸光系数、吸」要求掌握（对齐置信度 1.00）",
@@ -18767,9 +19639,19 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151001"
+   ],
+   "related": [
+    "3151003"
+   ],
+   "confusables": [
+    {
+     "name": "透射比 vs 吸光度",
+     "point_id": "3151003",
+     "distinction": "T=I/I₀为线性量（%）；A=-lgT为对数量，具有加和性"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 朗伯—比耳定律及应用。掌握摩尔吸光系数、吸」要求掌握（对齐置信度 1.00）",
@@ -19003,9 +19885,21 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151001",
+    "3151002"
+   ],
+   "related": [
+    "3151004",
+    "3151005"
+   ],
+   "confusables": [
+    {
+     "name": "ε vs A",
+     "point_id": "3151004",
+     "distinction": "ε是c=1 mol/L、b=1 cm时的A，属物质常数；A随c、b改变"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 朗伯—比耳定律及应用。掌握摩尔吸光系数、吸」要求掌握（对齐置信度 1.00）",
@@ -19232,9 +20126,20 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151003"
+   ],
+   "related": [
+    "3151001",
+    "3151007"
+   ],
+   "confusables": [
+    {
+     "name": "工作曲线 vs 标准加入法",
+     "point_id": "3151103",
+     "distinction": "工作曲线用系列标准液外标；标准加入法在同一试液中加标，适于基体复杂试样"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 朗伯—比耳定律及应用。掌握摩尔吸光系数、吸」要求掌握（对齐置信度 1.00）",
@@ -19461,9 +20366,20 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151003"
+   ],
+   "related": [
+    "3151001",
+    "3151007"
+   ],
+   "confusables": [
+    {
+     "name": "化学偏离 vs 仪器偏离",
+     "point_id": null,
+     "distinction": "化学偏离源于溶液组成、缔合或离解；仪器偏离源于非单色光与杂散光"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 显色反应的特点，掌握显色条件的选择。」要求了解（对齐置信度 0.64）",
@@ -19691,9 +20607,20 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150901",
+    "3151003"
+   ],
+   "related": [
+    "3151007"
+   ],
+   "confusables": [
+    {
+     "name": "显色条件 vs 测量条件",
+     "point_id": "3151007",
+     "distinction": "显色条件控制反应完全（用量、酸度、时间）；测量条件控制读数（λ、空白、A范围）"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 显色反应的特点，掌握显色条件的选择。」要求了解（对齐置信度 0.64）",
@@ -19955,9 +20882,21 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151003",
+    "3151006"
+   ],
+   "related": [
+    "3151004",
+    "3151005"
+   ],
+   "confusables": [
+    {
+     "name": "溶剂空白 vs 试剂空白",
+     "point_id": null,
+     "distinction": "溶剂空白以纯溶剂调零；试剂空白含全部试剂不含试样，可抵消显色剂吸收"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 分光光度法的应用和测量条件的选择。」要求掌握（对齐置信度 0.40）",
@@ -20185,9 +21124,20 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150801",
+    "3150803"
+   ],
+   "related": [
+    "3151102"
+   ],
+   "confusables": [
+    {
+     "name": "指示电极 vs 参比电极",
+     "point_id": "3151102",
+     "distinction": "指示电极电位随待测离子活度按能斯特方程变化；参比电极电位恒定"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 电势分析法的基本原理。」要求了解（对齐置信度 0.88）",
@@ -20415,9 +21365,20 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151101",
+    "3150803"
+   ],
+   "related": [
+    "3151103"
+   ],
+   "confusables": [
+    {
+     "name": "甘汞电极 vs 玻璃电极",
+     "point_id": "3151101",
+     "distinction": "甘汞电极作参比、电位恒定；玻璃电极作指示、响应H⁺活度"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「理解 参比电极和指示电极的含义。」要求理解（对齐置信度 0.62）",
@@ -20667,9 +21628,20 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151101",
+    "3151102"
+   ],
+   "related": [
+    "3151004"
+   ],
+   "confusables": [
+    {
+     "name": "直接电位法 vs 电位滴定法",
+     "point_id": null,
+     "distinction": "直接电位法由E直接求活度；电位滴定法由E突跃确定终点再算浓度"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 离子选择性电极的测定方法。」要求了解（对齐置信度 0.69）",
@@ -20899,9 +21871,22 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150407",
+    "3150408",
+    "3150409"
+   ],
+   "related": [
+    "3151301",
+    "3151401"
+   ],
+   "confusables": [
+    {
+     "name": "σ键 vs π键",
+     "point_id": "3150408",
+     "distinction": "σ键电子云沿键轴分布、可绕键轴旋转；π键在平面上下、不能旋转"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 有机化合物中的共价键，碳原子的杂化轨道、σ」要求掌握（对齐置信度 0.78）",
@@ -21131,9 +22116,20 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150412",
+    "3151201"
+   ],
+   "related": [
+    "3151802"
+   ],
+   "confusables": [
+    {
+     "name": "氢键 vs 范德华力",
+     "point_id": "3150412",
+     "distinction": "氢键约10–40 kJ/mol且有方向性；色散力一般小于10 kJ/mol"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 有机化合物结构与物理性质的关系。」要求掌握（对齐置信度 0.92）",
@@ -21363,9 +22359,20 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150406",
+    "3151201"
+   ],
+   "related": [
+    "3151204"
+   ],
+   "confusables": [
+    {
+     "name": "诱导效应 vs 共轭效应",
+     "point_id": null,
+     "distinction": "诱导效应沿σ键传递、随距离迅速减弱；共轭效应沿π体系传递、远程有效"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 有机化合物结构与反应的关系，了解有机化学反」要求了解（对齐置信度 0.91）",
@@ -21594,9 +22601,21 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151201",
+    "3151203"
+   ],
+   "related": [
+    "3151306",
+    "3151405"
+   ],
+   "confusables": [
+    {
+     "name": "取代 vs 加成",
+     "point_id": null,
+     "distinction": "取代是原子或基团被替换、分子数不变；加成是π键打开、两基团加到双键两端"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 有机化合物结构与反应的关系，了解有机化学反」要求了解（对齐置信度 0.71）",
@@ -21827,9 +22846,20 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150409",
+    "3151201"
+   ],
+   "related": [
+    "3151305"
+   ],
+   "confusables": [
+    {
+     "name": "碳级数 vs 氢类型",
+     "point_id": null,
+     "distinction": "碳级数看所连碳数（1/2/3/4）；氢类型由所在碳的级数决定"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 碳原子的 sp³ 杂化，伯、仲、叔、季碳原」要求掌握（对齐置信度 1.00）",
@@ -22056,9 +23086,20 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151301"
+   ],
+   "related": [
+    "3151303",
+    "3151304"
+   ],
+   "confusables": [
+    {
+     "name": "Newman式 vs 透视式",
+     "point_id": null,
+     "distinction": "Newman沿C—C轴正视、用圆表示后碳；透视式斜视、保留C—C键斜线"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 碳原子的 sp³ 杂化，伯、仲、叔、季碳原」要求掌握（对齐置信度 0.90）",
@@ -22289,9 +23330,20 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151301",
+    "3151302"
+   ],
+   "related": [
+    "3151304"
+   ],
+   "confusables": [
+    {
+     "name": "交叉式 vs 重叠式",
+     "point_id": "3151302",
+     "distinction": "二面角60°为交叉式、能量低；0°为重叠式、能量最高"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 碳原子的 sp³ 杂化，伯、仲、叔、季碳原」要求掌握（对齐置信度 0.64）",
@@ -22500,9 +23552,18 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
+   "prerequisites": [
+    "3151302",
+    "3151303"
+   ],
    "related": [],
-   "confusables": [],
+   "confusables": [
+    {
+     "name": "a键 vs e键",
+     "point_id": null,
+     "distinction": "a键垂直环平面、位阻大；e键近平行环平面、能量较低"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 碳原子的 sp³ 杂化，伯、仲、叔、季碳原」要求掌握（对齐置信度 0.50）",
@@ -22709,9 +23770,17 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
+   "prerequisites": [
+    "3151301"
+   ],
    "related": [],
-   "confusables": [],
+   "confusables": [
+    {
+     "name": "系统命名 vs 习惯命名",
+     "point_id": null,
+     "distinction": "系统命名按最长链与最低位次；习惯命名用正/异/新，仅适用于简单烷烃"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 烷烃和环烷烃的系统命名法及习惯命名法。」要求掌握（对齐置信度 0.58）",
@@ -22947,9 +24016,21 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151204",
+    "3151301"
+   ],
+   "related": [
+    "3151307",
+    "3151309"
+   ],
+   "confusables": [
+    {
+     "name": "氯代 vs 溴代",
+     "point_id": "3151307",
+     "distinction": "Cl·选择性低、产物近按氢数目；Br·选择性高，叔位占绝对优势"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 烷烃的取代反应（卤代）；了解自由基取代反应」要求掌握（对齐置信度 0.67）",
@@ -23162,9 +24243,21 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151203",
+    "3151306"
+   ],
+   "related": [
+    "3151408",
+    "3151309"
+   ],
+   "confusables": [
+    {
+     "name": "碳自由基 vs 碳正离子",
+     "point_id": "3151408",
+     "distinction": "自由基中心7电子带单电子，碳正离子6电子带正电；稳定性均为叔>仲>伯"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 烷烃的取代反应（卤代）；了解自由基取代反应」要求掌握（对齐置信度 0.83）",
@@ -23371,9 +24464,21 @@
     }
    ],
    "order": 8,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151204",
+    "3151301"
+   ],
+   "related": [
+    "3151309",
+    "3151405"
+   ],
+   "confusables": [
+    {
+     "name": "环丙烷 vs 丙烯",
+     "point_id": "3151401",
+     "distinction": "两者均使Br₂/CCl₄褪色；只有丙烯使KMnO₄褪色"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 三、四元环烷烃的加成反应（加氢、卤素、卤化」要求掌握（对齐置信度 0.62）",
@@ -23580,9 +24685,21 @@
     }
    ],
    "order": 9,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151304",
+    "3151306"
+   ],
+   "related": [
+    "3151307",
+    "3151308"
+   ],
+   "confusables": [
+    {
+     "name": "环己烷 vs 环己烯",
+     "point_id": "3151401",
+     "distinction": "与Br₂均反应：环己烷需光照为取代、不褪KMnO₄；环己烯室温加成、褪KMnO₄"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 三、四元环烷烃的加成反应（加氢、卤素、卤化」要求掌握（对齐置信度 0.62）",
@@ -23814,9 +24931,22 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151201",
+    "3151301"
+   ],
+   "related": [
+    "3151402",
+    "3151405",
+    "3151411"
+   ],
+   "confusables": [
+    {
+     "name": "sp² vs sp",
+     "point_id": "3151201",
+     "distinction": "sp²键角120°、C=C约0.134 nm；sp键角180°、C≡C约0.120 nm"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 双键碳原子的 sp² 杂化、烯烃的异构现象」要求掌握（对齐置信度 0.56）",
@@ -24046,9 +25176,21 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151305",
+    "3151401"
+   ],
+   "related": [
+    "3151403",
+    "3151404"
+   ],
+   "confusables": [
+    {
+     "name": "顺反 vs Z/E",
+     "point_id": null,
+     "distinction": "顺反按主链同侧或异侧；Z/E按次序规则优先级，1,2-二取代时两者一致"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 烯烃的命名，构型的顺、反和 Z、E 标记法」要求掌握（对齐置信度 0.67）",
@@ -24255,9 +25397,21 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151402",
+    "3151401"
+   ],
+   "related": [
+    "3151409",
+    "3151410"
+   ],
+   "confusables": [
+    {
+     "name": "烯炔命名 vs 烯烃命名",
+     "point_id": "3151402",
+     "distinction": "同时含双键和三键时以「烯」为母体、编号使双键位次最小；只含三键才以「炔」为母体"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 烯烃的命名，构型的顺、反和 Z、E 标记法」要求掌握（对齐置信度 0.67）",
@@ -24465,9 +25619,26 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151401",
+    "3151402"
+   ],
+   "related": [
+    "3151411",
+    "3151202"
+   ],
+   "confusables": [
+    {
+     "name": "顺反异构 vs Z/E 标记",
+     "point_id": "3151402",
+     "distinction": "顺反只看相同基团是否同侧；Z/E 按 CIP 优先次序定，无相同基团时仍可标"
+    },
+    {
+     "name": "顺反异构 vs 旋光异构",
+     "point_id": "3151601",
+     "distinction": "顺反源于 C=C 不能旋转、双键碳各连不同基团；旋光源于手性碳四个不同基团"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 烯烃和炔烃的物理性质，掌握 烯烃构型与熔点」要求了解（对齐置信度 0.80）",
@@ -24715,9 +25886,21 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151401"
+   ],
+   "related": [
+    "3151406",
+    "3151408",
+    "3151409"
+   ],
+   "confusables": [
+    {
+     "name": "亲电加成 vs 自由基加成",
+     "point_id": "3151406",
+     "distinction": "HBr 无过氧化物按马氏亲电加成；有过氧化物引发则自由基加成、反马氏定向"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 烯烃的加成反应（加卤素、卤化氢、水、硫酸、」要求掌握（对齐置信度 1.00）",
@@ -24923,9 +26106,26 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151401",
+    "3151405"
+   ],
+   "related": [
+    "3151408",
+    "3151409"
+   ],
+   "confusables": [
+    {
+     "name": "马氏规则 vs 过氧化物效应",
+     "point_id": "3151405",
+     "distinction": "体系无过氧化物时 HBr 按马氏加成；有过氧化物则自由基引发、Br 加在含氢较少碳"
+    },
+    {
+     "name": "马氏规则 vs Saytzeff 规则",
+     "point_id": "3151703",
+     "distinction": "马氏管加成取向、H 加到含氢较多碳；Saytzeff 管消除取向、生成取代较多的稳定烯烃"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 烯烃的加成反应（加卤素、卤化氢、水、硫酸、」要求掌握（对齐置信度 1.00）",
@@ -25155,9 +26355,26 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151401",
+    "3151306"
+   ],
+   "related": [
+    "3151410",
+    "3151505"
+   ],
+   "confusables": [
+    {
+     "name": "冷稀KMnO₄ vs 酸性热KMnO₄",
+     "point_id": null,
+     "distinction": "冷稀碱性得顺式邻二醇（加成）；酸性加热断双键，生成羧酸或酮（氧化）"
+    },
+    {
+     "name": "烯丙位取代 vs 双键加成",
+     "point_id": "3151405",
+     "distinction": "高温光照 NBS 夺烯丙位 H 得取代产物；低温避光 Br₂/CCl₄ 与双键加成得二溴代物"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 炔烃的加成反应（加卤素、卤化氢、水、HCN」要求掌握（对齐置信度 0.91）",
@@ -25369,9 +26586,22 @@
     }
    ],
    "order": 8,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151301",
+    "3151405"
+   ],
+   "related": [
+    "3151307",
+    "3151406",
+    "3151504"
+   ],
+   "confusables": [
+    {
+     "name": "碳正离子 vs 碳自由基",
+     "point_id": "3151307",
+     "distinction": "碳正离子带正电、缺电子，由 Lewis 酸或 C—X 电离生成；碳自由基带单电子，由光照或过氧化物引发"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 炔烃的加成反应（加卤素、卤化氢、水、HCN」要求掌握（对齐置信度 0.91）",
@@ -25601,9 +26831,26 @@
     }
    ],
    "order": 9,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151401",
+    "3151405",
+    "3151406"
+   ],
+   "related": [
+    "3151410"
+   ],
+   "confusables": [
+    {
+     "name": "炔烃加成 vs 烯烃加成",
+     "point_id": "3151405",
+     "distinction": "炔烃三键可连续加两分子亲电试剂，X₂ 得反式二卤代烯；烯烃双键只加一分子"
+    },
+    {
+     "name": "乙炔水化 vs 其他炔水化",
+     "point_id": null,
+     "distinction": "乙炔经烯醇互变异构得乙醛；其他端炔得甲基酮，内炔得非甲基酮"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 炔烃的加成反应（加卤素、卤化氢、水、HCN」要求掌握（对齐置信度 0.91）",
@@ -25811,9 +27058,27 @@
     }
    ],
    "order": 10,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151407",
+    "3151409",
+    "3150601"
+   ],
+   "related": [
+    "3151405",
+    "3151505"
+   ],
+   "confusables": [
+    {
+     "name": "端炔 vs 内炔",
+     "point_id": null,
+     "distinction": "端炔的≡CH 与银氨或铜氨生成白色或砖红色炔化物沉淀；内炔无此反应"
+    },
+    {
+     "name": "炔化银 vs 炔化亚铜",
+     "point_id": null,
+     "distinction": "端炔遇 AgNO₃/氨得白色炔化银，遇 CuCl/氨得砖红色炔化亚铜"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 共轭二烯烃的 1,2-加成和 1,4-加成」要求掌握（对齐置信度 0.68）",
@@ -26028,9 +27293,26 @@
     }
    ],
    "order": 11,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151401",
+    "3151405"
+   ],
+   "related": [
+    "3151404",
+    "3151502"
+   ],
+   "confusables": [
+    {
+     "name": "1,2-加成 vs 1,4-加成",
+     "point_id": null,
+     "distinction": "低温短时为动力学控制的 1,2-产物；高温长时为热力学控制的 1,4-产物"
+    },
+    {
+     "name": "Diels-Alder vs 亲电加成",
+     "point_id": "3151405",
+     "distinction": "D-A 为协同周环反应、无中间体、顺式加成并保持立体化学；亲电加成经碳正离子"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 共轭二烯烃的 1,2-加成和 1,4-加成」要求掌握（对齐置信度 0.68）",
@@ -26264,9 +27546,26 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151305",
+    "3151402"
+   ],
+   "related": [
+    "3151502",
+    "3151506"
+   ],
+   "confusables": [
+    {
+     "name": "萘 α位 vs β位",
+     "point_id": "3151506",
+     "distinction": "α位为 1,4,5,8，β位为 2,3,6,7；亲电取代优先 α，高温磺化主得 β"
+    },
+    {
+     "name": "单环芳烃 vs 稠环芳烃",
+     "point_id": null,
+     "distinction": "单环如苯；稠环如萘共用两个碳、分子式 C₁₀H₈、π 电子数 10"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 芳香烃的分类和结构，掌握苯和萘及衍生物的命」要求了解（对齐置信度 0.42）",
@@ -26478,9 +27777,26 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151501",
+    "3151401"
+   ],
+   "related": [
+    "3152202",
+    "3151506"
+   ],
+   "confusables": [
+    {
+     "name": "芳香性 vs 反芳香性",
+     "point_id": null,
+     "distinction": "平面闭合共轭且 π 电子为 4n+2 有芳香性；为 4n 时反芳香性，如环丁二烯"
+    },
+    {
+     "name": "环辛四烯 vs 环戊二烯负离子",
+     "point_id": null,
+     "distinction": "环辛四烯非平面（盆型）不具芳香性；环戊二烯基负离子平面 6π 电子符合 Hückel 规则"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 苯的结构、芳香性及 Hückel 规则。」要求掌握（对齐置信度 0.82）",
@@ -26689,9 +28005,26 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151501",
+    "3151502"
+   ],
+   "related": [
+    "3151507",
+    "3151508"
+   ],
+   "confusables": [
+    {
+     "name": "硝化 vs 磺化",
+     "point_id": null,
+     "distinction": "磺化可逆、可用稀酸脱磺酸基作保护基；硝化不可逆"
+    },
+    {
+     "name": "傅-克烷基化 vs 酰基化",
+     "point_id": "3151504",
+     "distinction": "烷基化经碳正离子、可重排且易多烷基化；酰基化不重排、产物钝化即停"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -26910,9 +28243,25 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151503",
+    "3151408"
+   ],
+   "related": [
+    "3151508"
+   ],
+   "confusables": [
+    {
+     "name": "傅-克烷基化 vs 酰基化",
+     "point_id": "3151503",
+     "distinction": "烷基化可 1,2-氢迁移重排且易多取代；酰基化无重排、产物钝化不继续反应"
+    },
+    {
+     "name": "正丙基苯 vs 异丙基苯",
+     "point_id": "3151503",
+     "distinction": "1-氯丙烷/AlCl₃ 经重排得异丙基苯；正丙基苯须丙酰氯酰化后再还原"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 苯和苯的衍生物的亲电取代反应（卤代、硝化、」要求掌握（对齐置信度 0.70）",
@@ -27121,9 +28470,22 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151306",
+    "3151307",
+    "3151501"
+   ],
+   "related": [
+    "3151407",
+    "3151503"
+   ],
+   "confusables": [
+    {
+     "name": "侧链卤代 vs 环上卤代",
+     "point_id": "3151503",
+     "distinction": "光照或高温下 Cl₂ 走侧链自由基取代；FeX₃ 催化下 Cl₂ 走环上亲电取代"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 芳香烃亲电取代反应机制，掌握芳环上亲电取代」要求了解（对齐置信度 1.00）",
@@ -27332,9 +28694,25 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151501",
+    "3151503"
+   ],
+   "related": [
+    "3151508"
+   ],
+   "confusables": [
+    {
+     "name": "α-萘磺酸 vs β-萘磺酸",
+     "point_id": null,
+     "distinction": "低温约 40 ℃ 得 α（动力学控制、生成快）；高温约 160 ℃ 得 β（热力学控制、更稳定）"
+    },
+    {
+     "name": "萘的氧化 vs 苯的氧化",
+     "point_id": "3151503",
+     "distinction": "萘易氧化开一个环生成苯酐；苯环极难氧化，只能氧化侧链"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 芳香烃亲电取代反应机制，掌握芳环上亲电取代」要求了解（对齐置信度 1.00）",
@@ -27543,9 +28921,21 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151501",
+    "3151502"
+   ],
+   "related": [
+    "3151503",
+    "3151508"
+   ],
+   "confusables": [
+    {
+     "name": "亲电取代 vs 亲电加成",
+     "point_id": "3151405",
+     "distinction": "芳环以取代恢复芳香性、能量有利；烯烃双键加成生成 sp³ 碳、无芳香性可恢复"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 芳香烃亲电取代反应机制，掌握芳环上亲电取代」要求了解（对齐置信度 1.00）",
@@ -27756,9 +29146,26 @@
     }
    ],
    "order": 8,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151503",
+    "3151507"
+   ],
+   "related": [
+    "3151506",
+    "3152205"
+   ],
+   "confusables": [
+    {
+     "name": "邻对位 vs 间位定位基",
+     "point_id": null,
+     "distinction": "邻对位基给电子、活化（卤素例外：邻对位但钝化）；间位基吸电子、强烈钝化"
+    },
+    {
+     "name": "卤素定位 vs 卤素致钝",
+     "point_id": null,
+     "distinction": "卤素诱导吸电子大于共轭给电子，故致钝但仍为邻对位定位、稳定 σ-络合物"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 芳香烃亲电取代反应机制，掌握芳环上亲电取代」要求了解（对齐置信度 1.00）",
@@ -27991,9 +29398,25 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151201"
+   ],
+   "related": [
+    "3151602",
+    "3151605"
+   ],
+   "confusables": [
+    {
+     "name": "手性分子 vs 含手性碳分子",
+     "point_id": "3151605",
+     "distinction": "有手性碳未必有手性（内消旋体有对称面）；无手性碳也可能有手性（丙二烯型、联苯型）"
+    },
+    {
+     "name": "对称面 vs 对称中心",
+     "point_id": null,
+     "distinction": "σ 为镜面反射对称，i 为通过中心的点反演；存在任一对称因素即非手性"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 偏振光与旋光性、旋光度与比旋光度、手性分子」要求掌握（对齐置信度 0.80）",
@@ -28227,9 +29650,25 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151601"
+   ],
+   "related": [
+    "3151606",
+    "3151604"
+   ],
+   "confusables": [
+    {
+     "name": "内消旋体 vs 外消旋体",
+     "point_id": null,
+     "distinction": "内消旋是单一分子、因内对称面不旋光且不可拆分；外消旋是等量对映体混合物、可拆分"
+    },
+    {
+     "name": "对映体 vs 非对映体",
+     "point_id": null,
+     "distinction": "对映体互为镜像，仅旋光方向相反、非手性环境物性相同；非对映体物性不同可分离"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 偏振光与旋光性、旋光度与比旋光度、手性分子」要求掌握（对齐置信度 0.80）",
@@ -28434,9 +29873,20 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151601"
+   ],
+   "related": [
+    "3151604",
+    "3151302"
+   ],
+   "confusables": [
+    {
+     "name": "Fischer 式 vs 透视式",
+     "point_id": "3151302",
+     "distinction": "Fischer 式纸面内旋转 180° 构型不变、90° 或翻出纸面即反转；透视式直接示前后"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 旋光异构体构型的表示法（Fischer 投」要求掌握（对齐置信度 0.92）",
@@ -28649,9 +30099,26 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151603",
+    "3151402"
+   ],
+   "related": [
+    "3152303",
+    "3152401"
+   ],
+   "confusables": [
+    {
+     "name": "R/S vs D/L 标记",
+     "point_id": null,
+     "distinction": "R/S 由 CIP 优先次序判定；D/L 只按 Fischer 式中指定基团左右定，二者无固定对应"
+    },
+    {
+     "name": "R/S vs 右旋(+)/左旋(−)",
+     "point_id": null,
+     "distinction": "R/S 是绝对构型标记，与旋光符号 (+)/(−) 无必然对应关系"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 环状化合物和不含手性碳原子化合物的手性分子」要求了解（对齐置信度 0.56）",
@@ -28879,9 +30346,25 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151601",
+    "3151304"
+   ],
+   "related": [
+    "3151602"
+   ],
+   "confusables": [
+    {
+     "name": "丙二烯型 vs 联苯型手性",
+     "point_id": null,
+     "distinction": "丙二烯型靠两个垂直 π 键两端取代基不同；联苯型靠邻位大基团抑制单键旋转"
+    },
+    {
+     "name": "顺式 vs 反式二甲基环丙烷",
+     "point_id": "3151602",
+     "distinction": "顺-1,2-二甲基环丙烷有对称面、非手性；反式无对称面、有一对对映体"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 环状化合物和不含手性碳原子化合物的手性分子」要求了解（对齐置信度 0.56）",
@@ -29087,9 +30570,25 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151601",
+    "3151602"
+   ],
+   "related": [
+    "3151604"
+   ],
+   "confusables": [
+    {
+     "name": "对映体 vs 外消旋体",
+     "point_id": "3151602",
+     "distinction": "对映体是两种纯旋光物质、比旋光度等值反号；外消旋是等量混合物、整体不旋光"
+    },
+    {
+     "name": "旋光度 vs 比旋光度",
+     "point_id": null,
+     "distinction": "α 是实测旋角，随浓度与管长变化；[α]=α/(l·c) 为物质常数，可用于鉴别"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 旋光异构体的性质。」要求了解（对齐置信度 0.62）",
@@ -29297,9 +30796,21 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151301",
+    "3151305"
+   ],
+   "related": [
+    "3151702",
+    "3151801"
+   ],
+   "confusables": [
+    {
+     "name": "伯仲叔卤代烷 vs 伯仲叔碳",
+     "point_id": "3151301",
+     "distinction": "卤代烷级数看连 X 的碳所连烃基数 1/2/3，不看 X 是否在链端"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 卤代烷的异构、分类和命名。」要求掌握（对齐置信度 0.35）",
@@ -29525,9 +31036,26 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151701",
+    "3151203"
+   ],
+   "related": [
+    "3151704",
+    "3151804"
+   ],
+   "confusables": [
+    {
+     "name": "NaOH 水溶液 vs 醇溶液",
+     "point_id": "3151706",
+     "distinction": "水溶液中以取代为主生成醇；醇溶液中以消除为主生成烯烃"
+    },
+    {
+     "name": "NaCN vs AgNO₃/乙醇",
+     "point_id": null,
+     "distinction": "NaCN 走 SN2 增碳得腈；AgNO₃/乙醇用于检验 C—X 活性，按 AgX 沉淀快慢排序"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 卤代烷的亲核取代反应（与 H₂O/NaOH」要求掌握（对齐置信度 0.70）",
@@ -29756,9 +31284,25 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151702"
+   ],
+   "related": [
+    "3151706",
+    "3151803"
+   ],
+   "confusables": [
+    {
+     "name": "E2 vs SN2",
+     "point_id": "3151706",
+     "distinction": "强碱高温（如 t-BuOK）走 E2 生成烯；强亲核弱碱（CN⁻、I⁻）走 SN2 生成取代物"
+    },
+    {
+     "name": "Saytzeff vs Hofmann",
+     "point_id": null,
+     "distinction": "EtONa 等小碱按 Saytzeff 得多取代烯；t-BuOK 大位阻按 Hofmann 得少取代烯"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 卤代烷的亲核取代反应（与 H₂O/NaOH」要求掌握（对齐置信度 0.81）",
@@ -30034,9 +31578,21 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151702",
+    "3151408"
+   ],
+   "related": [
+    "3151705",
+    "3151706"
+   ],
+   "confusables": [
+    {
+     "name": "SN1 vs SN2",
+     "point_id": null,
+     "distinction": "SN1 一级、经碳正离子、外消旋化、叔卤代烷快；SN2 二级、背面进攻、构型翻转、伯卤代烷快"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 亲核取代反应的 SN1、SN2 机制及立体」要求掌握（对齐置信度 0.67）",
@@ -30238,9 +31794,21 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151704",
+    "3151701"
+   ],
+   "related": [
+    "3151706",
+    "3151408"
+   ],
+   "confusables": [
+    {
+     "name": "SN1 活性序 vs SN2 活性序",
+     "point_id": "3151704",
+     "distinction": "SN1 按碳正离子稳定性 3°>2°>1°；SN2 按空间位阻 CH₃>1°>2°>3°，两者相反"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -30514,9 +32082,25 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151703",
+    "3151704"
+   ],
+   "related": [
+    "3151705"
+   ],
+   "confusables": [
+    {
+     "name": "E1 vs E2",
+     "point_id": null,
+     "distinction": "E1 一级、经碳正离子、无立体要求；E2 二级协同、需 β-H 与离去基团反式共平面"
+    },
+    {
+     "name": "取代 vs 消除",
+     "point_id": "3151704",
+     "distinction": "强亲核弱碱、低温走取代；强碱、高温走消除；叔底物消除比例升高"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 亲核取代反应的 SN1、SN2 机制及立体」要求掌握（对齐置信度 0.38）",
@@ -30766,9 +32350,26 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151305",
+    "3151501"
+   ],
+   "related": [
+    "3151802",
+    "3151806"
+   ],
+   "confusables": [
+    {
+     "name": "醇 vs 酚",
+     "point_id": "3151806",
+     "distinction": "—OH 连脂肪 sp³ 碳为醇（如苯甲醇）；连芳环碳为酚，其 C—O 有 p-π 共轭"
+    },
+    {
+     "name": "醚 vs 醇",
+     "point_id": "3151802",
+     "distinction": "醇有 O—H 可形成分子间氢键、与 Na 放氢；醚无 O—H，沸点低、不与 Na 反应"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 醇、酚、醚的分类、结构和命名。」要求掌握（对齐置信度 0.80）",
@@ -30975,9 +32576,25 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150412",
+    "3151801"
+   ],
+   "related": [
+    "3151803"
+   ],
+   "confusables": [
+    {
+     "name": "分子间氢键 vs 分子内氢键",
+     "point_id": null,
+     "distinction": "分子间氢键使沸点升高、水溶性增大；分子内氢键削弱分子间作用，沸点与溶解度下降"
+    },
+    {
+     "name": "醇 vs 醚沸点",
+     "point_id": "3151801",
+     "distinction": "同碳数醇可形成分子间氢键，沸点明显高于醚；醚主要靠偶极与色散力"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 醇、酚、醚的物理性质，掌握氢键对醇沸点及水」要求了解（对齐置信度 0.73）",
@@ -31225,9 +32842,26 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151801",
+    "3150601"
+   ],
+   "related": [
+    "3151806",
+    "3151703"
+   ],
+   "confusables": [
+    {
+     "name": "醇 vs 酚酸性",
+     "point_id": "3151806",
+     "distinction": "酸性酚(pKa≈10)＞水(15.7)＞醇(16–18)；故酚钠遇水稳定、醇钠遇水水解"
+    },
+    {
+     "name": "醇+Na vs 醇+Mg",
+     "point_id": null,
+     "distinction": "Na 生成醇钠并放 H₂；Mg 需 I₂ 引发，生成醇镁，可用于除去乙醇中微量水"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 醇与金属 Na、Mg 的反应，醇的卤代反应」要求掌握（对齐置信度 0.80）",
@@ -31498,9 +33132,26 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151801",
+    "3151704"
+   ],
+   "related": [
+    "3151805",
+    "3151705"
+   ],
+   "confusables": [
+    {
+     "name": "SOCl₂ vs PBr₃",
+     "point_id": null,
+     "distinction": "SOCl₂ 副产物为 SO₂ 和 HCl 气体、易纯化且构型翻转；PBr₃ 对伯醇产率高、重排少"
+    },
+    {
+     "name": "Lucas 试剂 vs 伯仲叔醇",
+     "point_id": null,
+     "distinction": "叔醇立即浑浊、仲醇数分钟、伯醇室温不浑浊需加热；由碳正离子稳定性决定"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 酚的酸性及其影响因素，酚芳环上的亲电取代反」要求掌握（对齐置信度 0.71）",
@@ -31707,9 +33358,26 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151804",
+    "3151408"
+   ],
+   "related": [
+    "3151904",
+    "3152007"
+   ],
+   "confusables": [
+    {
+     "name": "分子内脱水 vs 分子间脱水",
+     "point_id": null,
+     "distinction": "约 170 ℃ 分子内脱水成烯；约 140 ℃ 分子间脱水成醚；均由浓 H₂SO₄ 催化"
+    },
+    {
+     "name": "伯醇 vs 叔醇氧化",
+     "point_id": "3151904",
+     "distinction": "伯醇氧化成醛再成羧酸；仲醇成酮；叔醇无 α-H，一般不被氧化"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 酚的酸性及其影响因素，酚芳环上的亲电取代反」要求掌握（对齐置信度 0.71）",
@@ -31941,9 +33609,25 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151801",
+    "3150601"
+   ],
+   "related": [
+    "3151807"
+   ],
+   "confusables": [
+    {
+     "name": "苯酚 vs 苯甲醚",
+     "point_id": "3151801",
+     "distinction": "苯酚有酚羟基，FeCl₃显色且溴水生成白色沉淀；苯甲醚无游离OH，两者均不反应"
+    },
+    {
+     "name": "苯酚 vs 乙醇",
+     "point_id": "3151803",
+     "distinction": "苯酚pKₐ≈10，溶于NaOH但不溶于NaHCO₃；乙醇pKₐ≈16，与NaOH不反应"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 酚的酸性及其影响因素，酚芳环上的亲电取代反」要求掌握（对齐置信度 0.71）",
@@ -32155,9 +33839,21 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151806",
+    "3151507",
+    "3151508"
+   ],
+   "related": [
+    "3152105"
+   ],
+   "confusables": [
+    {
+     "name": "酚 vs 烯醇式结构",
+     "point_id": "3152012",
+     "distinction": "FeCl₃显色非酚专属：酚羟基与烯醇式（如乙酰乙酸乙酯）均显色，可用溴水区分"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 醚在低温下与浓强酸作用，醚键的断裂；了解醚」要求掌握（对齐置信度 0.78）",
@@ -32360,9 +34056,26 @@
     }
    ],
    "order": 8,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151801",
+    "3151704"
+   ],
+   "related": [
+    "3151809",
+    "3151810"
+   ],
+   "confusables": [
+    {
+     "name": "浓HI断键 vs 浓H₂SO₄溶解",
+     "point_id": null,
+     "distinction": "浓H₂SO₄冷时仅质子化溶成𬭩盐，加热才断键；浓HI直接按SN2/SN1断C—O"
+    },
+    {
+     "name": "脂肪醚 vs 芳香醚",
+     "point_id": null,
+     "distinction": "与HI反应时芳香醚只断ArO—R的烷基侧生成酚；脂肪醚断较小烷基侧"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 醚在低温下与浓强酸作用，醚键的断裂；了解醚」要求掌握（对齐置信度 0.78）",
@@ -32570,9 +34283,21 @@
     }
    ],
    "order": 9,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151801",
+    "3151307"
+   ],
+   "related": [
+    "3151808",
+    "3152602"
+   ],
+   "confusables": [
+    {
+     "name": "KI-淀粉检验 vs FeSO₄除去",
+     "point_id": null,
+     "distinction": "前者氧化I⁻析出I₂显蓝色，属检验；后者还原分解过氧化物，属除去"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 醚在低温下与浓强酸作用，醚键的断裂；了解醚」要求掌握（对齐置信度 0.78）",
@@ -32820,9 +34545,26 @@
     }
    ],
    "order": 10,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151808",
+    "3151704"
+   ],
+   "related": [
+    "3151808",
+    "3151702"
+   ],
+   "confusables": [
+    {
+     "name": "酸性开环 vs 碱性开环",
+     "point_id": null,
+     "distinction": "酸性：亲核试剂进攻取代多、正电荷稳定的碳；碱性：进攻位阻小的碳（SN2翻转）"
+    },
+    {
+     "name": "环氧化物 vs 环丙烷开环",
+     "point_id": "3151308",
+     "distinction": "环氧化物断C—O键，被亲核试剂开环；环丙烷断C—C键，多为加H₂、X₂"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 环氧乙烷的开环反应（加水、氨或胺、醇、卤化」要求掌握（对齐置信度 0.86）",
@@ -33071,9 +34813,26 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151201",
+    "3151401"
+   ],
+   "related": [
+    "3151902",
+    "3151906"
+   ],
+   "confusables": [
+    {
+     "name": "醛 vs 酮",
+     "point_id": "3151904",
+     "distinction": "醛羰基碳连H，可被托伦/斐林氧化；酮羰基碳连两个碳基，不被氧化"
+    },
+    {
+     "name": "醌 vs 酮",
+     "point_id": null,
+     "distinction": "醌为环状共轭二酮，有α,β-不饱和酮性质可1,4-加成；普通酮只1,2-加成"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 醛、酮、醌的结构、分类和命名。」要求掌握（对齐置信度 0.40）",
@@ -33321,9 +35080,19 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151901"
+   ],
+   "related": [
+    "3151906"
+   ],
+   "confusables": [
+    {
+     "name": "半缩醛 vs 缩醛",
+     "point_id": null,
+     "distinction": "半缩醛由1分子醇加成，不稳定；缩醛由2分子醇生成，耐碱可作羰基保护基"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 醛、酮的亲核加成反应（与 HCN、NaHS」要求掌握（对齐置信度 0.76）",
@@ -33551,9 +35320,26 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151901",
+    "3151407"
+   ],
+   "related": [
+    "3151904",
+    "3152012"
+   ],
+   "confusables": [
+    {
+     "name": "羟醛缩合 vs 坎尼扎罗",
+     "point_id": "3151904",
+     "distinction": "有α-H的醛在稀碱中缩合成β-羟基醛；无α-H的醛在浓碱中歧化成酸和醇"
+    },
+    {
+     "name": "羟醛加成 vs 脱水产物",
+     "point_id": null,
+     "distinction": "β-羟基醛是加成产物；加热或强碱下脱水才生成α,β-不饱和羰基化合物"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 醛、酮的亲核加成反应（与 HCN、NaHS」要求掌握（对齐置信度 0.70）",
@@ -33784,9 +35570,26 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151901",
+    "3151903"
+   ],
+   "related": [
+    "3151905",
+    "3152005"
+   ],
+   "confusables": [
+    {
+     "name": "托伦试剂 vs 斐林试剂",
+     "point_id": null,
+     "distinction": "托伦（Ag₂O/氨）氧化所有醛含芳香醛；斐林只氧化脂肪醛，芳香醛不反应"
+    },
+    {
+     "name": "甲醛 vs 苯甲醛 歧化",
+     "point_id": null,
+     "distinction": "交叉歧化中甲醛总被氧化成甲酸根，苯甲醛被还原成苯甲醇"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 醛、酮的亲核加成反应（与 HCN、NaHS」要求掌握（对齐置信度 0.73）",
@@ -34012,9 +35815,25 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151901"
+   ],
+   "related": [
+    "3151904",
+    "3152004"
+   ],
+   "confusables": [
+    {
+     "name": "Zn(Hg)/HCl vs N₂H₄/碱",
+     "point_id": null,
+     "distinction": "前者酸性条件下还原C=O→CH₂，后者强碱条件；按底物对酸碱的敏感选择"
+    },
+    {
+     "name": "1,2-还原 vs 1,4-还原",
+     "point_id": null,
+     "distinction": "LiAlH₄/NaBH₄把C=O还原为醇（1,2）；H₂/Pd优先还原共轭C=C（1,4）"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -34274,9 +36093,25 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151901"
+   ],
+   "related": [
+    "3151902",
+    "3152007"
+   ],
+   "confusables": [
+    {
+     "name": "亲核加成 vs 亲核酰基取代",
+     "point_id": "3152007",
+     "distinction": "醛酮加成后停在四面体醇；羧酸衍生物加成后消除离去基团恢复C=O"
+    },
+    {
+     "name": "1,2-加成 vs 1,4-加成",
+     "point_id": null,
+     "distinction": "亲核试剂进攻羰基碳、H加到氧上为1,2；进攻β-碳、H加到羰基氧为1,4"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 醛、酮的亲核加成反应机制。」要求了解（对齐置信度 0.57）",
@@ -34484,9 +36319,20 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151401"
+   ],
+   "related": [
+    "3152002",
+    "3152003"
+   ],
+   "confusables": [
+    {
+     "name": "羧酸俗名 vs 系统名",
+     "point_id": null,
+     "distinction": "蚁酸=甲酸、醋酸=乙酸、草酸=乙二酸、琥珀酸=丁二酸，按碳数对应"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 羧酸、羧酸衍生物、取代酸的分类、结构和命名」要求掌握（对齐置信度 0.60）",
@@ -34715,9 +36561,25 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151802"
+   ],
+   "related": [
+    "3152001",
+    "3152007"
+   ],
+   "confusables": [
+    {
+     "name": "羧酸二聚体 vs 醇氢键",
+     "point_id": "3151802",
+     "distinction": "羧酸以双氢键成环状二聚体，沸点高于同分子量醇；醇只能形成链状氢键"
+    },
+    {
+     "name": "羧酸 vs 酯 水溶性",
+     "point_id": null,
+     "distinction": "酯无O—H给体不成分子间氢键，沸点和水溶性均低于同碳数羧酸"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 羧酸、羧酸衍生物、取代酸的物理性质。掌握氢」要求了解（对齐置信度 0.60）",
@@ -34964,9 +36826,26 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151806",
+    "3152001"
+   ],
+   "related": [
+    "3152007",
+    "3152011"
+   ],
+   "confusables": [
+    {
+     "name": "羧酸 vs 酚 酸性",
+     "point_id": "3151806",
+     "distinction": "羧酸pKₐ≈5，溶于NaHCO₃放出CO₂；酚pKₐ≈10，只溶于NaOH"
+    },
+    {
+     "name": "脱羧 vs 成酐 vs 成酮",
+     "point_id": null,
+     "distinction": "乙二酸、丙二酸脱羧；丁二酸、戊二酸成五/六元环酐；己二酸、庚二酸成环酮"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 不同结构羧酸的酸性，羧酸衍生物的生成，二元」要求掌握（对齐置信度 0.67）",
@@ -35194,9 +37073,20 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152003",
+    "3151905"
+   ],
+   "related": [
+    "3152008"
+   ],
+   "confusables": [
+    {
+     "name": "LiAlH₄ vs NaBH₄",
+     "point_id": null,
+     "distinction": "LiAlH₄可还原羧酸、酯、酰胺；NaBH₄只还原醛酮，不能还原羧酸和酯"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 不同结构羧酸的酸性，羧酸衍生物的生成，二元」要求掌握（对齐置信度 0.67）",
@@ -35422,9 +37312,26 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152001",
+    "3151904"
+   ],
+   "related": [
+    "3152010",
+    "3150808"
+   ],
+   "confusables": [
+    {
+     "name": "甲酸 vs 乙酸",
+     "point_id": "3152001",
+     "distinction": "甲酸有H—C=O结构可发生银镜、使KMnO₄褪色；乙酸无还原性"
+    },
+    {
+     "name": "甲酸 vs 草酸 鉴别",
+     "point_id": null,
+     "distinction": "甲酸室温银镜阳性；草酸银镜阴性，需加热才使KMnO₄褪色并放出CO₂"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 羧酸衍生物的水解、醇解、氨解反应，Clai」要求掌握（对齐置信度 0.90）",
@@ -35651,9 +37558,20 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151903",
+    "3152003"
+   ],
+   "related": [
+    "3152010"
+   ],
+   "confusables": [
+    {
+     "name": "羧酸α-H vs 醛酮α-H",
+     "point_id": "3151903",
+     "distinction": "羧酸需先成酰卤、PBr₃催化烯醇化（HVZ）；醛酮在酸碱催化下直接卤代"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 羧酸衍生物的水解、醇解、氨解反应，Clai」要求掌握（对齐置信度 0.90）",
@@ -35901,9 +37819,25 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152003",
+    "3151906"
+   ],
+   "related": [
+    "3152008"
+   ],
+   "confusables": [
+    {
+     "name": "水解 vs 醇解 vs 氨解",
+     "point_id": null,
+     "distinction": "同一加成—消除机理，亲核试剂为H₂O、ROH、NH₃，产物依次为羧酸、酯、酰胺"
+    },
+    {
+     "name": "酰化 vs 烷基化（胺）",
+     "point_id": "3152103",
+     "distinction": "酰化在N上引入RCO得酰胺，碱性大降；烷基化引入R得取代胺，碱性仍强"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 羧酸衍生物的水解、醇解、氨解反应，Clai」要求掌握（对齐置信度 0.90）",
@@ -36172,9 +38106,26 @@
     }
    ],
    "order": 8,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152007",
+    "3151903"
+   ],
+   "related": [
+    "3152013",
+    "3152011"
+   ],
+   "confusables": [
+    {
+     "name": "Claisen vs 羟醛缩合",
+     "point_id": "3151903",
+     "distinction": "Claisen中酯α-碳负离子进攻酯羰基并消除烷氧基；羟醛进攻醛酮羰基保留OH"
+    },
+    {
+     "name": "Hofmann降解 vs 脱羧",
+     "point_id": null,
+     "distinction": "Hofmann用Br₂/NaOH使酰胺失去羰基碳，少1个碳成伯胺；脱羧只放CO₂"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 各种羟基酸的脱水反应，α-羟基酸及 α-酮」要求掌握（对齐置信度 0.92）",
@@ -36399,9 +38350,20 @@
     }
    ],
    "order": 9,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152003",
+    "3151805"
+   ],
+   "related": [
+    "3152010"
+   ],
+   "confusables": [
+    {
+     "name": "α/β/γ-羟基酸脱水",
+     "point_id": null,
+     "distinction": "α成两分子交酯；β成α,β-不饱和酸；γ、δ成五/六元内酯；更远成聚酯"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 各种羟基酸的脱水反应，α-羟基酸及 α-酮」要求掌握（对齐置信度 0.92）",
@@ -36627,9 +38589,21 @@
     }
    ],
    "order": 10,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151805",
+    "3152006"
+   ],
+   "related": [
+    "3152011",
+    "3151904"
+   ],
+   "confusables": [
+    {
+     "name": "α-羟基酸 vs α-酮酸氧化",
+     "point_id": "3152011",
+     "distinction": "α-羟基酸氧化碳数不变得α-酮酸；α-酮酸再氧化脱羧少1个碳"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 各种羟基酸的脱水反应，α-羟基酸及 α-酮」要求掌握（对齐置信度 0.92）",
@@ -36878,9 +38852,26 @@
     }
    ],
    "order": 11,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152003",
+    "3151903"
+   ],
+   "related": [
+    "3152012",
+    "3152013"
+   ],
+   "confusables": [
+    {
+     "name": "β-酮酸 vs 丙二酸脱羧",
+     "point_id": null,
+     "distinction": "β-酮酸受微热即脱羧；丙二酸等β-二酸需加热到约150℃以上才脱羧"
+    },
+    {
+     "name": "脱羧 vs 脱水",
+     "point_id": "3152003",
+     "distinction": "脱羧放CO₂、碳数减1；脱水失H₂O成环酐，碳数不变"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 各种羟基酸的脱水反应，α-羟基酸及 α-酮」要求掌握（对齐置信度 0.92）",
@@ -37107,9 +39098,21 @@
     }
    ],
    "order": 12,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152008",
+    "3151903"
+   ],
+   "related": [
+    "3152013",
+    "3152011"
+   ],
+   "confusables": [
+    {
+     "name": "互变异构 vs 共振",
+     "point_id": null,
+     "distinction": "互变需质子真实迁移、键位置改变，是两种异构体；共振只是同一分子的极限式"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 各种羟基酸的脱水反应，α-羟基酸及 α-酮」要求掌握（对齐置信度 0.92）",
@@ -37334,9 +39337,20 @@
     }
    ],
    "order": 13,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152012",
+    "3152008"
+   ],
+   "related": [
+    "3152011"
+   ],
+   "confusables": [
+    {
+     "name": "乙酰乙酸乙酯 vs 丙二酸二乙酯",
+     "point_id": null,
+     "distinction": "前者α-H酸性更强，烷基化后水解脱羧得取代丙酮；后者得取代乙酸"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 各种羟基酸的脱水反应，α-羟基酸及 α-酮」要求掌握（对齐置信度 0.92）",
@@ -37589,9 +39603,25 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150410",
+    "3151802"
+   ],
+   "related": [
+    "3152102"
+   ],
+   "confusables": [
+    {
+     "name": "胺 vs 醇 沸点",
+     "point_id": "3151802",
+     "distinction": "N—H…N氢键弱于O—H…O，同分子量胺沸点低于醇；叔胺无N—H最低"
+    },
+    {
+     "name": "伯仲叔胺 vs 伯仲叔醇",
+     "point_id": "3151801",
+     "distinction": "胺按N上烃基数分级；醇按羟基所连碳的级数分级，两者不可混用"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 胺的结构、分类和命名。」要求掌握（对齐置信度 0.34）",
@@ -37815,9 +39845,26 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152101",
+    "3150601"
+   ],
+   "related": [
+    "3152204",
+    "3152108"
+   ],
+   "confusables": [
+    {
+     "name": "脂肪胺 vs 芳香胺",
+     "point_id": "3152101",
+     "distinction": "苯胺孤对与苯环共轭，共轭酸pKₐ≈4.6；脂肪胺≈10–11，碱性强得多"
+    },
+    {
+     "name": "水中 vs 气相 碱性序",
+     "point_id": null,
+     "distinction": "水中(CH₃)₂NH最强，气相(CH₃)₃N最强；水合稳定叔胺共轭酸使其降序"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -38084,9 +40131,26 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152101",
+    "3152102"
+   ],
+   "related": [
+    "3152106",
+    "3152105"
+   ],
+   "confusables": [
+    {
+     "name": "Hinsberg 伯仲叔胺",
+     "point_id": null,
+     "distinction": "伯胺生成碱溶性磺酰胺，酸化析出；仲胺生成不溶磺酰胺；叔胺不反应只溶于酸"
+    },
+    {
+     "name": "伯胺 vs 仲胺 与HNO₂",
+     "point_id": "3152106",
+     "distinction": "脂肪伯胺放N₂成醇混合物；仲胺生成黄色油状N-亚硝基胺；芳香伯胺低温成重氮盐"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 不同结构胺的碱性，烷基化反应，酰基化反应，」要求掌握（对齐置信度 0.83）",
@@ -38313,9 +40377,25 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151508"
+   ],
+   "related": [
+    "3152105",
+    "3152106"
+   ],
+   "confusables": [
+    {
+     "name": "酸性还原 vs 碱性还原",
+     "point_id": null,
+     "distinction": "Fe/Sn+HCl得芳胺；Zn/NaOH碱性还原停在氧化偶氮、偶氮化合物"
+    },
+    {
+     "name": "Na₂S选择性还原",
+     "point_id": null,
+     "distinction": "多硝基物用Na₂S/NaHS只还原一个硝基，其余保留；Fe/HCl还原全部硝基"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 不同结构胺的碱性，烷基化反应，酰基化反应，」要求掌握（对齐置信度 0.83）",
@@ -38544,9 +40624,26 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151508",
+    "3152104"
+   ],
+   "related": [
+    "3151807",
+    "3152103"
+   ],
+   "confusables": [
+    {
+     "name": "游离苯胺 vs 质子化苯胺",
+     "point_id": "3151508",
+     "distinction": "游离—NH₂强活化、邻对位定位；强酸中成—NH₃⁺变间位定位并钝化"
+    },
+    {
+     "name": "苯胺 vs 乙酰苯胺",
+     "point_id": "3152103",
+     "distinction": "乙酰化后孤对电子部分离域，活化与定位减弱但仍邻对位，可防多取代和氧化"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 重氮盐的制备及反应（与 H₂O、H₃PO₂」要求掌握（对齐置信度 0.75）",
@@ -38775,9 +40872,25 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152103",
+    "3152104"
+   ],
+   "related": [
+    "3152107"
+   ],
+   "confusables": [
+    {
+     "name": "芳香伯胺 vs 脂肪伯胺",
+     "point_id": "3152103",
+     "distinction": "芳香伯胺0–5℃生成稳定重氮盐；脂肪伯胺放N₂成醇混合物，不生成稳定重氮盐"
+    },
+    {
+     "name": "重氮化 vs 偶联 条件",
+     "point_id": "3152107",
+     "distinction": "重氮化需强酸过量、0–5℃；偶联需弱酸或弱碱、低温，酸过量抑制偶联"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 重氮盐的制备及反应（与 H₂O、H₃PO₂」要求掌握（对齐置信度 0.75）",
@@ -39004,9 +41117,25 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152106",
+    "3151503"
+   ],
+   "related": [
+    "3152105"
+   ],
+   "confusables": [
+    {
+     "name": "Sandmeyer vs 偶联",
+     "point_id": null,
+     "distinction": "Sandmeyer经CuX/CuCN取代重氮基并放N₂；偶联保留N=N进攻酚或芳胺"
+    },
+    {
+     "name": "脱氨基 vs 水解",
+     "point_id": null,
+     "distinction": "H₃PO₂还原性脱去重氮基得芳烃；水溶液中加热水解得酚"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 尿素的碱性，水解反应，二缩脲的生成及反应。」要求掌握（对齐置信度 0.77）",
@@ -39234,9 +41363,20 @@
     }
    ],
    "order": 8,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152102",
+    "3152008"
+   ],
+   "related": [
+    "3152007"
+   ],
+   "confusables": [
+    {
+     "name": "尿素 vs 二缩脲",
+     "point_id": null,
+     "distinction": "二缩脲碱性下与Cu²⁺显紫红色；尿素无此反应，须先加热生成二缩脲"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 尿素的碱性，水解反应，二缩脲的生成及反应。」要求掌握（对齐置信度 0.77）",
@@ -39461,9 +41601,19 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151501"
+   ],
+   "related": [
+    "3152202"
+   ],
+   "confusables": [
+    {
+     "name": "吡啶 vs 嘧啶",
+     "point_id": null,
+     "distinction": "吡啶含1个N，嘧啶为1,3-二氮六元环；均使杂原子位次最低再编碳"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 呋喃、吡咯、噻吩、吡啶、嘧啶、喹啉、吲哚、」要求掌握（对齐置信度 0.90）",
@@ -39714,9 +41864,26 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151502",
+    "3152201"
+   ],
+   "related": [
+    "3152204",
+    "3152203"
+   ],
+   "confusables": [
+    {
+     "name": "吡咯 vs 吡啶 酸碱性",
+     "point_id": "3152204",
+     "distinction": "吡咯孤对参与芳香共轭，几无碱性而N—H显弱酸；吡啶孤对不参与共轭，显碱性"
+    },
+    {
+     "name": "噻吩 vs 呋喃 芳香性",
+     "point_id": "3152203",
+     "distinction": "芳香性噻吩>吡咯>呋喃；亲电取代活性相反，吡咯>呋喃>噻吩"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 呋喃、吡咯、噻吩、吡啶的结构与芳香性的关系」要求掌握（对齐置信度 0.50）",
@@ -39967,9 +42134,27 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152202",
+    "3151502",
+    "3151508"
+   ],
+   "related": [
+    "3152205",
+    "3152206"
+   ],
+   "confusables": [
+    {
+     "name": "多π杂环 vs 缺π杂环",
+     "point_id": "3152202",
+     "distinction": "杂原子孤对电子参与π共轭为多π(6π/5原子)；不参与则为缺π，氮以-I、-C吸电子"
+    },
+    {
+     "name": "五元环2位 vs 吡啶3位",
+     "point_id": "3152205",
+     "distinction": "富π环2位σ络合物共振式多且保留芳香六隅体；缺π环3位不使正电荷落在氮上"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 呋喃、吡咯、噻吩、吡啶的结构与芳香性的关系」要求掌握（对齐置信度 0.80）",
@@ -40199,9 +42384,26 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152202",
+    "3152102",
+    "3150601"
+   ],
+   "related": [
+    "3152203"
+   ],
+   "confusables": [
+    {
+     "name": "吡咯 vs 吡啶碱性",
+     "point_id": "3152202",
+     "distinction": "吡咯孤对参与芳香共轭，N-H的pKa≈16.5显弱酸；吡啶孤对在sp²不参与，故显碱"
+    },
+    {
+     "name": "吡啶 vs 脂肪胺碱性",
+     "point_id": "3152102",
+     "distinction": "吡啶N为sp²、孤对在环平面，共轭酸pKa≈5.2，明显弱于脂肪胺的≈10.6"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 吡咯和吡啶的酸碱性，呋喃、吡咯、噻吩、吡啶」要求掌握（对齐置信度 0.86）",
@@ -40431,9 +42633,27 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152203",
+    "3152202",
+    "3151503"
+   ],
+   "related": [
+    "3152203",
+    "3152206"
+   ],
+   "confusables": [
+    {
+     "name": "五元环α位 vs 吡啶β位",
+     "point_id": "3152203",
+     "distinction": "呋喃/吡咯/噻吩取代在2(5)位；吡啶取代在3位，避免正电荷落在电负性氮上"
+    },
+    {
+     "name": "吡咯 vs 噻吩稳定性",
+     "point_id": "3152206",
+     "distinction": "噻吩环耐受浓H₂SO₄可直接磺化；吡咯遇强酸聚合并被氧化，须用SO₃·吡啶"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 吡咯和吡啶的酸碱性，呋喃、吡咯、噻吩、吡啶」要求掌握（对齐置信度 0.56）",
@@ -40665,9 +42885,26 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151505",
+    "3152202"
+   ],
+   "related": [
+    "3152205",
+    "3152203"
+   ],
+   "confusables": [
+    {
+     "name": "吡啶 vs 苯侧链氧化",
+     "point_id": "3151505",
+     "distinction": "缺π环使侧链α-H更难失去，需更强KMnO₄条件，产物为吡啶甲酸"
+    },
+    {
+     "name": "吡啶 vs 呋喃抗氧化",
+     "point_id": "3152205",
+     "distinction": "吡啶缺电子环稳定耐氧化；呋喃/吡咯富电子易被强氧化剂破坏，噻吩较稳定"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 吡咯和吡啶的酸碱性，呋喃、吡咯、噻吩、吡啶」要求掌握（对齐置信度 0.80）",
@@ -40914,9 +43151,27 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151603",
+    "3151602",
+    "3151906"
+   ],
+   "related": [
+    "3152302",
+    "3152303"
+   ],
+   "confusables": [
+    {
+     "name": "D/L构型 vs α/β异头",
+     "point_id": "3152303",
+     "distinction": "D/L由最高编号手性碳的OH侧决定；α/β只看异头OH与C5-CH₂OH的相对侧"
+    },
+    {
+     "name": "差向异构 vs 对映异构",
+     "point_id": "3151602",
+     "distinction": "差向异构仅一个手性碳相反(如葡萄糖/甘露糖C2)；对映体所有手性碳全相反"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 核糖、2-脱氧核糖、葡萄糖、甘露糖、半乳糖」要求掌握（对齐置信度 0.83）",
@@ -41145,9 +43400,26 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152301",
+    "3151606"
+   ],
+   "related": [
+    "3152303",
+    "3152304"
+   ],
+   "confusables": [
+    {
+     "name": "变旋现象 vs 旋光性",
+     "point_id": "3151606",
+     "distinction": "变旋是比旋光度随时间趋于平衡值的动态过程；旋光性指纯构型的固定比旋度"
+    },
+    {
+     "name": "α异头体 vs β异头体",
+     "point_id": "3152301",
+     "distinction": "D-己糖Haworth式中异头OH向下为α、向上为β；α-D-葡萄糖+112°，β+18.7°"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 上述六种单糖及其糖苷的构型及命名。」要求掌握（对齐置信度 0.50）",
@@ -41358,9 +43630,27 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152301",
+    "3152302",
+    "3151604"
+   ],
+   "related": [
+    "3152304",
+    "3152306"
+   ],
+   "confusables": [
+    {
+     "name": "糖苷 vs 游离糖",
+     "point_id": "3152306",
+     "distinction": "苷羟基缩合成苷后无游离半缩醛OH，故无变旋、无还原性；游离糖两者都有"
+    },
+    {
+     "name": "D/L标记 vs 旋光方向",
+     "point_id": "3151604",
+     "distinction": "D/L只看最高编号手性碳构型，与实测旋光方向(+/-)无对应关系"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 上述六种单糖及其糖苷的构型及命名。」要求掌握（对齐置信度 0.50）",
@@ -41631,9 +43921,27 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152301",
+    "3152303",
+    "3151904"
+   ],
+   "related": [
+    "3152302",
+    "3152305"
+   ],
+   "confusables": [
+    {
+     "name": "溴水 vs 斐林试剂",
+     "point_id": "3151904",
+     "distinction": "溴水只氧化醛糖、酮糖不褪色，可区分二者；斐林/托伦被二者共还原"
+    },
+    {
+     "name": "成脎 vs 成苷",
+     "point_id": "3152303",
+     "distinction": "成脎在C1、C2并消除C2手性，C2构型相同的糖给同一糖脎；成苷只改异头OH"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 单糖的异构化、氧化、还原、成脎、成苷、醚化」要求掌握（对齐置信度 0.88）",
@@ -41862,9 +44170,26 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152301",
+    "3152303"
+   ],
+   "related": [
+    "3152306",
+    "3152304"
+   ],
+   "confusables": [
+    {
+     "name": "麦芽糖 vs 纤维二糖",
+     "point_id": null,
+     "distinction": "同为两分子D-葡萄糖，仅为α-1,4与β-1,4苷键之差；二者均具还原性"
+    },
+    {
+     "name": "蔗糖 vs 麦芽糖还原性",
+     "point_id": "3152306",
+     "distinction": "蔗糖两个异头碳都参与苷键(α-1,2-β)，无游离苷羟基故非还原；麦芽糖有"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 麦芽糖、纤维二糖、乳糖、蔗糖的结构和组成，」要求掌握（对齐置信度 0.93）",
@@ -42096,9 +44421,26 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152305",
+    "3152303"
+   ],
+   "related": [
+    "3152305",
+    "3152307"
+   ],
+   "confusables": [
+    {
+     "name": "还原糖 vs 非还原糖",
+     "point_id": "3152305",
+     "distinction": "看异头碳是否仍有游离半缩醛OH：游离可开环、能还原；两端成苷则不能"
+    },
+    {
+     "name": "α-1,4 vs β-1,4苷键",
+     "point_id": "3152307",
+     "distinction": "α-1,4使糖链卷曲、可被淀粉酶水解；β-1,4链伸直，人不能消化"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 淀粉和纤维素的组成及结构。」要求了解（对齐置信度 0.50）",
@@ -42328,9 +44670,24 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
+   "prerequisites": [
+    "3152303",
+    "3152305",
+    "3152306"
+   ],
    "related": [],
-   "confusables": [],
+   "confusables": [
+    {
+     "name": "淀粉 vs 纤维素",
+     "point_id": null,
+     "distinction": "同为(Glc)n：淀粉为α-1,4并含α-1,6分支，可水解供能；纤维素β-1,4不可消化"
+    },
+    {
+     "name": "直链淀粉 vs 支链淀粉",
+     "point_id": null,
+     "distinction": "直链为α-1,4线性，遇碘显深蓝；支链含α-1,6分支，遇碘显紫红"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 淀粉和纤维素的组成及结构。」要求了解（对齐置信度 0.50）",
@@ -42581,9 +44938,27 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152001",
+    "3152101",
+    "3150603"
+   ],
+   "related": [
+    "3152402",
+    "3152404"
+   ],
+   "confusables": [
+    {
+     "name": "氨基酸 vs 脂肪胺碱性",
+     "point_id": "3152102",
+     "distinction": "氨基酸以两性离子存在，氨基已质子化，故几乎无胺碱性；pI由两个pKa决定"
+    },
+    {
+     "name": "酸性 vs 碱性氨基酸pI",
+     "point_id": "3152402",
+     "distinction": "pI取等电形式相邻两pKa平均：酸性氨基酸pI<7，碱性氨基酸pI>7"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 氨基酸的分类、结构和命名，了解氨基酸的物理」要求了解（对齐置信度 0.69）",
@@ -42814,9 +45189,27 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150601",
+    "3150603",
+    "3152401"
+   ],
+   "related": [
+    "3152401",
+    "3152403"
+   ],
+   "confusables": [
+    {
+     "name": "等电点 vs pH=7",
+     "point_id": null,
+     "distinction": "pI为净电荷为零的pH，由pKa决定，不必等于7；pH=pI时溶解度最小"
+    },
+    {
+     "name": "偶极离子 vs 中性分子",
+     "point_id": "3152401",
+     "distinction": "固态及近中性水溶液中以内盐形式存在，故熔点高、难溶于非极性溶剂"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 α-氨基酸的两性性质和等电点，氨基酸的化学」要求掌握（对齐置信度 0.94）",
@@ -43048,9 +45441,25 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152103",
+    "3152401"
+   ],
+   "related": [
+    "3152404"
+   ],
+   "confusables": [
+    {
+     "name": "茚三酮 vs 双缩脲",
+     "point_id": "3152108",
+     "distinction": "茚三酮与游离α-氨基显蓝紫，检出氨基酸及肽；双缩脲需≥2个肽键显紫红"
+    },
+    {
+     "name": "DNFB法 vs 亚硝酸法",
+     "point_id": "3152103",
+     "distinction": "DNFB标记N端生成DNP-氨基酸可定位N端；亚硝酸放N₂只用于测氨基氮"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 α-氨基酸的两性性质和等电点，氨基酸的化学」要求掌握（对齐置信度 0.94）",
@@ -43276,9 +45685,26 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152401",
+    "3152007"
+   ],
+   "related": [
+    "3152403",
+    "3152402"
+   ],
+   "confusables": [
+    {
+     "name": "肽键 vs 普通酰胺键",
+     "point_id": "3152007",
+     "distinction": "本质都是酰胺键；肽键C-N具部分双键、六原子共平面，不能自由旋转"
+    },
+    {
+     "name": "N端 vs C端",
+     "point_id": "3152403",
+     "distinction": "N端为游离α-NH₂一侧，命名从N端写起并用DNFB标记；C端游离α-COOH"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -43517,9 +45943,26 @@
     }
    ],
    "order": 1,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151801",
+    "3152007"
+   ],
+   "related": [
+    "3152502",
+    "3152503"
+   ],
+   "confusables": [
+    {
+     "name": "油脂 vs 蜡",
+     "point_id": null,
+     "distinction": "油脂是甘油三酯；蜡是长链脂肪酸与长链一元醇的酯，不含甘油，皂化产物不同"
+    },
+    {
+     "name": "卵磷脂 vs 脑磷脂",
+     "point_id": null,
+     "distinction": "同为甘油磷脂，卵磷脂的sn-3磷酸接胆碱，脑磷脂接乙醇胺或丝氨酸"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 油脂、蜡、磷脂（脑磷脂、卵磷脂）的组成和结」要求掌握（对齐置信度 0.83）",
@@ -43772,9 +46215,27 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152001",
+    "3151402",
+    "3152501"
+   ],
+   "related": [
+    "3152501",
+    "3152504"
+   ],
+   "confusables": [
+    {
+     "name": "Δ编号 vs ω编号",
+     "point_id": null,
+     "distinction": "Δ从羧基碳C1数双键位次；ω(n-)从甲基端数，同一脂肪酸两编号不同"
+    },
+    {
+     "name": "顺式 vs 反式脂肪酸",
+     "point_id": "3151404",
+     "distinction": "顺式碳链弯折、堆砌疏松，熔点低于反式及同碳数饱和脂肪酸"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 油脂的皂化反应。2024 版删去\"及皂化值」要求掌握（对齐置信度 0.80）",
@@ -43984,9 +46445,26 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152007",
+    "3152501"
+   ],
+   "related": [
+    "3152504",
+    "3152502"
+   ],
+   "confusables": [
+    {
+     "name": "皂化值 vs 酯值",
+     "point_id": "3152504",
+     "distinction": "皂化值=酯值+酸值，均以mg KOH/g计；酸值只中和游离脂肪酸"
+    },
+    {
+     "name": "皂化 vs 酸性水解",
+     "point_id": "3152007",
+     "distinction": "皂化为碱催化、生成羧酸盐，不可逆；酸性水解可逆、需过量水"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 油脂的皂化反应。2024 版删去\"及皂化值」要求掌握（对齐置信度 0.80）",
@@ -44214,9 +46692,26 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152503",
+    "3152502"
+   ],
+   "related": [
+    "3152503",
+    "3152501"
+   ],
+   "confusables": [
+    {
+     "name": "碘值 vs 皂化值",
+     "point_id": "3152503",
+     "distinction": "碘值测C=C不饱和度(g I₂/100g)；皂化值测酯及游离酸总量，与平均分子量反相关"
+    },
+    {
+     "name": "酸值 vs 皂化值",
+     "point_id": "3152503",
+     "distinction": "酸值只测游离脂肪酸；皂化值含酯部分，两者之差即酯值"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 油脂的皂化值、碘值、酸值的概念。」要求了解（对齐置信度 0.54）",
@@ -44452,8 +46947,22 @@
    ],
    "order": 1,
    "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "related": [
+    "3152603",
+    "3152605"
+   ],
+   "confusables": [
+    {
+     "name": "实验式 vs 分子式",
+     "point_id": null,
+     "distinction": "实验式只给原子最简整数比；分子式=实验式×(M/实验式量)，M取自质谱M⁺峰"
+    },
+    {
+     "name": "元素分析 vs 波谱法",
+     "point_id": null,
+     "distinction": "元素分析定C、H、N含量得实验式；IR、NMR、MS定官能团与连接方式"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 有机化合物研究的基本方法。」要求了解（对齐置信度 0.90）",
@@ -44681,9 +47190,25 @@
     }
    ],
    "order": 2,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151802"
+   ],
+   "related": [
+    "3152606",
+    "3152604"
+   ],
+   "confusables": [
+    {
+     "name": "常压蒸馏 vs 分馏",
+     "point_id": null,
+     "distinction": "组分沸点差>30℃可用蒸馏；差值小或形成共沸物时须分馏或萃取蒸馏"
+    },
+    {
+     "name": "蒸馏 vs 回流",
+     "point_id": "3152606",
+     "distinction": "蒸馏把蒸气冷凝后移出收集；回流使冷凝液返回烧瓶，用于长时间加热"
+    }
+   ],
    "exam_evidence": {
     "level": "inferred",
     "basis": "知识全景 HTML 原文；未对齐到官方大纲条目（或置信度 <0.34）",
@@ -44919,9 +47444,25 @@
     }
    ],
    "order": 3,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151202"
+   ],
+   "related": [
+    "3152605",
+    "3152602"
+   ],
+   "confusables": [
+    {
+     "name": "重结晶 vs 升华",
+     "point_id": "3152605",
+     "distinction": "重结晶靠溶解度随温度的差异；升华靠蒸气压差异，要求熔点下蒸气压足够大"
+    },
+    {
+     "name": "热过滤 vs 抽滤",
+     "point_id": null,
+     "distinction": "热过滤趁热除去不溶性杂质并防析晶；抽滤用于收集晶体、加速固液分离"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 以茶叶中提取咖啡因为例，了解索氏抽提器的工」要求掌握（对齐置信度 0.53）",
@@ -45168,9 +47709,25 @@
     }
    ],
    "order": 4,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3150102"
+   ],
+   "related": [
+    "3152605",
+    "3152603"
+   ],
+   "confusables": [
+    {
+     "name": "萃取 vs 洗涤",
+     "point_id": null,
+     "distinction": "萃取把目标物转入另一相并保留；洗涤除去杂质保留原相，目的相反操作相似"
+    },
+    {
+     "name": "一次萃取 vs 多次萃取",
+     "point_id": null,
+     "distinction": "同量溶剂分次萃取总萃取率更高，因每次按分配比K重新平衡"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 以茶叶中提取咖啡因为例，了解索氏抽提器的工」要求掌握（对齐置信度 0.53）",
@@ -45416,9 +47973,25 @@
     }
    ],
    "order": 5,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151202"
+   ],
+   "related": [
+    "3152603",
+    "3152604"
+   ],
+   "confusables": [
+    {
+     "name": "柱层析 vs 薄层层析",
+     "point_id": null,
+     "distinction": "柱层析用于制备量分离；TLC用于分析检测与Rf比较，也可摸索柱层析条件"
+    },
+    {
+     "name": "吸附层析 vs 分配层析",
+     "point_id": null,
+     "distinction": "吸附层析靠固定相吸附力差异；分配层析靠组分在两相间分配系数差异"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 以茶叶中提取咖啡因为例，了解索氏抽提器的工」要求掌握（对齐置信度 0.53）",
@@ -45648,9 +48221,26 @@
     }
    ],
    "order": 6,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3152604",
+    "3152602"
+   ],
+   "related": [
+    "3152605",
+    "3152603"
+   ],
+   "confusables": [
+    {
+     "name": "索氏抽提 vs 浸泡萃取",
+     "point_id": "3152604",
+     "distinction": "索氏用新鲜冷凝液反复循环萃取，效率高、省溶剂；浸泡为单次平衡"
+    },
+    {
+     "name": "索氏抽提 vs 回流",
+     "point_id": "3152602",
+     "distinction": "索氏靠虹吸管周期排空滤纸筒；普通回流液面浸泡、不排空"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「掌握 以茶叶中提取咖啡因为例，了解索氏抽提器的工」要求掌握（对齐置信度 0.53）",
@@ -45904,9 +48494,24 @@
     }
    ],
    "order": 7,
-   "prerequisites": [],
-   "related": [],
-   "confusables": [],
+   "prerequisites": [
+    "3151809"
+   ],
+   "related": [
+    "3152602"
+   ],
+   "confusables": [
+    {
+     "name": "含卤 vs 非卤废液",
+     "point_id": null,
+     "distinction": "含卤有机废液须单独收集，不可与非卤混合，避免焚烧生成二噁英等剧毒物"
+    },
+    {
+     "name": "酸入水 vs 水入酸",
+     "point_id": null,
+     "distinction": "只能把浓酸沿器壁注入水中并搅拌散热；水入酸会局部沸腾飞溅"
+    }
+   ],
    "exam_evidence": {
     "level": "verified",
     "basis": "315 官方大纲条目「了解 实验室的主要安全规则，了解实验的常见废弃物」要求了解（对齐置信度 0.70）",

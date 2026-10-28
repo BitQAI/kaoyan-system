@@ -12,6 +12,7 @@
 
 # 系统与编辑器
 .DS_Store
+.claude/scheduled_tasks.lock   # 运行时锁文件（含 pid），不入库
 __pycache__/
 *.pyc
 .venv/

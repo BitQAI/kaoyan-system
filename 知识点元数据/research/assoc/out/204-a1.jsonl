@@ -1,0 +1,34 @@
+{"id":"2040101","prerequisites":[],"related":["2040102","2040105"],"confusables":[{"name":"英语一 vs 英语二卷面","point_id":null,"distinction":"英语二：翻译15分、写作25分；英语一：翻译10分、写作30分，其余板块分值相同"}]}
+{"id":"2040102","prerequisites":["2040101"],"related":["2040105","2040305"],"confusables":[]}
+{"id":"2040103","prerequisites":[],"related":["2040201","2040205","2040505"],"confusables":[]}
+{"id":"2040104","prerequisites":[],"related":["2040401"],"confusables":[{"name":"大纲八项 vs 六大题型","point_id":"2040401","distinction":"八项＝大纲能力要求；六大题型＝按设问归类的解法，非一一对应"}]}
+{"id":"2040105","prerequisites":["2040101"],"related":["2040102","2040905"],"confusables":[]}
+{"id":"2040201","prerequisites":[],"related":["2040202","2040203","2040204"],"confusables":[{"name":"核心高频词 vs 熟词僻义","point_id":"2040202","distinction":"核心词考常用义、须秒认；熟词僻义考低频义，须靠搭配与语境回填判定"}]}
+{"id":"2040202","prerequisites":["2040201"],"related":["2040203","2040405"],"confusables":[{"name":"熟词僻义 vs 一词多义","point_id":null,"distinction":"熟词僻义必有高频义干扰、靠搭配排除；一词多义仅指义项多，不含干扰判断"}]}
+{"id":"2040203","prerequisites":[],"related":["2040304","2040201"],"confusables":[{"name":"subject 形容词 vs 动词","point_id":"2040202","distinction":"be subject to sth＝易受…影响；subject sb to sth＝使某人遭受（及物）"}]}
+{"id":"2040204","prerequisites":[],"related":["2040201","2040405"],"confusables":[]}
+{"id":"2040205","prerequisites":[],"related":["2040207","2040210","2040504"],"confusables":[{"name":"限定动词 vs 非谓语","point_id":"2040207","distinction":"限定动词有时态人称变化、独立作谓语；非谓语无变化，只作修饰或成分"}]}
+{"id":"2040206","prerequisites":[],"related":["2040209","2040208"],"confusables":[{"name":"一般过去时 vs 现在完成时","point_id":null,"distinction":"有明确过去时间状语＝一般过去；强调对现在的影响且无具体过去时间＝现在完成"}]}
+{"id":"2040207","prerequisites":["2040205"],"related":["2040210"],"confusables":[{"name":"doing vs done","point_id":null,"distinction":"逻辑主语是动作执行者用 doing；是承受者或动作已完成用 done"}]}
+{"id":"2040208","prerequisites":[],"related":["2040206","2040704"],"confusables":[{"name":"被动语态 vs 系表结构","point_id":null,"distinction":"be+过去分词能加 by、可用进行时＝被动；只能表状态、不能进行＝系表"}]}
+{"id":"2040209","prerequisites":["2040206"],"related":["2040210"],"confusables":[{"name":"insist 要求 vs 陈述","point_id":null,"distinction":"insist 表「坚持要求」从句用 (should) do；表「坚持认为」用陈述语气"}]}
+{"id":"2040210","prerequisites":["2040205"],"related":["2040207","2040703"],"confusables":[{"name":"定语从句 vs 同位语从句","point_id":null,"distinction":"that 在从句中充当成分＝定语从句；不充当成分、只解释先行词内容＝同位语从句"},{"name":"that vs what","point_id":null,"distinction":"what 前无先行词且从句必缺成分；that 引导定语从句时有先行词、可省"}]}
+{"id":"2040301","prerequisites":[],"related":["2040302","2040303","2040304"],"confusables":[]}
+{"id":"2040302","prerequisites":["2040301"],"related":["2040303","2040305"],"confusables":[]}
+{"id":"2040303","prerequisites":[],"related":["2040302","2040301"],"confusables":[{"name":"转折 vs 让步","point_id":null,"distinction":"转折直接推翻前句预期（but/however）；让步先承认再转回（although），且不与 but 连用"},{"name":"despite vs although","point_id":null,"distinction":"despite 后接名词或短语；although 后接主谓齐全的从句"}]}
+{"id":"2040304","prerequisites":["2040203"],"related":["2040301","2040303"],"confusables":[{"name":"搭配题 vs 辨析题","point_id":"2040203","distinction":"空格只考介词或动介固定搭配＝搭配题；四个近义动词靠及物性与语境区分＝辨析题"},{"name":"result in vs from","point_id":null,"distinction":"result in 后接结果（导致）；result from 后接原因（源于）"}]}
+{"id":"2040305","prerequisites":["2040301"],"related":["2040302","2040102"],"confusables":[{"name":"主线定位 vs 解题步骤","point_id":"2040302","distinction":"主线定位解决先读什么、抓哪条线；解题步骤解决三遍怎么走、各用几分钟"}]}
+{"id":"2040401","prerequisites":[],"related":["2040104","2040408"],"confusables":[{"name":"主旨题 vs 细节题","point_id":"2040402","distinction":"问全文中心或标题＝主旨题，看首末段与复现词；问某处信息＝细节题，看定位句"},{"name":"例证题 vs 细节题","point_id":"2040407","distinction":"问 X 被提及的目的＝例证题，答例子前的观点句；问 X 本身内容＝细节题"}]}
+{"id":"2040402","prerequisites":["2040401"],"related":["2040407","2040602"],"confusables":[]}
+{"id":"2040403","prerequisites":["2040401"],"related":["2040502","2040505"],"confusables":[{"name":"细节题 vs 推断题","point_id":"2040404","distinction":"答案能在原文定位句直接找到＝细节题；须一步同义改写才得出＝推断题"}]}
+{"id":"2040404","prerequisites":[],"related":["2040403","2040408"],"confusables":[{"name":"推理题 vs 态度题","point_id":"2040406","distinction":"问作者褒贬倾向＝态度题，看评价词；问可推出什么＝推理题，看一步转换"}]}
+{"id":"2040405","prerequisites":[],"related":["2040202","2040204"],"confusables":[{"name":"词义猜测 vs 熟词僻义","point_id":"2040202","distinction":"阅读题中按上下文线索选义＝词义猜测题；词汇表中常见词的低频义项＝熟词僻义"}]}
+{"id":"2040406","prerequisites":[],"related":["2040402","2040408"],"confusables":[]}
+{"id":"2040407","prerequisites":[],"related":["2040402","2040401"],"confusables":[]}
+{"id":"2040408","prerequisites":[],"related":["2040401","2040503"],"confusables":[{"name":"干扰项特征 vs 命制逻辑","point_id":"2040503","distinction":"认特征＝考场按表现形式快速排除；命制逻辑＝复盘时按命题人改造手法还原"}]}
+{"id":"2040501","prerequisites":[],"related":["2040502","2040205","2040505"],"confusables":[]}
+{"id":"2040502","prerequisites":["2040401"],"related":["2040503","2040505","2040403"],"confusables":[]}
+{"id":"2040503","prerequisites":["2040408"],"related":["2040502","2040501"],"confusables":[]}
+{"id":"2040504","prerequisites":["2040205"],"related":["2040207","2040501"],"confusables":[]}
+{"id":"2040505","prerequisites":[],"related":["2040403","2040404","2040408"],"confusables":[]}
+{"id":"2040601","prerequisites":[],"related":["2040602","2040603","2040402"],"confusables":[{"name":"阅读A vs 阅读B","point_id":"2040401","distinction":"阅读A＝四选一，重定位与同义替换；阅读B＝匹配题，重段落主旨与复现词"},{"name":"小标题匹配 vs 多项对应","point_id":"2040603","distinction":"小标题匹配给每段选概括标题（7选5）；多项对应按题干信息回段找证据"}]}

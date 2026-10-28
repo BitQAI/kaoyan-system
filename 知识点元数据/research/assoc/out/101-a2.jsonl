@@ -1,0 +1,34 @@
+{"id":"1010407","prerequisites":["1010403","1010405"],"related":["1010406"],"confusables":[{"name":"科技革命 vs 社会革命","point_id":"1010406","distinction":"前者改变生产力与技术基础，不直接改变生产关系性质；后者根本变革社会制度"},{"name":"第一生产力 vs 科技决定论","point_id":null,"distinction":"科学技术是第一生产力指其渗透于生产力要素；科技决定论把技术视为社会发展的唯一决定因素"}]}
+{"id":"1010408","prerequisites":["1010403","1010405"],"related":["1010409"],"confusables":[{"name":"人民群众 vs 全体人口","point_id":null,"distinction":"人民群众是历史范畴，指推动历史发展的社会成员，不等于一国全部人口"},{"name":"群众史观 vs 英雄史观","point_id":"1010409","distinction":"前者认为人民群众创造历史，后者把历史发展归结为少数英雄人物的意志"}]}
+{"id":"1010409","prerequisites":["1010408"],"related":[],"confusables":[{"name":"个人作用 vs 英雄史观","point_id":null,"distinction":"唯物史观承认个人作用但受历史条件制约；英雄史观夸大个人、否定人民群众"}]}
+{"id":"1010501","prerequisites":[],"related":["1010502"],"confusables":[{"name":"使用价值 vs 价值","point_id":null,"distinction":"使用价值是自然属性、由具体劳动创造；价值是社会属性、由抽象劳动形成"},{"name":"具体劳动 vs 抽象劳动","point_id":null,"distinction":"同一劳动的两重性，不是两次劳动：前者创造使用价值，后者形成价值"}]}
+{"id":"1010502","prerequisites":["1010501"],"related":["1010503"],"confusables":[{"name":"货币 vs 资本","point_id":null,"distinction":"货币是一般等价物；资本是能带来剩余价值的价值，关键是劳动力成为商品"},{"name":"劳动力商品 vs 普通商品","point_id":null,"distinction":"劳动力价值由维持劳动力再生产的生活资料价值决定，其使用价值能创造更大价值"}]}
+{"id":"1010503","prerequisites":["1010502"],"related":["1010504"],"confusables":[{"name":"绝对剩余价值 vs 相对剩余价值","point_id":null,"distinction":"前者延长工作日、增加剩余劳动时间；后者工作日不变、缩短必要劳动时间"},{"name":"相对剩余价值 vs 超额剩余价值","point_id":null,"distinction":"前者以全社会劳动生产率提高为前提；后者靠个别企业率先提高生产率，是其形成途径"}]}
+{"id":"1010504","prerequisites":["1010502","1010503"],"related":["1010505"],"confusables":[{"name":"相对过剩人口 vs 绝对过剩人口","point_id":null,"distinction":"相对过剩是相对于资本增殖需要而言，并非人口绝对超过生活资料"}]}
+{"id":"1010505","prerequisites":["1010502","1010503"],"related":["1010504"],"confusables":[{"name":"不变/可变资本 vs 固定/流动资本","point_id":"1010504","distinction":"前者按在剩余价值生产中的作用划分；后者按价值周转方式划分"}]}
+{"id":"1010506","prerequisites":["1010503","1010504"],"related":[],"confusables":[{"name":"剩余价值 vs 利润","point_id":null,"distinction":"利润是剩余价值的转化形式；剩余价值率反映剥削程度，利润率按全部预付资本计算"},{"name":"价值 vs 生产价格","point_id":null,"distinction":"价值为c+v+m，生产价格为成本价格+平均利润；全社会总量相等"}]}
+{"id":"1010507","prerequisites":["1010403","1010504"],"related":[],"confusables":[{"name":"社会基本矛盾 vs 资本主义基本矛盾","point_id":"1010405","distinction":"前者是生产力与生产关系的矛盾；后者在资本主义表现为生产社会化与私人占有"},{"name":"基本矛盾 vs 主要矛盾","point_id":null,"distinction":"基本矛盾贯穿始终、决定性质；主要矛盾在阶级关系上表现为无产阶级与资产阶级对立"}]}
+{"id":"1010601","prerequisites":["1010506"],"related":["1010602"],"confusables":[{"name":"垄断 vs 竞争","point_id":null,"distinction":"垄断没有消除竞争，而是与竞争并存；垄断条件下竞争的目的是垄断利润"}]}
+{"id":"1010602","prerequisites":["1010601"],"related":["1010603"],"confusables":[{"name":"国家垄断资本主义 vs 科学社会主义","point_id":"1010702","distinction":"前者是垄断资本与国家政权结合、仍属资本主义；后者以生产资料公有制为基础"}]}
+{"id":"1010603","prerequisites":["1010601"],"related":["1010602"],"confusables":[{"name":"垄断利润 vs 平均利润","point_id":"1010506","distinction":"垄断利润高于平均利润、通过垄断价格实现，来源仍是剩余价值"},{"name":"金融资本 vs 银行资本","point_id":null,"distinction":"金融资本是工业垄断资本与银行垄断资本融合而成，不等于银行资本"}]}
+{"id":"1010604","prerequisites":["1010601"],"related":["1010605"],"confusables":[{"name":"经济全球化 vs 逆全球化","point_id":null,"distinction":"逆全球化是保护主义政策回潮，改变不了生产社会化与资本国际化的总趋势"}]}
+{"id":"1010605","prerequisites":["1010602","1010603"],"related":["1010606"],"confusables":[{"name":"新变化 vs 制度性质改变","point_id":"1010606","distinction":"新变化只是生产关系局部调整，未触动私有制，资本主义性质未变"}]}
+{"id":"1010606","prerequisites":["1010605"],"related":["1010607"],"confusables":[{"name":"福利国家 vs 社会主义","point_id":"1010702","distinction":"福利制度是再分配改良，不改变生产资料私有制；社会主义以公有制为基础"}]}
+{"id":"1010607","prerequisites":["1010507","1010606"],"related":["1010803"],"confusables":[{"name":"历史进步性 vs 历史局限性","point_id":null,"distinction":"进步性在发展生产力与社会文明；局限性在基本矛盾无法自我克服，必然被替代"}]}
+{"id":"1010701","prerequisites":["1010405","1010503","1010607"],"related":["1010702"],"confusables":[{"name":"空想社会主义 vs 科学社会主义","point_id":null,"distinction":"前者靠理性批判与道德呼吁，找不到实现力量；后者以唯物史观和剩余价值学说为基石"}]}
+{"id":"1010702","prerequisites":["1010701"],"related":["1010703"],"confusables":[{"name":"科学社会主义 vs 中国特色社会主义","point_id":null,"distinction":"前者是普遍原则、不能丢；后者是同中国实际结合的产物，没有固定模式"}]}
+{"id":"1010703","prerequisites":["1010701","1010702"],"related":["1010704"],"confusables":[{"name":"苏联模式 vs 社会主义制度","point_id":null,"distinction":"苏联模式是特定历史条件下的建设模式；社会主义制度是本质，模式可以多样"}]}
+{"id":"1010704","prerequisites":["1010703"],"related":["1010705"],"confusables":[{"name":"前进性 vs 曲折性","point_id":null,"distinction":"前进性是总趋势，曲折性是实现道路；不能因曲折否认社会主义必然性"}]}
+{"id":"1010705","prerequisites":["1010405","1010703"],"related":["1010704"],"confusables":[{"name":"改革 vs 革命","point_id":"1010406","distinction":"改革是社会主义制度自我完善，不改变制度性质；革命是根本变革社会制度"}]}
+{"id":"1010801","prerequisites":["1010702"],"related":["1010802"],"confusables":[{"name":"按劳分配 vs 按需分配","point_id":"1010702","distinction":"按劳分配以劳动为尺度、通行等价交换；按需分配以物质财富极大丰富为前提"}]}
+{"id":"1010802","prerequisites":["1010801"],"related":[],"confusables":[{"name":"全面发展 vs 自由发展","point_id":null,"distinction":"全面发展指各方面能力充分发展；自由发展指摆脱旧式分工与自然必然性束缚"}]}
+{"id":"1010803","prerequisites":["1010507","1010607","1010801"],"related":["1010804"],"confusables":[{"name":"两个必然 vs 两个决不会","point_id":"1010607","distinction":"两个必然讲历史方向；两个决不会讲实现条件，反对急于求成与悲观失望"}]}
+{"id":"1010804","prerequisites":["1010803"],"related":["1010801"],"confusables":[{"name":"最高纲领 vs 最低纲领","point_id":null,"distinction":"最高纲领是实现共产主义；最低纲领是现阶段基本纲领，二者是目标与阶段的统一"}]}
+{"id":"1010901","prerequisites":[],"related":["1010902"],"confusables":[{"name":"中国化 vs 时代化","point_id":null,"distinction":"中国化是同中国具体实际相结合；时代化是同时代特征与时代课题相结合"}]}
+{"id":"1010902","prerequisites":["1010901"],"related":["1010903","1011001"],"confusables":[{"name":"毛泽东思想 vs 中特理论体系","point_id":"1011003","distinction":"后者含邓小平理论、三个代表、科学发展观、习思想；毛泽东思想属第一次飞跃，不在其中"}]}
+{"id":"1010903","prerequisites":["1010901"],"related":["1010902"],"confusables":[{"name":"理论创新 vs 实践创新","point_id":null,"distinction":"实践创新是源泉和动力，理论创新是行动前导；二者良性互动，地位不可倒置"}]}
+{"id":"1011001","prerequisites":["1010901"],"related":["1011003"],"confusables":[{"name":"毛泽东思想 vs 毛泽东的思想","point_id":"1011004","distinction":"前者是党集体智慧结晶的科学理论体系；后者指毛泽东个人全部思想，含晚年错误"}]}
+{"id":"1011002","prerequisites":["1011001"],"related":["1011003"],"confusables":[{"name":"实事求是 vs 群众路线","point_id":null,"distinction":"实事求是是精髓和思想路线；群众路线是根本工作路线；独立自主是基本立足点"}]}
+{"id":"1011003","prerequisites":["1011001","1011002"],"related":["1011004"],"confusables":[{"name":"毛泽东思想 vs 中特理论体系","point_id":"1010902","distinction":"毛泽东思想是第一次飞跃，不属于中特理论体系；后者是第二次飞跃的理论成果"}]}
+{"id":"1011004","prerequisites":["1011003"],"related":[],"confusables":[{"name":"毛泽东 vs 毛泽东思想","point_id":"1011003","distinction":"毛泽东是个人、有功有过；毛泽东思想是集体智慧结晶，不含晚年错误"}]}
+{"id":"1011101","prerequisites":[],"related":["1011102","1012201"],"confusables":[{"name":"最主要矛盾 vs 主要矛盾","point_id":null,"distinction":"帝国主义与中华民族的矛盾是最主要矛盾；它与封建主义与人民大众的矛盾同属主要矛盾"}]}

@@ -1,0 +1,34 @@
+{"id":"1011102","prerequisites":["1011101"],"related":["1011103","1011104","1011105"],"confusables":[{"name":"新民主主义总路线 vs 过渡时期总路线","point_id":"1011201","distinction":"对象不同：前者反帝国主义、封建主义、官僚资本主义；后者为一化三改"},{"name":"新民主主义革命 vs 社会主义革命","point_id":"1011201","distinction":"前者性质是资产阶级民主革命、前途是社会主义；后者任务是消灭私有制"}]}
+{"id":"1011103","prerequisites":["1011102"],"related":[],"confusables":[{"name":"三大经济纲领 vs 三大改造","point_id":"1011202","distinction":"前者属革命纲领，没收官僚资本、地主土地，保护民族工商业；后者属过渡时期改造"}]}
+{"id":"1011104","prerequisites":["1011101"],"related":["1011105","1012303"],"confusables":[{"name":"城市中心论 vs 农村包围城市","point_id":null,"distinction":"前者照搬俄国以城市暴动为中心；后者以农村根据地为重心、长期武装斗争"}]}
+{"id":"1011105","prerequisites":["1011102","1011104"],"related":["1012304"],"confusables":[{"name":"三大法宝 vs 三大作风","point_id":null,"distinction":"前者为统一战线、武装斗争、党的建设；后者为理论联系实际、密切联系群众、批评与自我批评"}]}
+{"id":"1011106","prerequisites":["1011102","1011105"],"related":["1011003"],"confusables":[]}
+{"id":"1011201","prerequisites":["1011102"],"related":["1011202","1011203"],"confusables":[{"name":"新民主主义社会 vs 社会主义社会","point_id":"1011203","distinction":"前者五种经济成分并存、属过渡性质；后者公有制为主体、社会主义制度已确立"}]}
+{"id":"1011202","prerequisites":["1011201"],"related":["1011203"],"confusables":[{"name":"国家资本主义初级 vs 高级形式","point_id":null,"distinction":"初级形式在外部合作（加工订货、统购包销）；高级形式实行公私合营"}]}
+{"id":"1011203","prerequisites":["1011201","1011202"],"related":["1012401"],"confusables":[]}
+{"id":"1011301","prerequisites":["1011203"],"related":["1011302","1011303"],"confusables":[]}
+{"id":"1011302","prerequisites":["1011301"],"related":["1011303"],"confusables":[{"name":"人民内部矛盾 vs 敌我矛盾","point_id":null,"distinction":"前者非对抗性、用民主方法解决；后者对抗性、用专政方法解决"}]}
+{"id":"1011303","prerequisites":["1011301","1011302"],"related":["1012402"],"confusables":[]}
+{"id":"1011401","prerequisites":["1010902","1011303"],"related":["1011402"],"confusables":[{"name":"中特理论体系 vs 毛泽东思想","point_id":"1010902","distinction":"前者不含毛泽东思想，是对其继承发展；两者同属马克思主义中国化成果"}]}
+{"id":"1011402","prerequisites":["1011401"],"related":["1011403","1011404","1011405"],"confusables":[]}
+{"id":"1011403","prerequisites":["1011401","1011402"],"related":["1011404","1011405"],"confusables":[{"name":"社会主义本质 vs 社会主义特征","point_id":null,"distinction":"本质回答什么是社会主义：解放发展生产力、消灭剥削、共同富裕；特征指制度规定"},{"name":"社会主义初级阶段 vs 过渡时期","point_id":"1011201","distinction":"前者已是社会主义社会、公有制为主体；后者社会主义制度尚未确立、五种经济成分并存"}]}
+{"id":"1011404","prerequisites":["1011402"],"related":["1011403","1011405"],"confusables":[]}
+{"id":"1011405","prerequisites":["1011402"],"related":["1011406","1011403"],"confusables":[{"name":"科学发展观 vs 新发展理念","point_id":"1011901","distinction":"前者以人为本、全面协调可持续；后者创新协调绿色开放共享"}]}
+{"id":"1011406","prerequisites":["1011405"],"related":[],"confusables":[{"name":"全面协调可持续 vs 五位一体","point_id":"1011602","distinction":"前者是科学发展观的基本要求（三个维度）；后者是总体布局（经济政治文化社会生态）"}]}
+{"id":"1011501","prerequisites":["1011401","1011403"],"related":["1011502"],"confusables":[{"name":"主要矛盾 vs 社会基本矛盾","point_id":"1010405","distinction":"前者是人民美好生活需要与不平衡不充分发展；后者是生产力与生产关系、经济基础与上层建筑"},{"name":"新时代 vs 社会主义初级阶段","point_id":"1011403","distinction":"新时代是历史方位判断；初级阶段是基本国情，未变"}]}
+{"id":"1011502","prerequisites":["1011501"],"related":["1011503","1011603"],"confusables":[{"name":"新时代两步走 vs 三步走战略","point_id":"1011403","distinction":"前者分2020—2035、2035—本世纪中叶两阶段；后者三步到21世纪中叶达到中等发达"}]}
+{"id":"1011503","prerequisites":["1011501","1011502"],"related":["1011504"],"confusables":[{"name":"十个明确 vs 十四个坚持","point_id":null,"distinction":"十个明确是理论层面的四梁八柱；十四个坚持是实践层面的基本方略"},{"name":"六个必须坚持 vs 十个明确","point_id":"1011504","distinction":"前者是世界观和方法论（怎么干）；后者是核心内容（是什么）"}]}
+{"id":"1011504","prerequisites":["1011503"],"related":["1011803"],"confusables":[{"name":"人民至上 vs 以人民为中心","point_id":"1011804","distinction":"前者是世界观方法论（六个必须坚持首位）；后者是发展思想，落到为了、依靠、共享"},{"name":"自信自立 vs 闭关自守","point_id":null,"distinction":"前者立足自身又对外开放；后者排斥外部、封闭僵化"}]}
+{"id":"1011601","prerequisites":["1011501","1011401"],"related":["1011602","1011603"],"confusables":[]}
+{"id":"1011602","prerequisites":["1011601"],"related":["1011603","1011503"],"confusables":[{"name":"五位一体 vs 四个全面","point_id":null,"distinction":"前者是总体布局（经济政治文化社会生态）；后者是战略布局（现代化、改革、法治、从严治党）"}]}
+{"id":"1011603","prerequisites":["1011502","1011602"],"related":["1011701"],"confusables":[{"name":"现代化国家 vs 现代化强国","point_id":null,"distinction":"2035年基本实现社会主义现代化；本世纪中叶建成社会主义现代化强国"}]}
+{"id":"1011701","prerequisites":["1011603"],"related":["1011702"],"confusables":[{"name":"中国式现代化 vs 西方式现代化","point_id":null,"distinction":"前者人口规模巨大、共同富裕、和平发展；后者贫富分化、对外扩张"}]}
+{"id":"1011702","prerequisites":["1011701"],"related":["1011603","1011803"],"confusables":[{"name":"现代化特色 vs 本质要求","point_id":"1011701","distinction":"特色是五个方面的表现形态；本质要求是领导、道路、人民、生态、和平等规定"}]}
+{"id":"1011801","prerequisites":["1011601"],"related":["1011802"],"confusables":[{"name":"党的全面领导 vs 集中统一领导","point_id":null,"distinction":"前者覆盖所有领域和层级；后者指维护党中央权威、做到两个维护"}]}
+{"id":"1011802","prerequisites":["1011801"],"related":["1011805"],"confusables":[{"name":"根本领导制度 vs 根本政治制度","point_id":"1012002","distinction":"前者是党的领导制度体系；后者是人民代表大会制度"}]}
+{"id":"1011803","prerequisites":["1011504"],"related":["1011804","1011702"],"confusables":[{"name":"共同富裕 vs 同步富裕","point_id":null,"distinction":"共同富裕是全体人民逐步实现；同步富裕是平均主义、不现实"}]}
+{"id":"1011804","prerequisites":["1011803"],"related":["1011901"],"confusables":[{"name":"以人民为中心 vs 人民至上","point_id":"1011803","distinction":"前者是发展思想，落到发展为了、依靠、共享人民；后者是世界观方法论首位"},{"name":"共享发展 vs 共同富裕","point_id":"1011803","distinction":"共享发展是新发展理念之一；共同富裕是现代化的重要目标和本质要求"}]}
+{"id":"1011805","prerequisites":["1011602"],"related":["1011806","1011807"],"confusables":[{"name":"治理体系 vs 治理能力","point_id":null,"distinction":"前者是管理国家的制度体系；后者是运用制度管理事务的能力"}]}
+{"id":"1011806","prerequisites":["1011805"],"related":["1011807","1011903"],"confusables":[{"name":"独立自主 vs 闭关自守","point_id":null,"distinction":"前者立足自身、自主决策又对外开放；后者拒绝对外交流"}]}
+{"id":"1011807","prerequisites":["1011805","1011806"],"related":["1011701"],"confusables":[]}
+{"id":"1011901","prerequisites":["1011501"],"related":["1011902"],"confusables":[{"name":"新发展理念 vs 科学发展观","point_id":"1011405","distinction":"前者创新协调绿色开放共享；后者以人为本、全面协调可持续"}]}

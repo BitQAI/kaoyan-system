@@ -1,0 +1,17 @@
+{"id":"2040602","prerequisites":[],"related":["2040402","2040603","2040604"],"confusables":[{"name":"小标题匹配 vs 信息匹配题","point_id":"2040603","distinction":"小标题给每个段落选概括性标题，选项与段意同义；信息匹配按题干找段落，可多对一"}]}
+{"id":"2040603","prerequisites":[],"related":["2040602","2040604","2040403"],"confusables":[{"name":"信息匹配题 vs 小标题匹配","point_id":"2040602","distinction":"信息匹配题干是具体信息、答案落在段落细节；小标题答案是概括段意的标题，非细节句"}]}
+{"id":"2040604","prerequisites":[],"related":["2040602","2040603","2040408"],"confusables":[]}
+{"id":"2040701","prerequisites":[],"related":["2040702","2040905"],"confusables":[]}
+{"id":"2040702","prerequisites":["2040205"],"related":["2040703","2040704","2040705"],"confusables":[{"name":"合译 vs 分译","point_id":"2040703","distinction":"短限制性从句嵌入先行词前译成“的”字定语；长或非限制性从句独立成句并补衔接词"}]}
+{"id":"2040703","prerequisites":["2040702","2040210"],"related":["2040704","2040705"],"confusables":[{"name":"定语从句 vs 同位语从句","point_id":"2040210","distinction":"定语从句修饰并限定先行词，关系词在从句中作成分；同位语从句解释抽象名词内容，that 不作成分"}]}
+{"id":"2040704","prerequisites":["2040208"],"related":["2040702","2040703","2040705"],"confusables":[{"name":"保留被动 vs 化被动为主动","point_id":null,"distinction":"施事明确或需强调受事时保留被动（被/受到/得以）；施事不明时改主动或无主句"}]}
+{"id":"2040705","prerequisites":["2040210"],"related":["2040702","2040703","2040603"],"confusables":[]}
+{"id":"2040801","prerequisites":[],"related":["2040802","2040803","2040804"],"confusables":[]}
+{"id":"2040802","prerequisites":["2040801"],"related":["2040803","2040804"],"confusables":[{"name":"建议信 vs 投诉信","point_id":null,"distinction":"建议信提建设性改进措施、语气温和；投诉信陈述权益受损并要求解决，语气强硬"}]}
+{"id":"2040803","prerequisites":["2040801"],"related":["2040802","2040804"],"confusables":[{"name":"通知 vs 书信","point_id":"2040802","distinction":"通知无 Dear 称谓、正文直陈事项并落款单位日期；书信用称谓、寒暄与署名"}]}
+{"id":"2040804","prerequisites":["2040801"],"related":["2040802","2040803"],"confusables":[]}
+{"id":"2040901","prerequisites":[],"related":["2040902","2040903","2040904"],"confusables":[{"name":"描述段 vs 原因分析段","point_id":"2040903","distinction":"描述段只交代图表类型与趋势、不复述原因；原因段给因果链和例证、不再报数字"}]}
+{"id":"2040902","prerequisites":["2040901"],"related":["2040903","2040904"],"confusables":[{"name":"rise by vs rise to","point_id":null,"distinction":"by 后接增减幅度，to 后接变化后的终值；百分比数值用 percent，占比用 percentage"}]}
+{"id":"2040903","prerequisites":["2040901"],"related":["2040902","2040904"],"confusables":[{"name":"原因分析段 vs 结论段","point_id":"2040904","distinction":"原因段解释为什么，只用因果链与例证；结论段回答怎么办，给建议与展望"}]}
+{"id":"2040904","prerequisites":["2040901"],"related":["2040902","2040903"],"confusables":[{"name":"结论段 vs 描述段","point_id":"2040902","distinction":"结论段谈建议与展望、不得复述数字；描述段只报数据与趋势，不作评价"}]}
+{"id":"2040905","prerequisites":[],"related":["2040901","2040804"],"confusables":[]}
