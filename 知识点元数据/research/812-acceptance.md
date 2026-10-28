@@ -1,8 +1,8 @@
 # 812 元数据 v3.0 验收报告
 
 > 日期：2026-10-27 ｜ 范围：812 植物生理学试点
-> Spec：`docs/superpowers/specs/2026-10-27-812元数据v3.md`
-> Plan：`docs/superpowers/plans/2026-10-27-812元数据v3.md`
+> Spec：`docs/specs/2026-10-27-812元数据v3.md`
+> Plan：`docs/plans/2026-10-27-812元数据v3.md`
 
 ---
 

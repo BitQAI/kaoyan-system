@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""把 .build/sdd/align/out 的条款级对齐结果写进 subjects/*.md 的关联表。
+"""把 research/align 的条款级对齐结果写进 subjects/*.md 的关联表。
 
 只改关联表的 evidence 单元格；其它行、其它列一律不动。
 写入内容 = 对齐行的 {level, basis, sources}，basis 末尾附条款号与条款原文，便于回查。
@@ -16,7 +16,7 @@ import normalize_evidence as NE  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 META = ROOT / '知识点元数据'
-ALIGN = ROOT / '.build/sdd/align/out'
+ALIGN = META / 'research/align'
 MAX_BASIS = 180  # 关联表单元格保持一行可读
 
 

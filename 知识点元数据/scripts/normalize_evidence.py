@@ -10,7 +10,7 @@
 关键区分：syl-315 这类「整份大纲」不算条款级依据。整份大纲只能证明「这门课考这些内容」，
 不能证明「这个考点对应这一条」。101/204 全科 inferred 正是这个原因（basis 自述未做条款级对齐）。
 
-条款级对齐结果来自 .build/sdd/align/out/*.jsonl（point_id + clause + level + basis + sources）。
+条款级对齐结果来自 research/align/*.jsonl（point_id + clause + level + basis + sources）。
 
 用法：
   python3 scripts/normalize_evidence.py                 # 报告
@@ -24,7 +24,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 META = ROOT / '知识点元数据'
-ALIGN = ROOT / '.build/sdd/align/out'
+ALIGN = META / 'research/align'
 
 
 def load_ledger(sid):

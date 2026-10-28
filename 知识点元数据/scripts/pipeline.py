@@ -13,7 +13,7 @@
   5. validate.py          E00–E27 校验
   6. audit_v3.py          原子度 / 覆盖率 / 重复设问
   7. check_locator.py     html 溯源逐字回溯
-  8. 测试集               .build/sdd/812-v3/test_*.py
+  8. 测试集               tests/test_*.py
 """
 import pathlib
 import subprocess
@@ -26,7 +26,8 @@ BUILD = ['build.py', 'inline_markers.py', 'split_subject.py']
 CHECK = ['split_subject.py --check', 'validate.py', 'audit_v3.py', 'check_locator.py',
          'normalize_evidence.py']
 TESTS = ['test_schema_v3.py', 'test_validate_v3.py', 'test_build_v3.py',
-         'test_audit_v3.py', 'test_merge_shards.py', 'test_finalize_v3.py']
+         'test_audit_v3.py', 'test_merge_shards.py', 'test_finalize_v3.py',
+         'test_render_md_v3.py', 'test_syllabus_md.py', 'test_research_files.py']
 
 
 def run(path, cwd=SCRIPTS):
@@ -51,7 +52,7 @@ def main(argv):
         if not run(s):
             return 1
     if '--check' not in argv:
-        td = ROOT / '.build/sdd/812-v3'
+        td = ROOT / '知识点元数据/tests'
         for t in TESTS:
             if (td / t).exists() and not run(t, td):
                 return 1

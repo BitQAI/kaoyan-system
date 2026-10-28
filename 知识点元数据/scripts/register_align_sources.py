@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""把 .build/sdd/align/out 里出现的来源登记进 research/<sid>-sources.md。
+"""把 research/align 里出现的来源登记进 research/<sid>-sources.md。
 
 对齐行用的是 {title, url}，而 exam_evidence 按 id 查台账。不登记的话
 normalize_evidence.py 会把它们判成「来源不在台账」并降级为 pending。
@@ -21,7 +21,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 META = ROOT / '知识点元数据'
-ALIGN = ROOT / '.build/sdd/align/out'
+ALIGN = META / 'research/align'
 
 PRIMARY = re.compile(
     r'(gov\.cn|neea\.edu\.cn|\.edu\.cn|shmeea|bjeea|ynau\.edu|12371\.cn|news\.cn|'

@@ -1,5 +1,38 @@
 # 变更记录
 
+## 2026-10-28 · v3.12 条款级对齐、未成卡补齐、文档与仓库整理
+
+### 条款级对齐（101/204）
+
+- 101 按官方大纲原文做 161/161 点对齐，204 完成 51/51；产出 `clause` / `clause_text` / `level` / `basis` / `sources` 五元组。
+- 新增 `scripts/apply_alignment.py` 把对齐结果写回 `<sid>.md` 关联表；新增 `scripts/register_align_sources.py` 把对齐引用的来源登记进 `research/<sid>-sources.md`（按域名判 reliability，`buu.edu.cn`/`xdf.cn`/`koolearn` 记为污染源不入账）。
+
+### 证据等级口径重订
+
+- 原口径「有 syllabus 来源即 verified」过粗：整份大纲只能证明「这门课考这些」，不能证明「这个考点对应这一条」。
+- 新口径（`scripts/normalize_evidence.py` 是它的可执行版本）：条款级定位 / basis 逐字引用条款原文 / 考纲指定参考书 → `verified`；章节级背景 + 多来源交叉 → `inferred`；来源 <2 或不在台账 → `pending`。
+- 结果：812 = 122 verified / 8 inferred（`8120003` 因考纲 ch00 不含「研究方法与分支」降级）；315 = 179 / 17；101 = 149 / 12；204 = 6 / 45（英语二官方大纲只有题型结构，无考点级条款）。
+
+### 未成卡 unit 评估与补齐
+
+- 424 条未被任何卡引用的 unit 全部评估：skip 264 / merge 67 / new_card 93。
+- 落地 92 张新卡（812 +16、315 +63、101 +13）与 45 张卡片改写（812 7、315 36、101 19、204 2）。
+- 每点卡片 4–10 张，重复设问 0。
+
+### 图示与数据文件
+
+- 86 个 `<marker>` 箭头改为内联三角形（`scripts/inline_markers.py`），消除多图同页时的 id 撞号。
+- 四科 JSON 按章拆出 `subjects/<sid>/chapters/`（`scripts/split_subject.py`，单文件降到 80–160 KB），`<sid>.json` 仍是唯一入口，`--check` 验证可无损重组；分片是派生产物，不入库。
+
+### 工程整理
+
+- 新增 `scripts/pipeline.py`：一条命令跑完 build → inline_markers → split → validate → audit → locator → evidence → 测试，失败即中止。
+- 测试集从 `.build/sdd/812-v3/` 移入 `知识点元数据/tests/`（9 个），原先放在 gitignore 目录里、换台机器就丢了。
+- 文档重排：规格/计划归入 `docs/specs/`、`docs/plans/`，历史调研 HTML 归入 `docs/archive/`。
+- 清理：删除了仓库内与考研元数据无关的 `2026—2030普洱宁洱职业路径规划展板.png`。
+
+---
+
 ## 2026-10-28 · v3.11 图示全量重构（去「文字框堆砌」）
 
 ### 问题

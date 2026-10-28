@@ -32,7 +32,7 @@
 - 卡片：名解 222 / 简答 611 / 论述 20；card_type 九类全覆盖；每点 4–10 张，中位 7。
 - 图示：**130 点均有图**（机制/流程/对比/曲线），其余候选见 `research/812-media-suggestions.md`。
 - 证据：122 点 `verified`，8 点 `inferred`。
-- 音频：`listen.audio=pending`，尚未按新朗读稿重生成。
+- 音频：`listen.audio=pending`。v2 旧音频（524 段 / 70MB）已于 2026-10-28 删除，`mappings/audio-manifest.json` 的 clips 已清空；重生成时跑 `gen_audio.py` 写回。
 
 ---
 
@@ -60,16 +60,19 @@
 │   │   └── 812-media.json        ← 图示侧车（130 张 SVG）
 │   ├── 315/ 101/ 204/            ← 3.0（2026-10-27 迁移）
 ├── research/
-│   ├── 812-syllabus.md      ← 官方考纲结构化（12 章 80 条）
-│   ├── 812-sources.md       ← 来源台账（约 76 条）
-│   ├── 812-coverage.md      ← 覆盖矩阵 + 理解性补充清单（113 条）
-│   ├── 812-audit.md         ← audit_v3.py 生成
-│   ├── 812-media-suggestions.md ← suggest_media.py 补图候选
+│   ├── <sid>-syllabus.md    ← 官方考纲结构化（812：12 章 80 条）
+│   ├── <sid>-sources.md     ← 来源台账（含 ali-* 对齐来源行）
+│   ├── <sid>-coverage.md    ← 覆盖矩阵 + 理解性补充清单
+│   ├── <sid>-audit.md       ← audit_v3.py 生成
+│   ├── align/*.jsonl        ← 101/204 条款级对齐结果（apply_alignment.py 的输入）
+│   ├── unit-eval/           ← 424 条未成卡 unit 的评估结论与报告
+│   ├── visual/              ← 图示设计规范与状态
 │   └── 812/ch00.md … ch11.md ← 逐章调研笔记
 ├── mappings/
 │   ├── legacy-point-map.json
 │   └── audio-manifest.json
-├── audio/                   ← 旧音频（v3.0 未重生成）
+├── audio/                   ← 已删除（2026-10-28，v2 旧稿与当前 listen 不一致）
+├── tests/                  ← 9 个回归测试（pipeline.py 会跑）
 ├── issues/
 │   ├── 全局问题清单.md
 │   └── 重复与冲突登记.md
@@ -134,7 +137,7 @@ python3 知识点元数据/scripts/pipeline.py --check
 python3 知识点元数据/scripts/pipeline.py --list
 ```
 
-任何一步失败即中止并返回非零退出码。
+任何一步失败即中止并返回非零退出码。测试集在 `tests/`，随仓库走；`pipeline.py` 会依次执行。
 
 ### 5.1 改内容（人审）
 
@@ -214,8 +217,8 @@ v3.0 的 `listen.script` 已更新，但音频仍是旧稿。重生成顺序：
 
 ## 七、相关文档
 
-- 设计规格：`docs/superpowers/specs/2026-10-27-812元数据v3.md`
-- 实施计划：`docs/superpowers/plans/2026-10-27-812元数据v3.md`
+- 设计规格：`docs/specs/2026-10-27-812元数据v3.md`
+- 实施计划：`docs/plans/2026-10-27-812元数据v3.md`
 - UI 规范：`知识点元数据/UI展示规范.md`
 - 验收报告：`知识点元数据/research/812-acceptance.md`
-- 决策记录（D1–D17）：`docs/superpowers/specs/2026-10-21-知识点元数据决策书.md`
+- 决策记录（D1–D17）：`docs/specs/2026-10-21-知识点元数据决策书.md`
