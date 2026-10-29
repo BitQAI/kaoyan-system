@@ -2,7 +2,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from app import db, service
+from app import db, progress, service
 
 router = APIRouter(prefix="/api", tags=["progress"])
 
@@ -67,7 +67,7 @@ def stats(conn=Depends(db.get_db)):
 
 @router.get("/stats/timeline")
 def timeline(sid: str | None = None, days: int = 21, conn=Depends(db.get_db)):
-    return service.timeline(conn, sid, days)
+    return progress.timeline(conn, sid, days)
 
 
 @router.get("/stats/forecast")

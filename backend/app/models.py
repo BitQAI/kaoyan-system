@@ -177,6 +177,15 @@ card_event = Table(
 Index("idx_card_event_card", card_event.c.card_id)
 Index("idx_card_event_ts", card_event.c.ts)
 
+listen_event = Table(
+    "listen_event", metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("card_id", Text, nullable=False),
+    Column("ts", Text, nullable=False),
+)
+Index("idx_listen_event_card", listen_event.c.card_id)
+Index("idx_listen_event_ts", listen_event.c.ts)
+
 settings = Table(
     "settings", metadata,
     Column("key", Text, primary_key=True),
@@ -233,6 +242,6 @@ Index("idx_msgpt_point", message_points.c.point_id)
 ALL_TABLES = [
     subject, chapter, point, unit, card, media, relation,
     point_progress, unit_progress, card_progress, listen_progress, card_listen,
-    card_event, settings,
+    card_event, listen_event, settings,
     favorites, conversations, messages, message_points,
 ]

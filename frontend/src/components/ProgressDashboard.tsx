@@ -1,22 +1,34 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getJson } from "@/lib/api";
-import ProgressChart, { type SeriesPoint } from "./ProgressChart";
+import ProgressChart, { type ChartLine, type SeriesPoint } from "./ProgressChart";
 
-interface SubjectLine {
-  id: string; name: string; total: number; done: number; percent: number;
-  pace: number; finish_date: string | null; status: string;
-}
-export interface Timeline {
-  today: string; exam_date: string; days_left: number;
-  scope: string; total: number; done: number; percent: number;
-  status: "ok" | "risk" | "late" | "empty" | "insufficient";
-  status_text: string;
+type DimStatus = "ok" | "risk" | "late" | "empty" | "insufficient";
+
+export interface DimStat {
+  label: string; unit: string;
+  total: number; done: number; percent: number;
+  status: DimStatus; status_text: string;
   pace: number; pace_window: number; required_pace: number | null;
   finish_date: string | null;
   series: SeriesPoint[];
-  subjects: SubjectLine[];
   data_quality: { derived_cards: number; recorded_cards: number };
+}
+
+interface SubjectDim {
+  total: number; done: number; percent: number;
+  pace: number; finish_date: string | null; status: DimStatus;
+}
+
+interface SubjectLine {
+  id: string; name: string;
+  memo: SubjectDim; listen: SubjectDim;
+}
+
+export interface Timeline {
+  today: string; exam_date: string; days_left: number; scope: string;
+  dimensions: { memo: DimStat; listen: DimStat };
+  subjects: SubjectLine[];
   streak: number;
   daily: { goal: number; cards: number; listened: number; read: number };
   weekly: { this_week: number; last_week: number; delta_pct: number | null; week_start: string };
@@ -31,38 +43,60 @@ const STATUS_LABEL: Record<string, string> = {
   ok: "按计划", risk: "有风险", late: "来不及", insufficient: "数据不足", empty: "无记录",
 };
 
-/** 示例数据：只在用户主动点「看示例」时使用，界面上明确标注，不会混进真实统计。 */
+const iso = (d: Date) => d.toISOString().slice(0, 10);
+const pct = (done: number, total: number) => (total ? +((done / total) * 100).toFixed(2) : 0);
+
+/** 示例数据：只在用户主动点「示例」时使用，界面上明确标注，不会混进真实统计。 */
+function demoDim(label: string, total: number, pace: number, today: Date, exam: Date): DimStat {
+  const series: SeriesPoint[] = [];
+  let acc = 0;
+  const hist = 20;
+  for (let i = hist; i >= 0; i--) {
+    const d = new Date(today.getTime() - i * 864e5);
+    if (i < hist) acc += pace;
+    series.push({ date: iso(d), done: acc, percent: pct(acc, total), actual: true });
+  }
+  const finish = new Date(today.getTime() + Math.ceil((total - acc) / pace) * 864e5);
+  const end = Math.min(finish.getTime(), exam.getTime());
+  for (let t = today.getTime() + 864e5; t <= end; t += 864e5) {
+    const n = Math.min(total, acc + Math.round(pace * ((t - today.getTime()) / 864e5)));
+    series.push({ date: iso(new Date(t)), done: n, percent: pct(n, total), actual: false });
+  }
+  const left = Math.max(1, Math.round((exam.getTime() - today.getTime()) / 864e5));
+  return {
+    label, unit: "张", total, done: acc, percent: pct(acc, total),
+    status: "ok", status_text: "按当前速度可以在初试前学完",
+    pace, pace_window: 7, required_pace: +((total - acc) / left).toFixed(2),
+    finish_date: iso(finish), series,
+    data_quality: { derived_cards: 0, recorded_cards: acc },
+  };
+}
+
+function demoSubject(id: string, name: string, total: number, memoRate: number,
+                     listenRate: number, exam: string): SubjectLine {
+  const dim = (rate: number, pace: number): SubjectDim => {
+    const done = Math.round(total * rate);
+    return { total, done, percent: pct(done, total), pace, finish_date: exam, status: "ok" };
+  };
+  return { id, name, memo: dim(memoRate, 2.4), listen: dim(listenRate, 1.7) };
+}
+
 function demoData(): Timeline {
   const today = new Date();
-  const iso = (d: Date) => d.toISOString().slice(0, 10);
-  const series: SeriesPoint[] = [];
-  const exam = new Date(today.getTime() + 51 * 86400000);
-  let acc = 0;
-  for (let i = 20; i >= 0; i--) {
-    const d = new Date(today.getTime() - i * 86400000);
-    acc += i === 20 ? 0 : Math.round(8 + Math.random() * 6);
-    series.push({ date: iso(d), done: acc, percent: +(acc / 900 * 100).toFixed(2), actual: true });
-  }
-  const pace = 11;
-  for (let i = 1; today.getTime() + i * 86400000 <= exam.getTime(); i++) {
-    const d = new Date(today.getTime() + i * 86400000);
-    const n = acc + pace * i;
-    series.push({ date: iso(d), done: n, percent: +(Math.min(n, 900) / 900 * 100).toFixed(2), actual: false });
-  }
+  const exam = new Date(today.getTime() + 51 * 864e5);
+  const examIso = iso(exam);
   return {
-    today: iso(today), exam_date: iso(exam), days_left: 51, scope: "all",
-    total: 900, done: acc, percent: +(acc / 900 * 100).toFixed(2),
-    status: "ok", status_text: "按当前速度可以在初试前学完",
-    pace, pace_window: 7, required_pace: 6.2,
-    finish_date: iso(new Date(today.getTime() + Math.round((900 - acc) / pace) * 86400000)),
-    series,
+    today: iso(today), exam_date: examIso, days_left: 51, scope: "all",
+    dimensions: {
+      memo: demoDim("记", 3171, 12, today, exam),
+      listen: demoDim("听", 3171, 8, today, exam),
+    },
     subjects: [
-      { id: "812", name: "812 植物生理学", total: 260, done: 150, percent: 57.7, pace: 4.2, finish_date: iso(exam), status: "ok" },
-      { id: "315", name: "315 化学（农）", total: 360, done: 120, percent: 33.3, pace: 3.1, finish_date: iso(exam), status: "risk" },
-      { id: "101", name: "101 思想政治理论", total: 200, done: 40, percent: 20, pace: 1.6, finish_date: iso(exam), status: "risk" },
-      { id: "204", name: "204 英语（二）", total: 80, done: 60, percent: 75, pace: 2.1, finish_date: iso(exam), status: "ok" },
+      demoSubject("812", "812 植物生理学", 780, 0.57, 0.44, examIso),
+      demoSubject("315", "315 化学（农）", 1120, 0.33, 0.26, examIso),
+      demoSubject("101", "101 思想政治理论", 870, 0.2, 0.18, examIso),
+      demoSubject("204", "204 英语（二）", 401, 0.75, 0.61, examIso),
     ],
-    data_quality: { derived_cards: 0, recorded_cards: 150 },
     streak: 6,
     daily: { goal: 30, cards: 18, listened: 12, read: 5 },
     weekly: { this_week: 86, last_week: 62, delta_pct: 39, week_start: iso(today) },
@@ -73,9 +107,51 @@ function demoData(): Timeline {
         { key: "streak-7", label: "连续学习 7 天" },
         { key: "chapter-812-02", label: "第二章 植物的水分代谢 全部读完" },
       ],
-      next: { label: "累计记满 500 张", current: 150, target: 500, kind: "cards", pct: 30 },
+      next: { label: "累计记满 500 张", current: 240, target: 500, kind: "cards", pct: 48 },
     },
   };
+}
+
+function DimCard({ kind, dim }: { kind: string; dim: DimStat }) {
+  return (
+    <div className={`dim-card tone-${kind}`}>
+      <div className="dim-title">
+        <i className={`dim-dot ${kind}`} />
+        {dim.label}
+      </div>
+      <div className="dim-pct">
+        {dim.percent.toFixed(1)}<span>%</span>
+      </div>
+      <div className="dim-sub">{dim.done}/{dim.total} {dim.unit}</div>
+      <div className="dim-foot">
+        <span className={`dh-pill st-${dim.status}`}>{STATUS_LABEL[dim.status] ?? dim.status}</span>
+        <span className="muted">
+          {dim.finish_date && dim.status !== "insufficient" && dim.status !== "empty"
+            ? `预计 ${dim.finish_date}` : "暂无预测"}
+        </span>
+      </div>
+      <p className={`dim-note st-${dim.status}`}>{dim.status_text}</p>
+    </div>
+  );
+}
+
+function SubjectRow({ s }: { s: SubjectLine }) {
+  const rows: [string, SubjectDim][] = [["memo", s.memo], ["listen", s.listen]];
+  return (
+    <div className="sl-row">
+      <div className="sl-head"><b>{s.name}</b></div>
+      {rows.map(([kind, d]) => (
+        <div className="sl-metric" key={kind}>
+          <span className={`sl-tag ${kind}`}>{kind === "memo" ? "记" : "听"}</span>
+          <span className="sl-bar">
+            <i className={kind} style={{ width: `${Math.min(100, d.percent)}%` }} />
+          </span>
+          <span className="sl-num">{d.percent.toFixed(1)}%</span>
+          <span className="muted sl-count">{d.done}/{d.total}</span>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default function ProgressDashboard() {
@@ -93,6 +169,12 @@ export default function ProgressDashboard() {
 
   const view = demo ? demoData() : data;
   const subjects = data?.subjects ?? [];
+  const memo = view?.dimensions.memo;
+  const listen = view?.dimensions.listen;
+  const lines: ChartLine[] = memo && listen ? [
+    { key: "memo", label: memo.label, tone: "memo", series: memo.series },
+    { key: "listen", label: listen.label, tone: "listen", series: listen.series },
+  ] : [];
 
   return (
     <section className="dashboard">
@@ -106,47 +188,32 @@ export default function ProgressDashboard() {
       {!view && !error && <div className="empty">加载中…</div>}
       {error && <div className="empty">加载失败：{error}</div>}
 
-      {view && (
+      {view && memo && listen && (
         <>
-          <div className="dh">
-            <div className="dh-left">
-              <div className="dh-pct">{view.percent.toFixed(1)}%</div>
-              <div className="dh-sub">
-                {view.done}/{view.total} 张 · 距初试 {view.days_left} 天
-                {view.finish_date && view.status !== "insufficient"
-                  ? ` · 预计 ${view.finish_date} 学完` : ""}
-              </div>
-            </div>
-            <span className={`dh-pill st-${view.status}`}>{STATUS_LABEL[view.status] ?? view.status}</span>
+          <div className="dim-head">
+            <DimCard kind="memo" dim={memo} />
+            <DimCard kind="listen" dim={listen} />
           </div>
-          <p className={`dh-note st-${view.status}`}>{view.status_text}</p>
 
-          <div className="habit-row">
-            <div className="habit">
-              <b>连续 {view.streak ?? 0} 天</b>
-              <span className="muted">有学习记录的天数</span>
-            </div>
-            <div className="habit">
-              <b>今日 {view.daily?.cards ?? 0}/{view.daily?.goal ?? 30}</b>
-              <span className="muted">张卡片</span>
-              <span className="habit-bar">
-                <i style={{ width: `${Math.min(100, ((view.daily?.cards ?? 0) / (view.daily?.goal ?? 30)) * 100)}%` }} />
-              </span>
-            </div>
+          <div className="habit-line">
+            <span>距初试 <b>{view.days_left}</b> 天</span>
+            <span>连续 <b>{view.streak ?? 0}</b> 天</span>
+            <span>今日 记 <b>{view.daily?.cards ?? 0}</b> · 听 <b>{view.daily?.listened ?? 0}</b></span>
           </div>
 
           <div className="chart-card">
-            <ProgressChart series={view.series} examDate={view.exam_date} today={view.today} />
+            <ProgressChart lines={lines} examDate={view.exam_date} today={view.today} />
             <div className="chart-legend">
-              <span><i className="lg-ac" />实际</span>
-              <span><i className="lg-fc" />预测</span>
-              <span><i className="lg-goal" />100% / 初试</span>
+              <span><i className="lg-solid memo" />记</span>
+              <span><i className="lg-solid listen" />听</span>
+              <span><i className="lg-dash" />预测</span>
+              <span><i className="lg-goal" />初试</span>
             </div>
             <div className="chart-foot">
-              <span>近 {view.pace_window} 天日均 {view.pace} 张</span>
-              {view.required_pace !== null && view.required_pace > 0 && (
-                <span>要在初试前学完，需 {view.required_pace} 张/天</span>
-              )}
+              <span>近 {memo.pace_window} 天日均：记 {memo.pace} · 听 {listen.pace} 张</span>
+              <span>
+                赶上初试需：记 {memo.required_pace ?? "—"} · 听 {listen.required_pace ?? "—"} 张/天
+              </span>
             </div>
           </div>
 
@@ -167,69 +234,59 @@ export default function ProgressDashboard() {
 
           {!demo && (
             <>
-            <div className="weekly-row">
-            <span>本周记了 <b>{view.weekly?.this_week ?? 0}</b> 张</span>
-            {view.weekly?.delta_pct === null || view.weekly?.delta_pct === undefined ? (
-              <span className="muted">上周没有记录，下周就能比了</span>
-            ) : (
-              <span className={view.weekly.delta_pct >= 0 ? "wk-up" : "wk-down"}>
-                较上周 {view.weekly.delta_pct >= 0 ? "+" : ""}{view.weekly.delta_pct}%
-              </span>
-            )}
-          </div>
+              <div className="subject-list">
+                {subjects.map((s) => <SubjectRow key={s.id} s={s} />)}
+              </div>
 
-          {view.milestones && (
-            <div className="ms-block">
-              {view.milestones.items.length > 0 && (
-                <div className="ms-list">
-                  {view.milestones.items.map((m) => (
-                    <span className="ms-chip" key={m.key}>✓ {m.label}</span>
-                  ))}
-                </div>
-              )}
-              {view.milestones.next && (
-                <div className="ms-next">
-                  <span className="muted">下一个：{view.milestones.next.label}</span>
-                  <span className="ms-bar">
-                    <i style={{ width: `${view.milestones.next.pct}%` }} />
-                  </span>
-                  <span className="muted">
-                    {view.milestones.next.current}/{view.milestones.next.target}
-                  </span>
-                </div>
-              )}
-            </div>
-          )}
-
-          <div className="subject-list">
-              {subjects.map((s) => (
-                <div className="sl-row" key={s.id}>
-                  <div className="sl-head">
-                    <b>{s.name}</b>
-                    <span className="muted">{s.done}/{s.total}</span>
-                  </div>
-                  <div className="sl-bar"><i style={{ width: `${Math.min(100, s.percent)}%` }} /></div>
-                  <div className="sl-foot">
-                    <span className="muted">日均 {s.pace} 张</span>
-                    <span className={`st-${s.status}`}>
-                      {s.status === "empty" ? "无记录"
-                        : s.finish_date ? `${s.finish_date} 学完` : "数据不足"}
+              <details className="more-block">
+                <summary>更多数据</summary>
+                <div className="weekly-row">
+                  <span>本周记了 <b>{view.weekly?.this_week ?? 0}</b> 张</span>
+                  {view.weekly?.delta_pct === null || view.weekly?.delta_pct === undefined ? (
+                    <span className="muted">上周没有记录，下周就能比了</span>
+                  ) : (
+                    <span className={view.weekly.delta_pct >= 0 ? "wk-up" : "wk-down"}>
+                      较上周 {view.weekly.delta_pct >= 0 ? "+" : ""}{view.weekly.delta_pct}%
                     </span>
-                  </div>
+                  )}
                 </div>
-              ))}
-            </div>
+
+                {view.milestones && (
+                  <div className="ms-block">
+                    {view.milestones.items.length > 0 && (
+                      <div className="ms-list">
+                        {view.milestones.items.map((m) => (
+                          <span className="ms-chip" key={m.key}>✓ {m.label}</span>
+                        ))}
+                      </div>
+                    )}
+                    {view.milestones.next && (
+                      <div className="ms-next">
+                        <span className="muted">下一个：{view.milestones.next.label}</span>
+                        <span className="ms-bar">
+                          <i style={{ width: `${view.milestones.next.pct}%` }} />
+                        </span>
+                        <span className="muted">
+                          {view.milestones.next.current}/{view.milestones.next.target}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {(["memo", "listen"] as const).map((k) => {
+                  const dim = view.dimensions[k];
+                  if (!dim.data_quality.derived_cards) return null;
+                  return (
+                    <p className="muted dq-note" key={k}>
+                      {dim.label}：{dim.data_quality.derived_cards} 张是按最近一次记录推算的
+                      （早期没有逐次流水），之后每天的记录都是精确的。
+                    </p>
+                  );
+                })}
+              </details>
             </>
           )}
-
-          {!demo && view.data_quality.derived_cards > 0 && (
-            <p className="muted" style={{ fontSize: 11.5, marginTop: 10 }}>
-              其中 {view.data_quality.derived_cards} 张是按卡片最后复习时间推算的（早于事件记录的引入），
-              之后每天的记录都是精确的。
-            </p>
-          )}
-
-
         </>
       )}
     </section>

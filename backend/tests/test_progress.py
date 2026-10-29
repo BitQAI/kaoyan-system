@@ -2,7 +2,8 @@ def test_progress_stats_all(client):
     got = client.get("/api/stats/progress").json()
     assert got["points"]["total"] == 538
     assert got["cards"]["total"] == 3171
-    assert got["listen"]["total"] == 538
+    assert got["listen"]["total"] == 3171
+    assert got["listen"]["heard"] <= got["listen"]["total"]
     assert len(got["chapters"]) == 74
 
 
@@ -82,20 +83,51 @@ def test_forecast_covers_four_subjects(client):
 
 def test_timeline_shape(client):
     got = client.get("/api/stats/timeline").json()
-    assert got["total"] == 3171
+    assert set(got["dimensions"]) == {"memo", "listen"}
+    memo = got["dimensions"]["memo"]
+    assert memo["label"] == "记" and memo["total"] == 3171
+    assert memo["series"] and memo["series"][0]["actual"] is True
+    assert {"total", "done", "percent", "pace", "status", "status_text"} <= set(memo)
+    listen = got["dimensions"]["listen"]
+    assert listen["label"] == "听" and listen["total"] == 3171
+    assert listen["series"] and listen["series"][0]["actual"] is True
     assert got["exam_date"] and got["days_left"] >= 0
-    assert got["series"] and got["series"][0]["actual"] is True
-    assert {"total", "done", "percent", "pace", "status", "status_text"} <= set(got)
     assert len(got["subjects"]) == 4
+    assert {"id", "name", "memo", "listen"} <= set(got["subjects"][0])
     # 预测点只能出现在今天之后
     today = got["today"]
-    assert all(p["date"] >= today for p in got["series"] if not p["actual"])
+    for dim in got["dimensions"].values():
+        assert all(p["date"] >= today for p in dim["series"] if not p["actual"])
 
 
 def test_timeline_marks_derived_data(client):
     got = client.get("/api/stats/timeline").json()
-    q = got["data_quality"]
-    assert q["recorded_cards"] + q["derived_cards"] == got["done"]
+    for dim in got["dimensions"].values():
+        q = dim["data_quality"]
+        assert q["recorded_cards"] + q["derived_cards"] == dim["done"]
+
+
+def test_timeline_listen_matches_listen_records(client, conn):
+    got = client.get("/api/stats/timeline").json()
+    assert got["dimensions"]["listen"]["done"] == conn.execute(
+        "SELECT COUNT(*) FROM card_listen").fetchone()[0]
+    assert got["dimensions"]["memo"]["done"] == conn.execute(
+        "SELECT COUNT(*) FROM card_progress").fetchone()[0]
+
+
+def test_listen_event_recorded_on_mark(conn):
+    from app import service
+    service.mark_card_listened(conn, "c8120001-1")
+    rows = conn.execute("SELECT COUNT(*) FROM listen_event WHERE card_id = ?",
+                        ("c8120001-1",)).fetchone()[0]
+    assert rows >= 1
+
+
+def test_progress_stats_listen_counts_cards(client, conn):
+    got = client.get("/api/stats/progress").json()
+    assert got["listen"]["total"] == got["cards"]["total"] == 3171
+    assert got["listen"]["heard"] == conn.execute(
+        "SELECT COUNT(*) FROM card_listen").fetchone()[0]
 
 
 def test_timeline_records_events(client, conn):
@@ -107,8 +139,8 @@ def test_timeline_records_events(client, conn):
 
 
 def test_timeline_insufficient_on_first_day(client):
-    got = client.get("/api/stats/timeline").json()
-    if got["done"] > 0 and got["days_left"] > 0:
+    got = client.get("/api/stats/timeline").json()["dimensions"]["memo"]
+    if got["done"] > 0 and got["total"] > 0:
         assert got["status"] in {"insufficient", "late", "risk", "ok", "empty"}
 
 
@@ -121,11 +153,11 @@ def test_timeline_has_streak_and_daily(client):
 
 
 def test_streak_counts_today(conn):
-    from app import service
+    from app import progress
     conn.execute("INSERT INTO card_event (card_id, ts, result) VALUES (?,?,?)",
                  ("c8120001-1", __import__("datetime").datetime.now().isoformat(timespec="seconds"), "秒答"))
     conn.commit()
-    assert service.streak(conn) >= 1
+    assert progress.streak(conn) >= 1
 
 
 def test_weekly_comparison(client):
