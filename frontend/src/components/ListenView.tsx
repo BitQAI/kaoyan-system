@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { postJson } from "@/lib/api";
-import { paragraphs } from "@/lib/render";
+import { answerHtml, paragraphs } from "@/lib/render";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
 import type { Chapter, ListenItem } from "@/lib/types";
 import { useAi } from "./AiProvider";
@@ -21,6 +21,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   const [speaking, setSpeaking] = useState(false);
   const [rate, setRate] = useState(0.95);
   const [supported, setSupported] = useState(true);
+  const [showNotes, setShowNotes] = useState(false);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [favOpen, setFavOpen] = useState(false);
   const [scope, setScope] = useState<Scope>(DEFAULT_SCOPE);
@@ -69,8 +70,8 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   function speak(target: ListenItem) {
     if (!("speechSynthesis" in window)) return;
     stop();
-    // 只念考点与解析，不念选项与答案
-    const text = [target.question, target.analysis || target.fallback]
+    // 只念考点与作答：评分要点不念，留着自己看
+    const text = [target.question, target.answer || target.analysis || target.fallback]
       .filter(Boolean).join("。");
     if (!text) return;
     const utter = new SpeechSynthesisUtterance(text);
@@ -171,14 +172,26 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
         </section>
 
         <section className="listen-block">
-          <h3>解析</h3>
+          <h3>这样作答</h3>
           <div className="prose"
-            dangerouslySetInnerHTML={{ __html: paragraphs(item.analysis || item.fallback) }} />
+            dangerouslySetInnerHTML={{ __html: answerHtml(item.answer || item.fallback) }} />
         </section>
+
+        {item.analysis && (
+          <div className="listen-notes">
+            <button className="badge-btn" onClick={() => setShowNotes((v) => !v)}>
+              {showNotes ? "收起评分要点" : "评分要点（不朗读）"}
+            </button>
+            {showNotes && (
+              <div className="prose" style={{ marginTop: 8 }}
+                dangerouslySetInnerHTML={{ __html: paragraphs(item.analysis) }} />
+            )}
+          </div>
+        )}
 
         <div className="listen-actions">
           <button className="btn primary" onClick={() => speak(item)} disabled={speaking}>
-            {speaking ? "朗读中…" : "朗读考点与解析"}
+            {speaking ? "朗读中…" : "朗读考点与作答"}
           </button>
           <button className="btn" onClick={stop} disabled={!speaking}>停止</button>
           <label className="rate-slider">

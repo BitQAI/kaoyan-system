@@ -221,7 +221,8 @@ def custom_listen(conn, subjects=None, chapters=None, limit=10,
         excl_sql = f" AND c.card_id NOT IN ({','.join('?' * len(exclude))})"
         params = params + exclude
     sql = f"""
-        SELECT c.card_id, c.point_id, c.kind, c.card_type, c.question, c.analysis,
+        SELECT c.card_id, c.point_id, c.kind, c.card_type, c.question, c.answer,
+               c.analysis, c.answer_points,
                p.title, p.point, p.explain, p.subject_id, p.chapter_id, p.priority,
                ch.name AS chapter_name, cl.card_id AS heard, cl.listen_count
         FROM card c
@@ -238,7 +239,9 @@ def custom_listen(conn, subjects=None, chapters=None, limit=10,
     items = [{
         "card_id": r["card_id"], "point_id": r["point_id"],
         "kind": r["kind"], "card_type": r["card_type"],
-        "question": r["question"], "analysis": r["analysis"],
+        "question": r["question"], "answer": r["answer"],
+        "analysis": r["analysis"],
+        "answer_points": _loads(r["answer_points"], []),
         "fallback": r["explain"],
         "title": r["title"], "point": r["point"],
         "subject_id": r["subject_id"], "chapter_id": r["chapter_id"],

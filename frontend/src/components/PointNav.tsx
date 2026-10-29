@@ -4,12 +4,14 @@ import type { Chapter, PointIndex } from "@/lib/types";
 
 /** 学的知识点导航：一行显示当前位置与前后翻页，点标题展开按章分组的全量目录。 */
 export default function PointNav({
-  points, chapters, activePid, onPick,
+  points, chapters, activePid, onPick, onOpenRange, rangeLabel,
 }: {
   points: PointIndex[];
   chapters: Chapter[];
   activePid: string | null;
   onPick: (pid: string) => void;
+  onOpenRange: () => void;
+  rangeLabel: string;
 }) {
   const [open, setOpen] = useState(false);
   const index = points.findIndex((p) => p.id === activePid);
@@ -39,6 +41,9 @@ export default function PointNav({
         <button className="pn-arrow" onClick={() => move(1)}
           disabled={index < 0 || index >= points.length - 1}
           aria-label="下一个知识点">›</button>
+        <button className="pn-range" onClick={onOpenRange} title={`学习范围：${rangeLabel}`}>
+          范围
+        </button>
       </div>
 
       {open && (

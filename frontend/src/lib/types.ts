@@ -100,8 +100,11 @@ export interface ListenItem {
   card_type: string;
   /** 考点（卡片设问） */
   question: string;
-  /** 解析；为空时用 fallback（知识点 explain） */
+  /** 真实作答（考试里该写/该说的那段话） */
+  answer: string;
+  /** 评分要点与注意事项，默认折叠、不朗读 */
   analysis: string;
+  answer_points: string[];
   fallback: string;
   chapter_name: string;
   chapter_id: string;

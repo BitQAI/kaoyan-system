@@ -74,7 +74,7 @@ check("科目下拉可用", await page.locator(".sp-item").count() === 4);
 await page.click(".sp-item >> nth=0");
 
 // —— 自定义范围 ——
-await page.click(".range-btn");
+await page.click(".point-nav .pn-range");
 await page.waitForSelector(".picker", { timeout: 5000 });
 check("范围选择器打开", await page.locator(".picker-row").count() > 0);
 await page.click(".picker-head .badge-btn");
@@ -83,9 +83,12 @@ await page.click(".picker-head .badge-btn");
 await page.goto(`${BASE}/study?view=listen&sid=812`);
 await page.waitForSelector(".stepper-card", { timeout: 25000 });
 check("听视图为逐条模式", await page.locator(".stepper-card").count() === 1);
-check("听是卡片粒度（考点+解析）",
+check("听是卡片粒度（考点+作答）",
   (await page.locator(".listen-block h3").first().textContent()) === "考点"
-  && (await page.locator(".listen-block h3").nth(1).textContent()) === "解析");
+  && (await page.locator(".listen-block h3").nth(1).textContent()) === "这样作答");
+check("作答是答案而非评分说明",
+  (await page.locator(".listen-block .prose").nth(1).textContent() ?? "").length > 30);
+check("评分要点默认折叠", await page.locator(".listen-notes .prose").count() === 0);
 check("听不出现选项", await page.locator(".stepper-card .options").count() === 0);
 const kindBadges = await page.locator(".stepper-card .card-top .badge").allTextContents();
 check("徽标不重复", new Set(kindBadges).size === kindBadges.length, kindBadges.join("/"));

@@ -114,11 +114,6 @@ function StudyInner() {
           <HeaderProgress stats={progress} open={progressOpen}
             onToggle={() => setProgressOpen((o) => !o)} />
         )}
-        {view === "study" && (
-          <button className="badge-btn range-btn" onClick={() => setPickerOpen(true)}>
-            {scopeLabel(scope, chapterNames)}
-          </button>
-        )}
       </nav>
 
       {progress && <ProgressPanel stats={progress} open={progressOpen} />}
@@ -130,7 +125,9 @@ function StudyInner() {
           </div>
           <div className="content">
             <PointNav points={points} chapters={visibleChapters} activePid={activePid}
-              onPick={(id) => go({ pid: id })} />
+              onPick={(id) => go({ pid: id })}
+              onOpenRange={() => setPickerOpen(true)}
+              rangeLabel={scopeLabel(scope, chapterNames)} />
             {activePid
               ? <PointDetail pid={activePid} onNavigate={(id) => go({ pid: id })}
                   onRead={() => refreshProgress()} />

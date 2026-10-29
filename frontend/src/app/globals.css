@@ -328,3 +328,13 @@ body{padding-bottom:64px}
 .pn-pri{font-weight:700;color:var(--accent)}
 .pn-item.on .pn-pri{color:inherit}
 .pn-item-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* 顶部条在窄屏换行，避免科目/进度/范围挤在一起 */
+.control-bar{flex-wrap:wrap;row-gap:8px}
+.control-bar .hp{flex:1 1 160px;min-width:0;overflow:hidden}
+.control-bar .hp-chip{overflow:hidden;text-overflow:ellipsis}
+.pn-range{
+  flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--muted);
+  border-radius:12px;padding:0 12px;font-size:12.5px;cursor:pointer;
+}
+.pn-range:hover{border-color:var(--accent);color:var(--accent)}
