@@ -78,3 +78,35 @@ def test_forecast_covers_four_subjects(client):
     for s in got["subjects"]:
         assert s["total"] > 0 and s["remaining"] == s["total"] - s["seen"]
         assert "pace" in s and "eta" in s
+
+
+def test_timeline_shape(client):
+    got = client.get("/api/stats/timeline").json()
+    assert got["total"] == 3171
+    assert got["exam_date"] and got["days_left"] >= 0
+    assert got["series"] and got["series"][0]["actual"] is True
+    assert {"total", "done", "percent", "pace", "status", "status_text"} <= set(got)
+    assert len(got["subjects"]) == 4
+    # 预测点只能出现在今天之后
+    today = got["today"]
+    assert all(p["date"] >= today for p in got["series"] if not p["actual"])
+
+
+def test_timeline_marks_derived_data(client):
+    got = client.get("/api/stats/timeline").json()
+    q = got["data_quality"]
+    assert q["recorded_cards"] + q["derived_cards"] == got["done"]
+
+
+def test_timeline_records_events(client, conn):
+    item = client.post("/api/queue/custom", json={"mode": "memo", "limit": 1}).json()["items"][0]
+    client.post("/api/progress/card", json={"card_id": item["card_id"], "result": "忘了"})
+    rows = conn.execute("SELECT result FROM card_event WHERE card_id = ?",
+                        (item["card_id"],)).fetchall()
+    assert rows and rows[-1]["result"] == "忘了"
+
+
+def test_timeline_insufficient_on_first_day(client):
+    got = client.get("/api/stats/timeline").json()
+    if got["done"] > 0 and got["days_left"] > 0:
+        assert got["status"] in {"insufficient", "late", "risk", "ok", "empty"}

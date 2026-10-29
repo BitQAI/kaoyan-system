@@ -166,6 +166,17 @@ card_listen = Table(
     Column("updated_at", Text, nullable=False),
 )
 
+card_event = Table(
+    "card_event", metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("card_id", Text, nullable=False),
+    Column("ts", Text, nullable=False),
+    #: 秒答 / 吃力 / 忘了；空串表示由 card_progress 回填的推算记录
+    Column("result", Text, nullable=False, default=""),
+)
+Index("idx_card_event_card", card_event.c.card_id)
+Index("idx_card_event_ts", card_event.c.ts)
+
 settings = Table(
     "settings", metadata,
     Column("key", Text, primary_key=True),
@@ -221,6 +232,7 @@ Index("idx_msgpt_point", message_points.c.point_id)
 
 ALL_TABLES = [
     subject, chapter, point, unit, card, media, relation,
-    point_progress, unit_progress, card_progress, listen_progress, card_listen, settings,
+    point_progress, unit_progress, card_progress, listen_progress, card_listen,
+    card_event, settings,
     favorites, conversations, messages, message_points,
 ]

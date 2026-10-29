@@ -65,6 +65,11 @@ def stats(conn=Depends(db.get_db)):
     return service.today_summary(conn)
 
 
+@router.get("/stats/timeline")
+def timeline(sid: str | None = None, days: int = 21, conn=Depends(db.get_db)):
+    return service.timeline(conn, sid, days)
+
+
 @router.get("/stats/forecast")
 def forecast(conn=Depends(db.get_db)):
     return service.forecast(conn)

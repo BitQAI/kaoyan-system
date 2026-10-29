@@ -153,8 +153,14 @@ check("错题本可切换", await page.locator(".me-row, .empty").count() > 0);
 
 // —— 进度预测 ——
 await page.click('.me-tabs button:has-text("进度预测")');
-await page.waitForSelector(".fc-row", { timeout: 10000 });
-check("四科学完预测可见", await page.locator(".fc-row").count() === 4);
+await page.waitForSelector(".progress-chart", { timeout: 10000 });
+check("进度仪表盘有曲线", await page.locator(".progress-chart").count() === 1);
+check("有状态与百分比", (await page.locator(".dh-pct").count()) === 1
+  && (await page.locator(".dh-pill").count()) === 1);
+check("四科进度列表可见", await page.locator(".sl-row").count() === 4);
+await page.click('.scope-tabs button:has-text("示例")');
+await page.waitForSelector(".demo-banner", { timeout: 5000 });
+check("示例数据有明确标注", (await page.textContent(".demo-banner"))?.includes("示例数据"));
 
 // —— 历史页 ——
 await page.goto(`${BASE}/history`);

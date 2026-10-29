@@ -140,6 +140,9 @@ def grade_card(conn, card_id: str, result: str) -> dict:
         result, difficulty,
     )
     conn.execute(
+        "INSERT INTO card_event (card_id, ts, result) VALUES (?,?,?)",
+        (card_id, _now(), result))
+    conn.execute(
         "INSERT INTO card_progress (card_id, stage, ease, interval, due_at, lapses, "
         "reviews, last_result, updated_at) VALUES (?,?,?,?,?,?,?,?,?) "
         "ON CONFLICT(card_id) DO UPDATE SET stage=excluded.stage, ease=excluded.ease, "
@@ -455,3 +458,167 @@ def forecast(conn) -> dict:
             "days_active": days, "eta": eta,
         })
     return {"today": today.isoformat(), "exam_date": config.EXAM_DATE, "subjects": out}
+
+
+# ---------- 进度时间线与预测 ----------
+
+def _completion_first_ts(conn, sid: str | None) -> list[tuple[str, str, int]]:
+    """每张已复习卡的首次完成时间。
+
+    优先用 card_event 的首条事件；没有事件的（历史数据）回落到
+    card_progress.updated_at，并在返回值里标记 derived=1。
+    """
+    sub = " AND p.subject_id = ?" if sid else ""
+    params = [sid] if sid else []
+    rows = conn.execute(f"""
+        SELECT cp.card_id,
+               MIN(e.ts) AS first_event,
+               cp.updated_at AS last_touch
+        FROM card_progress cp
+        JOIN card c ON c.card_id = cp.card_id
+        JOIN point p ON p.id = c.point_id
+        LEFT JOIN card_event e ON e.card_id = cp.card_id
+        WHERE 1=1{sub}
+        GROUP BY cp.card_id, cp.updated_at
+    """, params).fetchall()
+    out = []
+    for r in rows:
+        if r["first_event"]:
+            out.append((r["card_id"], r["first_event"][:10], 0))
+        elif r["last_touch"]:
+            out.append((r["card_id"], r["last_touch"][:10], 1))
+    return out
+
+
+def _scope_total(conn, sid: str | None) -> int:
+    if sid:
+        return conn.execute(
+            "SELECT COUNT(*) FROM card c JOIN point p ON p.id=c.point_id "
+            "WHERE p.subject_id = ?", (sid,)).fetchone()[0]
+    return conn.execute("SELECT COUNT(*) FROM card").fetchone()[0]
+
+
+def _status(done: int, total: int, finish: date | None, exam: date, pace: float,
+            required: float | None) -> tuple[str, str]:
+    if done == 0:
+        return "empty", "还没有学习记录"
+    if pace <= 0:
+        return "empty", "近期没有复习，无法预测"
+    if finish is None:
+        return "risk", "数据不足"
+    if finish > exam:
+        return "late", "按当前速度无法在初试前学完"
+    if required and pace > 0 and required > pace * 1.2:
+        return "risk", "能赶上但余量很薄，需要提速"
+    if (exam - finish).days < 7:
+        return "risk", "能赶上，但几乎没有缓冲"
+    return "ok", "按当前速度可以在初试前学完"
+
+
+def timeline(conn, sid: str | None = None, days: int = 21) -> dict:
+    """按天的累计完成曲线 + 线性外推预测。
+
+    完成口径：卡片至少复习过一次（card_progress 有记录）。
+    速度口径：最近 7 天新增完成数 / 7；不足 7 天则用整体平均。
+    """
+    today = date.today()
+    try:
+        exam = date.fromisoformat(config.EXAM_DATE)
+    except ValueError:
+        exam = today + timedelta(days=60)
+    days_left = max(0, (exam - today).days)
+
+    total = _scope_total(conn, sid)
+    firsts = _completion_first_ts(conn, sid)
+    done = len(firsts)
+    derived = sum(1 for _, _, d in firsts if d)
+    per_day: dict[str, int] = {}
+    for _, day, _d in firsts:
+        per_day[day] = per_day.get(day, 0) + 1
+
+    days = max(7, min(int(days or 21), 60))
+    start = today - timedelta(days=days - 1)
+    if per_day:
+        earliest = date.fromisoformat(min(per_day))
+        if earliest > start:
+            start = earliest       # 不画没有数据的历史
+    span_days = max(1, (today - start).days + 1)
+
+    # 速度口径固定用「最近 7 天 / 7」，不足 7 天时按 7 天摊平，避免第一天的
+    # 集中复习被放大成十几倍的假速度
+    window = 7
+    done_window = sum(n for day, n in per_day.items()
+                      if date.fromisoformat(day) > today - timedelta(days=window))
+    pace = done_window / window if done_window else (done / span_days if done else 0.0)
+    remaining = max(0, total - done)
+    required = (remaining / days_left) if days_left > 0 else None
+
+    finish: date | None = None
+    if pace > 0 and remaining > 0:
+        finish = today + timedelta(days=round(remaining / pace))
+    elif remaining == 0:
+        finish = today
+
+    if done and span_days < 3:
+        status, status_text = "insufficient", "学习记录不足 3 天，暂不做预测"
+    else:
+        status, status_text = _status(done, total, finish, exam, pace, required)
+
+    # 实际段：start..today 的累计
+    series = []
+    acc = sum(n for day, n in per_day.items() if date.fromisoformat(day) < start)
+    for i in range((today - start).days + 1):
+        d = start + timedelta(days=i)
+        acc += per_day.get(d.isoformat(), 0)
+        series.append({"date": d.isoformat(), "done": acc,
+                       "percent": round(acc / total * 100, 2) if total else 0,
+                       "actual": True})
+
+    # 预测段画到初试当天为止：曲线在 100% 之前停止 = 赶不上，一眼能看出来
+    proj_end = min(finish or exam, exam)
+    if proj_end > today + timedelta(days=180):
+        proj_end = today + timedelta(days=180)
+    if pace > 0 and total:
+        for i in range(1, (proj_end - today).days + 1):
+            d = today + timedelta(days=i)
+            n = acc + round(pace * i)
+            series.append({"date": d.isoformat(), "done": n,
+                           "percent": round(min(n, total) / total * 100, 2),
+                           "actual": False})
+
+    subjects = []
+    for s0 in conn.execute("SELECT id, name FROM subject ORDER BY sort"):
+        st_total = _scope_total(conn, s0["id"])
+        st_firsts = _completion_first_ts(conn, s0["id"])
+        st_done = len(st_firsts)
+        st_per_day: dict[str, int] = {}
+        for _, day, _d in st_firsts:
+            st_per_day[day] = st_per_day.get(day, 0) + 1
+        st_sp = max(1, (today - start).days + 1)
+        st_win = 7 if st_sp >= 7 else st_sp
+        st_n = sum(n for day, n in st_per_day.items()
+                   if date.fromisoformat(day) > today - timedelta(days=st_win))
+        st_pace = st_n / st_win if st_n else (st_done / st_sp if st_done else 0.0)
+        st_rem = max(0, st_total - st_done)
+        st_finish = (today + timedelta(days=round(st_rem / st_pace))
+                     if st_pace > 0 and st_rem else (today if st_rem == 0 else None))
+        st_required = (st_rem / days_left) if days_left > 0 else None
+        st_status, _ = _status(st_done, st_total, st_finish, exam, st_pace, st_required)
+        subjects.append({
+            "id": s0["id"], "name": s0["name"], "total": st_total, "done": st_done,
+            "percent": round(st_done / st_total * 100, 2) if st_total else 0,
+            "pace": round(st_pace, 2), "finish_date": st_finish.isoformat() if st_finish else None,
+            "status": st_status,
+        })
+
+    return {
+        "today": today.isoformat(), "exam_date": exam.isoformat(), "days_left": days_left,
+        "scope": sid or "all", "total": total, "done": done,
+        "percent": round(done / total * 100, 2) if total else 0,
+        "status": status, "status_text": status_text,
+        "pace": round(pace, 2), "pace_window": window,
+        "required_pace": round(required, 2) if required is not None else None,
+        "finish_date": finish.isoformat() if finish else None,
+        "series": series, "subjects": subjects,
+        "data_quality": {"derived_cards": derived, "recorded_cards": done - derived},
+    }

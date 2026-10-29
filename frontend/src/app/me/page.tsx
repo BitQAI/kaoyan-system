@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ProgressDashboard from "@/components/ProgressDashboard";
 import { delJson, getJson, setToken } from "@/lib/api";
 import type { ProgressStats } from "@/lib/types";
 
@@ -11,10 +12,6 @@ interface FavPoint {
 interface FavCard {
   ref_id: string; question: string; point_id: string; title: string;
   subject_id: string; card_kind: string; last_result: string | null;
-}
-interface ForecastSubject {
-  id: string; name: string; total: number; seen: number; remaining: number;
-  pace: number; days_active: number; eta: string | null;
 }
 interface WeakItem {
   card_id: string; question: string; title: string; subject_id: string;
@@ -27,7 +24,6 @@ const PRIORITY_LABEL: Record<string, string> = {
 
 export default function MePage() {
   const [tab, setTab] = useState<"fav" | "weak" | "plan" | "about">("fav");
-  const [fc, setFc] = useState<{ today: string; exam_date: string; subjects: ForecastSubject[] } | null>(null);
   const [favPoints, setFavPoints] = useState<FavPoint[]>([]);
   const [favCards, setFavCards] = useState<FavCard[]>([]);
   const [weak, setWeak] = useState<WeakItem[]>([]);
@@ -44,7 +40,6 @@ export default function MePage() {
       .then((d) => { setWeak(d.items); setWeakCounts(d.counts); })
       .catch((e) => setError(String(e)));
     getJson<ProgressStats>("/api/stats/progress").then(setStats).catch(() => {});
-    getJson<typeof fc>("/api/stats/forecast").then(setFc).catch(() => {});
   }, []);
 
   async function unfav(kind: string, id: string) {
@@ -139,45 +134,7 @@ export default function MePage() {
         </section>
       )}
 
-      {tab === "plan" && (
-        <section>
-          {!fc && <div className="empty">加载中…</div>}
-          {fc && (
-            <>
-              <p className="muted" style={{ fontSize: 12.5, margin: "0 0 12px" }}>
-                按你目前的日均速度推算。距初试还有{" "}
-                <b style={{ color: "var(--ink)" }}>{daysBetween(fc.today, fc.exam_date)}</b> 天。
-              </p>
-              {fc.subjects.map((s0) => {
-                const p = s0.total ? Math.round((s0.seen / s0.total) * 100) : 0;
-                const late = s0.eta ? s0.eta > fc.exam_date : false;
-                return (
-                  <div className="fc-row" key={s0.id}>
-                    <div className="fc-head">
-                      <b>{s0.name}</b>
-                      <span className="muted">
-                        {s0.seen}/{s0.total} 张 · 日均 {s0.pace} 张
-                      </span>
-                    </div>
-                    <div className="fc-bar"><i style={{ width: `${p}%` }} /></div>
-                    <div className="fc-foot">
-                      <span className="muted">{s0.remaining} 张未学</span>
-                      <span className={late ? "fc-late" : "fc-ok"}>
-                        {s0.eta
-                          ? `${s0.eta} 学完${late ? "（晚于初试）" : ""}`
-                          : "暂无足够数据"}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-              <p className="muted" style={{ fontSize: 11.5, marginTop: 10 }}>
-                速度 = 已见卡片数 ÷ 首次学习至今的天数；多背几张后预测会变准。
-              </p>
-            </>
-          )}
-        </section>
-      )}
+      {tab === "plan" && <ProgressDashboard />}
 
       {tab === "about" && (
         <section>
@@ -199,9 +156,4 @@ export default function MePage() {
       )}
     </main>
   );
-}
-
-function daysBetween(a: string, b: string): number {
-  const ms = new Date(b).getTime() - new Date(a).getTime();
-  return Math.max(0, Math.round(ms / 86400000));
 }
