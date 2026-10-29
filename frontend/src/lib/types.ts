@@ -47,6 +47,11 @@ export interface Card {
   unit_refs: number[];
   difficulty: number | null;
   priority?: string;
+  /** 记过几次 / 上次评分 / 听过几次 */
+  reviews?: number;
+  last_result?: string | null;
+  lapses?: number;
+  listen_count?: number;
   title?: string;
   subject_id?: string;
   chapter_id?: string;
@@ -112,6 +117,10 @@ export interface ListenItem {
   exam_types?: string[];
   heard: boolean;
   listen_count: number;
+  reviews?: number;
+  last_result?: string | null;
+  lapses?: number;
+  due_at?: string | null;
 }
 
 export interface ChapterProgress {

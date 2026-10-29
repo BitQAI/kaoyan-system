@@ -112,8 +112,14 @@ def point_detail(pid: str, conn=Depends(db.get_db)):
         "answer_points": _loads(c["answer_points"], []),
         "analysis": c["analysis"], "unit_refs": _loads(c["unit_refs"], []),
         "difficulty": c["difficulty"],
+        "reviews": c["reviews"] or 0, "last_result": c["last_result"],
+        "listen_count": c["listen_count"] or 0,
     } for c in conn.execute(
-        "SELECT * FROM card WHERE point_id = ? ORDER BY ord", (pid,)).fetchall()]
+        "SELECT c.*, cp.reviews, cp.last_result, cl.listen_count "
+        "FROM card c "
+        "LEFT JOIN card_progress cp ON cp.card_id = c.card_id "
+        "LEFT JOIN card_listen cl ON cl.card_id = c.card_id "
+        "WHERE c.point_id = ? ORDER BY c.ord", (pid,)).fetchall()]
     figures = []
     for m in conn.execute(
             "SELECT kind, caption, alt, svg FROM media WHERE point_id = ? ORDER BY idx",

@@ -5,6 +5,7 @@ import { answerHtml, emphasize, examItems, paragraphs } from "@/lib/render";
 import type { Figure, PointDetail as Point } from "@/lib/types";
 import { useAi } from "./AiProvider";
 import { PriorityBadge, StarButton, uniqueLabels } from "./Badges";
+import CardMeta from "./CardMeta";
 import SvgFigure from "./SvgFigure";
 
 export default function PointDetail({
@@ -153,7 +154,11 @@ export default function PointDetail({
           </h3>
           {point.cards.map((c) => (
             <details className="card-item" key={c.card_id}>
-              <summary style={{ cursor: "pointer", fontWeight: 650, fontSize: 14 }}>{c.question}</summary>
+              <summary style={{ cursor: "pointer", fontSize: 14 }}>
+                <span style={{ fontWeight: 650 }}>{c.question}</span>
+                <CardMeta reviews={c.reviews} lastResult={c.last_result}
+                  listenCount={c.listen_count} />
+              </summary>
               <p className="a" style={{ marginTop: 8 }}>{c.answer}</p>
               {c.answer_points.length > 0 && (
                 <ul className="answer-points" style={{ marginTop: 8 }}>

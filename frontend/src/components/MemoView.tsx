@@ -6,6 +6,7 @@ import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/
 import type { Card, Chapter } from "@/lib/types";
 import { useAi } from "./AiProvider";
 import { PriorityBadge, StarButton, uniqueLabels } from "./Badges";
+import CardMeta from "./CardMeta";
 import FavoritesPanel from "./FavoritesPanel";
 import RangePicker from "./RangePicker";
 
@@ -180,10 +181,10 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
                   ))}
                 </div>
               )}
-              <div className="card-foot">
-                <span>{card.title}</span>
-                <span>空格翻面</span>
-              </div>
+              <CardMeta reviews={card.reviews} lastResult={card.last_result}
+                lapses={card.lapses} dueAt={card.due_at}
+                listenCount={card.listen_count}
+                trailing={<span className="muted">{card.title}</span>} />
             </div>
             <button className="btn primary flip-btn" onClick={() => setFlipped(true)}>翻面看答案</button>
           </div>

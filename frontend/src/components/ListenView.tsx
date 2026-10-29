@@ -6,6 +6,7 @@ import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/
 import type { Chapter, ListenItem } from "@/lib/types";
 import { useAi } from "./AiProvider";
 import { PriorityBadge, StarButton, uniqueLabels } from "./Badges";
+import CardMeta from "./CardMeta";
 import FavoritesPanel from "./FavoritesPanel";
 import RangePicker from "./RangePicker";
 
@@ -153,7 +154,6 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
         <div className="card-top">
           <PriorityBadge priority={item.priority} />
           {badges.map((b) => <span className="badge" key={b}>{b}</span>)}
-          {item.heard && <span className="badge">听过 {item.listen_count} 次</span>}
           <span className="spacer" />
           <StarButton kind="card" id={item.card_id} title={item.question} />
           <button className="ai-entry-btn" onClick={() => ai.open({
@@ -206,6 +206,10 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
           </label>
         </div>
         {speaking && <div className="wave">{[0, 1, 2, 3, 4, 5, 6, 7].map((i) => <i key={i} />)}</div>}
+
+        <CardMeta reviews={item.reviews} lastResult={item.last_result}
+          lapses={item.lapses} dueAt={item.due_at} listenCount={item.listen_count}
+          trailing={<span className="muted">{item.chapter_name}</span>} />
 
         <div className="stepper-nav">
           <button className="btn" onClick={() => step(-1)} disabled={idx === 0}>上一条</button>

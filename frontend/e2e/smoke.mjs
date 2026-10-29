@@ -118,6 +118,7 @@ check("记有优先级徽标", await page.locator(".badge.pri").count() > 0);
 await page.click('.grade-row button[data-grade="秒答"]');
 await page.waitForTimeout(500);
 check("评分后仍在逐条模式", await page.locator(".stepper-bar").count() === 1);
+check("卡片底部有学习记录条", await page.locator(".card-meta").count() > 0);
 
 // —— 搜索 ——
 await page.goto(`${BASE}/study?view=study&sid=812`);

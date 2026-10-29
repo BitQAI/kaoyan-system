@@ -25,7 +25,8 @@ def card_queue(conn, sid: str | None = None, limit: int = 30) -> list[dict]:
         SELECT c.card_id, c.point_id, c.kind, c.card_type, c.question, c.answer,
                c.options, c.answer_points, c.analysis, c.unit_refs, c.difficulty,
                p.title, p.subject_id, p.chapter_id, p.priority,
-               cp.card_id AS seen, cp.due_at
+               cp.card_id AS seen, cp.due_at, cp.reviews, cp.last_result, cp.lapses,
+               (SELECT listen_count FROM card_listen cl WHERE cl.card_id = c.card_id) AS listen_count
         FROM card c
         JOIN point p ON p.id = c.point_id
         JOIN chapter ch ON ch.id = p.chapter_id
@@ -52,6 +53,9 @@ def card_queue(conn, sid: str | None = None, limit: int = 30) -> list[dict]:
             "answer_points": _loads(r["answer_points"], []),
             "analysis": r["analysis"], "unit_refs": _loads(r["unit_refs"], []),
             "difficulty": r["difficulty"], "title": r["title"],
+            "priority": r["priority"], "reviews": r["reviews"] or 0,
+            "last_result": r["last_result"], "lapses": r["lapses"] or 0,
+            "listen_count": r["listen_count"] or 0,
             "subject_id": r["subject_id"], "chapter_id": r["chapter_id"],
             "due_at": r["due_at"], "new": r["seen"] is None,
         })
@@ -180,7 +184,9 @@ def custom_cards(conn, subjects=None, chapters=None, limit=30,
     sql = f"""
         SELECT c.card_id, c.point_id, c.kind, c.card_type, c.question, c.answer,
                c.options, c.answer_points, c.analysis, c.unit_refs, c.difficulty,
-               p.title, p.subject_id, p.chapter_id, p.priority, cp.card_id AS seen, cp.due_at
+               p.title, p.subject_id, p.chapter_id, p.priority,
+               cp.card_id AS seen, cp.due_at, cp.reviews, cp.last_result, cp.lapses,
+               (SELECT listen_count FROM card_listen cl WHERE cl.card_id = c.card_id) AS listen_count
         FROM card c
         JOIN point p ON p.id = c.point_id
         JOIN chapter ch ON ch.id = p.chapter_id
@@ -199,6 +205,8 @@ def custom_cards(conn, subjects=None, chapters=None, limit=30,
         "analysis": r["analysis"], "unit_refs": _loads(r["unit_refs"], []),
         "difficulty": r["difficulty"], "title": r["title"],
         "priority": r["priority"],
+        "reviews": r["reviews"] or 0, "last_result": r["last_result"],
+        "lapses": r["lapses"] or 0, "listen_count": r["listen_count"] or 0,
         "subject_id": r["subject_id"], "chapter_id": r["chapter_id"],
         "due_at": r["due_at"], "new": r["seen"] is None,
     } for r in rows]
@@ -224,11 +232,13 @@ def custom_listen(conn, subjects=None, chapters=None, limit=10,
         SELECT c.card_id, c.point_id, c.kind, c.card_type, c.question, c.answer,
                c.analysis, c.answer_points,
                p.title, p.point, p.explain, p.subject_id, p.chapter_id, p.priority,
-               ch.name AS chapter_name, cl.card_id AS heard, cl.listen_count
+               ch.name AS chapter_name, cl.card_id AS heard, cl.listen_count,
+               cp.reviews, cp.last_result, cp.lapses, cp.due_at
         FROM card c
         JOIN point p ON p.id = c.point_id
         JOIN chapter ch ON ch.id = p.chapter_id
         LEFT JOIN card_listen cl ON cl.card_id = c.card_id
+        LEFT JOIN card_progress cp ON cp.card_id = c.card_id
         WHERE 1=1{excl_sql}{scope_sql}
         ORDER BY CASE WHEN cl.card_id IS NULL THEN 0 ELSE 1 END,
                  COALESCE(cl.listen_count, 0), ch.tier, ch.weight_center DESC,
@@ -247,6 +257,8 @@ def custom_listen(conn, subjects=None, chapters=None, limit=10,
         "subject_id": r["subject_id"], "chapter_id": r["chapter_id"],
         "chapter_name": r["chapter_name"], "priority": r["priority"],
         "heard": r["heard"] is not None, "listen_count": r["listen_count"] or 0,
+        "reviews": r["reviews"] or 0, "last_result": r["last_result"],
+        "lapses": r["lapses"] or 0, "due_at": r["due_at"],
     } for r in rows]
     return {"items": items, "remaining": _count_remaining(conn, sql, params, len(items))}
 
