@@ -99,8 +99,29 @@ export interface ListenItem {
   exam_types: string[];
   chapter_name: string;
   question: string | null;
+  /** 朗读稿对应的卡片，用于按题归档 AI 历史 */
+  card_id: string | null;
   heard: boolean;
   listen_count: number;
+}
+
+export interface ChapterProgress {
+  id: string;
+  name: string;
+  module: string;
+  sort: number;
+  total: number;
+  read_n: number;
+  seen_n: number;
+  card_n: number;
+}
+
+export interface ProgressStats {
+  points: { total: number; read: number };
+  cards: { total: number; seen: number; mastered: number; due: number };
+  listen: { total: number; heard: number };
+  today: { date: string; cards_seen: number; cards_due: number; listen_done: number; read_done: number };
+  chapters: ChapterProgress[];
 }
 
 export interface HistoryItem {

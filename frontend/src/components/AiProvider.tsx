@@ -4,8 +4,10 @@ import AiChat from "./AiChat";
 import AiFab from "./AiFab";
 
 export interface AiTarget {
-  point_id: string;
-  title: string;
+  point_id?: string;
+  /** 绑定到具体题目时，问答历史按这张卡归档 */
+  card_id?: string;
+  title?: string;
   description?: string;
   question?: string;
 }

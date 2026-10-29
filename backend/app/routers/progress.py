@@ -21,6 +21,14 @@ class UnitIn(BaseModel):
     idx: int
 
 
+class CustomIn(BaseModel):
+    mode: str
+    subjects: list[str] = []
+    chapters: list[str] = []
+    limit: int = 30
+    exclude: list[str] = []
+
+
 @router.get("/queue/today")
 def queue(mode: str = "memo", sid: str | None = None, limit: int = 30,
           conn=Depends(db.get_db)):
@@ -33,9 +41,28 @@ def queue(mode: str = "memo", sid: str | None = None, limit: int = 30,
     return {"mode": mode, "items": items}
 
 
+@router.post("/queue/custom")
+def custom_queue(payload: CustomIn, conn=Depends(db.get_db)):
+    mode = payload.mode
+    if mode == "memo":
+        result = service.custom_cards(conn, payload.subjects, payload.chapters,
+                                      payload.limit, payload.exclude)
+    elif mode == "listen":
+        result = service.custom_listen(conn, payload.subjects, payload.chapters,
+                                       payload.limit, payload.exclude)
+    else:
+        raise HTTPException(400, "mode 只能是 memo / listen")
+    return {"mode": mode, **result}
+
+
 @router.get("/stats/today")
 def stats(conn=Depends(db.get_db)):
     return service.today_summary(conn)
+
+
+@router.get("/stats/progress")
+def progress_stats(sid: str | None = None, conn=Depends(db.get_db)):
+    return service.progress_stats(conn, sid)
 
 
 @router.post("/progress/point")

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { getJson } from "@/lib/api";
+import { authHeaders, getJson } from "@/lib/api";
 import { mdToHtml } from "@/lib/md";
 import type { HistoryItem } from "@/lib/types";
 import type { AiTarget } from "./AiProvider";
@@ -53,6 +53,7 @@ export default function AiChat({
   const taRef = useRef<HTMLTextAreaElement | null>(null);
   const abortRef = useRef<AbortController | null>(null);
   const pointId = target?.point_id ?? "";
+  const cardId = target?.card_id ?? "";
 
   function stopStream() {
     abortRef.current?.abort();
@@ -89,20 +90,19 @@ export default function AiChat({
     setTip("");
     if (target?.question) setInput(target.question);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [target?.point_id, target?.question]);
+  }, [target?.point_id, target?.card_id, target?.question]);
 
   useEffect(() => {
-    if (!open || !pointId) {
+    if (!open || (!pointId && !cardId)) {
       setHistory([]);
       return;
     }
     let cancelled = false;
-    getJson<{ items: HistoryItem[] }>(
-      `/api/assistant/history?point_id=${encodeURIComponent(pointId)}&limit=20`)
+    getJson<{ items: HistoryItem[] }>(`/api/assistant/history?${historyQuery()}&limit=20`)
       .then((d) => { if (!cancelled) setHistory(d.items); })
       .catch(() => {});
     return () => { cancelled = true; };
-  }, [open, pointId]);
+  }, [open, pointId, cardId]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ block: "end" });
@@ -140,14 +140,19 @@ export default function AiChat({
     try {
       const res = await fetch("/api/assistant/ask", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: authHeaders({ "Content-Type": "application/json" }),
         body: JSON.stringify({
           question: text,
           point_id: target?.point_id ?? undefined,
+          card_id: target?.card_id ?? undefined,
           conversation_id: conversationId ?? undefined,
         }),
         signal: ctrl.signal,
       });
+      if (res.status === 401) {
+        window.location.href = "/login";
+        return;
+      }
       if (!res.body) throw new Error("无响应流");
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
@@ -185,10 +190,16 @@ export default function AiChat({
     }
   }
 
+  /** 有题目就按题目归档，否则按知识点——两种历史不混在一起 */
+  function historyQuery(): string {
+    return cardId
+      ? `card_id=${encodeURIComponent(cardId)}`
+      : `point_id=${encodeURIComponent(pointId)}`;
+  }
+
   function refreshHistory() {
-    if (!pointId) return;
-    getJson<{ items: HistoryItem[] }>(
-      `/api/assistant/history?point_id=${encodeURIComponent(pointId)}&limit=20`)
+    if (!pointId && !cardId) return;
+    getJson<{ items: HistoryItem[] }>(`/api/assistant/history?${historyQuery()}&limit=20`)
       .then((d) => setHistory(d.items))
       .catch(() => {});
   }
@@ -222,7 +233,7 @@ export default function AiChat({
       {(target?.title || target?.description) && (
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", padding: "8px 12px 0" }}>
           {target?.title && (
-            <button className="badge-btn" onClick={() => appendToInput(target.title)}>标题→输入</button>
+            <button className="badge-btn" onClick={() => appendToInput(target.title ?? "")}>标题→输入</button>
           )}
           {target?.description && (
             <button className="badge-btn" onClick={() => appendToInput(target.description ?? "")}>描述→输入</button>

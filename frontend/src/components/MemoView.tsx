@@ -1,34 +1,56 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { getJson, postJson } from "@/lib/api";
+import { postJson } from "@/lib/api";
 import { answerHtml } from "@/lib/render";
-import type { Card } from "@/lib/types";
+import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
+import type { Card, Chapter } from "@/lib/types";
 import { useAi } from "./AiProvider";
+import RangePicker from "./RangePicker";
 
 const GRADES = ["秒答", "吃力", "忘了"] as const;
 
-export default function MemoView({ sid }: { sid: string }) {
+export default function MemoView({ sid, chapters }: { sid: string; chapters: Chapter[] }) {
   const [cards, setCards] = useState<Card[]>([]);
+  const [remaining, setRemaining] = useState(0);
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [grades, setGrades] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [scope, setScope] = useState<Scope>(DEFAULT_SCOPE);
   const ai = useAi();
 
-  const load = useCallback(() => {
+  const chapterNames: Record<string, string> = {};
+  chapters.forEach((c) => { chapterNames[c.id] = c.name; });
+
+  const load = useCallback((next: Scope) => {
     setLoading(true);
-    getJson<{ items: Card[] }>(`/api/queue/today?mode=memo&sid=${sid}&limit=20`)
+    postJson<{ items: Card[]; remaining: number }>("/api/queue/custom", {
+      mode: "memo", subjects: [sid], chapters: next.chapters, limit: next.limit,
+    })
       .then((d) => {
         setCards(d.items);
+        setRemaining(d.remaining);
         setIndex(0);
         setFlipped(false);
         setGrades([]);
       })
-      .catch(() => setCards([]))
+      .catch(() => { setCards([]); setRemaining(0); })
       .finally(() => setLoading(false));
   }, [sid]);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => {
+    const saved = readScope(sid);
+    setScope(saved);
+    load(saved);
+  }, [sid, load]);
+
+  function applyScope(next: Scope) {
+    setScope(next);
+    writeScope(sid, next);
+    setPickerOpen(false);
+    load(next);
+  }
 
   const card = cards[index];
 
@@ -51,14 +73,34 @@ export default function MemoView({ sid }: { sid: string }) {
       } else if (flipped && (e.key === "1" || e.key === "2" || e.key === "3")) {
         e.preventDefault();
         grade(GRADES[Number(e.key) - 1]);
+      } else if (e.key === "ArrowRight" && !flipped) {
+        e.preventDefault();
+        setIndex((i) => Math.min(i + 1, cards.length));
+      } else if (e.key === "ArrowLeft" && !flipped) {
+        e.preventDefault();
+        setIndex((i) => Math.max(0, i - 1));
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [card, flipped, grade]);
+  }, [card, flipped, grade, cards.length]);
 
   if (loading) return <div className="empty">正在取卡…</div>;
-  if (!cards.length) return <div className="empty">这一科没有待复习的卡片。</div>;
+
+  if (!cards.length) {
+    return (
+      <div className="memo-done">
+        <h2>这个范围没有待复习的卡片</h2>
+        <p>{scopeLabel(scope, chapterNames)} · 全部卡都到期之外了</p>
+        <div className="row">
+          <button className="btn primary" onClick={() => setPickerOpen(true)}>换个范围</button>
+          <button className="btn" onClick={() => load(scope)}>重新拉取</button>
+        </div>
+        <RangePicker open={pickerOpen} chapters={chapters} scope={scope}
+          onClose={() => setPickerOpen(false)} onApply={applyScope} />
+      </div>
+    );
+  }
 
   if (index >= cards.length) {
     const counts = grades.reduce<Record<string, number>>((m, g) => {
@@ -67,22 +109,30 @@ export default function MemoView({ sid }: { sid: string }) {
     }, {});
     return (
       <div className="memo-done">
-        <h2>本组完成</h2>
-        <p>{cards.length} 张已过完：{Object.entries(counts).map(([k, v]) => `${k} ${v}`).join(" · ") || "未评分"}</p>
+        <h2>本批完成</h2>
+        <p>
+          {cards.length} 张已过完：{Object.entries(counts).map(([k, v]) => `${k} ${v}`).join(" · ") || "未评分"}
+          {remaining > 0 ? ` · 本范围还有 ${remaining} 张` : ""}
+        </p>
         <div className="row">
-          <button className="btn primary" onClick={load}>再来一组</button>
-          <button className="btn" onClick={() => { setIndex(0); setFlipped(false); setGrades([]); }}>重看本组</button>
+          <button className="btn primary" onClick={() => load(scope)}>再拉一批</button>
+          <button className="btn" onClick={() => { setIndex(0); setFlipped(false); setGrades([]); }}>重看本批</button>
+          <button className="btn" onClick={() => setPickerOpen(true)}>换个范围</button>
         </div>
+        <RangePicker open={pickerOpen} chapters={chapters} scope={scope}
+          onClose={() => setPickerOpen(false)} onApply={applyScope} />
       </div>
     );
   }
 
   return (
     <div className="memo-wrap">
-      <div className="memo-progress">
-        <span>{index + 1} / {cards.length}</span>
-        <span className="bar"><i style={{ width: `${(index / cards.length) * 100}%` }} /></span>
-        <button className="badge-btn" onClick={load}>换一组</button>
+      <div className="stepper-bar">
+        <button className="badge-btn" onClick={() => setPickerOpen(true)}>
+          范围：{scopeLabel(scope, chapterNames)}
+        </button>
+        <div className="progress-bar"><i style={{ width: `${((index + 1) / cards.length) * 100}%` }} /></div>
+        <span className="muted" style={{ fontSize: 12 }}>{index + 1} / {cards.length}</span>
       </div>
 
       <div className={`flip-card${flipped ? " flipped" : ""}`}>
@@ -96,6 +146,7 @@ export default function MemoView({ sid }: { sid: string }) {
                 <span className="spacer" />
                 <button className="ai-entry-btn" onClick={() => ai.open({
                   point_id: card.point_id,
+                  card_id: card.card_id,
                   title: card.title ?? "",
                   question: `这道题我没看懂：${card.question}`,
                 })}>问 AI</button>
@@ -124,6 +175,13 @@ export default function MemoView({ sid }: { sid: string }) {
               <div className="card-top">
                 <span className="badge kind">{card.kind}</span>
                 <span className="badge">{card.card_type}</span>
+                <span className="spacer" />
+                <button className="ai-entry-btn" onClick={() => ai.open({
+                  point_id: card.point_id,
+                  card_id: card.card_id,
+                  title: card.title ?? "",
+                  question: `这道题我没看懂：${card.question}`,
+                })}>问 AI</button>
               </div>
               <div className="question">{card.question}</div>
               {card.answer_points.length > 0 && (
@@ -155,7 +213,16 @@ export default function MemoView({ sid }: { sid: string }) {
           <button key={g} data-grade={g} onClick={() => grade(g)} disabled={!flipped}>{g}</button>
         ))}
       </div>
-      <p className="memo-hint">空格翻面 · 1 秒答 · 2 吃力 · 3 忘了</p>
+
+      <div className="stepper-nav">
+        <button className="btn" onClick={() => { setFlipped(false); setIndex((i) => Math.max(0, i - 1)); }}
+          disabled={index === 0}>上一张</button>
+        <span className="muted" style={{ fontSize: 12 }}>空格翻面 · 1 秒答 · 2 吃力 · 3 忘了</span>
+        <button className="btn" onClick={() => { setFlipped(false); setIndex((i) => i + 1); }}>下一张</button>
+      </div>
+
+      <RangePicker open={pickerOpen} chapters={chapters} scope={scope}
+        onClose={() => setPickerOpen(false)} onApply={applyScope} />
     </div>
   );
 }

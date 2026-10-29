@@ -172,11 +172,14 @@ conversations = Table(
     Column("id", Text, primary_key=True),
     Column("title", Text, nullable=False, default=""),
     Column("point_id", Text),
+    #: 绑定到具体题目时按题目归档，一张卡的问答不与其他卡混在一起
+    Column("card_id", Text),
     Column("created_at", Text, nullable=False),
     Column("updated_at", Text, nullable=False),
     Column("msg_count", Integer, nullable=False, default=0),
 )
 Index("idx_conv_updated", conversations.c.updated_at)
+Index("idx_conv_card", conversations.c.card_id)
 
 messages = Table(
     "messages", metadata,

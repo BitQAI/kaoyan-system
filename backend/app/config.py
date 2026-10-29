@@ -47,6 +47,10 @@ META_DIR = Path(os.getenv("KY_META_DIR", str(ROOT_DIR / "知识点元数据")))
 SUBJECTS = ("812", "315", "101", "204")
 EXAM_DATE = os.getenv("KY_EXAM_DATE", "2026-12-19")
 
+#: 留空则首次启动随机生成，安装脚本会把账号密码打印出来
+AUTH_USER = os.getenv("KY_AUTH_USER", "")
+AUTH_PASS = os.getenv("KY_AUTH_PASS", "")
+
 
 def ai_configured() -> bool:
     return bool(DEEPSEEK_API_KEY or OPENCODE_API_KEY)

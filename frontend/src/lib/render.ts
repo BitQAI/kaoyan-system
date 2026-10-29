@@ -60,6 +60,34 @@ export function answerHtml(raw: string, keywords: string[] = []): string {
   return paragraphs(text, keywords);
 }
 
+export interface ScriptParts {
+  ask: string;
+  answer: string;
+  analysis: string;
+  /** 其余无前缀的段落 */
+  rest: string;
+}
+
+/** 把朗读稿拆成 设问 / 答案 / 解析 三段（听视图只念设问 + 解析）。 */
+export function splitScript(raw: string): ScriptParts {
+  const out: ScriptParts = { ask: "", answer: "", analysis: "", rest: "" };
+  const text = (raw || "").trim();
+  if (!text) return out;
+  const parts = text.split(/(?=设问：|答案：|解析：)/).filter(Boolean);
+  for (const part of parts) {
+    const m = part.match(/^(设问：|答案：|解析：)([\s\S]*)$/);
+    if (!m) {
+      out.rest += (out.rest ? "\n" : "") + part.trim();
+      continue;
+    }
+    const body = m[2].trim();
+    if (m[1] === "设问：") out.ask += body;
+    else if (m[1] === "答案：") out.answer += body;
+    else out.analysis += body;
+  }
+  return out;
+}
+
 /** 朗读稿按 设问 / 答案 / 解析 分块。 */
 export function scriptHtml(raw: string, keywords: string[] = []): string {
   const text = (raw || "").trim();

@@ -47,6 +47,27 @@ def point_profile(conn, point_id: str) -> dict | None:
     return dict(row)
 
 
+def card_profile(conn, card_id: str) -> dict | None:
+    row = conn.execute(
+        "SELECT c.*, p.title, p.subject_id FROM card c JOIN point p ON p.id = c.point_id "
+        "WHERE c.card_id = ?", (card_id,)).fetchone()
+    return dict(row) if row else None
+
+
+def _card_block(c: dict) -> str:
+    options = _loads(c["options"], [])
+    points = _loads(c["answer_points"], [])
+    lines = [f"【当前题目】{c['question']}"]
+    if options:
+        lines.append("选项：" + "；".join(options))
+    lines.append(f"【答案】{c['answer']}")
+    if points:
+        lines.append("【得分要点】\n" + "\n".join(f"- {x}" for x in points))
+    if c["analysis"]:
+        lines.append(f"【解析】{c['analysis']}")
+    return "\n".join(lines)
+
+
 def _l1(conn, p: dict) -> str:
     parts = [
         f"【科目】{p['subject_id']}",
@@ -132,10 +153,16 @@ def _l4(p: dict) -> str:
 
 
 def build_context(conn, question: str, point_id: str | None = None,
-                  conversation_id: str | None = None) -> tuple[str, list[str], list[str]]:
+                  conversation_id: str | None = None,
+                  card_id: str | None = None) -> tuple[str, list[str], list[str]]:
     blocks: list[str] = []
     related: list[str] = []
     source_refs: list[str] = []
+
+    card = card_profile(conn, card_id) if card_id else None
+    if card:
+        point_id = point_id or card["point_id"]
+        blocks.append(_card_block(card))
 
     current = point_profile(conn, point_id) if point_id else None
     if current:
@@ -162,7 +189,7 @@ def build_context(conn, question: str, point_id: str | None = None,
 # ---------- 会话 ----------
 
 def ensure_conversation(conn, conversation_id: str | None, point_id: str | None,
-                        question: str) -> str:
+                        question: str, card_id: str | None = None) -> str:
     if conversation_id:
         row = conn.execute("SELECT id FROM conversations WHERE id = ?",
                            (conversation_id,)).fetchone()
@@ -171,9 +198,9 @@ def ensure_conversation(conn, conversation_id: str | None, point_id: str | None,
     cid = conversation_id or uuid.uuid4().hex[:16]
     now = _now()
     conn.execute(
-        "INSERT INTO conversations (id, title, point_id, created_at, updated_at, msg_count) "
-        "VALUES (?,?,?,?,?,0)",
-        (cid, question.strip()[:TITLE_LEN], point_id, now, now))
+        "INSERT INTO conversations (id, title, point_id, card_id, created_at, "
+        "updated_at, msg_count) VALUES (?,?,?,?,?,?,0)",
+        (cid, question.strip()[:TITLE_LEN], point_id, card_id, now, now))
     conn.commit()
     return cid
 
@@ -232,6 +259,36 @@ def history_for_point(conn, point_id: str, limit: int = 20) -> list[dict]:
             "related_point_ids": _loads(r["related_point_ids"], []),
         })
     return out
+
+
+def history_for_card(conn, card_id: str, limit: int = 20) -> list[dict]:
+    """按题目取历史：同一张卡的问答不与其他卡混在一起。"""
+    limit = max(1, min(int(limit or 20), 50))
+    rows = conn.execute(
+        "SELECT m.id, m.conversation_id, m.content AS answer, m.created_at, "
+        "m.related_point_ids FROM messages m "
+        "JOIN conversations c ON c.id = m.conversation_id "
+        "WHERE c.card_id = ? AND m.role = 'assistant' ORDER BY m.id DESC LIMIT ?",
+        (card_id, limit)).fetchall()
+    out = []
+    for r in rows:
+        ask = conn.execute(
+            "SELECT content FROM messages WHERE conversation_id = ? AND id < ? "
+            "AND role = 'user' ORDER BY id DESC LIMIT 1",
+            (r["conversation_id"], r["id"])).fetchone()
+        out.append({
+            "id": r["id"], "conversation_id": r["conversation_id"],
+            "ts": r["created_at"], "question": ask["content"] if ask else "",
+            "answer": r["answer"],
+            "related_point_ids": _loads(r["related_point_ids"], []),
+        })
+    return out
+
+
+def count_for_card(conn, card_id: str) -> int:
+    return conn.execute(
+        "SELECT COUNT(*) FROM messages m JOIN conversations c ON c.id = m.conversation_id "
+        "WHERE c.card_id = ? AND m.role = 'assistant'", (card_id,)).fetchone()[0]
 
 
 def count_for_point(conn, point_id: str) -> int:

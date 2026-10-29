@@ -15,6 +15,7 @@ router = APIRouter(prefix="/api/assistant", tags=["assistant"])
 class AskIn(BaseModel):
     question: str
     point_id: str | None = None
+    card_id: str | None = None
     conversation_id: str | None = None
 
 
@@ -29,10 +30,10 @@ async def ask(payload: AskIn, conn=Depends(db.get_db)):
         raise HTTPException(400, "问题不能为空")
 
     context, related_ids, source_refs = assistant.build_context(
-        conn, question, payload.point_id, payload.conversation_id)
+        conn, question, payload.point_id, payload.conversation_id, payload.card_id)
     _, history = assistant.recent_history(conn, payload.conversation_id)
     cid = assistant.ensure_conversation(
-        conn, payload.conversation_id, payload.point_id, question)
+        conn, payload.conversation_id, payload.point_id, question, payload.card_id)
     db_path = Path(conn.execute("PRAGMA database_list").fetchone()["file"])
     model = ai.chat_target()[1]
 
@@ -67,15 +68,23 @@ async def ask(payload: AskIn, conn=Depends(db.get_db)):
 
 
 @router.get("/history")
-def history(point_id: str, limit: int = 20, conn=Depends(db.get_db)):
-    if not point_id.strip():
-        raise HTTPException(400, "point_id 不能为空")
-    return {"items": assistant.history_for_point(conn, point_id.strip(), limit)}
+def history(point_id: str | None = None, card_id: str | None = None,
+            limit: int = 20, conn=Depends(db.get_db)):
+    if card_id and card_id.strip():
+        return {"items": assistant.history_for_card(conn, card_id.strip(), limit)}
+    if point_id and point_id.strip():
+        return {"items": assistant.history_for_point(conn, point_id.strip(), limit)}
+    raise HTTPException(400, "point_id 或 card_id 至少给一个")
 
 
 @router.get("/history/count")
-def history_count(point_id: str, conn=Depends(db.get_db)):
-    return {"count": assistant.count_for_point(conn, point_id)}
+def history_count(point_id: str | None = None, card_id: str | None = None,
+                  conn=Depends(db.get_db)):
+    if card_id and card_id.strip():
+        return {"count": assistant.count_for_card(conn, card_id.strip())}
+    if point_id and point_id.strip():
+        return {"count": assistant.count_for_point(conn, point_id.strip())}
+    return {"count": 0}
 
 
 @router.get("/conversations")

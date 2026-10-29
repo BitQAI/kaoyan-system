@@ -36,7 +36,7 @@ backend/.venv/bin/uvicorn app.main:app --port 8000 --app-dir backend
 npm --prefix frontend run dev
 ```
 
-打开 <http://localhost:3000>。
+打开 <http://localhost:3000>，用首次初始化时打印的账号密码登录（默认账号 `kaoyan`，密码随机生成，记在服务端 `settings` 表；忘记可重跑导入或设 `KY_AUTH_PASS` 后重建凭据）。
 
 手机同 WiFi 访问：后端加 `--host 0.0.0.0`，前端 `npm --prefix frontend run dev -- -H 0.0.0.0`，用电脑局域网 IP 打开。
 
@@ -48,7 +48,7 @@ npm --prefix frontend run dev
 | 后端测试 | `backend/.venv/bin/python -m pytest backend/tests -q` |
 | 前端类型检查 | `npm --prefix frontend run typecheck` |
 | 前端生产构建 | `npm --prefix frontend run build` |
-| e2e 冒烟（需先起前后端） | `node frontend/e2e/smoke.mjs` |
+| e2e 冒烟（需先起前后端） | `KY_USER=kaoyan KY_PASS=<密码> node frontend/e2e/smoke.mjs` |
 | 迁移一致性 | `cd backend && .venv/bin/alembic check` |
 
 ## 约定

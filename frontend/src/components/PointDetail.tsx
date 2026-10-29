@@ -12,7 +12,9 @@ const LEVEL_LABEL: Record<string, string> = {
   pending: "待核",
 };
 
-export default function PointDetail({ pid, onNavigate }: { pid: string; onNavigate: (pid: string) => void }) {
+export default function PointDetail({
+  pid, onNavigate, onRead,
+}: { pid: string; onNavigate: (pid: string) => void; onRead?: () => void }) {
   const [point, setPoint] = useState<Point | null>(null);
   const [error, setError] = useState("");
   const [zoom, setZoom] = useState<Figure | null>(null);
@@ -28,9 +30,12 @@ export default function PointDetail({ pid, onNavigate }: { pid: string; onNaviga
     getJson<Point>(`/api/points/${encodeURIComponent(pid)}`)
       .then((p) => {
         setPoint(p);
-        void postJson("/api/progress/point", { point_id: pid }).catch(() => {});
+        void postJson("/api/progress/point", { point_id: pid })
+          .then(() => onRead?.())
+          .catch(() => {});
       })
       .catch((e) => setError(String(e)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pid]);
 
   async function toggleSource() {

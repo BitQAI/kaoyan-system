@@ -93,3 +93,35 @@ def test_sse_stream_and_persist(client, monkeypatch, conn):
 
 def test_ask_rejects_empty(client):
     assert client.post("/api/assistant/ask", json={"question": "  "}).status_code == 400
+
+
+def test_card_scoped_context(conn):
+    card = conn.execute("SELECT card_id, point_id FROM card LIMIT 1").fetchone()
+    text, related, _ = assistant.build_context(conn, "这题为什么", card["point_id"],
+                                               None, card["card_id"])
+    assert "【当前题目】" in text
+    assert card["point_id"] in related
+
+
+def test_card_history_isolated(conn):
+    a = conn.execute("SELECT card_id, point_id FROM card WHERE point_id='8120001' LIMIT 1").fetchone()
+    b = conn.execute("SELECT card_id, point_id FROM card WHERE point_id='8120002' LIMIT 1").fetchone()
+    cid_a = assistant.ensure_conversation(conn, None, a["point_id"], "A 的问题", a["card_id"])
+    assistant.persist_turn(conn, cid_a, "A 的问题", "A 的回答", [a["point_id"]], [])
+    cid_b = assistant.ensure_conversation(conn, None, b["point_id"], "B 的问题", b["card_id"])
+    assistant.persist_turn(conn, cid_b, "B 的问题", "B 的回答", [b["point_id"]], [])
+
+    hist_a = assistant.history_for_card(conn, a["card_id"])
+    assert [h["question"] for h in hist_a] == ["A 的问题"]
+    assert assistant.count_for_card(conn, b["card_id"]) == 1
+    assert assistant.count_for_card(conn, "c9999999-1") == 0
+
+
+def test_card_history_endpoint(client):
+    pid = "8120001"
+    card_id = client.post("/api/queue/custom", json={"mode": "memo", "limit": 1}).json()["items"][0]["card_id"]
+    res = client.get("/api/assistant/history", params={"card_id": card_id})
+    assert res.status_code == 200
+    assert "items" in res.json()
+    assert client.get("/api/assistant/history").status_code == 400
+    assert client.get("/api/assistant/history", params={"point_id": pid}).status_code == 200
