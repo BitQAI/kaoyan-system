@@ -46,6 +46,7 @@ export interface Card {
   analysis: string;
   unit_refs: number[];
   difficulty: number | null;
+  priority?: string;
   title?: string;
   subject_id?: string;
   chapter_id?: string;
@@ -101,6 +102,7 @@ export interface ListenItem {
   question: string | null;
   /** 朗读稿对应的卡片，用于按题归档 AI 历史 */
   card_id: string | null;
+  priority?: string;
   heard: boolean;
   listen_count: number;
 }

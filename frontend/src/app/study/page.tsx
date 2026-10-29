@@ -10,6 +10,7 @@ import PointDetail from "@/components/PointDetail";
 import ProgressStrip from "@/components/ProgressStrip";
 import RangePicker from "@/components/RangePicker";
 import SearchPanel from "@/components/SearchPanel";
+import SubjectPicker from "@/components/SubjectPicker";
 import { getJson } from "@/lib/api";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
 import type { Manifest, PointIndex, ProgressStats, Subject, ViewMode } from "@/lib/types";
@@ -116,25 +117,18 @@ function StudyInner() {
   return (
     <>
       <nav className="control-bar" aria-label="视图控制">
-        <div className="tabs subject-tabs">
-          {manifest.subjects.map((s) => (
-            <button key={s.id} className={`tab${s.id === sid ? " on" : ""}`}
-              onClick={() => go({ sid: s.id, pid: null })}>
-              <b>{s.id}</b>{s.name.replace(/^\d+\s*/, "").slice(0, 8)}
-            </button>
-          ))}
-        </div>
+        <SubjectPicker subjects={manifest.subjects} sid={sid} onPick={(id) => go({ sid: id, pid: null })} />
         <span className="spacer" />
-        <div className="mode-tabs" role="tablist">
-          {MODES.map((m) => (
-            <button key={m.key} role="tab" aria-selected={view === m.key}
-              className={view === m.key ? "on" : ""}
-              onClick={() => go({ view: m.key, pid: m.key === "study" ? activePid : null })}>
-              {m.label}
-            </button>
-          ))}
-        </div>
-        <Link className="ghost" href="/history" style={{ textDecoration: "none" }}>问答历史</Link>
+        {view === "study" && (
+          <button className="badge-btn" onClick={() => setPickerOpen(true)}>
+            范围：{scopeLabel(scope, chapterNames)}
+          </button>
+        )}
+        <button className="badge-btn" onClick={() => ai.open({
+          point_id: activePid ?? undefined,
+          title: activePid ? undefined : "学习提问",
+          question: activePid ? undefined : "这一章我读不懂，帮我梳理一下重点",
+        })}>问 AI</button>
       </nav>
 
       {progress && <ProgressStrip stats={progress} />}
@@ -143,14 +137,6 @@ function StudyInner() {
         <>
           <div className="subbar">
             <SearchPanel sid={sid} onPick={(id) => go({ pid: id })} />
-            <button className="badge-btn" onClick={() => setPickerOpen(true)}>
-              范围：{scopeLabel(scope, chapterNames)}
-            </button>
-            <button className="badge-btn" onClick={() => ai.open({
-              point_id: activePid ?? undefined,
-              title: activePid ? undefined : "学习提问",
-              question: activePid ? undefined : "这一章我读不懂，帮我梳理一下重点",
-            })}>问 AI</button>
           </div>
           <div className="mode-hint">{hint}</div>
           <div className="content">
@@ -187,6 +173,7 @@ function StudyInner() {
         <RangePicker open={pickerOpen} chapters={subject.chapters} scope={scope}
           onClose={() => setPickerOpen(false)} onApply={applyScope} />
       )}
+
     </>
   );
 }

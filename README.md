@@ -40,6 +40,27 @@ npm --prefix frontend run dev
 
 手机同 WiFi 访问：后端加 `--host 0.0.0.0`，前端 `npm --prefix frontend run dev -- -H 0.0.0.0`，用电脑局域网 IP 打开。
 
+## 部署到服务器（git 拉取）
+
+服务器上第一次：
+
+```bash
+git clone https://github.com/BitQAI/kaoyan-system.git /www/wwwroot/kaoyan.bitqai.com
+cd /www/wwwroot/kaoyan.bitqai.com
+cp backend/.env.example .env && chmod 600 .env   # 填 DEEPSEEK_API_KEY
+bash deploy/install_server.sh
+```
+
+之后每次更新：
+
+```bash
+cd /www/wwwroot/kaoyan.bitqai.com && git pull && bash deploy/install_server.sh
+```
+
+脚本会建表、导入元数据、构建前端、装 systemd 与 nginx 反代，并在首次运行时打印登录账号密码。
+
+**前置**：服务器需 Node 18+、Python 3.10+。nginx 站点配置由脚本重写，在宝塔里改过伪静态/SSL 后再跑脚本会被覆盖（脚本会先备份）。
+
 ## 常用命令
 
 | 目的 | 命令 |

@@ -5,9 +5,12 @@ import { paragraphs, splitScript } from "@/lib/render";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
 import type { Chapter, ListenItem } from "@/lib/types";
 import { useAi } from "./AiProvider";
+import { PriorityBadge, StarButton } from "./Badges";
 import RangePicker from "./RangePicker";
 
-const RATES = [0.75, 0.95, 1.25];
+const RATE_MIN = 0.6;
+const RATE_MAX = 1.6;
+const RATE_STEP = 0.05;
 
 export default function ListenView({ sid, chapters }: { sid: string; chapters: Chapter[] }) {
   const [items, setItems] = useState<ListenItem[]>([]);
@@ -153,10 +156,12 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
 
       <article className="q-card stepper-card">
         <div className="card-top">
+          <PriorityBadge priority={item.priority} />
           <span className="badge kind">{item.kind ?? "朗读"}</span>
-          {item.exam_types.map((t) => <span className="badge" key={t}>{t}</span>)}
+          {item.exam_types.slice(0, 2).map((t) => <span className="badge" key={t}>{t}</span>)}
           {item.heard && <span className="badge">听过 {item.listen_count} 次</span>}
           <span className="spacer" />
+          <StarButton kind="card" id={item.card_id ?? item.point_id} title={item.title} />
           <button className="ai-entry-btn" onClick={() => ai.open({
             point_id: item.point_id,
             card_id: item.card_id ?? undefined,
@@ -194,11 +199,16 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
             {speaking ? "朗读中…" : "朗读设问与解析"}
           </button>
           <button className="btn" onClick={stop} disabled={!speaking}>停止</button>
-          <div className="rate-select">
-            {RATES.map((r) => (
-              <button key={r} className={rate === r ? "on" : ""} onClick={() => setRate(r)}>{r}×</button>
-            ))}
-          </div>
+          <label className="rate-slider">
+            <span className="muted" style={{ fontSize: 11.5 }}>语速</span>
+            <input
+              type="range" min={RATE_MIN} max={RATE_MAX} step={RATE_STEP}
+              value={rate}
+              onChange={(e) => setRate(Number(e.target.value))}
+              aria-label="朗读语速"
+            />
+            <span className="rate-value">{rate.toFixed(2)}×</span>
+          </label>
         </div>
         {speaking && <div className="wave">{[0, 1, 2, 3, 4, 5, 6, 7].map((i) => <i key={i} />)}</div>}
 

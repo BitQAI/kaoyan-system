@@ -24,10 +24,11 @@ def card_queue(conn, sid: str | None = None, limit: int = 30) -> list[dict]:
     sql = f"""
         SELECT c.card_id, c.point_id, c.kind, c.card_type, c.question, c.answer,
                c.options, c.answer_points, c.analysis, c.unit_refs, c.difficulty,
-               p.title, p.subject_id, p.chapter_id,
+               p.title, p.subject_id, p.chapter_id, p.priority,
                cp.card_id AS seen, cp.due_at
         FROM card c
         JOIN point p ON p.id = c.point_id
+        JOIN chapter ch ON ch.id = p.chapter_id
         LEFT JOIN card_progress cp ON cp.card_id = c.card_id
         WHERE (cp.card_id IS NULL OR cp.due_at <= ?)
     """
@@ -35,8 +36,10 @@ def card_queue(conn, sid: str | None = None, limit: int = 30) -> list[dict]:
     if sid:
         sql += " AND p.subject_id = ?"
         params.append(sid)
+    # 到期/新卡分组内：先按章权重（梯队 + 分值），再按考点优先级
     sql += (f" ORDER BY CASE WHEN cp.card_id IS NULL THEN 1 ELSE 0 END,"
-            f" {PRIORITY_RANK}, c.ord LIMIT ?")
+            f" ch.tier, ch.weight_center DESC, {PRIORITY_RANK}, ch.sort, p.ord,"
+            f" c.ord LIMIT ?")
     params.append(max(1, min(int(limit), 200)))
     rows = conn.execute(sql, params).fetchall()
     out = []
@@ -72,7 +75,8 @@ def listen_queue(conn, sid: str | None = None, limit: int = 10) -> list[dict]:
         sql += " AND p.subject_id = ?"
         params.append(sid)
     sql += (f" ORDER BY CASE WHEN lp.point_id IS NULL THEN 0 ELSE 1 END,"
-            f" COALESCE(lp.listen_count, 0), {PRIORITY_RANK}, ch.sort, p.ord LIMIT ?")
+            f" COALESCE(lp.listen_count, 0), ch.tier, ch.weight_center DESC,"
+            f" {PRIORITY_RANK}, ch.sort, p.ord LIMIT ?")
     params.append(max(1, min(int(limit), 100)))
     return [{
         "point_id": r["id"], "subject_id": r["subject_id"], "title": r["title"],
@@ -166,13 +170,14 @@ def custom_cards(conn, subjects=None, chapters=None, limit=30,
     sql = f"""
         SELECT c.card_id, c.point_id, c.kind, c.card_type, c.question, c.answer,
                c.options, c.answer_points, c.analysis, c.unit_refs, c.difficulty,
-               p.title, p.subject_id, p.chapter_id, cp.card_id AS seen, cp.due_at
+               p.title, p.subject_id, p.chapter_id, p.priority, cp.card_id AS seen, cp.due_at
         FROM card c
         JOIN point p ON p.id = c.point_id
+        JOIN chapter ch ON ch.id = p.chapter_id
         LEFT JOIN card_progress cp ON cp.card_id = c.card_id
         WHERE (cp.card_id IS NULL OR cp.due_at <= ?){excl_sql}{scope_sql}
         ORDER BY CASE WHEN cp.card_id IS NULL THEN 1 ELSE 0 END,
-                 {PRIORITY_RANK}, c.ord
+                 ch.tier, ch.weight_center DESC, {PRIORITY_RANK}, ch.sort, p.ord, c.ord
         LIMIT ?
     """
     rows = conn.execute(sql, [today, *params, max(1, min(int(limit), 200))]).fetchall()
@@ -183,6 +188,7 @@ def custom_cards(conn, subjects=None, chapters=None, limit=30,
         "answer_points": _loads(r["answer_points"], []),
         "analysis": r["analysis"], "unit_refs": _loads(r["unit_refs"], []),
         "difficulty": r["difficulty"], "title": r["title"],
+        "priority": r["priority"],
         "subject_id": r["subject_id"], "chapter_id": r["chapter_id"],
         "due_at": r["due_at"], "new": r["seen"] is None,
     } for r in rows]
@@ -205,7 +211,8 @@ def custom_listen(conn, subjects=None, chapters=None, limit=10,
         params = params + exclude
     sql = f"""
         SELECT p.id, p.subject_id, p.title, p.point, p.listen_script, p.listen_kind,
-               p.exam_types, p.listen_card_id, p.chapter_id, ch.name AS chapter_name,
+               p.exam_types, p.listen_card_id, p.chapter_id, p.priority,
+               ch.name AS chapter_name,
                lp.point_id AS heard, lp.listen_count,
                (SELECT question FROM card WHERE card_id = p.listen_card_id) AS question,
                (SELECT card_id FROM card WHERE card_id = p.listen_card_id) AS card_id
@@ -214,7 +221,8 @@ def custom_listen(conn, subjects=None, chapters=None, limit=10,
         LEFT JOIN listen_progress lp ON lp.point_id = p.id
         WHERE p.listen_script != ''{excl_sql}{scope_sql}
         ORDER BY CASE WHEN lp.point_id IS NULL THEN 0 ELSE 1 END,
-                 COALESCE(lp.listen_count, 0), {PRIORITY_RANK}, ch.sort, p.ord
+                 COALESCE(lp.listen_count, 0), ch.tier, ch.weight_center DESC,
+                 {PRIORITY_RANK}, ch.sort, p.ord
         LIMIT ?
     """
     rows = conn.execute(sql, [*params, max(1, min(int(limit), 100))]).fetchall()
@@ -223,6 +231,7 @@ def custom_listen(conn, subjects=None, chapters=None, limit=10,
         "point": r["point"], "script": r["listen_script"], "kind": r["listen_kind"],
         "exam_types": _loads(r["exam_types"], []), "chapter_name": r["chapter_name"],
         "question": r["question"], "card_id": r["card_id"],
+        "priority": r["priority"],
         "heard": r["heard"] is not None, "listen_count": r["listen_count"] or 0,
     } for r in rows]
     return {"items": items, "remaining": _count_remaining(conn, sql, params, len(items))}
@@ -292,3 +301,88 @@ def today_summary(conn) -> dict:
             "SELECT COUNT(*) FROM point_progress WHERE substr(read_at,1,10)=?",
             (today,)).fetchone()[0],
     }
+
+
+# ---------- 收藏 / 错题 ----------
+
+def set_favorite(conn, kind: str, ref_id: str, on: bool) -> None:
+    if kind not in ("point", "card"):
+        raise ValueError("kind 只能是 point / card")
+    if on:
+        conn.execute(
+            "INSERT OR IGNORE INTO favorites (kind, ref_id, created_at) VALUES (?,?,?)",
+            (kind, ref_id, _now()))
+    else:
+        conn.execute("DELETE FROM favorites WHERE kind = ? AND ref_id = ?",
+                     (kind, ref_id))
+    conn.commit()
+
+
+def favorite_map(conn) -> dict[str, list[str]]:
+    out = {"point": [], "card": []}
+    for r in conn.execute("SELECT kind, ref_id FROM favorites ORDER BY created_at DESC"):
+        out.setdefault(r["kind"], []).append(r["ref_id"])
+    return out
+
+
+def list_favorites(conn, kind: str | None = None, sid: str | None = None) -> list[dict]:
+    if kind == "card":
+        sql = """
+            SELECT f.ref_id, f.created_at, c.question, c.kind AS card_kind,
+                   c.point_id, p.title, p.subject_id, p.priority,
+                   (SELECT last_result FROM card_progress cp WHERE cp.card_id=c.card_id) AS last_result
+            FROM favorites f
+            JOIN card c ON c.card_id = f.ref_id
+            JOIN point p ON p.id = c.point_id
+            WHERE f.kind = 'card'
+        """
+    else:
+        sql = """
+            SELECT f.ref_id, f.created_at, p.title, p.point, p.subject_id,
+                   p.priority, ch.name AS chapter_name
+            FROM favorites f
+            JOIN point p ON p.id = f.ref_id
+            JOIN chapter ch ON ch.id = p.chapter_id
+            WHERE f.kind = 'point'
+        """
+    params: list = []
+    if sid:
+        sql += " AND p.subject_id = ?"
+        params.append(sid)
+    sql += " ORDER BY f.created_at DESC"
+    return [dict(r) for r in conn.execute(sql, params).fetchall()]
+
+
+def weak_cards(conn, sid: str | None = None, limit: int = 100) -> list[dict]:
+    """错题本：记模块评为「吃力 / 忘了」的卡，忘了排在前面。"""
+    sql = """
+        SELECT cp.card_id, cp.last_result, cp.lapses, cp.stage, cp.due_at,
+               cp.updated_at, c.question, c.kind AS card_kind, c.point_id,
+               p.title, p.subject_id, p.priority, ch.name AS chapter_name
+        FROM card_progress cp
+        JOIN card c ON c.card_id = cp.card_id
+        JOIN point p ON p.id = c.point_id
+        JOIN chapter ch ON ch.id = p.chapter_id
+        WHERE cp.last_result IN ('吃力', '忘了')
+    """
+    params: list = []
+    if sid:
+        sql += " AND p.subject_id = ?"
+        params.append(sid)
+    sql += (" ORDER BY CASE cp.last_result WHEN '忘了' THEN 0 ELSE 1 END,"
+            " cp.updated_at DESC LIMIT ?")
+    params.append(max(1, min(int(limit), 500)))
+    return [dict(r) for r in conn.execute(sql, params).fetchall()]
+
+
+def weak_counts(conn, sid: str | None = None) -> dict:
+    sub = " AND p.subject_id = ?" if sid else ""
+    params = [sid] if sid else []
+    rows = conn.execute(
+        f"SELECT cp.last_result, COUNT(*) n FROM card_progress cp "
+        f"JOIN card c ON c.card_id=cp.card_id JOIN point p ON p.id=c.point_id "
+        f"WHERE cp.last_result IN ('吃力','忘了'){sub} GROUP BY cp.last_result",
+        params).fetchall()
+    got = {r["last_result"]: r["n"] for r in rows}
+    return {"forgot": got.get("忘了", 0), "fuzzy": got.get("吃力", 0),
+            "total": sum(got.values())}

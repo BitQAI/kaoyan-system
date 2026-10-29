@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { AiProvider } from "@/components/AiProvider";
+import { FavoritesProvider } from "@/components/FavoritesProvider";
+import BottomNav from "@/components/BottomNav";
 import "./globals.css";
 import "./read.css";
 import "./memo.css";
@@ -20,7 +22,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="zh-CN">
       <body>
-        <AiProvider>{children}</AiProvider>
+        <FavoritesProvider>
+          <AiProvider>{children}</AiProvider>
+          <BottomNav />
+        </FavoritesProvider>
       </body>
     </html>
   );

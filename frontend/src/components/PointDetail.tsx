@@ -4,6 +4,7 @@ import { getJson, postJson } from "@/lib/api";
 import { answerHtml, emphasize, examItems, paragraphs } from "@/lib/render";
 import type { Figure, PointDetail as Point } from "@/lib/types";
 import { useAi } from "./AiProvider";
+import { PriorityBadge, StarButton } from "./Badges";
 import SvgFigure from "./SvgFigure";
 
 const LEVEL_LABEL: Record<string, string> = {
@@ -56,7 +57,7 @@ export default function PointDetail({
       <div className="card-top">
         <span className="badge kind">{point.subject_id}</span>
         {point.exam_types.map((t) => <span className="badge" key={t}>{t}</span>)}
-        <span className="badge priority">{point.priority}</span>
+        <PriorityBadge priority={point.priority} />
         <span
           className={`badge ${point.exam_evidence.level}`}
           title={point.exam_evidence.basis}
@@ -64,6 +65,7 @@ export default function PointDetail({
           {LEVEL_LABEL[point.exam_evidence.level] ?? point.exam_evidence.level}
         </span>
         <span className="spacer" />
+        <StarButton kind="point" id={point.id} title={point.title} />
         <button
           className="ai-entry-btn"
           onClick={() => ai.open({

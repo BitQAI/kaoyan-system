@@ -165,6 +165,13 @@ settings = Table(
     Column("value", Text, nullable=False),
 )
 
+favorites = Table(
+    "favorites", metadata,
+    Column("kind", Text, primary_key=True),      # point / card
+    Column("ref_id", Text, primary_key=True),
+    Column("created_at", Text, nullable=False),
+)
+
 # ---------- AI 会话表 ----------
 
 conversations = Table(
@@ -208,5 +215,5 @@ Index("idx_msgpt_point", message_points.c.point_id)
 ALL_TABLES = [
     subject, chapter, point, unit, card, media, relation,
     point_progress, unit_progress, card_progress, listen_progress, settings,
-    conversations, messages, message_points,
+    favorites, conversations, messages, message_points,
 ]

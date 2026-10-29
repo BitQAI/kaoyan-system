@@ -5,6 +5,7 @@ import { answerHtml } from "@/lib/render";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
 import type { Card, Chapter } from "@/lib/types";
 import { useAi } from "./AiProvider";
+import { PriorityBadge, StarButton } from "./Badges";
 import RangePicker from "./RangePicker";
 
 const GRADES = ["秒答", "吃力", "忘了"] as const;
@@ -135,15 +136,28 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
         <span className="muted" style={{ fontSize: 12 }}>{index + 1} / {cards.length}</span>
       </div>
 
-      <div className={`flip-card${flipped ? " flipped" : ""}`}>
+      <div
+        className={`flip-card${flipped ? " flipped" : ""} clickable`}
+        onClick={(e) => {
+          const el = e.target as HTMLElement;
+          if (el.closest("button, a, input, summary, .options")) return;
+          setFlipped((f) => !f);
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label={flipped ? "点击返回题目" : "点击翻面看答案"}
+        onKeyDown={(e) => { if (e.key === "Enter") setFlipped((f) => !f); }}
+      >
         <div className="flip-inner">
           <div className="flip-front">
             <div className="flip-body">
               <div className="card-top">
                 <span className="badge kind">{card.kind}</span>
+                <PriorityBadge priority={(card as unknown as { priority?: string }).priority} />
                 <span className="badge">{card.card_type}</span>
                 {card.new && <span className="badge type">新</span>}
                 <span className="spacer" />
+                <StarButton kind="card" id={card.card_id} title={card.question} />
                 <button className="ai-entry-btn" onClick={() => ai.open({
                   point_id: card.point_id,
                   card_id: card.card_id,

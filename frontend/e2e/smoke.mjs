@@ -58,8 +58,15 @@ await page.waitForSelector(".progress-panel", { timeout: 5000 });
 check("进度明细展开", await page.locator(".pp-row").count() > 0);
 await page.click(".progress-strip");
 
+// —— 底部导航 + 科目切换 ——
+check("底部导航四项", await page.locator(".bn-item").count() === 4);
+await page.click(".sp-trigger");
+await page.waitForSelector(".sp-menu", { timeout: 5000 });
+check("科目下拉可用", await page.locator(".sp-item").count() === 4);
+await page.click(".sp-item >> nth=0");
+
 // —— 自定义范围 ——
-await page.click('.subbar .badge-btn');
+await page.click('.control-bar .badge-btn >> nth=0');
 await page.waitForSelector(".picker", { timeout: 5000 });
 check("范围选择器打开", await page.locator(".picker-row").count() > 0);
 await page.click(".picker-head .badge-btn");
@@ -72,6 +79,8 @@ check("听有设问块", await page.locator(".listen-block h3").first().textCont
 check("听有解析块", await page.locator(".listen-block h3").nth(1).textContent() === "解析");
 check("答案默认隐藏", await page.locator(".listen-block + div .prose").count() === 0);
 check("有逐条进度", await page.locator(".stepper-bar .progress-bar").count() === 1);
+check("语速是拖动条", await page.locator('.rate-slider input[type="range"]').count() === 1);
+check("听有优先级徽标", await page.locator(".badge.pri").count() > 0);
 await page.click(".stepper-nav .btn.primary");
 check("下一条可用", await page.locator(".stepper-nav .btn.primary").count() === 1);
 
@@ -87,9 +96,11 @@ await page.waitForSelector(".ai-md", { timeout: 15000 });
 check("AI 流式渲染", (await page.textContent(".ai-md"))?.includes("自由水"));
 check("提问带 card_id", Boolean(capturedAsk?.card_id), JSON.stringify(capturedAsk));
 await page.click(".ai-chat-head button");
-await page.click(".flip-front .flip-btn");
+await page.click(".flip-front .question");
 await page.waitForSelector(".grade-row.show");
+check("点卡片任意处即可翻面", true);
 check("翻面显示要点", await page.locator(".flip-back .answer-points li").count() > 0);
+check("记有优先级徽标", await page.locator(".badge.pri").count() > 0);
 await page.click('.grade-row button[data-grade="秒答"]');
 await page.waitForTimeout(500);
 check("评分后仍在逐条模式", await page.locator(".stepper-bar").count() === 1);
@@ -99,6 +110,25 @@ await page.goto(`${BASE}/study?view=study&sid=812`);
 await page.fill(".search-box input", "水势");
 await page.waitForSelector(".search-group-title", { timeout: 10000 });
 check("检索有分组结果", await page.locator(".search-group-title").count() >= 1);
+
+// —— 收藏 + 我的 ——
+const starBefore = await page.locator(".star-btn.on").count();
+await page.click(".star-btn >> nth=0");
+await page.waitForTimeout(500);
+const starAfter = await page.locator(".star-btn.on").count();
+check("收藏可切换", starBefore !== starAfter);
+if (starAfter === 0) {          // 保证 /me 上至少有一条收藏可看
+  await page.click(".star-btn >> nth=0");
+  await page.waitForTimeout(500);
+}
+await page.goto(`${BASE}/me`);
+await page.waitForSelector(".me-page", { timeout: 20000 });
+check("我的页打开", await page.locator(".me-tabs button").count() === 3);
+await page.waitForSelector(".me-row, .empty", { timeout: 10000 });
+check("收藏有内容", await page.locator(".me-row").count() > 0);
+await page.click('.me-tabs button >> nth=1');
+await page.waitForTimeout(400);
+check("错题本可切换", await page.locator(".me-row, .empty").count() > 0);
 
 // —— 历史页 ——
 await page.goto(`${BASE}/history`);

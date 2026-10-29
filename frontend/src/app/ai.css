@@ -1,5 +1,5 @@
 .ai-fab{
-  position:fixed;right:22px;bottom:26px;width:54px;height:54px;border-radius:50%;
+  position:fixed;right:18px;bottom:78px;width:54px;height:54px;border-radius:50%;
   border:1px solid var(--accent);background:var(--accent);color:#fff;font-size:20px;
   cursor:pointer;z-index:60;box-shadow:0 12px 30px var(--accent-soft);
   display:flex;align-items:center;justify-content:center;touch-action:none;
@@ -8,13 +8,13 @@
 .ai-fab:hover{transform:translateY(-2px)}
 .ai-fab.dragging{cursor:grabbing;transform:scale(1.04);box-shadow:0 16px 36px rgba(0,0,0,.24)}
 .ai-chat{
-  position:fixed;right:22px;bottom:92px;width:min(420px,calc(100vw - 32px));
+  position:fixed;right:22px;bottom:144px;width:min(420px,calc(100vw - 32px));
   height:min(640px,calc(100vh - 130px));z-index:61;display:flex;flex-direction:column;
   background:var(--card-strong);border:1px solid var(--line);border-radius:20px;
   box-shadow:0 24px 60px rgba(0,0,0,.22);overflow:hidden;
 }
 @media (max-width:640px){
-  .ai-chat{right:8px;left:8px;bottom:88px;width:auto;height:min(72vh,640px)}
+  .ai-chat{right:8px;left:8px;bottom:132px;width:auto;height:min(72vh,640px)}
 }
 .ai-chat-head{
   display:flex;align-items:center;gap:10px;padding:12px 14px;

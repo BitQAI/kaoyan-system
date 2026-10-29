@@ -3,7 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app import auth, db
-from app.routers import assistant, auth as auth_router, content, progress
+from app.routers import (assistant, auth as auth_router, content, progress,
+                         study)
 
 app = FastAPI(title="考研学习应用")
 
@@ -38,4 +39,5 @@ async def auth_guard(request: Request, call_next):
 app.include_router(auth_router.router)
 app.include_router(content.router)
 app.include_router(progress.router)
+app.include_router(study.router)
 app.include_router(assistant.router)
