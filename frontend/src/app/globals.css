@@ -415,3 +415,27 @@ body{padding-bottom:64px}
 .scope-tabs button.demo{margin-left:auto;border-style:dashed;color:var(--muted)}
 .scope-tabs button.demo.on{background:transparent;color:var(--warn);border-color:var(--warn);font-weight:650}
 .card-meta .cm-dim{opacity:.55}
+.habit-row{display:grid;grid-template-columns:1fr 1.4fr;gap:10px}
+.habit{
+  border:1px solid var(--line);border-radius:12px;background:var(--card);
+  padding:10px 12px;display:flex;flex-direction:column;gap:3px;
+}
+.habit b{font-size:15px}
+.habit span{font-size:11.5px}
+.habit-bar{height:4px;border-radius:999px;background:var(--line);overflow:hidden;margin-top:4px}
+.habit-bar i{display:block;height:100%;background:var(--accent)}
+@media (max-width:420px){.habit-row{grid-template-columns:1fr}}
+
+/* ---------- 滑动评分 ---------- */
+.flip-card.dragging{transition:none}
+.flip-card.dragging .flip-inner{transition:none}
+.swipe-hint{
+  position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-size:26px;font-weight:800;letter-spacing:.1em;padding:10px 22px;
+  border-radius:14px;pointer-events:none;z-index:80;background:var(--card-strong);
+  border:2px solid currentColor;
+}
+.swipe-hint.sw-good{color:var(--good)}
+.swipe-hint.sw-bad{color:var(--bad)}
+.swipe-hint.sw-fuzzy{color:var(--warn)}
+.grade-hint{text-align:center;color:var(--muted);font-size:11.5px;margin:8px 0 0}

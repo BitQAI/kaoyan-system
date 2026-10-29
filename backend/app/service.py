@@ -515,6 +515,54 @@ def _status(done: int, total: int, finish: date | None, exam: date, pace: float,
     return "ok", "按当前速度可以在初试前学完"
 
 
+def _active_days(conn) -> set[str]:
+    """有过任何学习动作的日期集合（记一次、听一条、读一个点都算）。"""
+    days: set[str] = set()
+    for sql in (
+        "SELECT ts FROM card_event",
+        "SELECT updated_at AS ts FROM card_listen",
+        "SELECT read_at AS ts FROM point_progress WHERE read_at IS NOT NULL",
+    ):
+        for r in conn.execute(sql):
+            if r["ts"]:
+                days.add(r["ts"][:10])
+    return days
+
+
+def streak(conn) -> int:
+    """连续学习天数：今天没学就往前找昨天，避免「今天还没开始」直接归零。"""
+    days = _active_days(conn)
+    cur = date.today()
+    if cur.isoformat() not in days:
+        cur -= timedelta(days=1)
+    n = 0
+    while cur.isoformat() in days:
+        n += 1
+        cur -= timedelta(days=1)
+    return n
+
+
+def daily_progress(conn) -> dict:
+    today = date.today().isoformat()
+    goal = 30
+    row = conn.execute("SELECT value FROM settings WHERE key = 'daily_goal'").fetchone()
+    if row:
+        try:
+            goal = max(1, int(row["value"]))
+        except (TypeError, ValueError):
+            pass
+    cards = conn.execute(
+        "SELECT COUNT(*) FROM card_event WHERE substr(ts,1,10) = ?", (today,)
+    ).fetchone()[0]
+    listened = conn.execute(
+        "SELECT COUNT(*) FROM card_listen WHERE substr(updated_at,1,10) = ?", (today,)
+    ).fetchone()[0]
+    read = conn.execute(
+        "SELECT COUNT(*) FROM point_progress WHERE substr(read_at,1,10) = ?", (today,)
+    ).fetchone()[0]
+    return {"goal": goal, "cards": cards, "listened": listened, "read": read}
+
+
 def timeline(conn, sid: str | None = None, days: int = 21) -> dict:
     """按天的累计完成曲线 + 线性外推预测。
 
@@ -621,4 +669,6 @@ def timeline(conn, sid: str | None = None, days: int = 21) -> dict:
         "finish_date": finish.isoformat() if finish else None,
         "series": series, "subjects": subjects,
         "data_quality": {"derived_cards": derived, "recorded_cards": done - derived},
+        "streak": streak(conn),
+        "daily": daily_progress(conn),
     }

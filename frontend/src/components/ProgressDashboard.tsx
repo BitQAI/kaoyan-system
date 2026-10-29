@@ -17,6 +17,8 @@ export interface Timeline {
   series: SeriesPoint[];
   subjects: SubjectLine[];
   data_quality: { derived_cards: number; recorded_cards: number };
+  streak: number;
+  daily: { goal: number; cards: number; listened: number; read: number };
 }
 
 const STATUS_LABEL: Record<string, string> = {
@@ -55,6 +57,8 @@ function demoData(): Timeline {
       { id: "204", name: "204 英语（二）", total: 80, done: 60, percent: 75, pace: 2.1, finish_date: iso(exam), status: "ok" },
     ],
     data_quality: { derived_cards: 0, recorded_cards: 150 },
+    streak: 6,
+    daily: { goal: 30, cards: 18, listened: 12, read: 5 },
   };
 }
 
@@ -100,6 +104,20 @@ export default function ProgressDashboard() {
             <span className={`dh-pill st-${view.status}`}>{STATUS_LABEL[view.status] ?? view.status}</span>
           </div>
           <p className={`dh-note st-${view.status}`}>{view.status_text}</p>
+
+          <div className="habit-row">
+            <div className="habit">
+              <b>连续 {view.streak ?? 0} 天</b>
+              <span className="muted">有学习记录的天数</span>
+            </div>
+            <div className="habit">
+              <b>今日 {view.daily?.cards ?? 0}/{view.daily?.goal ?? 30}</b>
+              <span className="muted">张卡片</span>
+              <span className="habit-bar">
+                <i style={{ width: `${Math.min(100, ((view.daily?.cards ?? 0) / (view.daily?.goal ?? 30)) * 100)}%` }} />
+              </span>
+            </div>
+          </div>
 
           <div className="chart-card">
             <ProgressChart series={view.series} examDate={view.exam_date} today={view.today} />

@@ -110,3 +110,19 @@ def test_timeline_insufficient_on_first_day(client):
     got = client.get("/api/stats/timeline").json()
     if got["done"] > 0 and got["days_left"] > 0:
         assert got["status"] in {"insufficient", "late", "risk", "ok", "empty"}
+
+
+def test_timeline_has_streak_and_daily(client):
+    got = client.get("/api/stats/timeline").json()
+    assert isinstance(got["streak"], int) and got["streak"] >= 0
+    d = got["daily"]
+    assert {"goal", "cards", "listened", "read"} <= set(d)
+    assert d["goal"] >= 1
+
+
+def test_streak_counts_today(conn):
+    from app import service
+    conn.execute("INSERT INTO card_event (card_id, ts, result) VALUES (?,?,?)",
+                 ("c8120001-1", __import__("datetime").datetime.now().isoformat(timespec="seconds"), "秒答"))
+    conn.commit()
+    assert service.streak(conn) >= 1

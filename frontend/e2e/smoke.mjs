@@ -130,6 +130,18 @@ await page.waitForTimeout(500);
 check("评分后仍在逐条模式", await page.locator(".stepper-bar").count() === 1);
 check("卡片底部有学习记录条", await page.locator(".card-meta").count() > 0);
 
+// 滑动评分：翻面后右滑 = 秒答，应推进到下一张
+await page.click(".flip-front .flip-btn");
+await page.waitForSelector(".grade-row.show");
+const posBeforeSwipe = await page.textContent(".stepper-bar .muted");
+const box = await page.locator(".flip-card").boundingBox();
+await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+await page.mouse.down();
+await page.mouse.move(box.x + box.width / 2 + 130, box.y + box.height / 2, { steps: 6 });
+await page.mouse.up();
+await page.waitForTimeout(700);
+check("右滑评分下一张", posBeforeSwipe !== await page.textContent(".stepper-bar .muted"));
+
 // —— 搜索 ——
 await page.goto(`${BASE}/study?view=study&sid=812`);
 await page.fill(".search-box input", "水势");

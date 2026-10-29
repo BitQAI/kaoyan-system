@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { postJson } from "@/lib/api";
 import { answerHtml } from "@/lib/render";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
@@ -21,6 +21,8 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
   const [loading, setLoading] = useState(true);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [favOpen, setFavOpen] = useState(false);
+  const [swipe, setSwipe] = useState<{ dx: number; dy: number; label: string } | null>(null);
+  const dragRef = useRef({ x: 0, y: 0, active: false, moved: false });
   const [scope, setScope] = useState<Scope>(DEFAULT_SCOPE);
   const ai = useAi();
 
@@ -65,6 +67,45 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
     setIndex((i) => i + 1);
     void postJson("/api/progress/card", { card_id: card.card_id, result }).catch(() => {});
   }, [card]);
+
+  /** 滑动评分：右=秒答、左=忘了、上=吃力（只在翻面后生效） */
+  function swipeDir(dx: number, dy: number): "秒答" | "忘了" | "吃力" | null {
+    const TH = 64;
+    if (Math.abs(dx) > TH && Math.abs(dx) > Math.abs(dy)) return dx > 0 ? "秒答" : "忘了";
+    if (dy < -TH && Math.abs(dy) > Math.abs(dx)) return "吃力";
+    return null;
+  }
+
+  function onPointerDown(e: React.PointerEvent) {
+    if (!flipped) return;
+    dragRef.current = { x: e.clientX, y: e.clientY, active: true, moved: false };
+    setSwipe(null);
+  }
+
+  function onPointerMove(e: React.PointerEvent) {
+    const d = dragRef.current;
+    if (!d.active) return;
+    const dx = e.clientX - d.x;
+    const dy = e.clientY - d.y;
+    if (Math.hypot(dx, dy) > 10) d.moved = true;
+    const dir = swipeDir(dx, dy);
+    if (dir && !swipe) {
+      try { navigator.vibrate?.(15); } catch { /* 忽略 */ }
+    }
+    setSwipe(dir ? { dx: Math.max(-90, Math.min(90, dx)), dy: Math.max(-70, Math.min(0, dy)), label: dir } : { dx: dx * 0.35, dy: dy * 0.35, label: "" });
+  }
+
+  function onPointerUp() {
+    const d = dragRef.current;
+    if (!d.active) return;
+    d.active = false;
+    const dir = swipe?.label;
+    setSwipe(null);
+    if (dir) {
+      try { navigator.vibrate?.(20); } catch { /* 忽略 */ }
+      grade(dir);
+    }
+  }
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -141,10 +182,16 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
       </div>
 
       <div
-        className={`flip-card${flipped ? " flipped" : ""} clickable`}
+        className={`flip-card${flipped ? " flipped" : ""} clickable${swipe ? " dragging" : ""}`}
+        style={swipe ? { transform: `translate(${swipe.dx}px, ${swipe.dy}px)` } : undefined}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={() => { dragRef.current.active = false; setSwipe(null); }}
         onClick={(e) => {
           const el = e.target as HTMLElement;
           if (el.closest("button, a, input, summary, .options")) return;
+          if (dragRef.current.moved) { dragRef.current.moved = false; return; }
           setFlipped((f) => !f);
         }}
         role="button"
@@ -232,6 +279,12 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
         </div>
       </div>
 
+      {swipe?.label && (
+        <div className={`swipe-hint sw-${swipe.label === "秒答" ? "good" : swipe.label === "忘了" ? "bad" : "fuzzy"}`}>
+          {swipe.label}
+        </div>
+      )}
+
       <div className={`grade-row${flipped ? " show" : ""}`}>
         {GRADES.map((g) => (
           <button key={g} data-grade={g} onClick={() => grade(g)} disabled={!flipped}>{g}</button>
@@ -241,7 +294,7 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
       <div className="stepper-nav">
         <button className="btn" onClick={() => { setFlipped(false); setIndex((i) => Math.max(0, i - 1)); }}
           disabled={index === 0}>上一张</button>
-        <span className="muted" style={{ fontSize: 12 }}>空格翻面 · 1 秒答 · 2 吃力 · 3 忘了</span>
+        <span className="muted" style={{ fontSize: 12 }}>空格翻面 · 1/2/3 或滑动评分</span>
         <button className="btn" onClick={() => { setFlipped(false); setIndex((i) => i + 1); }}>下一张</button>
       </div>
 
