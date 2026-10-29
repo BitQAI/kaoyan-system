@@ -6,6 +6,7 @@ import { useAi } from "@/components/AiProvider";
 import ListenView from "@/components/ListenView";
 import MemoView from "@/components/MemoView";
 import PointDetail from "@/components/PointDetail";
+import PointNav from "@/components/PointNav";
 import { HeaderProgress, ProgressPanel } from "@/components/ProgressStrip";
 import RangePicker from "@/components/RangePicker";
 import SearchPanel from "@/components/SearchPanel";
@@ -128,20 +129,8 @@ function StudyInner() {
             <SearchPanel sid={sid} onPick={(id) => go({ pid: id })} />
           </div>
           <div className="content">
-            <div className="point-strip" role="tablist" aria-label="知识点">
-              {points.map((p) => (
-                <button
-                  key={p.id}
-                  role="tab"
-                  aria-selected={p.id === activePid}
-                  className={`ps-item${p.id === activePid ? " on" : ""}`}
-                  onClick={() => go({ pid: p.id })}
-                >
-                  <span className="ps-pri">{p.priority}</span>
-                  {p.title}
-                </button>
-              ))}
-            </div>
+            <PointNav points={points} chapters={visibleChapters} activePid={activePid}
+              onPick={(id) => go({ pid: id })} />
             {activePid
               ? <PointDetail pid={activePid} onNavigate={(id) => go({ pid: id })}
                   onRead={() => refreshProgress()} />
