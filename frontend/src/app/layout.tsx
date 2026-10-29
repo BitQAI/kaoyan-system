@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import { AiProvider } from "@/components/AiProvider";
 import { FavoritesProvider } from "@/components/FavoritesProvider";
 import BottomNav from "@/components/BottomNav";
@@ -23,7 +24,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="zh-CN">
       <body>
         <FavoritesProvider>
-          <AiProvider>{children}</AiProvider>
+          <Suspense fallback={null}>
+            <AiProvider>{children}</AiProvider>
+          </Suspense>
           <BottomNav />
         </FavoritesProvider>
       </body>

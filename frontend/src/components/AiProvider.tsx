@@ -1,4 +1,5 @@
 "use client";
+import { usePathname, useSearchParams } from "next/navigation";
 import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import AiChat from "./AiChat";
 import AiFab from "./AiFab";
@@ -23,6 +24,11 @@ const Ctx = createContext<AiCtx>({ open: () => {}, close: () => {}, isOpen: fals
 export const useAi = () => useContext(Ctx);
 
 export function AiProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const params = useSearchParams();
+  const view = params.get("view") ?? "study";
+  // 听/记 每张卡都有「问 AI」，悬浮球会挡住「下一条」；我的页也不需要
+  const hideFab = view === "listen" || view === "memo" || pathname.startsWith("/me");
   const [isOpen, setOpen] = useState(false);
   const [target, setTarget] = useState<AiTarget | null>(null);
 
@@ -36,7 +42,7 @@ export function AiProvider({ children }: { children: React.ReactNode }) {
   return (
     <Ctx.Provider value={value}>
       {children}
-      <AiFab open={isOpen} onToggle={() => setOpen((o) => !o)} />
+      {!hideFab && <AiFab open={isOpen} onToggle={() => setOpen((o) => !o)} />}
       <AiChat open={isOpen} onClose={close} target={target} />
     </Ctx.Provider>
   );

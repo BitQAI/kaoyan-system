@@ -113,13 +113,18 @@ check("检索有分组结果", await page.locator(".search-group-title").count()
 
 // —— 收藏 + 我的 ——
 const starBefore = await page.locator(".star-btn.on").count();
+const favPosted = () => page.waitForResponse(
+  (r) => r.url().includes("/api/favorites") && r.request().method() === "POST",
+  { timeout: 8000 });
+let posted = favPosted();
 await page.click(".star-btn >> nth=0");
-await page.waitForTimeout(500);
+await posted;
 const starAfter = await page.locator(".star-btn.on").count();
 check("收藏可切换", starBefore !== starAfter);
 if (starAfter === 0) {          // 保证 /me 上至少有一条收藏可看
+  posted = favPosted();
   await page.click(".star-btn >> nth=0");
-  await page.waitForTimeout(500);
+  await posted;                 // 等落库完成再跳页，否则 goto 会中断请求
 }
 await page.goto(`${BASE}/me`);
 await page.waitForSelector(".me-page", { timeout: 20000 });
