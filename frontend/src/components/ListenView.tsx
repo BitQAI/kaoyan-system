@@ -50,6 +50,18 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
       .finally(() => setLoading(false));
   }, [sid]);
 
+  // 语音引擎预热：首次朗读常要等音色加载，先空跑一次
+  useEffect(() => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    window.speechSynthesis.getVoices();
+    try {
+      const warm = new SpeechSynthesisUtterance(" ");
+      warm.volume = 0;
+      window.speechSynthesis.speak(warm);
+      window.speechSynthesis.cancel();
+    } catch { /* 忽略 */ }
+  }, []);
+
   useEffect(() => {
     setSupported(typeof window !== "undefined" && "speechSynthesis" in window);
     const saved = readScope(sid);
@@ -66,6 +78,49 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   }
 
   const item = items[idx];
+
+  // 锁屏 / 耳机控制：把当前朗读登记成系统媒体会话
+  useEffect(() => {
+    const ms = (navigator as unknown as { mediaSession?: any }).mediaSession;
+    if (!ms || !item) return;
+    try {
+      const MM = (window as unknown as { MediaMetadata?: any }).MediaMetadata;
+      if (MM) {
+        ms.metadata = new MM({
+          title: item.title,
+          artist: item.chapter_name,
+          album: "考研听学",
+        });
+      }
+    } catch { /* 老浏览器忽略 */ }
+  }, [item]);
+
+  useEffect(() => {
+    const ms = (navigator as unknown as { mediaSession?: any }).mediaSession;
+    if (!ms) return;
+    const set = (k: string, fn: (() => void) | null) => {
+      try { ms.setActionHandler(k, fn); } catch { /* 不支持的动作忽略 */ }
+    };
+    set("play", () => { if (item) speak(item); });
+    set("pause", () => stop());
+    set("previoustrack", () => step(-1));
+    set("nexttrack", () => step(1));
+    return () => {
+      ["play", "pause", "previoustrack", "nexttrack"].forEach((k) => set(k, null));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [item?.card_id, items.length]);
+
+  // 从后台切回时，若仍处于朗读状态就尝试续播（iOS 仍可能被系统停掉）
+  useEffect(() => {
+    function onVisible() {
+      if (document.visibilityState === "visible" && speaking) {
+        try { window.speechSynthesis.resume(); } catch { /* 忽略 */ }
+      }
+    }
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, [speaking]);
 
   function clearTimer() {
     if (timerRef.current !== null) {

@@ -183,6 +183,20 @@ check("四科进度列表可见", await page.locator(".sl-row").count() === 4);
 await page.click('.scope-tabs button:has-text("示例")');
 await page.waitForSelector(".demo-banner", { timeout: 5000 });
 check("示例数据有明确标注", (await page.textContent(".demo-banner"))?.includes("示例数据"));
+await page.click('.scope-tabs button:has-text("退出示例")');
+await page.waitForTimeout(600);
+check("有本周对比", (await page.locator(".weekly-row").count()) === 1);
+check("有里程碑进度", (await page.locator(".ms-next").count()) === 1);
+
+// 外观切换
+await page.click('.me-tabs button:has-text("账号")');
+await page.waitForSelector(".theme-row", { timeout: 5000 });
+await page.click('.theme-row button:has-text("深色")');
+await page.waitForTimeout(300);
+check("深色主题生效", await page.evaluate(() => document.documentElement.dataset.theme === "dark"));
+await page.click('.theme-row button:has-text("跟随系统")');
+await page.waitForTimeout(200);
+check("可切回跟随系统", await page.evaluate(() => !document.documentElement.dataset.theme));
 
 // —— 历史页 ——
 await page.goto(`${BASE}/history`);

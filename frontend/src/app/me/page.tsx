@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ProgressDashboard from "@/components/ProgressDashboard";
+import { applyTheme, readTheme, type Theme } from "@/lib/theme";
 import { delJson, getJson, setToken } from "@/lib/api";
 import type { ProgressStats } from "@/lib/types";
 
@@ -30,6 +31,9 @@ export default function MePage() {
   const [weakCounts, setWeakCounts] = useState({ forgot: 0, fuzzy: 0, total: 0 });
   const [stats, setStats] = useState<ProgressStats | null>(null);
   const [error, setError] = useState("");
+  const [theme, setTheme] = useState<Theme>("auto");
+
+  useEffect(() => { setTheme(readTheme()); }, []);
 
   useEffect(() => {
     getJson<{ items: FavPoint[] }>("/api/favorites?kind=point")
@@ -144,6 +148,19 @@ export default function MePage() {
               <span className="muted">所有 AI 会话</span>
             </span>
             <Link className="badge-btn" href="/history">打开</Link>
+          </div>
+          <div className="me-row" style={{ flexDirection: "column", alignItems: "stretch", gap: 8 }}>
+            <span className="me-main">
+              <b>外观</b>
+              <span className="muted">默认跟随系统；手动选择只影响这台设备</span>
+            </span>
+            <div className="theme-row">
+              {([["auto", "跟随系统"], ["light", "浅色"], ["dark", "深色"]] as [Theme, string][])
+                .map(([k, label]) => (
+                  <button key={k} className={theme === k ? "on" : ""}
+                    onClick={() => { setTheme(k); applyTheme(k); }}>{label}</button>
+                ))}
+            </div>
           </div>
           <div className="me-row">
             <span className="me-main">

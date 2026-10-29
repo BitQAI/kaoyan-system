@@ -563,6 +563,69 @@ def daily_progress(conn) -> dict:
     return {"goal": goal, "cards": cards, "listened": listened, "read": read}
 
 
+def weekly(conn) -> dict:
+    """本周 vs 上周的复习张数（周一为一周起点）。"""
+    today = date.today()
+    monday = today - timedelta(days=today.weekday())
+    last_monday = monday - timedelta(days=7)
+    rows = conn.execute(
+        "SELECT substr(ts,1,10) AS d, COUNT(*) AS n FROM card_event GROUP BY d"
+    ).fetchall()
+    this_week = last_week = 0
+    for r in rows:
+        try:
+            d = date.fromisoformat(r["d"])
+        except (TypeError, ValueError):
+            continue
+        if d >= monday:
+            this_week += r["n"]
+        elif d >= last_monday:
+            last_week += r["n"]
+    delta = None
+    if last_week > 0:
+        delta = round((this_week - last_week) / last_week * 100)
+    return {"this_week": this_week, "last_week": last_week, "delta_pct": delta,
+            "week_start": monday.isoformat()}
+
+
+def milestones(conn, limit: int = 8) -> dict:
+    """具名成就：累计张数、连续天数、整章读完。全部由数据算出来，不随机生成。"""
+    items: list[dict] = []
+    graded = conn.execute("SELECT COUNT(*) FROM card_event").fetchone()[0]
+    for n in (100, 500, 1000, 2000, 3000):
+        if graded >= n:
+            items.append({"key": f"graded-{n}", "label": f"累计记满 {n} 张"})
+    st = streak(conn)
+    for n in (3, 7, 14, 30, 60):
+        if st >= n:
+            items.append({"key": f"streak-{n}", "label": f"连续学习 {n} 天"})
+    for r in conn.execute("""
+        SELECT ch.id, ch.name,
+               (SELECT COUNT(*) FROM point p WHERE p.chapter_id = ch.id) AS total,
+               (SELECT COUNT(*) FROM point_progress pp
+                JOIN point p ON p.id = pp.point_id
+                WHERE p.chapter_id = ch.id AND pp.read_at IS NOT NULL) AS read_n
+        FROM chapter ch
+    """).fetchall():
+        if r["total"] and r["read_n"] >= r["total"]:
+            items.append({"key": f"chapter-{r['id']}", "label": f"{r['name']} 全部读完"})
+    # 下一个里程碑：取两条阶梯里最接近的那个，空状态也有内容可看
+    next_ms = None
+    graded_target = next((n for n in (100, 500, 1000, 2000, 3000) if graded < n), None)
+    streak_target = next((n for n in (3, 7, 14, 30, 60) if st < n), None)
+    candidates = []
+    if graded_target:
+        candidates.append({"label": f"累计记满 {graded_target} 张", "current": graded,
+                           "target": graded_target, "kind": "cards"})
+    if streak_target:
+        candidates.append({"label": f"连续学习 {streak_target} 天", "current": st,
+                           "target": streak_target, "kind": "streak"})
+    if candidates:
+        next_ms = min(candidates, key=lambda c: c["current"] / c["target"])
+        next_ms["pct"] = round(next_ms["current"] / next_ms["target"] * 100)
+    return {"count": len(items), "items": items[-limit:], "next": next_ms}
+
+
 def timeline(conn, sid: str | None = None, days: int = 21) -> dict:
     """按天的累计完成曲线 + 线性外推预测。
 
@@ -671,4 +734,6 @@ def timeline(conn, sid: str | None = None, days: int = 21) -> dict:
         "data_quality": {"derived_cards": derived, "recorded_cards": done - derived},
         "streak": streak(conn),
         "daily": daily_progress(conn),
+        "weekly": weekly(conn),
+        "milestones": milestones(conn),
     }

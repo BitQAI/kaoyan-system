@@ -126,3 +126,20 @@ def test_streak_counts_today(conn):
                  ("c8120001-1", __import__("datetime").datetime.now().isoformat(timespec="seconds"), "秒答"))
     conn.commit()
     assert service.streak(conn) >= 1
+
+
+def test_weekly_comparison(client):
+    got = client.get("/api/stats/timeline").json()["weekly"]
+    assert got["this_week"] >= 0 and got["last_week"] >= 0
+    assert "week_start" in got
+    if got["last_week"] == 0:
+        assert got["delta_pct"] is None
+
+
+def test_milestones_shape(client):
+    got = client.get("/api/stats/timeline").json()["milestones"]
+    assert isinstance(got["items"], list)
+    assert got["count"] >= len(got["items"])
+    if got["next"]:
+        assert got["next"]["current"] < got["next"]["target"]
+        assert 0 <= got["next"]["pct"] <= 100

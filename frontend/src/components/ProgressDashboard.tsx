@@ -19,6 +19,12 @@ export interface Timeline {
   data_quality: { derived_cards: number; recorded_cards: number };
   streak: number;
   daily: { goal: number; cards: number; listened: number; read: number };
+  weekly: { this_week: number; last_week: number; delta_pct: number | null; week_start: string };
+  milestones: {
+    count: number;
+    items: { key: string; label: string }[];
+    next: { label: string; current: number; target: number; kind: string; pct: number } | null;
+  };
 }
 
 const STATUS_LABEL: Record<string, string> = {
@@ -59,6 +65,16 @@ function demoData(): Timeline {
     data_quality: { derived_cards: 0, recorded_cards: 150 },
     streak: 6,
     daily: { goal: 30, cards: 18, listened: 12, read: 5 },
+    weekly: { this_week: 86, last_week: 62, delta_pct: 39, week_start: iso(today) },
+    milestones: {
+      count: 3,
+      items: [
+        { key: "streak-3", label: "连续学习 3 天" },
+        { key: "streak-7", label: "连续学习 7 天" },
+        { key: "chapter-812-02", label: "第二章 植物的水分代谢 全部读完" },
+      ],
+      next: { label: "累计记满 500 张", current: 150, target: 500, kind: "cards", pct: 30 },
+    },
   };
 }
 
@@ -150,7 +166,42 @@ export default function ProgressDashboard() {
           </div>
 
           {!demo && (
-            <div className="subject-list">
+            <>
+            <div className="weekly-row">
+            <span>本周记了 <b>{view.weekly?.this_week ?? 0}</b> 张</span>
+            {view.weekly?.delta_pct === null || view.weekly?.delta_pct === undefined ? (
+              <span className="muted">上周没有记录，下周就能比了</span>
+            ) : (
+              <span className={view.weekly.delta_pct >= 0 ? "wk-up" : "wk-down"}>
+                较上周 {view.weekly.delta_pct >= 0 ? "+" : ""}{view.weekly.delta_pct}%
+              </span>
+            )}
+          </div>
+
+          {view.milestones && (
+            <div className="ms-block">
+              {view.milestones.items.length > 0 && (
+                <div className="ms-list">
+                  {view.milestones.items.map((m) => (
+                    <span className="ms-chip" key={m.key}>✓ {m.label}</span>
+                  ))}
+                </div>
+              )}
+              {view.milestones.next && (
+                <div className="ms-next">
+                  <span className="muted">下一个：{view.milestones.next.label}</span>
+                  <span className="ms-bar">
+                    <i style={{ width: `${view.milestones.next.pct}%` }} />
+                  </span>
+                  <span className="muted">
+                    {view.milestones.next.current}/{view.milestones.next.target}
+                  </span>
+                </div>
+              )}
+            </div>
+          )}
+
+          <div className="subject-list">
               {subjects.map((s) => (
                 <div className="sl-row" key={s.id}>
                   <div className="sl-head">
@@ -168,6 +219,7 @@ export default function ProgressDashboard() {
                 </div>
               ))}
             </div>
+            </>
           )}
 
           {!demo && view.data_quality.derived_cards > 0 && (
