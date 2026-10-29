@@ -15,10 +15,6 @@ import { getJson } from "@/lib/api";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
 import type { Manifest, PointIndex, ProgressStats, Subject, ViewMode } from "@/lib/types";
 
-const ACCENTS: Record<string, string> = {
-  "315": "#2563eb", "812": "#2f8f5b", "101": "#d9485f", "204": "#7c5cff",
-};
-
 function StudyInner() {
   const params = useSearchParams();
   const router = useRouter();
@@ -47,9 +43,6 @@ function StudyInner() {
 
   useEffect(() => {
     setScope(readScope(sid));
-    const accent = ACCENTS[sid] ?? "#2f8f5b";
-    document.documentElement.style.setProperty("--accent", accent);
-    document.documentElement.style.setProperty("--accent-soft", hexToSoft(accent));
   }, [sid]);
 
   const subject: Subject | undefined = manifest?.subjects.find((s) => s.id === sid);
@@ -150,11 +143,6 @@ function StudyInner() {
       )}
     </>
   );
-}
-
-function hexToSoft(hex: string): string {
-  const n = parseInt(hex.slice(1), 16);
-  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},.14)`;
 }
 
 export default function StudyPage() {

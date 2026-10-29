@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light" data-variant="a">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>玻璃态色彩方案 · 学页面</title>
+<style>
+  :root{
+    --glass-blur:24px;
+    --radius:26px;
+    --line:rgba(10,18,32,.10);
+    --ink:#0a1220;
+    --muted:#5a6472;
+    --good:#248A3D;
+    --warn:#B25E00;
+    --bad:#D70015;
+    --shadow:0 10px 34px rgba(16,24,40,.10);
+    --glass-edge:rgba(255,255,255,.62);
+    --glass-inner:rgba(255,255,255,.55);
+    --card:rgba(255,255,255,.62);
+    --card-strong:rgba(255,255,255,.86);
+    --bg2:rgba(118,118,128,.12);
+    --bg:#eef2f8;
+    --glow1:rgba(0,122,255,.16);
+    --glow2:rgba(90,200,250,.14);
+    --glow3:rgba(175,82,222,.10);
+    --accent:#007AFF;
+    --accent-ink:#0062CC;
+    --accent-soft:rgba(0,122,255,.14);
+  }
+  html[data-theme="dark"]{
+    --line:rgba(255,255,255,.10);
+    --ink:#eef2f8;
+    --muted:#9aa6b8;
+    --good:#34C759;
+    --warn:#FF9F0A;
+    --bad:#FF453A;
+    --shadow:0 14px 44px rgba(0,0,0,.38);
+    --glass-edge:rgba(255,255,255,.12);
+    --glass-inner:rgba(255,255,255,.10);
+    --card:rgba(30,38,52,.55);
+    --card-strong:rgba(34,42,58,.88);
+    --bg2:rgba(118,118,128,.24);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;padding:0 0 104px;color:var(--ink);min-height:100vh;
+    font:15px/1.65 -apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    -webkit-tap-highlight-color:transparent;
+    background:var(--bg);
+    transition:color .2s ease;
+  }
+  /* 固定光晕层：比 background-attachment:fixed 在 iOS Safari 上可靠得多 */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(880px 600px at 6% -10%,  var(--glow1), transparent 64%),
+      radial-gradient(760px 540px at 102% 2%,  var(--glow2), transparent 62%),
+      radial-gradient(820px 620px at 48% 58%,  var(--glow3), transparent 70%),
+      var(--bg);
+  }
+
+  /* ---------- 演示控制条（不属于被模仿的界面） ---------- */
+  .demo-bar{
+    position:fixed;inset:0 0 auto 0;z-index:200;
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    padding:10px 18px;
+    background:var(--card-strong);border-bottom:1px solid var(--glass-edge);
+    -webkit-backdrop-filter:blur(18px) saturate(180%);
+    backdrop-filter:blur(18px) saturate(180%);
+    box-shadow:0 4px 24px rgba(16,24,40,.06);
+  }
+  .demo-bar h1{font-size:12.5px;margin:0;font-weight:750;letter-spacing:.02em;white-space:nowrap}
+  .demo-note{flex:1;min-width:240px;font-size:11.5px;color:var(--muted);line-height:1.5}
+  .vchips{display:flex;gap:3px;padding:3px;border-radius:999px;background:var(--bg2);border:1px solid var(--line)}
+  .vchip{
+    border:0;background:transparent;color:var(--muted);font:inherit;font-size:12px;font-weight:650;
+    padding:5px 11px;border-radius:999px;cursor:pointer;transition:.18s ease;white-space:nowrap;
+  }
+  .vchip:hover{color:var(--ink)}
+  .vchip.on{background:var(--card-strong);color:var(--accent-ink);box-shadow:0 1px 4px rgba(16,24,40,.16)}
+  .theme-btn{
+    border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:12px;
+    font-weight:650;padding:6px 13px;border-radius:999px;cursor:pointer;white-space:nowrap;
+  }
+  .theme-btn:hover{background:var(--bg2)}
+
+  /* ---------- 被模仿的界面 ---------- */
+  .app{max-width:780px;margin:0 auto;padding:0 14px}
+
+  .glass{
+    background:var(--card);
+    border:1px solid var(--glass-edge);
+    box-shadow:var(--shadow), inset 0 1px 0 var(--glass-inner);
+    -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(180%);
+    backdrop-filter:blur(var(--glass-blur)) saturate(180%);
+  }
+
+  .control-bar{
+    display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+    padding:11px 14px;border-radius:20px;
+  }
+  .pill{
+    display:flex;align-items:center;gap:6px;border:1px solid var(--line);
+    background:var(--bg2);color:var(--ink);border-radius:999px;padding:6px 12px;
+    font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap;
+  }
+  .pill b{color:var(--accent-ink);font-weight:750}
+  .caret{color:var(--muted);font-size:10px}
+  .hp{
+    display:flex;align-items:center;gap:8px;flex:1 1 140px;min-width:0;
+    border:1px solid var(--line);background:var(--bg2);border-radius:999px;
+    padding:5px 12px;font-size:11.5px;color:var(--muted);
+  }
+  .hp b{color:var(--ink);font-weight:700}
+  .hp-bar{flex:1;min-width:36px;height:4px;border-radius:999px;background:var(--line);overflow:hidden}
+  .hp-bar i{display:block;height:100%;background:var(--accent);border-radius:999px}
+  .hp-more{color:var(--accent-ink);font-size:11px;font-weight:650}
+  .mode-tabs{
+    display:flex;gap:3px;padding:3px;border:1px solid var(--line);
+    border-radius:999px;background:var(--bg2);
+  }
+  .mode-tabs button{
+    border:0;background:transparent;color:var(--muted);font:inherit;font-size:12.5px;
+    font-weight:650;padding:5px 15px;border-radius:999px;cursor:pointer;transition:.18s ease;
+  }
+  .mode-tabs button.on{
+    background:var(--card-strong);color:var(--accent-ink);
+    box-shadow:0 1px 3px rgba(16,24,40,.16);
+  }
+
+  .progress-strip{
+    display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+    margin:12px 0;padding:9px 14px;border-radius:16px;cursor:pointer;
+  }
+  .ps-chip{font-size:11.5px;color:var(--muted);white-space:nowrap}
+  .ps-chip b{color:var(--ink);font-weight:700}
+  .ps-bar{flex:1;min-width:70px;height:4px;border-radius:999px;background:var(--line);overflow:hidden}
+  .ps-bar i{display:block;height:100%;background:var(--accent);border-radius:999px}
+  .ps-more{font-size:11px;color:var(--accent-ink);font-weight:650;white-space:nowrap}
+
+  .study-card{border-radius:var(--radius);padding:22px}
+  .card-top{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+  .card-top .spacer{flex:1}
+  .badge{
+    font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);
+    color:var(--muted);white-space:nowrap;
+  }
+  .badge.kind{color:var(--accent-ink);border-color:var(--accent-ink);background:var(--accent-soft);font-weight:700}
+  .badge.hot{color:var(--warn);background:rgba(178,106,0,.12);border-color:transparent;font-weight:700}
+  html[data-theme="dark"] .badge.hot{background:rgba(255,159,10,.16)}
+  .star{
+    border:0;background:transparent;color:var(--muted);font-size:17px;line-height:1;
+    cursor:pointer;padding:2px 4px;border-radius:8px;
+  }
+  .star:hover{color:var(--warn)}
+
+  .study-title{font-size:21px;line-height:1.45;font-weight:720;margin:2px 0 6px;letter-spacing:-.01em}
+  .study-point{font-size:12.5px;color:var(--muted);line-height:1.6;margin:0 0 16px}
+  .study-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:20px}
+  @media (max-width:700px){.study-grid{grid-template-columns:1fr;gap:16px}}
+  .study-grid h3{
+    font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent-ink);margin:0 0 7px;font-weight:700;
+  }
+  .study-grid h3:not(:first-child){margin-top:18px}
+  .prose p{margin:0 0 10px;font-size:13.8px;line-height:1.82}
+  .prose p:last-child{margin-bottom:0}
+  mark.kw{
+    background:none;color:inherit;font-weight:650;
+    text-decoration:underline;text-decoration-color:var(--accent);
+    text-decoration-thickness:2px;text-underline-offset:3px;
+  }
+  .answer-points{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px}
+  .answer-points li{position:relative;padding-left:19px;line-height:1.72;font-size:13.5px}
+  .answer-points li::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:750}
+
+  .card-item{
+    border:1px solid var(--line);border-radius:14px;padding:11px 12px;margin-bottom:9px;
+    background:var(--bg2);
+    -webkit-backdrop-filter:blur(12px) saturate(150%);
+    backdrop-filter:blur(12px) saturate(150%);
+  }
+  .card-item .q{font-size:13.5px;font-weight:650;line-height:1.6;margin:0 0 5px}
+  .card-item .a{font-size:13px;line-height:1.72;margin:0;color:var(--muted)}
+  .card-meta{
+    display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+    margin-top:10px;padding-top:10px;border-top:1px solid var(--line);
+    font-size:11px;color:var(--muted);
+  }
+  .cm-items{display:flex;flex-wrap:wrap;gap:4px 10px}
+  .cm-items .ok{color:var(--good)}
+  .cm-items .ww{color:var(--warn)}
+
+  .bottom-nav{
+    position:fixed;left:0;right:0;bottom:0;z-index:70;
+    max-width:520px;margin:0 auto;display:flex;gap:4px;
+    padding:6px 10px max(6px, env(safe-area-inset-bottom));
+    background:var(--card-strong);border:1px solid var(--glass-edge);border-bottom:0;
+    border-radius:20px 20px 0 0;
+    -webkit-backdrop-filter:blur(28px) saturate(180%);
+    backdrop-filter:blur(28px) saturate(180%);
+    box-shadow:0 -6px 28px rgba(16,24,40,.10);
+  }
+  .bn-item{
+    flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;
+    padding:6px 0;border-radius:13px;text-decoration:none;color:var(--muted);font-size:11px;
+  }
+  .bn-icon{font-size:16px;line-height:1}
+  .bn-item.on{color:var(--accent-ink);background:var(--accent-soft);font-weight:700}
+
+  .ai-fab{
+    position:fixed;right:calc(50% - 250px);bottom:84px;width:50px;height:50px;border-radius:50%;
+    border:1px solid rgba(255,255,255,.35);background:var(--accent);color:#fff;font-size:18px;
+    display:flex;align-items:center;justify-content:center;z-index:80;
+    box-shadow:0 10px 26px var(--accent-soft), inset 0 1px 0 rgba(255,255,255,.45);
+    cursor:pointer;
+  }
+  @media (max-width:560px){.ai-fab{right:16px}}
+
+  /* 不支持 backdrop-filter 时回退为不透明 */
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+    .glass,.bottom-nav,.demo-bar{background:var(--card-strong)}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <h1>玻璃态 · 色彩方案</h1>
+  <div class="vchips" id="vchips">
+    <button class="vchip on" data-v="a">A 晨雾蓝</button>
+    <button class="vchip" data-v="b">B 薄荷青</button>
+    <button class="vchip" data-v="c">C 暖霞橙</button>
+    <button class="vchip" data-v="d">D 暮紫</button>
+    <button class="vchip" data-v="e">E 石墨</button>
+  </div>
+  <button class="theme-btn" id="themeBtn">切换深色</button>
+  <div class="demo-note" id="demoNote"></div>
+</div>
+
+<div class="app">
+  <header class="control-bar glass">
+    <button class="pill"><b>812</b> 植物生理 <span class="caret">▾</span></button>
+    <div class="hp">
+      <span>已学 <b>312</b>/538</span>
+      <span class="hp-bar"><i style="width:58%"></i></span>
+      <span class="hp-more">58%</span>
+    </div>
+    <div class="mode-tabs">
+      <button class="on">学</button>
+      <button>听</button>
+      <button>记</button>
+    </div>
+  </header>
+
+  <div class="progress-strip glass">
+    <span class="ps-chip">第八章 <b>62%</b></span>
+    <span class="ps-bar"><i style="width:62%"></i></span>
+    <span class="ps-chip">剩余 <b>18</b> 点</span>
+    <span class="ps-more">详情 ›</span>
+  </div>
+
+  <article class="study-card glass">
+    <div class="card-top">
+      <span class="badge kind">简答</span>
+      <span class="badge hot">高频</span>
+      <span class="badge">真题 3 次</span>
+      <span class="spacer"></span>
+      <button class="star">☆</button>
+    </div>
+
+    <h2 class="study-title">C3 途径的四个阶段与生理意义</h2>
+    <p class="study-point">第八章 · 光合作用 · 考点 8.3 · 812 植物生理学</p>
+
+    <div class="study-grid">
+      <div>
+        <h3>讲解</h3>
+        <div class="prose">
+          <p>C3 途径是大多数植物固定 CO₂ 的基本方式，全过程发生在叶肉细胞的叶绿体中。<mark class="kw">PEP 羧化酶</mark>不参与 C3 途径，它属于 C4 途径的关键酶，这是两者最容易被混淆的区别。</p>
+          <p>固定产物是三碳化合物 3-磷酸甘油酸（3-PGA），因此得名 C3 途径。整个过程可分为羧化、还原、再生三个阶段。</p>
+        </div>
+
+        <h3>答题要点</h3>
+        <ul class="answer-points">
+          <li>羧化阶段：RuBP + CO₂ → 2×3-PGA，由 Rubisco 催化</li>
+          <li>还原阶段：3-PGA 消耗 ATP 与 NADPH 生成 G3P</li>
+          <li>再生阶段：G3P 经卡尔文循环再生 RuBP</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>卡片</h3>
+        <div class="card-item">
+          <p class="q">问：C3 途径固定 CO₂ 的产物是什么？</p>
+          <p class="a">答：3-磷酸甘油酸（3-PGA），一个 RuBP 固定一分子 CO₂ 生成两分子 3-PGA。</p>
+        </div>
+        <div class="card-item">
+          <p class="q">问：C3 与 C4 途径最关键的区别？</p>
+          <p class="a">答：C4 由 PEP 羧化酶在叶肉细胞完成初次固定，C3 由 Rubisco 直接固定。</p>
+        </div>
+
+        <div class="card-meta">
+          <div class="cm-items">
+            <span class="ok">正确 6</span>
+            <span class="ww">模糊 1</span>
+            <span>遗忘 0</span>
+          </div>
+          <span>上次 2 天前</span>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<nav class="bottom-nav">
+  <a class="bn-item on"><span class="bn-icon">◎</span>学</a>
+  <a class="bn-item"><span class="bn-icon">▷</span>听</a>
+  <a class="bn-item"><span class="bn-icon">◈</span>记</a>
+  <a class="bn-item"><span class="bn-icon">☰</span>我的</a>
+</nav>
+
+<button class="ai-fab">✦</button>
+
+<script>
+  const PALETTES = {
+    a: {
+      name: "A 晨雾蓝",
+      note: "冷调。系统蓝主色，青与淡紫光晕做底。最接近 macOS 默认观感，长文阅读最稳，风险最低。",
+      light: {
+        bg: "#eef2f8",
+        glow1: "rgba(0,122,255,.20)",
+        glow2: "rgba(90,200,250,.18)",
+        glow3: "rgba(175,82,222,.14)",
+        accent: "#007AFF",
+        ink: "#0062CC",
+        soft: "rgba(0,122,255,.14)"
+      },
+      dark: {
+        bg: "#070b12",
+        glow1: "rgba(0,122,255,.30)",
+        glow2: "rgba(100,210,255,.22)",
+        glow3: "rgba(175,82,222,.22)",
+        accent: "#0A84FF",
+        ink: "#5AA9FF",
+        soft: "rgba(10,132,255,.18)"
+      }
+    },
+    b: {
+      name: "B 薄荷青",
+      note: "清爽。青绿主色，薄荷与海蓝光晕。和「植物生理」的学科气质贴合，绿色保留给正确/完成语义。",
+      light: {
+        bg: "#ecf7f4",
+        glow1: "rgba(0,199,190,.22)",
+        glow2: "rgba(52,199,89,.18)",
+        glow3: "rgba(0,122,255,.14)",
+        accent: "#00B3AC",
+        ink: "#007A75",
+        soft: "rgba(0,179,172,.16)"
+      },
+      dark: {
+        bg: "#06120f",
+        glow1: "rgba(0,199,190,.30)",
+        glow2: "rgba(52,199,89,.24)",
+        glow3: "rgba(0,122,255,.18)",
+        accent: "#2FD4C5",
+        ink: "#7DEBDF",
+        soft: "rgba(47,212,197,.20)"
+      }
+    },
+    c: {
+      name: "C 暖霞橙",
+      note: "暖调。琥珀主色，珊瑚与玫红光晕，接近日落壁纸。氛围最强，但长时间看长文会比冷调更累。",
+      light: {
+        bg: "#faf2e9",
+        glow1: "rgba(255,149,0,.22)",
+        glow2: "rgba(255,105,97,.18)",
+        glow3: "rgba(255,45,85,.13)",
+        accent: "#FF9500",
+        ink: "#B25E00",
+        soft: "rgba(255,149,0,.16)"
+      },
+      dark: {
+        bg: "#120b05",
+        glow1: "rgba(255,149,0,.32)",
+        glow2: "rgba(255,105,97,.24)",
+        glow3: "rgba(255,45,85,.18)",
+        accent: "#FF9F0A",
+        ink: "#FFBF5C",
+        soft: "rgba(255,159,10,.20)"
+      }
+    },
+    d: {
+      name: "D 暮紫",
+      note: "梦幻。紫色主色，靛蓝与玫红光晕。玻璃质感最明显，但商务感和「考研」的严肃感稍弱。",
+      light: {
+        bg: "#f4f0fb",
+        glow1: "rgba(175,82,222,.20)",
+        glow2: "rgba(94,92,230,.18)",
+        glow3: "rgba(255,45,85,.13)",
+        accent: "#AF52DE",
+        ink: "#8944AB",
+        soft: "rgba(175,82,222,.16)"
+      },
+      dark: {
+        bg: "#0b0712",
+        glow1: "rgba(175,82,222,.34)",
+        glow2: "rgba(94,92,230,.26)",
+        glow3: "rgba(255,45,85,.18)",
+        accent: "#BF5AF2",
+        ink: "#D68BF8",
+        soft: "rgba(191,90,242,.22)"
+      }
+    },
+    e: {
+      name: "E 石墨",
+      note: "极简。近乎中性灰底，只留极淡蓝光。最克制、最不抢内容，但玻璃的通透感最弱。",
+      light: {
+        bg: "#eceef2",
+        glow1: "rgba(0,122,255,.10)",
+        glow2: "rgba(120,130,150,.14)",
+        glow3: "rgba(0,122,255,.08)",
+        accent: "#007AFF",
+        ink: "#0062CC",
+        soft: "rgba(0,122,255,.12)"
+      },
+      dark: {
+        bg: "#0a0c10",
+        glow1: "rgba(0,122,255,.16)",
+        glow2: "rgba(255,255,255,.08)",
+        glow3: "rgba(0,122,255,.12)",
+        accent: "#0A84FF",
+        ink: "#5AA9FF",
+        soft: "rgba(10,132,255,.16)"
+      }
+    }
+  };
+
+  const root = document.documentElement;
+  let variant = "a";
+  let theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+  function apply() {
+    const p = PALETTES[variant][theme];
+    root.dataset.variant = variant;
+    root.dataset.theme = theme;
+    root.style.setProperty("--bg", p.bg);
+    root.style.setProperty("--glow1", p.glow1);
+    root.style.setProperty("--glow2", p.glow2);
+    root.style.setProperty("--glow3", p.glow3);
+    root.style.setProperty("--accent", p.accent);
+    root.style.setProperty("--accent-ink", p.ink);
+    root.style.setProperty("--accent-soft", p.soft);
+    document.getElementById("demoNote").textContent = PALETTES[variant].note;
+    document.getElementById("themeBtn").textContent = theme === "light" ? "切换深色" : "切换浅色";
+    document.querySelectorAll(".vchip").forEach((el) => {
+      el.classList.toggle("on", el.dataset.v === variant);
+    });
+  }
+
+  document.getElementById("vchips").addEventListener("click", (e) => {
+    const btn = e.target.closest(".vchip");
+    if (!btn) return;
+    variant = btn.dataset.v;
+    apply();
+  });
+
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    theme = theme === "light" ? "dark" : "light";
+    apply();
+  });
+
+  apply();
+
+  // 演示条会随宽度换行，实时把它的高度让给页面顶部，避免盖住被模仿的界面
+  const bar = document.querySelector(".demo-bar");
+  const syncBarHeight = () => {
+    document.body.style.paddingTop = bar.offsetHeight + 12 + "px";
+  };
+  new ResizeObserver(syncBarHeight).observe(bar);
+  syncBarHeight();
+</script>
+</body>
+</html>

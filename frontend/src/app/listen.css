@@ -1,9 +1,8 @@
 .content.listen{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px;align-items:start}
 .q-card{
-  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-  box-shadow:var(--shadow);padding:20px;backdrop-filter:blur(18px);
+  border-radius:var(--radius-xl);padding:22px;
 }
-@supports not ((backdrop-filter:blur(1px))){.q-card{background:var(--card-strong)}}
+@media (max-width:640px){.q-card{padding:18px;border-radius:24px}}
 .listen-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0 2px}
 .speak-state{font-size:12.5px;color:var(--muted)}
 .wave{display:flex;gap:3px;align-items:flex-end;height:26px;margin:8px 0 6px;opacity:.55}
@@ -15,12 +14,16 @@
 @keyframes wave{0%,100%{height:6px}50%{height:24px}}
 .script{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
 .script summary{cursor:pointer;font-size:12.5px;color:var(--muted);user-select:none}
-.script p{margin:8px 0 0;font-size:13.5px;line-height:1.78;white-space:pre-wrap}
+.script p{margin:8px 0 0;font-size:13.5px;line-height:1.78;white-space:pre-wrap;color:var(--ink-2)}
 .script-block + .script-block{margin-top:10px;border-top:1px solid var(--line);padding-top:10px}
-.script-block h4{margin:0 0 6px;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.script-block h4{margin:0 0 6px;font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:700}
 .script-blocks .prose p:last-child{margin-bottom:0}
-.q-card .question{font-size:17px;line-height:1.62;font-weight:680;margin:4px 0 10px}
+.q-card .question{font-size:17px;line-height:1.62;font-weight:680;margin:4px 0 10px;letter-spacing:-.01em}
 .q-card .card-foot{display:flex;justify-content:space-between;gap:12px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
-.rate-select{display:flex;gap:4px;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--bg2)}
-.rate-select button{border:0;background:transparent;color:var(--muted);padding:5px 12px;border-radius:999px;cursor:pointer;font-size:12.5px;font-weight:650}
-.rate-select button.on{background:var(--accent);color:#fff}
+.rate-select{display:flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--bg2)}
+.rate-select button{border:0;background:transparent;color:var(--muted);padding:5px 12px;border-radius:999px;cursor:pointer;font-size:12.5px;font-weight:650;transition:.2s ease}
+.rate-select button.on{
+  background:linear-gradient(180deg, var(--panel-top), var(--panel-bottom));
+  color:var(--accent-ink);
+  box-shadow:inset 0 1px 0 var(--panel-inner), 0 2px 8px -3px var(--panel-shadow);
+}

@@ -21,7 +21,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN">
+    <html lang="zh-CN" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -30,6 +30,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <div className="aurora" aria-hidden="true">
+          <span className="blob b1" />
+          <span className="blob b2" />
+          <span className="blob b3" />
+          <span className="blob b4" />
+          <span className="blob b5" />
+        </div>
+        <div className="grain" aria-hidden="true" />
         <FavoritesProvider>
           <Suspense fallback={null}>
             <AiProvider>{children}</AiProvider>

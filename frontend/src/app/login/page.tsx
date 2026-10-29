@@ -33,13 +33,12 @@ export default function LoginPage() {
     <main style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: 24 }}>
       <form
         onSubmit={submit}
+        className="glass-strong"
         style={{
-          width: "min(380px, 100%)", background: "var(--card)", border: "1px solid var(--line)",
-          borderRadius: "var(--radius)", boxShadow: "var(--shadow)", padding: 26,
-          backdropFilter: "blur(18px)",
+          width: "min(380px, 100%)", borderRadius: "var(--radius-xl)", padding: 28,
         }}
       >
-        <h1 style={{ fontSize: 21, margin: "0 0 4px" }}>考研 · 听学记</h1>
+        <h1 style={{ fontSize: 21, margin: "0 0 4px", letterSpacing: "-.02em" }}>考研 · 听学记</h1>
         <p className="muted" style={{ fontSize: 13, margin: "0 0 18px" }}>
           538 个知识点，随时提问
         </p>
@@ -81,6 +80,6 @@ export default function LoginPage() {
 }
 
 const inputStyle: React.CSSProperties = {
-  width: "100%", padding: "10px 12px", borderRadius: 11, border: "1px solid var(--line)",
+  width: "100%", padding: "10px 12px", borderRadius: 12, border: "1px solid var(--line)",
   background: "var(--bg2)", color: "var(--ink)", fontSize: 14, outline: "none",
 };
