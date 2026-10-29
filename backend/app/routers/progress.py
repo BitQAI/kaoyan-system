@@ -21,6 +21,11 @@ class UnitIn(BaseModel):
     idx: int
 
 
+class ListenIn(BaseModel):
+    card_id: str | None = None
+    point_id: str | None = None
+
+
 class CustomIn(BaseModel):
     mode: str
     subjects: list[str] = []
@@ -60,6 +65,11 @@ def stats(conn=Depends(db.get_db)):
     return service.today_summary(conn)
 
 
+@router.get("/stats/forecast")
+def forecast(conn=Depends(db.get_db)):
+    return service.forecast(conn)
+
+
 @router.get("/stats/progress")
 def progress_stats(sid: str | None = None, conn=Depends(db.get_db)):
     return service.progress_stats(conn, sid)
@@ -72,8 +82,13 @@ def mark_point(payload: PointIn, conn=Depends(db.get_db)):
 
 
 @router.post("/progress/listen")
-def mark_listen(payload: PointIn, conn=Depends(db.get_db)):
-    service.mark_listened(conn, payload.point_id)
+def mark_listen(payload: ListenIn, conn=Depends(db.get_db)):
+    if payload.card_id:
+        service.mark_card_listened(conn, payload.card_id)
+    elif payload.point_id:
+        service.mark_listened(conn, payload.point_id)
+    else:
+        raise HTTPException(400, "card_id 或 point_id 至少给一个")
     return {"ok": True}
 
 

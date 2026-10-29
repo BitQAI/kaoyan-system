@@ -53,3 +53,28 @@ def test_grade_updates_stats(client):
 def test_today_summary(client):
     got = client.get("/api/stats/today").json()
     assert "date" in got and "cards_seen" in got
+
+
+def test_listen_queue_is_card_level(client):
+    got = client.post("/api/queue/custom", json={"mode": "listen", "limit": 3}).json()
+    item = got["items"][0]
+    assert {"card_id", "question", "analysis", "title"} <= set(item)
+    assert "options" not in item, "听不读选项"
+
+
+def test_mark_listened_by_card(client, conn):
+    item = client.post("/api/queue/custom", json={"mode": "listen", "limit": 1}).json()["items"][0]
+    res = client.post("/api/progress/listen", json={"card_id": item["card_id"]})
+    assert res.status_code == 200
+    row = conn.execute("SELECT listen_count FROM card_listen WHERE card_id = ?",
+                       (item["card_id"],)).fetchone()
+    assert row is not None and row["listen_count"] == 1
+
+
+def test_forecast_covers_four_subjects(client):
+    got = client.get("/api/stats/forecast").json()
+    assert len(got["subjects"]) == 4
+    assert got["exam_date"]
+    for s in got["subjects"]:
+        assert s["total"] > 0 and s["remaining"] == s["total"] - s["seen"]
+        assert "pace" in s and "eta" in s

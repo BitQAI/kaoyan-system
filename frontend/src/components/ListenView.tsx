@@ -1,11 +1,12 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getJson, postJson } from "@/lib/api";
-import { paragraphs, splitScript } from "@/lib/render";
+import { postJson } from "@/lib/api";
+import { paragraphs } from "@/lib/render";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
 import type { Chapter, ListenItem } from "@/lib/types";
 import { useAi } from "./AiProvider";
-import { PriorityBadge, StarButton } from "./Badges";
+import { PriorityBadge, StarButton, uniqueLabels } from "./Badges";
+import FavoritesPanel from "./FavoritesPanel";
 import RangePicker from "./RangePicker";
 
 const RATE_MIN = 0.6;
@@ -20,8 +21,8 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   const [speaking, setSpeaking] = useState(false);
   const [rate, setRate] = useState(0.95);
   const [supported, setSupported] = useState(true);
-  const [showAnswer, setShowAnswer] = useState(false);
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [favOpen, setFavOpen] = useState(false);
   const [scope, setScope] = useState<Scope>(DEFAULT_SCOPE);
   const activeRef = useRef<string | null>(null);
   const ai = useAi();
@@ -29,7 +30,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   const chapterNames: Record<string, string> = {};
   chapters.forEach((c) => { chapterNames[c.id] = c.name; });
 
-  const load = useCallback((next: Scope, keepIdx = false) => {
+  const load = useCallback((next: Scope) => {
     setLoading(true);
     setSpeaking(false);
     if (typeof window !== "undefined" && "speechSynthesis" in window) window.speechSynthesis.cancel();
@@ -37,11 +38,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
     postJson<{ items: ListenItem[]; remaining: number }>("/api/queue/custom", {
       mode: "listen", subjects: [sid], chapters: next.chapters, limit: next.limit,
     })
-      .then((d) => {
-        setItems(d.items);
-        setRemaining(d.remaining);
-        if (!keepIdx) setIdx(0);
-      })
+      .then((d) => { setItems(d.items); setRemaining(d.remaining); setIdx(0); })
       .catch(() => { setItems([]); setRemaining(0); })
       .finally(() => setLoading(false));
   }, [sid]);
@@ -58,7 +55,6 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
     setScope(next);
     writeScope(sid, next);
     setPickerOpen(false);
-    setShowAnswer(false);
     load(next);
   }
 
@@ -73,33 +69,30 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   function speak(target: ListenItem) {
     if (!("speechSynthesis" in window)) return;
     stop();
-    const parts = splitScript(target.script);
-    // 只念设问与解析：不给答案，听的时候先自己想
-    const text = [parts.ask && `设问：${parts.ask}`,
-                  parts.analysis && `解析：${parts.analysis}`,
-                  parts.rest].filter(Boolean).join("。");
+    // 只念考点与解析，不念选项与答案
+    const text = [target.question, target.analysis || target.fallback]
+      .filter(Boolean).join("。");
     if (!text) return;
     const utter = new SpeechSynthesisUtterance(text);
     utter.lang = "zh-CN";
     utter.rate = rate;
     utter.pitch = 1;
     utter.onend = () => {
-      if (activeRef.current !== target.point_id) return;
+      if (activeRef.current !== target.card_id) return;
       activeRef.current = null;
       setSpeaking(false);
-      void postJson("/api/progress/listen", { point_id: target.point_id }).catch(() => {});
-      setItems((list) => list.map((x) => x.point_id === target.point_id
+      void postJson("/api/progress/listen", { card_id: target.card_id }).catch(() => {});
+      setItems((list) => list.map((x) => x.card_id === target.card_id
         ? { ...x, heard: true, listen_count: x.listen_count + 1 } : x));
     };
-    utter.onerror = () => { if (activeRef.current === target.point_id) stop(); };
-    activeRef.current = target.point_id;
+    utter.onerror = () => { if (activeRef.current === target.card_id) stop(); };
+    activeRef.current = target.card_id;
     setSpeaking(true);
     window.speechSynthesis.speak(utter);
   }
 
   function step(delta: number) {
     stop();
-    setShowAnswer(false);
     const next = idx + delta;
     if (next < 0) return;
     if (next >= items.length) { setIdx(items.length); return; }
@@ -107,7 +100,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   }
 
   if (!supported) {
-    return <div className="empty">当前浏览器不支持语音合成。朗读稿仍可阅读。</div>;
+    return <div className="empty">当前浏览器不支持语音合成，考点与解析仍可阅读。</div>;
   }
   if (loading) return <div className="empty">正在取听学队列…</div>;
 
@@ -115,7 +108,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
     return (
       <div className="memo-done">
         <h2>这个范围听完了</h2>
-        <p>{scopeLabel(scope, chapterNames)} · 共 {scope.limit} 条一批</p>
+        <p>{scopeLabel(scope, chapterNames)}</p>
         <div className="row">
           <button className="btn primary" onClick={() => setPickerOpen(true)}>换个范围</button>
           <button className="btn" onClick={() => load(scope)}>再拉一批</button>
@@ -133,7 +126,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
         <p>{items.length} 条 · 本范围剩余 {remaining} 条</p>
         <div className="row">
           <button className="btn primary" onClick={() => load(scope)}>再拉一批</button>
-          <button className="btn" onClick={() => { setIdx(0); }}>重听本批</button>
+          <button className="btn" onClick={() => setIdx(0)}>重听本批</button>
           <button className="btn" onClick={() => setPickerOpen(true)}>换个范围</button>
         </div>
         <RangePicker open={pickerOpen} chapters={chapters} scope={scope}
@@ -142,7 +135,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
     );
   }
 
-  const parts = splitScript(item.script);
+  const badges = uniqueLabels([item.kind], [item.card_type], item.exam_types ?? []);
 
   return (
     <>
@@ -150,6 +143,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
         <button className="badge-btn" onClick={() => setPickerOpen(true)}>
           范围：{scopeLabel(scope, chapterNames)}
         </button>
+        <button className="badge-btn" onClick={() => setFavOpen(true)}>收藏</button>
         <div className="progress-bar"><i style={{ width: `${((idx + 1) / items.length) * 100}%` }} /></div>
         <span className="muted" style={{ fontSize: 12 }}>{idx + 1} / {items.length}</span>
       </div>
@@ -157,46 +151,34 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
       <article className="q-card stepper-card">
         <div className="card-top">
           <PriorityBadge priority={item.priority} />
-          <span className="badge kind">{item.kind ?? "朗读"}</span>
-          {item.exam_types.slice(0, 2).map((t) => <span className="badge" key={t}>{t}</span>)}
+          {badges.map((b) => <span className="badge" key={b}>{b}</span>)}
           {item.heard && <span className="badge">听过 {item.listen_count} 次</span>}
           <span className="spacer" />
-          <StarButton kind="card" id={item.card_id ?? item.point_id} title={item.title} />
+          <StarButton kind="card" id={item.card_id} title={item.question} />
           <button className="ai-entry-btn" onClick={() => ai.open({
             point_id: item.point_id,
-            card_id: item.card_id ?? undefined,
+            card_id: item.card_id,
             title: item.title,
-            question: `这题我没听懂：${item.question ?? item.point}`,
+            question: `这条我没听懂：${item.question}`,
           })}>问 AI</button>
         </div>
 
         <h2 className="study-title">{item.title}</h2>
 
         <section className="listen-block">
-          <h3>设问</h3>
-          <div className="prose" dangerouslySetInnerHTML={{ __html: paragraphs(parts.ask || item.question || item.point) }} />
+          <h3>考点</h3>
+          <div className="prose" dangerouslySetInnerHTML={{ __html: paragraphs(item.question) }} />
         </section>
 
         <section className="listen-block">
           <h3>解析</h3>
-          <div className="prose" dangerouslySetInnerHTML={{ __html: paragraphs(parts.analysis) }} />
+          <div className="prose"
+            dangerouslySetInnerHTML={{ __html: paragraphs(item.analysis || item.fallback) }} />
         </section>
-
-        {parts.answer && (
-          <div style={{ marginTop: 10 }}>
-            <button className="badge-btn" onClick={() => setShowAnswer((s) => !s)}>
-              {showAnswer ? "收起答案" : "看答案（不会朗读）"}
-            </button>
-            {showAnswer && (
-              <div className="prose" style={{ marginTop: 8 }}
-                dangerouslySetInnerHTML={{ __html: paragraphs(parts.answer) }} />
-            )}
-          </div>
-        )}
 
         <div className="listen-actions">
           <button className="btn primary" onClick={() => speak(item)} disabled={speaking}>
-            {speaking ? "朗读中…" : "朗读设问与解析"}
+            {speaking ? "朗读中…" : "朗读考点与解析"}
           </button>
           <button className="btn" onClick={stop} disabled={!speaking}>停止</button>
           <label className="rate-slider">
@@ -221,6 +203,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
 
       <RangePicker open={pickerOpen} chapters={chapters} scope={scope}
         onClose={() => setPickerOpen(false)} onApply={applyScope} />
+      <FavoritesPanel open={favOpen} sid={sid} onClose={() => setFavOpen(false)} />
     </>
   );
 }

@@ -159,6 +159,13 @@ listen_progress = Table(
     Column("updated_at", Text, nullable=False),
 )
 
+card_listen = Table(
+    "card_listen", metadata,
+    Column("card_id", Text, primary_key=True),
+    Column("listen_count", Integer, nullable=False, default=0),
+    Column("updated_at", Text, nullable=False),
+)
+
 settings = Table(
     "settings", metadata,
     Column("key", Text, primary_key=True),
@@ -214,6 +221,6 @@ Index("idx_msgpt_point", message_points.c.point_id)
 
 ALL_TABLES = [
     subject, chapter, point, unit, card, media, relation,
-    point_progress, unit_progress, card_progress, listen_progress, settings,
+    point_progress, unit_progress, card_progress, listen_progress, card_listen, settings,
     favorites, conversations, messages, message_points,
 ]

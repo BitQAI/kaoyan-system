@@ -91,18 +91,22 @@ export interface PointDetail {
 }
 
 export interface ListenItem {
+  card_id: string;
   point_id: string;
   subject_id: string;
   title: string;
   point: string;
-  script: string;
-  kind: string | null;
-  exam_types: string[];
+  kind: string;
+  card_type: string;
+  /** 考点（卡片设问） */
+  question: string;
+  /** 解析；为空时用 fallback（知识点 explain） */
+  analysis: string;
+  fallback: string;
   chapter_name: string;
-  question: string | null;
-  /** 朗读稿对应的卡片，用于按题归档 AI 历史 */
-  card_id: string | null;
+  chapter_id: string;
   priority?: string;
+  exam_types?: string[];
   heard: boolean;
   listen_count: number;
 }

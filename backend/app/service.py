@@ -1,8 +1,8 @@
 """学习进度与今日队列的业务编排。"""
 import json
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
-from app import scheduler
+from app import config, scheduler
 
 PRIORITY_RANK = "CASE p.priority WHEN '★' THEN 0 WHEN '●' THEN 1 ELSE 2 END"
 
@@ -59,6 +59,7 @@ def card_queue(conn, sid: str | None = None, limit: int = 30) -> list[dict]:
 
 
 def listen_queue(conn, sid: str | None = None, limit: int = 10) -> list[dict]:
+    """兼容旧接口：等价于按科目取听学卡片。"""
     """未听优先 → 次数少 → 优先级 → 章序。"""
     sql = f"""
         SELECT p.id, p.subject_id, p.title, p.point, p.listen_script, p.listen_kind,
@@ -92,6 +93,15 @@ def mark_read(conn, point_id: str) -> None:
         "INSERT INTO point_progress (point_id, read_at) VALUES (?, ?) "
         "ON CONFLICT(point_id) DO UPDATE SET read_at = excluded.read_at",
         (point_id, _now()))
+    conn.commit()
+
+
+def mark_card_listened(conn, card_id: str) -> None:
+    conn.execute(
+        "INSERT INTO card_listen (card_id, listen_count, updated_at) VALUES (?, 1, ?) "
+        "ON CONFLICT(card_id) DO UPDATE SET listen_count = listen_count + 1, "
+        "updated_at = excluded.updated_at",
+        (card_id, _now()))
     conn.commit()
 
 
@@ -203,35 +213,36 @@ def _count_remaining(conn, sql: str, params: list, fetched: int) -> int:
 
 def custom_listen(conn, subjects=None, chapters=None, limit=10,
                   exclude: list[str] | None = None) -> dict:
+    """听学队列：按**卡片**粒度（比点更短），每张卡念「考点 + 解析」。"""
     scope_sql, params = _scope(subjects, chapters)
     exclude = exclude or []
     excl_sql = ""
     if exclude:
-        excl_sql = f" AND p.id NOT IN ({','.join('?' * len(exclude))})"
+        excl_sql = f" AND c.card_id NOT IN ({','.join('?' * len(exclude))})"
         params = params + exclude
     sql = f"""
-        SELECT p.id, p.subject_id, p.title, p.point, p.listen_script, p.listen_kind,
-               p.exam_types, p.listen_card_id, p.chapter_id, p.priority,
-               ch.name AS chapter_name,
-               lp.point_id AS heard, lp.listen_count,
-               (SELECT question FROM card WHERE card_id = p.listen_card_id) AS question,
-               (SELECT card_id FROM card WHERE card_id = p.listen_card_id) AS card_id
-        FROM point p
+        SELECT c.card_id, c.point_id, c.kind, c.card_type, c.question, c.analysis,
+               p.title, p.point, p.explain, p.subject_id, p.chapter_id, p.priority,
+               ch.name AS chapter_name, cl.card_id AS heard, cl.listen_count
+        FROM card c
+        JOIN point p ON p.id = c.point_id
         JOIN chapter ch ON ch.id = p.chapter_id
-        LEFT JOIN listen_progress lp ON lp.point_id = p.id
-        WHERE p.listen_script != ''{excl_sql}{scope_sql}
-        ORDER BY CASE WHEN lp.point_id IS NULL THEN 0 ELSE 1 END,
-                 COALESCE(lp.listen_count, 0), ch.tier, ch.weight_center DESC,
-                 {PRIORITY_RANK}, ch.sort, p.ord
+        LEFT JOIN card_listen cl ON cl.card_id = c.card_id
+        WHERE 1=1{excl_sql}{scope_sql}
+        ORDER BY CASE WHEN cl.card_id IS NULL THEN 0 ELSE 1 END,
+                 COALESCE(cl.listen_count, 0), ch.tier, ch.weight_center DESC,
+                 {PRIORITY_RANK}, ch.sort, p.ord, c.ord
         LIMIT ?
     """
-    rows = conn.execute(sql, [*params, max(1, min(int(limit), 100))]).fetchall()
+    rows = conn.execute(sql, [*params, max(1, min(int(limit), 200))]).fetchall()
     items = [{
-        "point_id": r["id"], "subject_id": r["subject_id"], "title": r["title"],
-        "point": r["point"], "script": r["listen_script"], "kind": r["listen_kind"],
-        "exam_types": _loads(r["exam_types"], []), "chapter_name": r["chapter_name"],
-        "question": r["question"], "card_id": r["card_id"],
-        "priority": r["priority"],
+        "card_id": r["card_id"], "point_id": r["point_id"],
+        "kind": r["kind"], "card_type": r["card_type"],
+        "question": r["question"], "analysis": r["analysis"],
+        "fallback": r["explain"],
+        "title": r["title"], "point": r["point"],
+        "subject_id": r["subject_id"], "chapter_id": r["chapter_id"],
+        "chapter_name": r["chapter_name"], "priority": r["priority"],
         "heard": r["heard"] is not None, "listen_count": r["listen_count"] or 0,
     } for r in rows]
     return {"items": items, "remaining": _count_remaining(conn, sql, params, len(items))}
@@ -386,3 +397,46 @@ def weak_counts(conn, sid: str | None = None) -> dict:
     got = {r["last_result"]: r["n"] for r in rows}
     return {"forgot": got.get("忘了", 0), "fuzzy": got.get("吃力", 0),
             "total": sum(got.values())}
+
+
+# ---------- 学完时间预测 ----------
+
+def forecast(conn) -> dict:
+    """按各科已见卡片的日均速度，估算学完日期。
+
+    口径：速度 = 已见卡片数 / 距首次学习的天数（至少 1 天）；
+    剩余 = 该科还没见过的卡片；预计学完 = 今天 + 剩余 / 速度。
+    """
+    today = date.today()
+    out = []
+    for s in conn.execute("SELECT id, name FROM subject ORDER BY sort").fetchall():
+        sid = s["id"]
+        total = conn.execute(
+            "SELECT COUNT(*) FROM card c JOIN point p ON p.id=c.point_id "
+            "WHERE p.subject_id = ?", (sid,)).fetchone()[0]
+        row = conn.execute(
+            "SELECT COUNT(*) AS seen, MIN(cp.updated_at) AS first_at, "
+            "SUM(cp.reviews) AS reviews "
+            "FROM card_progress cp JOIN card c ON c.card_id=cp.card_id "
+            "JOIN point p ON p.id=c.point_id WHERE p.subject_id = ?", (sid,)).fetchone()
+        seen = row["seen"] or 0
+        first_at = row["first_at"]
+        days = 1
+        if first_at:
+            try:
+                days = max(1, (today - date.fromisoformat(first_at[:10])).days + 1)
+            except ValueError:
+                days = 1
+        pace = seen / days if seen else 0.0
+        remaining = max(0, total - seen)
+        eta = None
+        if pace > 0 and remaining > 0:
+            eta = (today + timedelta(days=round(remaining / pace))).isoformat()
+        elif remaining == 0:
+            eta = today.isoformat()
+        out.append({
+            "id": sid, "name": s["name"], "total": total, "seen": seen,
+            "remaining": remaining, "pace": round(pace, 2),
+            "days_active": days, "eta": eta,
+        })
+    return {"today": today.isoformat(), "exam_date": config.EXAM_DATE, "subjects": out}

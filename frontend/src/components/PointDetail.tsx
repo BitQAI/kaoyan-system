@@ -4,14 +4,8 @@ import { getJson, postJson } from "@/lib/api";
 import { answerHtml, emphasize, examItems, paragraphs } from "@/lib/render";
 import type { Figure, PointDetail as Point } from "@/lib/types";
 import { useAi } from "./AiProvider";
-import { PriorityBadge, StarButton } from "./Badges";
+import { PriorityBadge, StarButton, uniqueLabels } from "./Badges";
 import SvgFigure from "./SvgFigure";
-
-const LEVEL_LABEL: Record<string, string> = {
-  verified: "考纲/教材可核",
-  inferred: "推断",
-  pending: "待核",
-};
 
 export default function PointDetail({
   pid, onNavigate, onRead,
@@ -19,6 +13,7 @@ export default function PointDetail({
   const [point, setPoint] = useState<Point | null>(null);
   const [error, setError] = useState("");
   const [zoom, setZoom] = useState<Figure | null>(null);
+  const [zoomScale, setZoomScale] = useState(1);
   const [source, setSource] = useState<{ text: string; note: string } | null>(null);
   const [showSource, setShowSource] = useState(false);
   const ai = useAi();
@@ -48,6 +43,11 @@ export default function PointDetail({
     setShowSource((s) => !s);
   }
 
+  function openZoom(fig: Figure) {
+    setZoomScale(1);
+    setZoom(fig);
+  }
+
   if (error) return <div className="empty">加载失败：{error}</div>;
   if (!point) return <div className="empty">加载中…</div>;
 
@@ -55,15 +55,8 @@ export default function PointDetail({
   return (
     <article className="study-card">
       <div className="card-top">
-        <span className="badge kind">{point.subject_id}</span>
-        {point.exam_types.map((t) => <span className="badge" key={t}>{t}</span>)}
+        {uniqueLabels(point.exam_types).map((t) => <span className="badge" key={t}>{t}</span>)}
         <PriorityBadge priority={point.priority} />
-        <span
-          className={`badge ${point.exam_evidence.level}`}
-          title={point.exam_evidence.basis}
-        >
-          {LEVEL_LABEL[point.exam_evidence.level] ?? point.exam_evidence.level}
-        </span>
         <span className="spacer" />
         <StarButton kind="point" id={point.id} title={point.title} />
         <button
@@ -86,7 +79,7 @@ export default function PointDetail({
           <div className="prose" dangerouslySetInnerHTML={{ __html: paragraphs(point.explain, point.keywords) }} />
           {point.media.length > 0 && (
             <div className="media">
-              {point.media.map((m, i) => <SvgFigure key={i} figure={m} onZoom={setZoom} />)}
+              {point.media.map((m, i) => <SvgFigure key={i} figure={m} onZoom={openZoom} />)}
             </div>
           )}
           <h3>怎么考</h3>
@@ -176,12 +169,21 @@ export default function PointDetail({
       <RelationsBlock relations={point.relations} onNavigate={onNavigate} />
 
       {zoom && (
-        <div className="modal show" onClick={() => setZoom(null)} role="dialog" aria-modal="true">
-          <button className="modal-close" onClick={() => setZoom(null)} aria-label="关闭">×</button>
-          <div className="modal-body" onClick={(e) => e.stopPropagation()}>
-            <div dangerouslySetInnerHTML={{ __html: zoom.svg }} />
-            {zoom.caption && <p className="modal-cap">{zoom.caption}</p>}
+        <div className="diagram-modal" role="dialog" aria-modal="true" aria-label="图示">
+          <div className="diagram-toolbar">
+            <span>图示</span>
+            <span className="spacer" />
+            {[1, 1.5, 2, 3].map((z) => (
+              <button key={z} className={zoomScale === z ? "on" : ""}
+                onClick={() => setZoomScale(z)}>{z}×</button>
+            ))}
+            <button onClick={() => { setZoom(null); setZoomScale(1); }} aria-label="关闭">关闭</button>
           </div>
+          <div className="diagram-stage">
+            <div style={{ width: `${zoomScale * 100}%`, maxWidth: "none" }}
+              dangerouslySetInnerHTML={{ __html: zoom.svg }} />
+          </div>
+          {zoom.caption && <p className="diagram-cap">{zoom.caption}</p>}
         </div>
       )}
     </article>

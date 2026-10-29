@@ -3,11 +3,10 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { useAi } from "@/components/AiProvider";
-import ChapterTree from "@/components/ChapterTree";
 import ListenView from "@/components/ListenView";
 import MemoView from "@/components/MemoView";
 import PointDetail from "@/components/PointDetail";
-import ProgressStrip from "@/components/ProgressStrip";
+import { HeaderProgress, ProgressPanel } from "@/components/ProgressStrip";
 import RangePicker from "@/components/RangePicker";
 import SearchPanel from "@/components/SearchPanel";
 import SubjectPicker from "@/components/SubjectPicker";
@@ -18,11 +17,6 @@ import type { Manifest, PointIndex, ProgressStats, Subject, ViewMode } from "@/l
 const ACCENTS: Record<string, string> = {
   "315": "#2563eb", "812": "#2f8f5b", "101": "#d9485f", "204": "#7c5cff",
 };
-const MODES: { key: ViewMode; label: string; hint: string }[] = [
-  { key: "listen", label: "听", hint: "只念设问与解析，听完自动记账；答案要点自己先想。" },
-  { key: "study", label: "学", hint: "章节树 → 知识点详情；读不懂点「问 AI」，它会换个说法重讲。" },
-  { key: "memo", label: "记", hint: "空格翻面，1/2/3 评分；同一张卡的问答独立归档。" },
-];
 
 function StudyInner() {
   const params = useSearchParams();
@@ -33,8 +27,8 @@ function StudyInner() {
 
   const [manifest, setManifest] = useState<Manifest | null>(null);
   const [progress, setProgress] = useState<ProgressStats | null>(null);
+  const [progressOpen, setProgressOpen] = useState(false);
   const [error, setError] = useState("");
-  const [showTree, setShowTree] = useState(false);
   const [scope, setScope] = useState<Scope>(DEFAULT_SCOPE);
   const [pickerOpen, setPickerOpen] = useState(false);
   const ai = useAi();
@@ -111,69 +105,63 @@ function StudyInner() {
   }
   if (!manifest || !subject) return <div className="empty">加载中…</div>;
 
-  const hint = MODES.find((m) => m.key === view)?.hint ?? "";
-  const isStepper = view === "listen" || view === "memo";
-
   return (
     <>
       <nav className="control-bar" aria-label="视图控制">
         <SubjectPicker subjects={manifest.subjects} sid={sid} onPick={(id) => go({ sid: id, pid: null })} />
-        <span className="spacer" />
+        {progress && (
+          <HeaderProgress stats={progress} open={progressOpen}
+            onToggle={() => setProgressOpen((o) => !o)} />
+        )}
         {view === "study" && (
-          <button className="badge-btn" onClick={() => setPickerOpen(true)}>
-            范围：{scopeLabel(scope, chapterNames)}
+          <button className="badge-btn range-btn" onClick={() => setPickerOpen(true)}>
+            {scopeLabel(scope, chapterNames)}
           </button>
         )}
-        <button className="badge-btn" onClick={() => ai.open({
-          point_id: activePid ?? undefined,
-          title: activePid ? undefined : "学习提问",
-          question: activePid ? undefined : "这一章我读不懂，帮我梳理一下重点",
-        })}>问 AI</button>
       </nav>
 
-      {progress && <ProgressStrip stats={progress} />}
+      {progress && <ProgressPanel stats={progress} open={progressOpen} />}
 
       {view === "study" && (
         <>
           <div className="subbar">
             <SearchPanel sid={sid} onPick={(id) => go({ pid: id })} />
           </div>
-          <div className="mode-hint">{hint}</div>
           <div className="content">
-            <div className="study-layout">
-              <button className="tree-toggle" onClick={() => setShowTree((s) => !s)}>
-                {showTree ? "收起章节树 ▴" : "展开章节树 ▾"}
-              </button>
-              <div className={`tree-holder${showTree ? " open" : ""}`}>
-                <ChapterTree subject={{ ...subject, chapters: visibleChapters }} points={points}
-                  activePid={activePid}
-                  onPick={(id) => { setShowTree(false); go({ pid: id }); }} />
-              </div>
-              {activePid
-                ? <PointDetail pid={activePid} onNavigate={(id) => go({ pid: id })}
-                    onRead={() => refreshProgress()} />
-                : <div className="empty">这个范围还没有知识点。</div>}
+            <div className="point-strip" role="tablist" aria-label="知识点">
+              {points.map((p) => (
+                <button
+                  key={p.id}
+                  role="tab"
+                  aria-selected={p.id === activePid}
+                  className={`ps-item${p.id === activePid ? " on" : ""}`}
+                  onClick={() => go({ pid: p.id })}
+                >
+                  <span className="ps-pri">{p.priority}</span>
+                  {p.title}
+                </button>
+              ))}
             </div>
+            {activePid
+              ? <PointDetail pid={activePid} onNavigate={(id) => go({ pid: id })}
+                  onRead={() => refreshProgress()} />
+              : <div className="empty">这个范围还没有知识点。</div>}
           </div>
         </>
       )}
 
-      {isStepper && (
-        <>
-          <div className="mode-hint">{hint}</div>
-          <div className="content">
-            {view === "memo"
-              ? <MemoView sid={sid} chapters={subject.chapters} />
-              : <ListenView sid={sid} chapters={subject.chapters} />}
-          </div>
-        </>
+      {view !== "study" && (
+        <div className="content">
+          {view === "memo"
+            ? <MemoView sid={sid} chapters={subject.chapters} />
+            : <ListenView sid={sid} chapters={subject.chapters} />}
+        </div>
       )}
 
       {view === "study" && (
         <RangePicker open={pickerOpen} chapters={subject.chapters} scope={scope}
           onClose={() => setPickerOpen(false)} onApply={applyScope} />
       )}
-
     </>
   );
 }

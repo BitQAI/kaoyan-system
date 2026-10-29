@@ -48,7 +48,8 @@ def _insert_subject(conn, sid: str, doc: dict, sort_idx: int) -> None:
     conn.execute(
         "INSERT INTO subject (id, name, score, status, generated_at, source_file, sort) "
         "VALUES (?,?,?,?,?,?,?)",
-        (sid, f"{sid} {doc['name']}", doc.get("score"), doc.get("status"),
+        (sid, doc["name"] if doc["name"].startswith(sid) else f"{sid} {doc['name']}",
+         doc.get("score"), doc.get("status"),
          doc.get("generated_at"), doc.get("source_file"), sort_idx),
     )
 

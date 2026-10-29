@@ -5,7 +5,8 @@ import { answerHtml } from "@/lib/render";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
 import type { Card, Chapter } from "@/lib/types";
 import { useAi } from "./AiProvider";
-import { PriorityBadge, StarButton } from "./Badges";
+import { PriorityBadge, StarButton, uniqueLabels } from "./Badges";
+import FavoritesPanel from "./FavoritesPanel";
 import RangePicker from "./RangePicker";
 
 const GRADES = ["秒答", "吃力", "忘了"] as const;
@@ -18,6 +19,7 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
   const [grades, setGrades] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [favOpen, setFavOpen] = useState(false);
   const [scope, setScope] = useState<Scope>(DEFAULT_SCOPE);
   const ai = useAi();
 
@@ -132,6 +134,7 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
         <button className="badge-btn" onClick={() => setPickerOpen(true)}>
           范围：{scopeLabel(scope, chapterNames)}
         </button>
+        <button className="badge-btn" onClick={() => setFavOpen(true)}>收藏</button>
         <div className="progress-bar"><i style={{ width: `${((index + 1) / cards.length) * 100}%` }} /></div>
         <span className="muted" style={{ fontSize: 12 }}>{index + 1} / {cards.length}</span>
       </div>
@@ -152,9 +155,10 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
           <div className="flip-front">
             <div className="flip-body">
               <div className="card-top">
-                <span className="badge kind">{card.kind}</span>
-                <PriorityBadge priority={(card as unknown as { priority?: string }).priority} />
-                <span className="badge">{card.card_type}</span>
+                <PriorityBadge priority={card.priority} />
+                {uniqueLabels([card.kind], [card.card_type]).map((b) => (
+                  <span className="badge" key={b}>{b}</span>
+                ))}
                 {card.new && <span className="badge type">新</span>}
                 <span className="spacer" />
                 <StarButton kind="card" id={card.card_id} title={card.question} />
@@ -187,8 +191,9 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
           <div className="flip-back">
             <div className="flip-body">
               <div className="card-top">
-                <span className="badge kind">{card.kind}</span>
-                <span className="badge">{card.card_type}</span>
+                {uniqueLabels([card.kind], [card.card_type]).map((b) => (
+                  <span className="badge" key={b}>{b}</span>
+                ))}
                 <span className="spacer" />
                 <button className="ai-entry-btn" onClick={() => ai.open({
                   point_id: card.point_id,
@@ -237,6 +242,7 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
 
       <RangePicker open={pickerOpen} chapters={chapters} scope={scope}
         onClose={() => setPickerOpen(false)} onApply={applyScope} />
+      <FavoritesPanel open={favOpen} sid={sid} onClose={() => setFavOpen(false)} />
     </div>
   );
 }

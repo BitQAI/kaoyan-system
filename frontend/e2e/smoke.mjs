@@ -50,13 +50,14 @@ check("看视图渲染标题", (await page.textContent(".study-title"))?.include
 check("考点解析有段落", await page.locator(".explain .prose p").count() > 0);
 check("怎么考有列表", await page.locator(".exam-list li").count() > 0);
 check("图示已渲染", await page.locator(".svg-wrap svg").count() > 0);
-check("证据徽章", await page.locator(".badge.verified, .badge.inferred").count() > 0);
+check("已去掉证据强度徽标", await page.locator(".badge.verified, .badge.inferred").count() === 0);
 check("关联区", await page.locator(".relations .rel-link").count() > 0);
-check("进度条可见", await page.locator(".progress-strip").count() === 1);
-await page.click(".progress-strip");
+check("学时无章节树、改成点横条", await page.locator(".point-strip .ps-item").count() > 0);
+check("无引导提示文案", await page.locator(".mode-hint").count() === 0);
+await page.click(".hp");
 await page.waitForSelector(".progress-panel", { timeout: 5000 });
 check("进度明细展开", await page.locator(".pp-row").count() > 0);
-await page.click(".progress-strip");
+await page.click(".hp");
 
 // —— 底部导航 + 科目切换 ——
 check("底部导航四项", await page.locator(".bn-item").count() === 4);
@@ -66,7 +67,7 @@ check("科目下拉可用", await page.locator(".sp-item").count() === 4);
 await page.click(".sp-item >> nth=0");
 
 // —— 自定义范围 ——
-await page.click('.control-bar .badge-btn >> nth=0');
+await page.click(".range-btn");
 await page.waitForSelector(".picker", { timeout: 5000 });
 check("范围选择器打开", await page.locator(".picker-row").count() > 0);
 await page.click(".picker-head .badge-btn");
@@ -75,9 +76,12 @@ await page.click(".picker-head .badge-btn");
 await page.goto(`${BASE}/study?view=listen&sid=812`);
 await page.waitForSelector(".stepper-card", { timeout: 25000 });
 check("听视图为逐条模式", await page.locator(".stepper-card").count() === 1);
-check("听有设问块", await page.locator(".listen-block h3").first().textContent() === "设问");
-check("听有解析块", await page.locator(".listen-block h3").nth(1).textContent() === "解析");
-check("答案默认隐藏", await page.locator(".listen-block + div .prose").count() === 0);
+check("听是卡片粒度（考点+解析）",
+  (await page.locator(".listen-block h3").first().textContent()) === "考点"
+  && (await page.locator(".listen-block h3").nth(1).textContent()) === "解析");
+check("听不出现选项", await page.locator(".stepper-card .options").count() === 0);
+const kindBadges = await page.locator(".stepper-card .card-top .badge").allTextContents();
+check("徽标不重复", new Set(kindBadges).size === kindBadges.length, kindBadges.join("/"));
 check("有逐条进度", await page.locator(".stepper-bar .progress-bar").count() === 1);
 check("语速是拖动条", await page.locator('.rate-slider input[type="range"]').count() === 1);
 check("听有优先级徽标", await page.locator(".badge.pri").count() > 0);
@@ -128,12 +132,17 @@ if (starAfter === 0) {          // 保证 /me 上至少有一条收藏可看
 }
 await page.goto(`${BASE}/me`);
 await page.waitForSelector(".me-page", { timeout: 20000 });
-check("我的页打开", await page.locator(".me-tabs button").count() === 3);
+check("我的页打开", await page.locator(".me-tabs button").count() === 4);
 await page.waitForSelector(".me-row, .empty", { timeout: 10000 });
 check("收藏有内容", await page.locator(".me-row").count() > 0);
 await page.click('.me-tabs button >> nth=1');
 await page.waitForTimeout(400);
 check("错题本可切换", await page.locator(".me-row, .empty").count() > 0);
+
+// —— 进度预测 ——
+await page.click('.me-tabs button:has-text("进度预测")');
+await page.waitForSelector(".fc-row", { timeout: 10000 });
+check("四科学完预测可见", await page.locator(".fc-row").count() === 4);
 
 // —— 历史页 ——
 await page.goto(`${BASE}/history`);
