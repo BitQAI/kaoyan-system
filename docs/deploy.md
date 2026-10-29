@@ -77,7 +77,8 @@ bash deploy/install_server.sh
 
 脚本是幂等的：重复执行只会做「装依赖 → 迁移 → 重新导入元数据 → 重建前端 → 重启服务」。
 
-**有数据库结构变更时**（`backend/migrations/versions/` 新增文件），脚本里的 `alembic upgrade head` 会自动升级；
+**有数据库结构变更时**（`backend/migrations/versions/` 新增文件），脚本里的 `alembic upgrade head` 会自动升级，
+随后跑 `alembic check`：模型与库有漂移时脚本直接中止，不会带着不一致的结构重启服务。
 升级前建议先备份数据库：
 
 ```bash
@@ -181,6 +182,7 @@ curl -s localhost:8000/api/health     # {"ok":true,"points":538,"ai_configured":
 | AI 报「未配置密钥」 | 根目录没有 `.env` 或没有 `DEEPSEEK_API_KEY` | 补齐 `.env` 后 `systemctl restart kaoyan-backend` |
 | `alembic check` 报漂移 | 手工改过库 | 以迁移为准：备份后 `alembic upgrade head`，再核对 `alembic check` |
 | 元数据更新后页面没变 | 只 pull 了代码，没重跑导入 | `bash deploy/install_server.sh`（会重新导入） |
+| 进度预测页加载失败或两个维度数字全 0 | 后端还是旧进程，接口结构没更新（`/api/stats/timeline` 返回旧字段） | `systemctl restart kaoyan-backend`；正常更新走 `install_server.sh` 会自动重启 |
 | 朗读没声音 | 服务器上没有 `data/audio/`，或该卡本就无音频且系统无中文语音包 | 先确认 `data/audio/{科目}/{card_id}.mp3` 存在；204 没有音频，只能走 TTS，需要系统装中文语音 |
 | iOS 锁屏后朗读中断 | 只有回退到 `speechSynthesis` 的卡片会断（有音频的卡走 `<audio>`，锁屏可继续） | 属于回退路径的固有限制；确认对应科目的音频已上传 |
 | 页面还是旧配色 / 底部导航不是悬浮条 | 只 `git pull` 没重建前端 | `bash deploy/install_server.sh`（会重新 `next build` 并重启前端） |

@@ -34,8 +34,12 @@ cd "$SITE/backend"
 .venv/bin/pip install -q --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple
 .venv/bin/pip install -q -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-log "建表并导入元数据"
+log "升级数据库结构"
 .venv/bin/alembic upgrade head
+.venv/bin/alembic check || die "数据库结构与模型不一致：先按上方漂移项定位，再重新部署"
+.venv/bin/alembic current
+
+log "导入元数据"
 .venv/bin/python scripts/import_meta.py
 
 log "初始化登录账号"
