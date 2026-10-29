@@ -82,6 +82,7 @@ cd /www/wwwroot/kaoyan.bitqai.com && git pull && bash deploy/install_server.sh
 
 ## 文档
 
+- 部署与运维：[docs/deploy.md](docs/deploy.md)（首次部署 / 更新 / 备份 / 排查 / 回滚）
 - 设计规格：`docs/specs/2026-10-28-考研应用与AI助手设计.md`
 - 实施计划：`docs/plans/2026-10-28-考研应用与AI助手-plan.md`
 - 元数据：`知识点元数据/README.md`、`字段字典.md`、`UI展示规范.md`
