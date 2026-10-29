@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ProgressDashboard from "@/components/ProgressDashboard";
+import { readRate, writeRate, RATE_MAX, RATE_MIN } from "@/lib/listen";
 import { applyTheme, readTheme, type Theme } from "@/lib/theme";
 import { delJson, getJson, setToken } from "@/lib/api";
 import type { ProgressStats } from "@/lib/types";
@@ -32,8 +33,9 @@ export default function MePage() {
   const [stats, setStats] = useState<ProgressStats | null>(null);
   const [error, setError] = useState("");
   const [theme, setTheme] = useState<Theme>("auto");
+  const [rate, setRate] = useState(1.5);
 
-  useEffect(() => { setTheme(readTheme()); }, []);
+  useEffect(() => { setTheme(readTheme()); setRate(readRate()); }, []);
 
   useEffect(() => {
     getJson<{ items: FavPoint[] }>("/api/favorites?kind=point")
@@ -160,6 +162,25 @@ export default function MePage() {
                   <button key={k} className={theme === k ? "on" : ""}
                     onClick={() => { setTheme(k); applyTheme(k); }}>{label}</button>
                 ))}
+            </div>
+          </div>
+          <div className="me-row" style={{ flexDirection: "column", alignItems: "stretch", gap: 8 }}>
+            <span className="me-main">
+              <b>朗读语速</b>
+              <span className="muted">「听」页离线音频的播放倍速，只影响这台设备</span>
+            </span>
+            <div className="rate-slider">
+              <input
+                type="range" min={RATE_MIN} max={RATE_MAX} step={0.05}
+                value={rate}
+                onChange={(e) => {
+                  const next = Number(e.target.value);
+                  setRate(next);
+                  writeRate(next);
+                }}
+                aria-label="朗读语速"
+              />
+              <span className="rate-value">{rate.toFixed(2)}×</span>
             </div>
           </div>
           <div className="me-row">

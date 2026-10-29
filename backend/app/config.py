@@ -44,6 +44,8 @@ LLM_CHAT_PROVIDER = os.getenv("LLM_CHAT_PROVIDER", "deepseek")
 DATA_DIR = Path(os.getenv("KY_DATA_DIR", str(ROOT_DIR / "data")))
 DB_PATH = Path(os.getenv("KY_DB", str(DATA_DIR / "ky.db")))
 META_DIR = Path(os.getenv("KY_META_DIR", str(ROOT_DIR / "知识点元数据")))
+#: 卡片音频（清单见 data/audio/manifest.json），由 gen_card_audio.py 生成后上传
+AUDIO_DIR = Path(os.getenv("KY_AUDIO_DIR", str(DATA_DIR / "audio")))
 SUBJECTS = ("812", "315", "101", "204")
 EXAM_DATE = os.getenv("KY_EXAM_DATE", "2026-12-19")
 
