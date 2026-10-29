@@ -222,6 +222,10 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
                   <div className="prose">{card.analysis}</div>
                 </div>
               )}
+              <CardMeta reviews={card.reviews} lastResult={card.last_result}
+                lapses={card.lapses} dueAt={card.due_at}
+                listenCount={card.listen_count}
+                trailing={<span className="muted">{card.title}</span>} />
             </div>
             <button className="btn flip-btn" onClick={() => setFlipped(false)}>返回题目</button>
           </div>

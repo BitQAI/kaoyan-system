@@ -23,10 +23,15 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   const [rate, setRate] = useState(0.95);
   const [supported, setSupported] = useState(true);
   const [showNotes, setShowNotes] = useState(false);
+  const [autoPlay, setAutoPlay] = useState(true);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [favOpen, setFavOpen] = useState(false);
   const [scope, setScope] = useState<Scope>(DEFAULT_SCOPE);
   const activeRef = useRef<string | null>(null);
+  const autoRef = useRef(true);
+  const timerRef = useRef<number | null>(null);
+
+  useEffect(() => { autoRef.current = autoPlay; }, [autoPlay]);
   const ai = useAi();
 
   const chapterNames: Record<string, string> = {};
@@ -62,7 +67,15 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
 
   const item = items[idx];
 
+  function clearTimer() {
+    if (timerRef.current !== null) {
+      window.clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  }
+
   function stop() {
+    clearTimer();
     if (typeof window !== "undefined" && "speechSynthesis" in window) window.speechSynthesis.cancel();
     activeRef.current = null;
     setSpeaking(false);
@@ -86,6 +99,18 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
       void postJson("/api/progress/listen", { card_id: target.card_id }).catch(() => {});
       setItems((list) => list.map((x) => x.card_id === target.card_id
         ? { ...x, heard: true, listen_count: x.listen_count + 1 } : x));
+
+      // 连播：停一拍后自动翻到下一条并朗读；到末尾就停在本批完成页
+      const i = items.findIndex((x) => x.card_id === target.card_id);
+      const next = items[i + 1];
+      if (!autoRef.current || !next) {
+        if (!next) setIdx(items.length);
+        return;
+      }
+      timerRef.current = window.setTimeout(() => {
+        setIdx(i + 1);
+        speak(next);
+      }, 800);
     };
     utter.onerror = () => { if (activeRef.current === target.card_id) stop(); };
     activeRef.current = target.card_id;
@@ -194,6 +219,11 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
             {speaking ? "朗读中…" : "朗读考点与作答"}
           </button>
           <button className="btn" onClick={stop} disabled={!speaking}>停止</button>
+          <button className={`btn${autoPlay ? " primary" : ""}`}
+            onClick={() => setAutoPlay((v) => !v)}
+            title="朗读完一条后自动播下一条">
+            {autoPlay ? "连播中" : "单条"}
+          </button>
           <label className="rate-slider">
             <span className="muted" style={{ fontSize: 11.5 }}>语速</span>
             <input

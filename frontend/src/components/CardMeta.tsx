@@ -31,19 +31,22 @@ export default function CardMeta({
   trailing?: ReactNode;
 }) {
   const parts: ReactNode[] = [];
+  // 记与听分开标：两者是不同动作，合并成一个「N 次」会看不懂
   if (reviews > 0) {
-    parts.push(<span key="r">第 {reviews} 次</span>);
+    parts.push(<span key="r">记 {reviews} 次</span>);
     if (lastResult) {
       parts.push(
         <span key="lr" className={RESULT_CLASS[lastResult] ?? ""}>上次 {lastResult}</span>,
       );
     }
     if (lapses > 0) parts.push(<span key="lp" className="cm-bad">失误 {lapses}</span>);
-    if (dueAt) parts.push(<span key="d">下次 {fmtDate(dueAt)}</span>);
   } else {
-    parts.push(<span key="new">新卡 · 还没记过</span>);
+    parts.push(<span key="new">记 0 次</span>);
   }
-  if (listenCount > 0) parts.push(<span key="l">听过 {listenCount} 次</span>);
+  parts.push(
+    <span key="l" className={listenCount > 0 ? "" : "cm-dim"}>听 {listenCount} 次</span>,
+  );
+  if (dueAt && reviews > 0) parts.push(<span key="d">下次 {fmtDate(dueAt)}</span>);
 
   return (
     <div className="card-meta">

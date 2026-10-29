@@ -94,6 +94,16 @@ const kindBadges = await page.locator(".stepper-card .card-top .badge").allTextC
 check("徽标不重复", new Set(kindBadges).size === kindBadges.length, kindBadges.join("/"));
 check("有逐条进度", await page.locator(".stepper-bar .progress-bar").count() === 1);
 check("语速是拖动条", await page.locator('.rate-slider input[type="range"]').count() === 1);
+// 用假合成器验证连播：朗读结束后应自动翻到下一条
+await page.evaluate(() => {
+  window.speechSynthesis.speak = (u) => setTimeout(() => u.onend && u.onend(), 80);
+  window.speechSynthesis.cancel = () => {};
+});
+const posBefore = await page.textContent(".stepper-bar .muted");
+await page.click(".listen-actions .btn.primary");
+await page.waitForTimeout(1800);
+const posAfter = await page.textContent(".stepper-bar .muted");
+check("听自动连播下一条", posBefore !== posAfter, `${posBefore} → ${posAfter}`);
 check("听有优先级徽标", await page.locator(".badge.pri").count() > 0);
 await page.click(".stepper-nav .btn.primary");
 check("下一条可用", await page.locator(".stepper-nav .btn.primary").count() === 1);
