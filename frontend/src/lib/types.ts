@@ -34,6 +34,36 @@ export interface Manifest {
   points: PointIndex[];
 }
 
+export interface WordExample {
+  /** 真题：能在语料中回溯到原句；例句：自写，卡面必须标注 */
+  kind: "真题" | "例句";
+  quote: string;
+  cn?: string;
+  year?: number;
+  part?: string;
+  text?: string;
+  qno?: number;
+  /** 该句在题里怎么被考 */
+  tested?: string;
+  note?: string;
+}
+
+export interface WordPayload {
+  type: "word" | "phrase" | "confusable";
+  /** 仅 word / phrase 类型有 */
+  word?: string;
+  phonetic?: string;
+  meanings?: { pos: string; cn: string }[];
+  examples?: WordExample[];
+  confusables?: { word: string; diff: string }[];
+  phrases?: { en: string; cn: string }[];
+  /** 辨析卡 */
+  group?: string[];
+  stem?: string;
+  answer?: string;
+  diff?: string;
+}
+
 export interface Card {
   card_id: string;
   point_id: string;
@@ -46,6 +76,8 @@ export interface Card {
   analysis: string;
   unit_refs: number[];
   difficulty: number | null;
+  /** 词卡 / 词组卡 / 辨析卡的结构化内容；其余题型为空对象 */
+  payload?: WordPayload | Record<string, never>;
   priority?: string;
   /** 记过几次 / 上次评分 / 听过几次 */
   reviews?: number;
