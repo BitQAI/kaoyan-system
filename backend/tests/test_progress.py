@@ -175,3 +175,68 @@ def test_milestones_shape(client):
     if got["next"]:
         assert got["next"]["current"] < got["next"]["target"]
         assert 0 <= got["next"]["pct"] <= 100
+
+
+def test_timeline_forecast_fields(client):
+    got = client.get("/api/stats/timeline").json()
+    for key in ("memo", "listen"):
+        dim = got["dimensions"][key]
+        assert {"pace_trend", "finish_earliest", "finish_latest", "mode",
+                "confidence", "capacity"} <= set(dim)
+        assert dim["mode"] in {"load_aware", "linear"}
+        assert dim["confidence"] in {"high", "medium", "low"}
+    assert got["dimensions"]["listen"]["mode"] == "linear"
+    assert got["dimensions"]["listen"]["capacity"] is None
+
+
+def test_timeline_series_band_shape(client):
+    got = client.get("/api/stats/timeline").json()
+    for dim in got["dimensions"].values():
+        actual = [p for p in dim["series"] if p["actual"]]
+        forecast = [p for p in dim["series"] if not p["actual"]]
+        assert all("low_pct" not in p for p in actual)
+        assert all(p["low_pct"] <= p["high_pct"] for p in forecast)
+        assert all(p["percent"] <= 100 for p in dim["series"])
+
+
+def test_timeline_review_load_shape(client):
+    got = client.get("/api/stats/timeline").json()
+    assert {"due_today", "steady_load"} <= set(got["review_load"])
+    assert got["review_load"]["due_today"] >= 0
+    assert got["review_load"]["steady_load"] >= 0
+
+
+def test_timeline_insufficient_has_no_forecast(client):
+    dim = client.get("/api/stats/timeline").json()["dimensions"]["memo"]
+    if dim["status"] == "insufficient":
+        assert dim["finish_date"] is None
+        assert not [p for p in dim["series"] if not p["actual"]]
+
+
+def test_timeline_keeps_legacy_fields(client):
+    dim = client.get("/api/stats/timeline").json()["dimensions"]["memo"]
+    assert {"total", "done", "percent", "pace", "pace_window", "required_pace",
+            "finish_date", "status", "status_text", "series"} <= set(dim)
+
+
+def test_subjects_have_forecast_fields(client):
+    got = client.get("/api/stats/timeline").json()
+    for s in got["subjects"]:
+        for key in ("memo", "listen"):
+            assert {"finish_earliest", "finish_latest", "mode", "confidence"} <= set(s[key])
+
+
+def test_load_series_extends_to_pessimistic_finish():
+    from datetime import date, timedelta
+    from app.forecast import Projection
+    from app.progress_series import load_series
+
+    today = date(2026, 10, 30)
+    mid = Projection(today + timedelta(days=10), [], 0)
+    fast = Projection(today + timedelta(days=8), [], 0)
+    slow = Projection(today + timedelta(days=15), [], 0)
+    series = load_series({}, today, today, 100, 0, mid, fast, slow,
+                         today + timedelta(days=20))
+    forecast = [p for p in series if not p["actual"]]
+    assert forecast[0]["date"] == (today + timedelta(days=1)).isoformat()
+    assert forecast[-1]["date"] == (today + timedelta(days=15)).isoformat()

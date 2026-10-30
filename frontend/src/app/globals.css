@@ -684,9 +684,11 @@ html[data-theme="dark"] .badge.pri-hot{background:rgba(255,159,10,.16)}
 .st-risk{color:var(--warn)}
 .st-late{color:var(--bad)}
 .st-insufficient,.st-empty{color:var(--muted)}
+.st-stalled{color:var(--warn)}
 .dh-pill.st-ok{border-color:var(--good);background:rgba(36,138,61,.12)}
 .dh-pill.st-risk{border-color:var(--warn);background:rgba(178,106,0,.12)}
 .dh-pill.st-late{border-color:var(--bad);background:rgba(215,0,21,.12)}
+.dh-pill.st-stalled{border-color:var(--warn);background:rgba(178,106,0,.12)}
 
 .habit-line{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--muted)}
 .habit-line b{color:var(--ink);font-size:13px;font-variant-numeric:tabular-nums}
@@ -748,6 +750,38 @@ html[data-theme="dark"] .badge.pri-hot{background:rgba(255,159,10,.16)}
 .more-block[open] summary{color:var(--ink)}
 .more-block > * + *{margin-top:10px}
 .dq-note{font-size:11px;line-height:1.5;margin:0}
+
+/* 预测区间 / 交互 / 科目状态 */
+.dim-load{font-size:10.5px;line-height:1.45;margin:3px 0 0}
+.sl-chips{display:flex;gap:4px;flex-wrap:wrap}
+.sl-chip{
+  font-size:10px;padding:1px 6px;border-radius:999px;
+  border:1px solid var(--line);background:var(--bg2);white-space:nowrap;
+}
+.sl-eta{display:flex;gap:10px;flex-wrap:wrap;font-size:10.5px}
+.chart-stall{margin:2px 12px 0;font-size:11.5px;color:var(--warn)}
+.lg-band{
+  height:9px;border-radius:2px;
+  background:color-mix(in srgb, var(--muted) 22%, transparent);
+}
+.lg-ideal{background:repeating-linear-gradient(90deg,var(--muted) 0 2px,transparent 2px 5px)}
+.pc-tip text{font-size:11px}
+.pc-tip-date{fill:var(--muted);font-size:10.5px}
+.pc-tip-row{fill:var(--ink)}
+.progress-chart:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chart-table{margin:0 12px;font-size:11px;color:var(--muted)}
+.chart-table summary{cursor:pointer;list-style:none;padding:4px 0;color:var(--accent-ink)}
+.chart-table summary::-webkit-details-marker{display:none}
+.chart-table table{
+  width:100%;border-collapse:collapse;margin-top:4px;
+  display:block;max-height:220px;overflow:auto;
+}
+.chart-table th,.chart-table td{
+  padding:3px 6px;border-bottom:1px solid var(--line);
+  text-align:right;font-variant-numeric:tabular-nums;
+}
+.chart-table th:first-child,.chart-table td:first-child{text-align:left}
+.chart-table thead th{position:sticky;top:0;background:var(--card-strong)}
 @media (max-width:400px){.dim-head{grid-template-columns:1fr}}
 
 /* ============================================================

@@ -9,10 +9,12 @@
 避免第一天的集中复习被放大成假速度。
 """
 from datetime import date, timedelta
+import math
 
-from app import config
+from app import config, forecast
+from app.progress_series import linear_series, load_series
 
-WINDOW = 7
+PACE_WINDOW = forecast.PACE_DAYS
 UNIT = "张"
 
 
@@ -80,21 +82,71 @@ def _listen_first_ts(conn, sid: str | None) -> list[tuple[str, str, int]]:
     return out
 
 
-def _status(done: int, total: int, finish: date | None, exam: date, pace: float,
-            required: float | None) -> tuple[str, str]:
-    if done == 0:
-        return "empty", "还没有学习记录"
-    if pace <= 0:
-        return "empty", "近期没有复习，无法预测"
-    if finish is None:
-        return "risk", "数据不足"
-    if finish > exam:
-        return "late", "按当前速度无法在初试前学完"
-    if required and pace > 0 and required > pace * 1.2:
-        return "risk", "能赶上但余量很薄，需要提速"
-    if (exam - finish).days < 7:
-        return "risk", "能赶上，但几乎没有缓冲"
-    return "ok", "按当前速度可以在初试前学完"
+def _load_cards(conn, sid: str | None, today: date) -> list[forecast.CardState]:
+    sub = " AND p.subject_id = ?" if sid else ""
+    params = [sid] if sid else []
+    rows = conn.execute(f"""
+        SELECT cp.interval, cp.due_at, cp.stage, cp.ease, cp.lapses, cp.reviews
+        FROM card_progress cp
+        JOIN card c ON c.card_id = cp.card_id
+        JOIN point p ON p.id = c.point_id
+        WHERE 1=1{sub}
+    """, params).fetchall()
+    out = []
+    for r in rows:
+        try:
+            due = date.fromisoformat((r["due_at"] or "")[:10])
+        except ValueError:
+            due = today
+        out.append(forecast.CardState(
+            interval=max(1, r["interval"] or 1), due=due,
+            stage=r["stage"] or 0, difficulty=r["ease"] or 2,
+            lapses=r["lapses"] or 0, reviews=r["reviews"] or 0))
+    return out
+
+
+def _daily_actions(conn, sid: str | None, today: date, days: int = 14) -> list[int]:
+    sub = " AND p.subject_id = ?" if sid else ""
+    params: list = [sid] if sid else []
+    start = (today - timedelta(days=days - 1)).isoformat()
+    rows = conn.execute(f"""
+        SELECT substr(e.ts,1,10) AS d, COUNT(*) AS n
+        FROM card_event e
+        JOIN card c ON c.card_id = e.card_id
+        JOIN point p ON p.id = c.point_id
+        WHERE e.ts >= ?{sub}
+        GROUP BY d
+    """, [start, *params]).fetchall()
+    by_day = {r["d"]: r["n"] for r in rows}
+    return [by_day.get((today - timedelta(days=i)).isoformat(), 0)
+            for i in range(days - 1, -1, -1)]
+
+
+def _event_count(conn, table: str, sid: str | None) -> int:
+    sub = " AND p.subject_id = ?" if sid else ""
+    params = [sid] if sid else []
+    return conn.execute(
+        f"SELECT COUNT(*) FROM {table} e JOIN card c ON c.card_id = e.card_id "
+        f"JOIN point p ON p.id = c.point_id WHERE 1=1{sub}", params).fetchone()[0]
+
+
+def _due_today(conn, sid: str | None = None) -> int:
+    if sid:
+        return conn.execute(
+            "SELECT COUNT(*) FROM card_progress cp "
+            "JOIN card c ON c.card_id = cp.card_id "
+            "JOIN point p ON p.id = c.point_id "
+            "WHERE cp.due_at <= ? AND p.subject_id = ?",
+            (date.today().isoformat(), sid)).fetchone()[0]
+    return conn.execute("SELECT COUNT(*) FROM card_progress WHERE due_at <= ?",
+                        (date.today().isoformat(),)).fetchone()[0]
+
+
+def _span(firsts, today: date) -> int:
+    if not firsts:
+        return 0
+    earliest = min(date.fromisoformat(f[1]) for f in firsts)
+    return max(1, (today - earliest).days + 1)
 
 
 def _per_day(firsts: list[tuple[str, str, int]]) -> dict[str, int]:
@@ -104,65 +156,81 @@ def _per_day(firsts: list[tuple[str, str, int]]) -> dict[str, int]:
     return out
 
 
-def _series(per_day: dict[str, int], start: date, today: date, total: int,
-            pace: float, finish: date | None, exam: date) -> list[dict]:
-    series: list[dict] = []
-    acc = sum(n for day, n in per_day.items() if date.fromisoformat(day) < start)
-    for i in range((today - start).days + 1):
-        d = start + timedelta(days=i)
-        acc += per_day.get(d.isoformat(), 0)
-        series.append({"date": d.isoformat(), "done": acc,
-                       "percent": round(acc / total * 100, 2) if total else 0,
-                       "actual": True})
-
-    # 预测段画到初试当天为止：曲线在 100% 之前停止 = 赶不上，一眼能看出来
-    proj_end = min(finish or exam, exam)
-    if proj_end > today + timedelta(days=180):
-        proj_end = today + timedelta(days=180)
-    if pace > 0 and total:
-        for i in range(1, (proj_end - today).days + 1):
-            d = today + timedelta(days=i)
-            n = acc + round(pace * i)
-            series.append({"date": d.isoformat(), "done": n,
-                           "percent": round(min(n, total) / total * 100, 2),
-                           "actual": False})
-    return series
-
-
-def _metrics(total: int, firsts, start: date, span_days: int, today: date,
-             exam: date, days_left: int, with_series: bool) -> dict:
+def _metrics(total: int, firsts, start: date, today: date, exam: date,
+             days_left: int, with_series: bool, *, load=None,
+             events: int = 0) -> dict:
     done = len(firsts)
     derived = sum(1 for *_rest, d in firsts if d)
     per_day = _per_day(firsts)
-    window = WINDOW
-    done_window = sum(n for day, n in per_day.items()
-                      if date.fromisoformat(day) > today - timedelta(days=window))
-    pace = done_window / window if done_window else (done / span_days if done else 0.0)
+    span = _span(firsts, today)
+    pace, trend = forecast.smoothed_pace(per_day, today)
+    pace_low, pace_high = forecast.pace_band(per_day, today, pace)
     remaining = max(0, total - done)
     required = (remaining / days_left) if days_left > 0 else None
+    confidence = forecast.confidence_level(span, events)
+    stalled = pace == 0 and remaining > 0 and done > 0
+    can_forecast = done > 0 and span >= 3 and pace > 0 and remaining > 0
 
-    finish: date | None = None
-    if pace > 0 and remaining > 0:
-        finish = today + timedelta(days=round(remaining / pace))
-    elif remaining == 0:
-        finish = today
+    mode = "linear"
+    capacity = None
+    finish = earliest = latest = None
+    series: list[dict] = []
 
-    if done and span_days < 3:
-        status, status_text = "insufficient", "学习记录不足 3 天，暂不做预测"
-    else:
-        status, status_text = _status(done, total, finish, exam, pace, required)
+    if load and confidence != "low" and can_forecast:
+        cards, actions, steady = load
+        cap = forecast.capacity_from_actions(actions, pace, steady)
+        cap_low = max(1, int(cap * 0.8))
+        cap_high = max(cap_low + 1, math.ceil(cap * 1.2))
+        horizon = min(exam + timedelta(days=30), today + timedelta(days=365))
+        mid = forecast.project_load(cards, done, remaining, cap, pace, today, horizon)
+        fast = forecast.project_load(cards, done, remaining, cap_high, pace, today, horizon)
+        slow = forecast.project_load(cards, done, remaining, cap_low, pace, today, horizon)
+        mode = "load_aware"
+        capacity = {"daily_actions": cap, "review_load": round(steady, 1),
+                    "new_pace": round(min(pace, max(0, cap - steady)), 1)}
+        finish, earliest, latest = mid.finish, fast.finish, slow.finish
+        if with_series:
+            series = load_series(per_day, start, today, total, done,
+                                 mid, fast, slow, exam)
+
+    if mode == "linear":
+        if remaining == 0:
+            finish = today
+        elif can_forecast:
+            finish = today + timedelta(days=round(remaining / pace))
+            if pace_high > 0:
+                earliest = today + timedelta(days=math.ceil(remaining / pace_high))
+            if pace_low > 0:
+                latest = today + timedelta(days=math.ceil(remaining / pace_low))
+        if with_series:
+            series = linear_series(per_day, start, today, total,
+                                   pace if can_forecast else 0.0,
+                                   pace_low, pace_high,
+                                   finish if can_forecast else None, exam)
+
+    status, status_text = forecast.status(
+        done, total, pace, finish, earliest, latest, exam, required, stalled, span)
+    if mode == "load_aware" and finish is None and not stalled and remaining > 0:
+        status, status_text = "late", "按当前复习与新卡节奏，初试前学不完"
+    if capacity and capacity["daily_actions"] < capacity["review_load"]:
+        status = "risk" if status in {"ok", "risk"} else status
+        status_text = "复习已占满，新卡推不动"
 
     out = {
         "total": total, "done": done,
         "percent": round(done / total * 100, 2) if total else 0,
         "status": status, "status_text": status_text,
-        "pace": round(pace, 2), "pace_window": window,
+        "pace": round(pace, 2), "pace_window": PACE_WINDOW,
+        "pace_trend": trend,
         "required_pace": round(required, 2) if required is not None else None,
         "finish_date": finish.isoformat() if finish else None,
+        "finish_earliest": earliest.isoformat() if earliest else None,
+        "finish_latest": latest.isoformat() if latest else None,
+        "mode": mode, "confidence": confidence, "capacity": capacity,
         "derived": derived,
     }
     if with_series:
-        out["series"] = _series(per_day, start, today, total, pace, finish, exam)
+        out["series"] = series
     return out
 
 
@@ -176,7 +244,7 @@ def _dimension(label: str, metrics: dict) -> dict:
 
 
 def timeline(conn, sid: str | None = None, days: int = 21) -> dict:
-    """按天的累计完成曲线 + 线性外推预测，记 / 听 两个维度。"""
+    """按天的累计完成曲线 + 负载感知预测，记 / 听 两个维度。"""
     today = date.today()
     try:
         exam = date.fromisoformat(config.EXAM_DATE)
@@ -194,20 +262,28 @@ def timeline(conn, sid: str | None = None, days: int = 21) -> dict:
         earliest = min(date.fromisoformat(f[1]) for f in all_firsts)
         if earliest > start:
             start = earliest       # 不画没有数据的历史
-    span_days = max(1, (today - start).days + 1)
 
     total = _scope_total(conn, sid)
+    memo_cards = _load_cards(conn, sid, today)
+    memo_actions = _daily_actions(conn, sid, today)
+    steady = forecast.steady_review_load(memo_cards)
+
     dimensions = {
         "memo": _dimension("记", _metrics(
-            total, memo_firsts, start, span_days, today, exam, days_left, True)),
+            total, memo_firsts, start, today, exam, days_left, True,
+            load=(memo_cards, memo_actions, steady),
+            events=_event_count(conn, "card_event", sid))),
         "listen": _dimension("听", _metrics(
-            total, listen_firsts, start, span_days, today, exam, days_left, True)),
+            total, listen_firsts, start, today, exam, days_left, True,
+            events=_event_count(conn, "listen_event", sid))),
     }
 
     return {
         "today": today.isoformat(), "exam_date": exam.isoformat(), "days_left": days_left,
         "scope": sid or "all", "dimensions": dimensions,
-        "subjects": _subjects(conn, start, span_days, today, exam, days_left),
+        "review_load": {"due_today": _due_today(conn, sid),
+                        "steady_load": round(steady, 1)},
+        "subjects": _subjects(conn, start, today, exam, days_left),
         "streak": streak(conn),
         "daily": daily_progress(conn),
         "weekly": weekly(conn),
@@ -215,7 +291,7 @@ def timeline(conn, sid: str | None = None, days: int = 21) -> dict:
     }
 
 
-def _subjects(conn, start: date, span_days: int, today: date,
+def _subjects(conn, start: date, today: date,
               exam: date, days_left: int) -> list[dict]:
     out = []
     for s0 in conn.execute("SELECT id, name FROM subject ORDER BY sort"):
@@ -223,8 +299,9 @@ def _subjects(conn, start: date, span_days: int, today: date,
         row = {"id": s0["id"], "name": s0["name"]}
         for key, firsts_of in (("memo", _completion_first_ts),
                                ("listen", _listen_first_ts)):
-            m = _metrics(st_total, firsts_of(conn, s0["id"]), start, span_days,
-                         today, exam, days_left, False)
+            firsts = firsts_of(conn, s0["id"])
+            m = _metrics(st_total, firsts, start, today, exam, days_left, False,
+                         events=len(firsts))
             m.pop("derived")
             row[key] = m
         out.append(row)
