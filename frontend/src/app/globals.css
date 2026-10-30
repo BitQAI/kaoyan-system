@@ -221,7 +221,7 @@ html[data-theme="dark"] .grain{opacity:.06}
 .glass-row,
 .fc-row,
 .sl-row,
-.dim-card,
+.dim-summary,
 .me-row,
 .history-conv,
 .card-item,
@@ -659,22 +659,27 @@ html[data-theme="dark"] .badge.pri-hot{background:rgba(255,159,10,.16)}
   border-radius:14px;padding:9px 12px;font-size:12.5px;
 }
 
-/* 双维度摘要 */
-.dim-head{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.dim-card{
-  position:relative;border-radius:16px;padding:12px 14px 11px;overflow:hidden;
-}
-.dim-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--dim)}
-.dim-card.tone-memo{--dim:var(--chart-ac)}
-.dim-card.tone-listen{--dim:var(--accent)}
+/* 双维度合并摘要 */
+.dim-summary{border-radius:18px;padding:11px 14px;display:flex;flex-direction:column;gap:10px}
+.dim-row{position:relative;padding-left:11px}
+.dim-row + .dim-row{border-top:1px solid var(--line);padding-top:10px}
+.dim-row::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:3px;border-radius:2px;background:var(--dim)}
+.dim-row.tone-memo{--dim:var(--chart-ac)}
+.dim-row.tone-listen{--dim:var(--accent)}
+.dim-row-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .dim-title{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--ink)}
 .dim-title .muted{font-weight:400;font-size:11px}
 .dim-dot{width:8px;height:8px;border-radius:50%;display:inline-block;background:var(--dim)}
-.dim-pct{font-size:34px;font-weight:750;letter-spacing:-.03em;line-height:1.1;margin-top:3px;color:var(--ink)}
-.dim-pct span{font-size:15px;font-weight:650;margin-left:2px;color:var(--muted)}
-.dim-sub{font-size:12px;color:var(--muted);margin-top:2px;font-variant-numeric:tabular-nums}
-.dim-foot{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:8px;font-size:11.5px}
-.dim-note{font-size:11.5px;margin:6px 0 0;line-height:1.45}
+.dim-pct-inline{font-size:22px;font-weight:750;letter-spacing:-.03em;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.dim-pct-inline em{font-style:normal;font-size:11px;font-weight:650;color:var(--muted);margin-left:1px}
+.dim-count{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.dim-row-head .dh-pill{margin-left:auto}
+.dim-bar{height:5px;border-radius:999px;background:var(--line);overflow:hidden;margin:6px 0 4px}
+.dim-bar i{display:block;height:100%;border-radius:999px;background:var(--dim);transition:width .3s ease}
+.dim-meta{display:flex;justify-content:space-between;gap:4px 12px;flex-wrap:wrap;font-size:11px;color:var(--muted)}
+.dim-meta span{font-variant-numeric:tabular-nums}
+.dim-warn{color:var(--warn)}
+.dim-note{font-size:11.5px;margin:4px 0 0;line-height:1.45}
 
 .dh-pill{
   font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);
@@ -752,7 +757,6 @@ html[data-theme="dark"] .badge.pri-hot{background:rgba(255,159,10,.16)}
 .dq-note{font-size:11px;line-height:1.5;margin:0}
 
 /* 预测区间 / 交互 / 科目状态 */
-.dim-load{font-size:10.5px;line-height:1.45;margin:3px 0 0}
 .sl-chips{display:flex;gap:4px;flex-wrap:wrap}
 .sl-chip{
   font-size:10px;padding:1px 6px;border-radius:999px;
@@ -782,7 +786,12 @@ html[data-theme="dark"] .badge.pri-hot{background:rgba(255,159,10,.16)}
 }
 .chart-table th:first-child,.chart-table td:first-child{text-align:left}
 .chart-table thead th{position:sticky;top:0;background:var(--card-strong)}
-@media (max-width:400px){.dim-head{grid-template-columns:1fr}}
+@media (max-width:400px){
+  .dim-summary{padding:10px 12px}
+  .dim-row-head .dh-pill{margin-left:0}
+  .dim-meta{flex-direction:column;gap:2px}
+  .dim-pct-inline{font-size:20px}
+}
 
 /* ============================================================
    滑动评分 / 周报 / 里程碑

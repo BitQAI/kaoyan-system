@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { getJson } from "@/lib/api";
 import ProgressChart from "./ProgressChart";
-import DimCard from "./DimCard";
+import DimSummary from "./DimSummary";
 import SubjectRow from "./SubjectRow";
 import { demoData } from "@/lib/progress-demo";
 import type { ChartLine, Timeline } from "@/lib/progress-types";
@@ -51,10 +51,7 @@ export default function ProgressDashboard() {
 
       {view && memo && listen && (
         <>
-          <div className="dim-head">
-            <DimCard kind="memo" dim={memo} />
-            <DimCard kind="listen" dim={listen} />
-          </div>
+          <DimSummary memo={memo} listen={listen} />
 
           <div className="habit-line">
             <span>距初试 <b>{view.days_left}</b> 天</span>
