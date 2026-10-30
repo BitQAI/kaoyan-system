@@ -35,3 +35,6 @@ next-env.d.ts
 .env
 
 *.tar.gz
+
+# 真题语料只作本地缓存，仓库只留句子级片段
+知识点元数据/research/204-corpus/
