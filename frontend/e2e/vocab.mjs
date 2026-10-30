@@ -16,6 +16,16 @@ if (process.argv.includes("--unit")) {
   assert.deepEqual(checkCloze(["expect"], ["expect", "growth"]), [true, false]);
   assert.deepEqual(checkCloze(["expect", "x"], ["expect"]), [true, false]);
 
+  const { segmentsFor } = await import("../src/lib/listen-player.ts");
+  const word = {
+    card_id: "x",
+    payload: { type: "word", word: "momentum", meanings: [{ pos: "n.", cn: "势头" }], examples: [] },
+  };
+  assert.deepEqual(segmentsFor(word, "wms").map((s) => s.clip), ["word", "meaning", "sentence"]);
+  assert.deepEqual(segmentsFor(word, "wm").map((s) => s.clip), ["word", "meaning"]);
+  assert.deepEqual(segmentsFor(word, "sent").map((s) => s.clip), ["sentence"]);
+  assert.deepEqual(segmentsFor({ card_id: "y", payload: {} }, "wms").map((s) => s.clip), [null]);
+
   console.log("cloze unit ok");
   process.exit(0);
 }
