@@ -10,12 +10,13 @@ import {
 import { answerHtml, paragraphs } from "@/lib/render";
 import { clearResume, readResume, saveResume } from "@/lib/resume";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
-import type { Chapter, ListenItem } from "@/lib/types";
+import { isEssayPayload, type Chapter, type ListenItem } from "@/lib/types";
 import { useAi } from "./AiProvider";
 import { PriorityBadge, StarButton, uniqueLabels } from "./Badges";
 import CardMeta from "./CardMeta";
-import CardNote from "./CardNote";
+import EssayFace from "./EssayFace";
 import FavoritesPanel from "./FavoritesPanel";
+import NoteDialog from "./NoteDialog";
 import RangePicker from "./RangePicker";
 import { Quote } from "./WordFace";
 
@@ -41,6 +42,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   const [segIdx, setSegIdx] = useState(0);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [favOpen, setFavOpen] = useState(false);
+  const [noteOpen, setNoteOpen] = useState(false);
   const [scope, setScope] = useState<Scope>(DEFAULT_SCOPE);
   const activeRef = useRef<string | null>(null);
   const autoRef = useRef(true);
@@ -51,6 +53,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
 
   const item = items[idx];
   const wordPayload = wordPayloadOf(item);
+  const essayPayload = item && isEssayPayload(item.payload) ? item.payload : null;
   const segments = item ? segmentsFor(item, mode) : [];
   const st = useRef({ items, idx, segIdx, repeat, gap, mode, speaking });
   st.current = { items, idx, segIdx, repeat, gap, mode, speaking };
@@ -437,6 +440,10 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
           范围：{scopeLabel(scope, chapterNames)}
         </button>
         <button className="badge-btn" onClick={() => setFavOpen(true)}>收藏</button>
+        <button className={`badge-btn${item.note ? " on" : ""}`} onClick={() => setNoteOpen(true)}
+          title={item.note ? "已有笔记，点击编辑" : "写笔记"}>
+          笔记{item.note ? " ·" : ""}
+        </button>
         <div className="progress-bar"><i style={{ width: `${((idx + 1) / items.length) * 100}%` }} /></div>
         <span className="muted" style={{ fontSize: 12 }}>{idx + 1} / {items.length}</span>
       </div>
@@ -496,14 +503,14 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
         </section>
 
         <section className="listen-block" hidden={!!wordPayload}>
-          <h3>这样作答</h3>
-          <div className="prose"
-            dangerouslySetInnerHTML={{ __html: answerHtml(item.answer || item.fallback) }} />
+          <h3>{essayPayload ? "范文" : "这样作答"}</h3>
+          {essayPayload ? (
+            <EssayFace p={essayPayload} />
+          ) : (
+            <div className="prose"
+              dangerouslySetInnerHTML={{ __html: answerHtml(item.answer || item.fallback) }} />
+          )}
         </section>
-
-        <CardNote cardId={item.card_id} note={item.note}
-          onSaved={(text) => setItems((list) => list.map((x, i) =>
-            i === idx ? { ...x, note: text } : x))} />
 
         <div className="player">
           <div className="transport">
@@ -546,6 +553,10 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
       <RangePicker open={pickerOpen} chapters={chapters} scope={scope}
         onClose={() => setPickerOpen(false)} onApply={applyScope} />
       <FavoritesPanel open={favOpen} sid={sid} onClose={() => setFavOpen(false)} />
+      <NoteDialog open={noteOpen} cardId={item.card_id} note={item.note}
+        onClose={() => setNoteOpen(false)}
+        onSaved={(text) => setItems((list) => list.map((x, i) =>
+          i === idx ? { ...x, note: text } : x))} />
     </>
   );
 }

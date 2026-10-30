@@ -48,6 +48,37 @@ export interface WordExample {
   note?: string;
 }
 
+export interface EssayParagraph {
+  role: string;
+  en: string;
+  cn?: string;
+  keys?: string[];
+}
+
+export interface EssayPayload {
+  type: "essay";
+  format: "letter" | "notice" | "chart";
+  exam: string;
+  title?: string;
+  scope: "full" | "paragraph";
+  index?: number;
+  total?: number;
+  word_count: number;
+  min_words?: number;
+  paragraphs: EssayParagraph[];
+}
+
+export type CardPayload = WordPayload | EssayPayload | Record<string, never>;
+
+export function isWordPayload(p: unknown): p is WordPayload {
+  const t = (p as WordPayload | undefined)?.type;
+  return t === "word" || t === "phrase" || t === "confusable";
+}
+
+export function isEssayPayload(p: unknown): p is EssayPayload {
+  return (p as EssayPayload | undefined)?.type === "essay";
+}
+
 export interface WordPayload {
   type: "word" | "phrase" | "confusable";
   /** 仅 word / phrase 类型有 */
@@ -76,8 +107,8 @@ export interface Card {
   analysis: string;
   unit_refs: number[];
   difficulty: number | null;
-  /** 词卡 / 词组卡 / 辨析卡的结构化内容；其余题型为空对象 */
-  payload?: WordPayload | Record<string, never>;
+  /** 词卡 / 词组卡 / 辨析卡 / 作文卡的结构化内容；其余题型为空对象 */
+  payload?: CardPayload;
   priority?: string;
   /** 记过几次 / 上次评分 / 听过几次 */
   reviews?: number;
@@ -130,8 +161,8 @@ export interface PointDetail {
 }
 
 export interface ListenItem {
-  /** 词卡/词组卡的结构化内容；其余题型为空对象 */
-  payload?: WordPayload | Record<string, never>;
+  /** 词卡/词组卡/作文卡的结构化内容；其余题型为空对象 */
+  payload?: CardPayload;
   card_id: string;
   point_id: string;
   subject_id: string;

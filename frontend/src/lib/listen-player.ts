@@ -1,4 +1,4 @@
-import type { ListenItem, WordPayload } from "./types";
+import { isWordPayload, type ListenItem, type WordPayload } from "./types";
 
 /** 听法：词+义+句 / 词+义 / 只听句 */
 export type ListenMode = "wms" | "wm" | "sent";
@@ -56,8 +56,7 @@ export function readGap(): number {
 }
 
 export function wordPayloadOf(item: ListenItem | undefined): WordPayload | null {
-  const p = item?.payload as WordPayload | undefined;
-  return p?.type ? p : null;
+  return isWordPayload(item?.payload) ? item.payload : null;
 }
 
 /** 一张卡要读的片段；词卡按听法拆段，其余卡整卡读 */

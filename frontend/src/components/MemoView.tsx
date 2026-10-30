@@ -2,17 +2,18 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { postJson } from "@/lib/api";
-import { answerHtml } from "@/lib/render";
+import { answerHtml, paragraphs } from "@/lib/render";
 import { clearResume, readResume, saveResume } from "@/lib/resume";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
-import type { Card, Chapter, WordPayload } from "@/lib/types";
+import { isEssayPayload, isWordPayload, type Card, type Chapter } from "@/lib/types";
 import { useAi } from "./AiProvider";
 import { PriorityBadge, StarButton, uniqueLabels } from "./Badges";
 import CardMeta from "./CardMeta";
-import CardNote from "./CardNote";
 import ClozeFace from "./ClozeFace";
-import WordFace from "./WordFace";
+import EssayFace from "./EssayFace";
 import FavoritesPanel from "./FavoritesPanel";
+import NoteDialog from "./NoteDialog";
+import WordFace from "./WordFace";
 import RangePicker from "./RangePicker";
 
 const GRADES = ["秒答", "吃力", "忘了"] as const;
@@ -26,6 +27,7 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
   const [loading, setLoading] = useState(true);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [favOpen, setFavOpen] = useState(false);
+  const [noteOpen, setNoteOpen] = useState(false);
   const [swipe, setSwipe] = useState<{ dx: number; dy: number; label: string } | null>(null);
   const dragRef = useRef({ x: 0, y: 0, active: false, moved: false });
   const [scope, setScope] = useState<Scope>(DEFAULT_SCOPE);
@@ -77,8 +79,8 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
   }
 
   const card = cards[index];
-  const wordPayload = (card?.payload as WordPayload | undefined)?.type
-    ? (card.payload as WordPayload) : null;
+  const wordPayload = isWordPayload(card?.payload) ? card.payload : null;
+  const essayPayload = isEssayPayload(card?.payload) ? card.payload : null;
   const isCloze = card?.kind === "默写";
 
   const grade = useCallback((result: string) => {
@@ -99,8 +101,6 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
 
   function onPointerDown(e: React.PointerEvent) {
     if (!flipped) return;
-    // 笔记区里按下不启动滑动评分
-    if ((e.target as HTMLElement).closest(".card-note")) return;
     dragRef.current = { x: e.clientX, y: e.clientY, active: true, moved: false };
     setSwipe(null);
   }
@@ -202,6 +202,10 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
           范围：{scopeLabel(scope, chapterNames)}
         </button>
         <button className="badge-btn" onClick={() => setFavOpen(true)}>收藏</button>
+        <button className={`badge-btn${card.note ? " on" : ""}`} onClick={() => setNoteOpen(true)}
+          title={card.note ? "已有笔记，点击编辑" : "写笔记"}>
+          笔记{card.note ? " ·" : ""}
+        </button>
         <div className="progress-bar"><i style={{ width: `${((index + 1) / cards.length) * 100}%` }} /></div>
         <span className="muted" style={{ fontSize: 12 }}>{index + 1} / {cards.length}</span>
       </div>
@@ -215,7 +219,7 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
         onPointerCancel={() => { dragRef.current.active = false; setSwipe(null); }}
         onClick={(e) => {
           const el = e.target as HTMLElement;
-          if (el.closest("button, a, input, textarea, summary, .options, .card-note")) return;
+          if (el.closest("button, a, input, textarea, summary, .options")) return;
           if (dragRef.current.moved) { dragRef.current.moved = false; return; }
           setFlipped((f) => !f);
         }}
@@ -291,6 +295,11 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
                 <ClozeFace key={card.card_id} card={card} side="back" />
               ) : wordPayload ? (
                 <WordFace card={card} side="back" />
+              ) : essayPayload ? (
+                <div className="block">
+                  <h4>范文</h4>
+                  <EssayFace p={essayPayload} />
+                </div>
               ) : (
                 <>
                   <div className="question">{card.question}</div>
@@ -309,14 +318,12 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
                   {card.analysis && (
                     <div className="block analysis">
                       <h4>解析</h4>
-                      <div className="prose">{card.analysis}</div>
+                      <div className="prose"
+                        dangerouslySetInnerHTML={{ __html: paragraphs(card.analysis) }} />
                     </div>
                   )}
                 </>
               )}
-              <CardNote cardId={card.card_id} note={card.note}
-                onSaved={(text) => setCards((list) => list.map((x, i) =>
-                  i === index ? { ...x, note: text } : x))} />
               <CardMeta reviews={card.reviews} lastResult={card.last_result}
                 lapses={card.lapses} dueAt={card.due_at}
                 listenCount={card.listen_count}
@@ -349,6 +356,10 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
       <RangePicker open={pickerOpen} chapters={chapters} scope={scope}
         onClose={() => setPickerOpen(false)} onApply={applyScope} />
       <FavoritesPanel open={favOpen} sid={sid} onClose={() => setFavOpen(false)} />
+      <NoteDialog open={noteOpen} cardId={card.card_id} note={card.note}
+        onClose={() => setNoteOpen(false)}
+        onSaved={(text) => setCards((list) => list.map((x, i) =>
+          i === index ? { ...x, note: text } : x))} />
     </div>
   );
 }

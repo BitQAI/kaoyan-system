@@ -27,17 +27,44 @@ export function emphasize(raw: string, keywords: string[] = []): string {
   return notation(marked);
 }
 
-/** 按句切分后每 2 句成一段；关键句加左侧强调线。 */
+/** 先保留原文换行分块，块内再按中文句号每 2 句成段；关键句加左侧强调线。 */
 export function paragraphs(raw: string, keywords: string[] = []): string {
   const text = (raw || "").trim();
   if (!text) return "";
-  const parts = text.split(SENTENCE_RE).filter(Boolean);
-  const groups: string[] = [];
-  for (let i = 0; i < parts.length; i += 2) groups.push(parts.slice(i, i + 2).join(""));
-  return groups.map((p) => {
-    const cls = KEY_LINE_RE.test(p) ? ' class="key-line"' : "";
-    return `<p${cls}>${emphasize(p, keywords)}</p>`;
+  const blocks = text.split(/\n+/).map((s) => s.trim()).filter(Boolean);
+  return blocks.map((block) => {
+    const parts = block.split(SENTENCE_RE).filter(Boolean);
+    const groups: string[] = [];
+    for (let i = 0; i < parts.length; i += 2) groups.push(parts.slice(i, i + 2).join(""));
+    return groups.map((p) => {
+      const cls = KEY_LINE_RE.test(p) ? ' class="key-line"' : "";
+      return `<p${cls}>${emphasize(p, keywords)}</p>`;
+    }).join("");
   }).join("");
+}
+
+/** 作文好词好句：把 keys 里的英文片段在上文首次出现处标出来。 */
+export function highlightKeys(raw: string, keys: string[] = []): string {
+  let html = esc(raw);
+  const frags = new Set<string>();
+  for (const key of keys) {
+    key.split(/[\/|]/).forEach((part) => {
+      part.replace(/…/g, " ")
+        .split(/[,，;；]/)
+        .map((s) => s.trim().replace(/^[.。]+|[.。]+$/g, ""))
+        .filter((s) => s.includes(" ") || s.length >= 12)
+        .forEach((s) => frags.add(s));
+    });
+  }
+  for (const frag of [...frags].sort((a, b) => b.length - a.length)) {
+    const escFrag = esc(frag);
+    const at = html.indexOf(escFrag);
+    if (at >= 0) {
+      html = `${html.slice(0, at)}<mark class="kw">${escFrag}</mark>`
+        + html.slice(at + escFrag.length);
+    }
+  }
+  return html;
 }
 
 /** 「怎么考」按句成列表——不识别标签，实测七成段落无前缀。 */

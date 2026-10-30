@@ -153,11 +153,6 @@ export default function WordFace({ card, side }:
             <li key={i}><span className="pos">{m.pos}</span>{m.cn}</li>
           ))}
         </ul>
-        <button className="btn small" onClick={(e) => {
-          e.stopPropagation();
-          play(card.card_id, "meaning",
-            (p.meanings ?? []).map((m) => m.cn).join("，"), "zh-CN");
-        }}>🔊 读释义</button>
       </div>
 
       {(p.examples ?? []).map((ex, i) => (
