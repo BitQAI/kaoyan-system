@@ -145,8 +145,11 @@ def main():
             last[0] = now
             rate = 50 / span * 60
             eta = (len(jobs) - count[0]) / max(rate, 0.01)
-            print(f'  {count[0]}/{len(jobs)} 张卡   {rate:.0f} 张/分   剩余约 {eta:.0f} 分钟',
-                  flush=True)
+            if span < 1.0:      # 全部命中缓存时刷得太快，别报假的速率
+                print(f'  {count[0]}/{len(jobs)} 张卡（缓存命中）', flush=True)
+            else:
+                print(f'  {count[0]}/{len(jobs)} 张卡   {rate:.0f} 张/分   '
+                      f'剩余约 {eta:.0f} 分钟', flush=True)
         return sum(1 for _ in parts)
 
     with ThreadPoolExecutor(max_workers=max(1, args.workers)) as pool:
