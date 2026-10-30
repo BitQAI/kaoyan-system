@@ -6,12 +6,13 @@ import { loadAudio, pinAudio, readRate, RATE_DEFAULT } from "@/lib/listen";
 import { answerHtml, paragraphs } from "@/lib/render";
 import { clearResume, readResume, saveResume } from "@/lib/resume";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
-import type { Chapter, ListenItem } from "@/lib/types";
+import type { Chapter, ListenItem, WordPayload } from "@/lib/types";
 import { useAi } from "./AiProvider";
 import { PriorityBadge, StarButton, uniqueLabels } from "./Badges";
 import CardMeta from "./CardMeta";
 import FavoritesPanel from "./FavoritesPanel";
 import RangePicker from "./RangePicker";
+import { Quote } from "./WordFace";
 
 function clock(sec: number): string {
   const total = Number.isFinite(sec) ? Math.max(0, Math.floor(sec)) : 0;
@@ -24,6 +25,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   const [idx, setIdx] = useState(0);
   const [loading, setLoading] = useState(true);
   const [speaking, setSpeaking] = useState(false);
+  const [paused, setPaused] = useState(false);
   const [rate, setRate] = useState(RATE_DEFAULT);
   const [pos, setPos] = useState(0);
   const [dur, setDur] = useState(0);
@@ -138,6 +140,10 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
 
   const item = items[idx];
 
+  const wordPayload = (item?.payload as WordPayload | undefined)?.type
+
+    ? (item.payload as WordPayload) : null;
+
   // 锁屏 / 耳机控制：把当前朗读登记成系统媒体会话
   useEffect(() => {
     const ms = (navigator as unknown as { mediaSession?: any }).mediaSession;
@@ -188,6 +194,24 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
     }
   }
 
+  function pause() {
+    clearTimer();
+    audioRef.current?.pause();
+    if (typeof window !== "undefined" && "speechSynthesis" in window) window.speechSynthesis.pause();
+    setPaused(true);
+  }
+
+  async function resume() {
+    const a = audioRef.current;
+    if (a && a.src) {
+      try { await a.play(); setPaused(false); return; } catch { /* 落到 TTS */ }
+    }
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.resume();
+    }
+    setPaused(false);
+  }
+
   function stop() {
     clearTimer();
     ttsRef.current = false;
@@ -205,6 +229,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
     setDur(0);
     activeRef.current = null;
     setSpeaking(false);
+    setPaused(false);
   }
 
   // 一条播完（音频 ended 或 TTS onend）：记账 + 连播
@@ -358,12 +383,34 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
 
         <h2 className="study-title">{item.title}</h2>
 
-        <section className="listen-block">
+        {wordPayload && (
+          <section className="listen-block listen-word">
+            <div className="listen-word-head">
+              <span className="word-title">{wordPayload.word}</span>
+              {wordPayload.phonetic && (
+                <span className="word-phonetic">{wordPayload.phonetic}</span>
+              )}
+            </div>
+            <ul className="word-senses">
+              {(wordPayload.meanings ?? []).map((m, i) => (
+                <li key={i}><span className="pos">{m.pos}</span>{m.cn}</li>
+              ))}
+            </ul>
+            {(wordPayload.examples ?? []).slice(0, 1).map((ex, i) => (
+              <blockquote className={`word-quote${ex.kind === "真题" ? "" : " note"}`} key={i}>
+                <Quote text={ex.quote} word={wordPayload.word} />
+                {ex.cn && <span className="cn">{ex.cn}</span>}
+              </blockquote>
+            ))}
+          </section>
+        )}
+
+        <section className="listen-block" hidden={!!wordPayload}>
           <h3>考点</h3>
           <div className="prose" dangerouslySetInnerHTML={{ __html: paragraphs(item.question) }} />
         </section>
 
-        <section className="listen-block">
+        <section className="listen-block" hidden={!!wordPayload}>
           <h3>这样作答</h3>
           <div className="prose"
             dangerouslySetInnerHTML={{ __html: answerHtml(item.answer || item.fallback) }} />
@@ -385,7 +432,12 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
           <button className="btn primary" onClick={() => void play(item)} disabled={speaking}>
             {speaking ? "播放中…" : "播放考点与作答"}
           </button>
-          <button className="btn" onClick={stop} disabled={!speaking}>停止</button>
+          {speaking && !paused && (
+            <button className="btn" onClick={pause}>暂停</button>
+          )}
+          {paused && (
+            <button className="btn primary" onClick={() => void resume()}>继续</button>
+          )}
           <button className={`btn${autoPlay ? " primary" : ""}`}
             onClick={() => setAutoPlay((v) => !v)}
             title="播放完一条后自动播下一条">

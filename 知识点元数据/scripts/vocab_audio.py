@@ -9,9 +9,11 @@
 缺失时前端回退浏览器 TTS，所以失败只记日志、不中断。
 """
 import argparse
+import hashlib
 import json
 import pathlib
 import sys
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 
@@ -24,6 +26,29 @@ DOC = META / 'subjects' / '204' / '204.json'
 OUT = ROOT / 'data' / 'audio'
 EN_VOICE = '933563129e564b19a115bedd57b7406a'   # Sarah：Fish 公共英文音色（用户选定）
 ZH_VOICE = '59cb5986671546eaa6ca8ae6f29f6d22'   # 央视配音：Fish 公共中文音色
+
+
+MANIFEST = OUT / '204' / '_manifest.json'
+_lock = threading.Lock()
+
+
+def text_hash(text: str, voice: str) -> str:
+    """文本+音色指纹：文本一改，旧音频作废重生成。"""
+    return hashlib.sha1(f'{voice}|{text}'.encode()).hexdigest()
+
+
+def load_manifest() -> dict:
+    if MANIFEST.exists():
+        try:
+            return json.loads(MANIFEST.read_text(encoding='utf-8'))
+        except Exception:  # noqa: BLE001
+            return {}
+    return {}
+
+
+def save_manifest(data: dict) -> None:
+    MANIFEST.parent.mkdir(parents=True, exist_ok=True)
+    MANIFEST.write_text(json.dumps(data, ensure_ascii=False, indent=0), encoding='utf-8')
 
 
 def clip_path(subject: str, card_id: str, clip: str | None) -> pathlib.Path:
@@ -81,6 +106,7 @@ def main():
         print(f'{len(jobs)} 张卡 / {total} 段音频')
         return
     key = gen_audio.api_key()
+    manifest = load_manifest()
     done = 0
     started = time.time()
     count = [0]
@@ -92,17 +118,26 @@ def main():
             path = clip_path('204', job['card_id'], clip['clip'])
             path.parent.mkdir(parents=True, exist_ok=True)
             voice = EN_VOICE if clip['lang'] == 'en-US' else ZH_VOICE
-            if not path.exists():
+            h = text_hash(clip['text'], voice)
+            fresh = path.exists() and manifest.get(path.name) == h
+            if not fresh:
                 content, err = gen_audio.synth(
                     clip['text'], voice, key, language='en' if clip['lang'] == 'en-US' else 'zh')
                 if not content:
                     print(f'  ! 失败 {path.name}: {err}')
                     continue
                 path.write_bytes(content)
+                with _lock:
+                    manifest[path.name] = h
+                    if len(manifest) % 50 == 0:
+                        save_manifest(manifest)
             parts.append(path)
         if parts:
             whole = clip_path('204', job['card_id'], None)
             whole.write_bytes(b''.join(p.read_bytes() for p in parts))
+            with _lock:
+                manifest[whole.name] = text_hash(
+                    '|'.join(c['text'] for c in job['clips']), 'joined')
         count[0] += 1
         if count[0] % 50 == 0:
             now = time.time()
@@ -117,6 +152,7 @@ def main():
     with ThreadPoolExecutor(max_workers=max(1, args.workers)) as pool:
         for n in pool.map(one, jobs):
             done += n
+    save_manifest(manifest)
     print(f'完成 {done}/{total} 段')
 
 

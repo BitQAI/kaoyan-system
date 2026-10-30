@@ -37,7 +37,7 @@ function Speaker({ onClick, title }: { onClick: () => void; title: string }) {
 }
 
 /** 把例句里的目标词标出来；找不到就原样显示 */
-function Quote({ text, word }: { text: string; word?: string }) {
+export function Quote({ text, word }: { text: string; word?: string }) {
   if (!word) return <>{text}</>;
   const i = text.toLowerCase().indexOf(word.toLowerCase());
   if (i < 0) return <>{text}</>;

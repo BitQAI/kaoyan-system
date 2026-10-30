@@ -128,6 +128,8 @@ export interface PointDetail {
 }
 
 export interface ListenItem {
+  /** 词卡/词组卡的结构化内容；其余题型为空对象 */
+  payload?: WordPayload | Record<string, never>;
   card_id: string;
   point_id: string;
   subject_id: string;

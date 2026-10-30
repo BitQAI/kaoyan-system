@@ -71,6 +71,16 @@ def _seed_word_db(path):
     return conn
 
 
+def test_listen_queue_returns_payload(tmp_path):
+    from app import service
+    conn = _seed_word_db(tmp_path / "listen.db")
+    items = service.custom_listen(conn, subjects=["204"], limit=5)["items"]
+    conn.close()
+    by_id = {i["card_id"]: i for i in items}
+    assert by_id["c2041001-1"]["payload"] == {"word": "momentum"}
+    assert by_id["c2041001-2"]["payload"] == {}
+
+
 def test_queue_returns_payload(tmp_path):
     from app import service
     conn = _seed_word_db(tmp_path / "queue.db")
