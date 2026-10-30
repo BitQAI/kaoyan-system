@@ -23,3 +23,53 @@
   color:var(--accent-ink);
   box-shadow:inset 0 1px 0 var(--panel-inner), 0 2px 8px -3px var(--panel-shadow);
 }
+
+/* 词卡在「听」视图里的展示：与「记」的背面信息保持一致 */
+.listen-word .listen-word-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.listen-word .word-title{font-size:30px;font-weight:780;letter-spacing:-.02em}
+.listen-word .word-senses{margin:10px 0 12px}
+.listen-word .word-quote{margin:0}
+.listen-word .word-quote.note{
+  border-left-color:var(--warn);
+  background:color-mix(in srgb, var(--warn) 7%, transparent);
+}
+
+/* ---------- 听：分段与播放器 ---------- */
+.seg-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.seg-chip{
+  border:1px solid var(--line);background:var(--bg2);color:var(--ink-2);
+  padding:6px 12px;border-radius:999px;font-size:13px;font-weight:650;cursor:pointer;
+  transition:.15s ease;
+}
+.seg-chip:hover{border-color:var(--accent)}
+.seg-chip.on{
+  background:var(--accent-soft);border-color:transparent;color:var(--accent-ink);
+}
+.player{
+  margin:16px 0 4px;padding:14px;border-radius:var(--radius);
+  border:1px solid var(--line);background:var(--bg2);
+  display:flex;flex-direction:column;gap:10px;
+}
+.transport{display:flex;align-items:center;justify-content:center;gap:10px}
+.tp{
+  width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:16px;
+  border:1px solid var(--line);background:var(--panel-top);color:var(--ink);
+  display:grid;place-items:center;transition:.15s ease;
+}
+.tp:hover{border-color:var(--accent);transform:translateY(-1px)}
+.tp.main{
+  width:56px;height:56px;font-size:20px;
+  background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 88%,#fff),var(--accent));
+  border-color:transparent;color:#fff;
+  box-shadow:0 8px 20px -8px var(--accent), inset 0 1px 0 rgba(255,255,255,.35);
+}
+.player-meta{display:flex;align-items:center;gap:12px;justify-content:center;font-size:12px;flex-wrap:wrap}
+.badge-btn.on{border-color:var(--accent);color:var(--accent-ink)}
+.seek{width:100%;accent-color:var(--accent)}
+.player-opts{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px}
+.opt-label{color:var(--muted);margin-left:4px}
+.chip{
+  border:1px solid var(--line);background:transparent;color:var(--ink-2);
+  padding:4px 10px;border-radius:999px;font-size:12px;cursor:pointer;
+}
+.chip.on{background:var(--accent-soft);border-color:transparent;color:var(--accent-ink);font-weight:700}

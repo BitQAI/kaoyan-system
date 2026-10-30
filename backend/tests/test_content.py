@@ -1,14 +1,19 @@
+def _expect():
+    from app import importer
+    return importer.expected_counts()
+
+
 def test_health(client):
     body = client.get("/api/health").json()
-    assert body["points"] == 538
+    assert body["points"] == _expect()["point"]
     assert "ai_configured" in body
 
 
 def test_manifest(client):
     body = client.get("/api/manifest").json()
     assert [s["id"] for s in body["subjects"]] == ["812", "315", "101", "204"]
-    assert len(body["points"]) == 538
-    assert sum(len(s["chapters"]) for s in body["subjects"]) == 74
+    assert len(body["points"]) == _expect()["point"]
+    assert sum(len(s["chapters"]) for s in body["subjects"]) == _expect()["chapter"]
 
 
 def test_chapters_and_points(client):

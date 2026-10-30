@@ -24,6 +24,7 @@ def card_queue(conn, sid: str | None = None, limit: int = 30) -> list[dict]:
     sql = f"""
         SELECT c.card_id, c.point_id, c.kind, c.card_type, c.question, c.answer,
                c.options, c.answer_points, c.analysis, c.unit_refs, c.difficulty,
+               c.payload,
                p.title, p.subject_id, p.chapter_id, p.priority,
                cp.card_id AS seen, cp.due_at, cp.reviews, cp.last_result, cp.lapses,
                (SELECT listen_count FROM card_listen cl WHERE cl.card_id = c.card_id) AS listen_count
@@ -53,6 +54,7 @@ def card_queue(conn, sid: str | None = None, limit: int = 30) -> list[dict]:
             "answer_points": _loads(r["answer_points"], []),
             "analysis": r["analysis"], "unit_refs": _loads(r["unit_refs"], []),
             "difficulty": r["difficulty"], "title": r["title"],
+            "payload": _loads(r["payload"], {}),
             "priority": r["priority"], "reviews": r["reviews"] or 0,
             "last_result": r["last_result"], "lapses": r["lapses"] or 0,
             "listen_count": r["listen_count"] or 0,
@@ -189,6 +191,7 @@ def custom_cards(conn, subjects=None, chapters=None, limit=30,
     sql = f"""
         SELECT c.card_id, c.point_id, c.kind, c.card_type, c.question, c.answer,
                c.options, c.answer_points, c.analysis, c.unit_refs, c.difficulty,
+               c.payload,
                p.title, p.subject_id, p.chapter_id, p.priority,
                cp.card_id AS seen, cp.due_at, cp.reviews, cp.last_result, cp.lapses,
                (SELECT listen_count FROM card_listen cl WHERE cl.card_id = c.card_id) AS listen_count
@@ -209,6 +212,7 @@ def custom_cards(conn, subjects=None, chapters=None, limit=30,
         "answer_points": _loads(r["answer_points"], []),
         "analysis": r["analysis"], "unit_refs": _loads(r["unit_refs"], []),
         "difficulty": r["difficulty"], "title": r["title"],
+            "payload": _loads(r["payload"], {}),
         "priority": r["priority"],
         "reviews": r["reviews"] or 0, "last_result": r["last_result"],
         "lapses": r["lapses"] or 0, "listen_count": r["listen_count"] or 0,
@@ -235,7 +239,7 @@ def custom_listen(conn, subjects=None, chapters=None, limit=10,
         params = params + exclude
     sql = f"""
         SELECT c.card_id, c.point_id, c.kind, c.card_type, c.question, c.answer,
-               c.analysis, c.answer_points,
+               c.analysis, c.answer_points, c.payload,
                p.title, p.point, p.explain, p.subject_id, p.chapter_id, p.priority,
                ch.name AS chapter_name, cl.card_id AS heard, cl.listen_count,
                cp.reviews, cp.last_result, cp.lapses, cp.due_at
@@ -257,6 +261,7 @@ def custom_listen(conn, subjects=None, chapters=None, limit=10,
         "question": r["question"], "answer": r["answer"],
         "analysis": r["analysis"],
         "answer_points": _loads(r["answer_points"], []),
+        "payload": _loads(r["payload"], {}),
         "fallback": r["explain"],
         "title": r["title"], "point": r["point"],
         "subject_id": r["subject_id"], "chapter_id": r["chapter_id"],

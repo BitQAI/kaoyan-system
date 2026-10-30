@@ -1,0 +1,2769 @@
+[
+ {
+  "id": "2040805",
+  "chapter": "204-08",
+  "order": 1,
+  "point": "建议信范文：二选一的理由展开",
+  "title": "建议信：二选一（艺术展 / 机器人展）",
+  "explain": "建议信范文，共 3 段。先听整篇，再做逐段回译与挖空默写，最后用句式卡换话题迁移。",
+  "exam": "写作 08 节常考题型：建议信。背诵后按题目要求替换收信人、事由与理由即可。",
+  "keywords": [
+   "建议信",
+   "二选一",
+   "理由三段",
+   "礼貌收尾"
+  ],
+  "priority": "★",
+  "tags": [],
+  "exam_types": [
+   "模板",
+   "回译",
+   "默写",
+   "句型"
+  ],
+  "source": {
+   "ref": "204-essays#2040805",
+   "file": "204-essays.jsonl",
+   "section": "建议信",
+   "basis": "自写范文",
+   "kind": "md"
+  },
+  "spoken": "这是一篇建议信范文，共 3 段，背诵时先听整篇，再逐段回译。",
+  "units": [
+   "第 1 段：亲爱的大卫：我写信是想建议你去看艺术展，理由有三。",
+   "第 2 段：首先，展览提供接触不同文化的难得机会。其次，你能从展品中获得创作灵感。…",
+   "第 3 段：如果你能考虑我的建议，我将不胜感激。你真诚的，李明。"
+  ],
+  "paragraphs": [
+   {
+    "en": "Dear David, I am writing to suggest that you go to the art exhibition, and there are three reasons for my recommendation.",
+    "cn": "亲爱的大卫：我写信是想建议你去看艺术展，理由有三。",
+    "role": "目的句",
+    "keys": [
+     "I am writing to suggest that",
+     "there are three reasons"
+    ]
+   },
+   {
+    "en": "To begin with, the exhibition offers a rare chance to engage with different cultures. In addition, you can draw creative inspiration from the works on display. Finally, the experience is likely to be far more memorable than the robot show.",
+    "cn": "首先，展览提供接触不同文化的难得机会。其次，你能从展品中获得创作灵感。最后，这段经历很可能比机器人展更令人难忘。",
+    "role": "理由展开",
+    "keys": [
+     "To begin with / In addition / Finally",
+     "is likely to be far more memorable"
+    ]
+   },
+   {
+    "en": "I would appreciate it if you could take my suggestion into consideration. Yours sincerely, Li Ming.",
+    "cn": "如果你能考虑我的建议，我将不胜感激。你真诚的，李明。",
+    "role": "礼貌收尾",
+    "keys": [
+     "I would appreciate it if",
+     "take my suggestion into consideration"
+    ]
+   }
+  ],
+  "listen": {
+   "card_id": "c2040805-1",
+   "kind": "模板",
+   "script": "Dear David, I am writing to suggest that you go to the art exhibition, and there are three reasons for my recommendation.\n\nTo begin with, the exhibition offers a rare chance to engage with different cultures. In addition, you can draw creative inspiration from the works on display. Finally, the experience is likely to be far more memorable than the robot show.\n\nI would appreciate it if you could take my suggestion into consideration. Yours sincerely, Li Ming.",
+   "audio": "pending"
+  },
+  "cards": [
+   {
+    "card_id": "c2040805-1",
+    "kind": "模板",
+    "card_type": "记忆",
+    "question": "整篇朗读：建议信：二选一（艺术展 / 机器人展）",
+    "front": "整篇朗读：建议信：二选一（艺术展 / 机器人展）",
+    "answer": "Dear David, I am writing to suggest that you go to the art exhibition, and there are three reasons for my recommendation.\n\nTo begin with, the exhibition offers a rare chance to engage with different cultures. In addition, you can draw creative inspiration from the works on display. Finally, the experience is likely to be far more memorable than the robot show.\n\nI would appreciate it if you could take my suggestion into consideration. Yours sincerely, Li Ming.",
+    "back": "Dear David, I am writing to suggest that you go to the art exhibition, and there are three reasons for my recommendation.\n\nTo begin with, the exhibition offers a rare chance to engage with different cultures. In addition, you can draw creative inspiration from the works on display. Finally, the experience is likely to be far more memorable than the robot show.\n\nI would appreciate it if you could take my suggestion into consideration. Yours sincerely, Li Ming.",
+    "options": [],
+    "answer_points": [
+     "目的句：I am writing to suggest that…",
+     "主体：To begin with / In addition / Finally",
+     "收尾：I would appreciate it if…"
+    ],
+    "analysis": "全篇 3 段、约 78 词。先听整篇抓节奏，再用回译与默写逐段吃透；考场按同一骨架换话题词即可复用。",
+    "unit_refs": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "card_id": "c2040805-2",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "亲爱的大卫：我写信是想建议你去看艺术展，理由有三。",
+    "front": "亲爱的大卫：我写信是想建议你去看艺术展，理由有三。",
+    "answer": "Dear David, I am writing to suggest that you go to the art exhibition, and there are three reasons for my recommendation.",
+    "back": "Dear David, I am writing to suggest that you go to the art exhibition, and there are three reasons for my recommendation.",
+    "options": [],
+    "answer_points": [
+     "I am writing to suggest that",
+     "there are three reasons"
+    ],
+    "analysis": "本段功能：目的句。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040805-3",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "首先，展览提供接触不同文化的难得机会。其次，你能从展品中获得创作灵感。最后，这段经历很可能比机器人展更令人难忘。",
+    "front": "首先，展览提供接触不同文化的难得机会。其次，你能从展品中获得创作灵感。最后，这段经历很可能比机器人展更令人难忘。",
+    "answer": "To begin with, the exhibition offers a rare chance to engage with different cultures. In addition, you can draw creative inspiration from the works on display. Finally, the experience is likely to be far more memorable than the robot show.",
+    "back": "To begin with, the exhibition offers a rare chance to engage with different cultures. In addition, you can draw creative inspiration from the works on display. Finally, the experience is likely to be far more memorable than the robot show.",
+    "options": [],
+    "answer_points": [
+     "To begin with / In addition / Finally",
+     "is likely to be far more memorable"
+    ],
+    "analysis": "本段功能：理由展开。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040805-4",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "如果你能考虑我的建议，我将不胜感激。你真诚的，李明。",
+    "front": "如果你能考虑我的建议，我将不胜感激。你真诚的，李明。",
+    "answer": "I would appreciate it if you could take my suggestion into consideration. Yours sincerely, Li Ming.",
+    "back": "I would appreciate it if you could take my suggestion into consideration. Yours sincerely, Li Ming.",
+    "options": [],
+    "answer_points": [
+     "I would appreciate it if",
+     "take my suggestion into consideration"
+    ],
+    "analysis": "本段功能：礼貌收尾。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040805-5",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "I am writing to ____ that you ____ to the art exhibition, and there are three reasons for my ____.",
+    "front": "I am writing to ____ that you ____ to the art exhibition, and there are three reasons for my ____.",
+    "answer": "Dear David, I am writing to suggest that you go to the art exhibition, and there are three reasons for my recommendation.",
+    "back": "Dear David, I am writing to suggest that you go to the art exhibition, and there are three reasons for my recommendation.",
+    "options": [],
+    "answer_points": [
+     "suggest",
+     "go",
+     "recommendation"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040805-6",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "To begin with, the exhibition offers a ____ chance to engage with different cultures. In addition, you can draw creative ____ from the works on display. Finally, the experience is ____ to be far more memorable than the robot show.",
+    "front": "To begin with, the exhibition offers a ____ chance to engage with different cultures. In addition, you can draw creative ____ from the works on display. Finally, the experience is ____ to be far more memorable than the robot show.",
+    "answer": "To begin with, the exhibition offers a rare chance to engage with different cultures. In addition, you can draw creative inspiration from the works on display. Finally, the experience is likely to be far more memorable than the robot show.",
+    "back": "To begin with, the exhibition offers a rare chance to engage with different cultures. In addition, you can draw creative inspiration from the works on display. Finally, the experience is likely to be far more memorable than the robot show.",
+    "options": [],
+    "answer_points": [
+     "rare",
+     "inspiration",
+     "likely"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040805-7",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "I would ____ it if you could take my suggestion into ____.",
+    "front": "I would ____ it if you could take my suggestion into ____.",
+    "answer": "I would appreciate it if you could take my suggestion into consideration. Yours sincerely, Li Ming.",
+    "back": "I would appreciate it if you could take my suggestion into consideration. Yours sincerely, Li Ming.",
+    "options": [],
+    "answer_points": [
+     "appreciate",
+     "consideration"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040805-8",
+    "kind": "句型",
+    "card_type": "应用",
+    "question": "本篇可迁移句式：建议信",
+    "front": "本篇可迁移句式：建议信",
+    "answer": "I am writing to suggest that… 换成 congratulate / apologize / complain 即改题型\nTo begin with / In addition / Finally 三点式衔接，图表作文写原因同样可用\nI would appreciate it if you could… 比 Please… 更礼貌的收尾",
+    "back": "I am writing to suggest that… 换成 congratulate / apologize / complain 即改题型\nTo begin with / In addition / Finally 三点式衔接，图表作文写原因同样可用\nI would appreciate it if you could… 比 Please… 更礼貌的收尾",
+    "options": [],
+    "answer_points": [
+     "I am writing to suggest that… 换成 congra…",
+     "To begin with / In addition / Finally 三…",
+     "I would appreciate it if you could… 比 P…"
+    ],
+    "analysis": "换话题时只替换名词与理由，句式骨架保留；同一句式在图表作文与小作文里都能用。",
+    "unit_refs": [
+     1
+    ]
+   }
+  ],
+  "exam_evidence": {
+   "level": "pending",
+   "basis": "自写范文，待人工审定",
+   "sources": []
+  },
+  "tts": {
+   "enabled": false
+  }
+ },
+ {
+  "id": "2040806",
+  "chapter": "204-08",
+  "order": 2,
+  "point": "道歉信范文：说明原因 + 提出补救",
+  "title": "道歉信：取消拜访并另约时间",
+  "explain": "道歉信范文，共 3 段。先听整篇，再做逐段回译与挖空默写，最后用句式卡换话题迁移。",
+  "exam": "写作 08 节常考题型：道歉信。背诵后按题目要求替换收信人、事由与理由即可。",
+  "keywords": [
+   "道歉信",
+   "取消行程",
+   "说明原因",
+   "提出补救"
+  ],
+  "priority": "★",
+  "tags": [],
+  "exam_types": [
+   "模板",
+   "回译",
+   "默写",
+   "句型"
+  ],
+  "source": {
+   "ref": "204-essays#2040806",
+   "file": "204-essays.jsonl",
+   "section": "道歉信",
+   "basis": "自写范文",
+   "kind": "md"
+  },
+  "spoken": "这是一篇道歉信范文，共 3 段，背诵时先听整篇，再逐段回译。",
+  "units": [
+   "第 1 段：尊敬的史密斯教授：我写信是为取消下周的会面致歉，并说明情况。",
+   "第 2 段：原因是下周学校要举办创新比赛，我被安排带队，因此不得不取消行程。不知我…",
+   "第 3 段：对由此带来的不便，请接受我诚挚的歉意。期待您的回复。你真诚的，李明。"
+  ],
+  "paragraphs": [
+   {
+    "en": "Dear Professor Smith, I am writing to apologize for cancelling our meeting next week and to explain the situation.",
+    "cn": "尊敬的史密斯教授：我写信是为取消下周的会面致歉，并说明情况。",
+    "role": "道歉句",
+    "keys": [
+     "I am writing to apologize for",
+     "explain the situation"
+    ]
+   },
+   {
+    "en": "The reason is that an innovation contest will be held in my university next week, and I have been asked to lead my team. Therefore, I have to cancel the travel plan. I wonder if we could meet next month instead.",
+    "cn": "原因是下周学校要举办创新比赛，我被安排带队，因此不得不取消行程。不知我们能否改到下个月见面。",
+    "role": "原因与补救",
+    "keys": [
+     "The reason is that",
+     "I wonder if we could meet next month instead"
+    ]
+   },
+   {
+    "en": "Please accept my sincere apology for any inconvenience I have caused. I am looking forward to your reply. Yours sincerely, Li Ming.",
+    "cn": "对由此带来的不便，请接受我诚挚的歉意。期待您的回复。你真诚的，李明。",
+    "role": "再次致歉",
+    "keys": [
+     "Please accept my sincere apology",
+     "I am looking forward to your reply"
+    ]
+   }
+  ],
+  "listen": {
+   "card_id": "c2040806-1",
+   "kind": "模板",
+   "script": "Dear Professor Smith, I am writing to apologize for cancelling our meeting next week and to explain the situation.\n\nThe reason is that an innovation contest will be held in my university next week, and I have been asked to lead my team. Therefore, I have to cancel the travel plan. I wonder if we could meet next month instead.\n\nPlease accept my sincere apology for any inconvenience I have caused. I am looking forward to your reply. Yours sincerely, Li Ming.",
+   "audio": "pending"
+  },
+  "cards": [
+   {
+    "card_id": "c2040806-1",
+    "kind": "模板",
+    "card_type": "记忆",
+    "question": "整篇朗读：道歉信：取消拜访并另约时间",
+    "front": "整篇朗读：道歉信：取消拜访并另约时间",
+    "answer": "Dear Professor Smith, I am writing to apologize for cancelling our meeting next week and to explain the situation.\n\nThe reason is that an innovation contest will be held in my university next week, and I have been asked to lead my team. Therefore, I have to cancel the travel plan. I wonder if we could meet next month instead.\n\nPlease accept my sincere apology for any inconvenience I have caused. I am looking forward to your reply. Yours sincerely, Li Ming.",
+    "back": "Dear Professor Smith, I am writing to apologize for cancelling our meeting next week and to explain the situation.\n\nThe reason is that an innovation contest will be held in my university next week, and I have been asked to lead my team. Therefore, I have to cancel the travel plan. I wonder if we could meet next month instead.\n\nPlease accept my sincere apology for any inconvenience I have caused. I am looking forward to your reply. Yours sincerely, Li Ming.",
+    "options": [],
+    "answer_points": [
+     "道歉句：I am writing to apologize for…",
+     "原因与补救：The reason is that… / I wonder if…",
+     "再次致歉：Please accept my sincere apology"
+    ],
+    "analysis": "全篇 3 段、约 82 词。先听整篇抓节奏，再用回译与默写逐段吃透；考场按同一骨架换话题词即可复用。",
+    "unit_refs": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "card_id": "c2040806-2",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "尊敬的史密斯教授：我写信是为取消下周的会面致歉，并说明情况。",
+    "front": "尊敬的史密斯教授：我写信是为取消下周的会面致歉，并说明情况。",
+    "answer": "Dear Professor Smith, I am writing to apologize for cancelling our meeting next week and to explain the situation.",
+    "back": "Dear Professor Smith, I am writing to apologize for cancelling our meeting next week and to explain the situation.",
+    "options": [],
+    "answer_points": [
+     "I am writing to apologize for",
+     "explain the situation"
+    ],
+    "analysis": "本段功能：道歉句。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040806-3",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "原因是下周学校要举办创新比赛，我被安排带队，因此不得不取消行程。不知我们能否改到下个月见面。",
+    "front": "原因是下周学校要举办创新比赛，我被安排带队，因此不得不取消行程。不知我们能否改到下个月见面。",
+    "answer": "The reason is that an innovation contest will be held in my university next week, and I have been asked to lead my team. Therefore, I have to cancel the travel plan. I wonder if we could meet next month instead.",
+    "back": "The reason is that an innovation contest will be held in my university next week, and I have been asked to lead my team. Therefore, I have to cancel the travel plan. I wonder if we could meet next month instead.",
+    "options": [],
+    "answer_points": [
+     "The reason is that",
+     "I wonder if we could meet next month in…"
+    ],
+    "analysis": "本段功能：原因与补救。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040806-4",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "对由此带来的不便，请接受我诚挚的歉意。期待您的回复。你真诚的，李明。",
+    "front": "对由此带来的不便，请接受我诚挚的歉意。期待您的回复。你真诚的，李明。",
+    "answer": "Please accept my sincere apology for any inconvenience I have caused. I am looking forward to your reply. Yours sincerely, Li Ming.",
+    "back": "Please accept my sincere apology for any inconvenience I have caused. I am looking forward to your reply. Yours sincerely, Li Ming.",
+    "options": [],
+    "answer_points": [
+     "Please accept my sincere apology",
+     "I am looking forward to your reply"
+    ],
+    "analysis": "本段功能：再次致歉。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040806-5",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "I am writing to ____ for cancelling our meeting next week and to ____ the situation.",
+    "front": "I am writing to ____ for cancelling our meeting next week and to ____ the situation.",
+    "answer": "Dear Professor Smith, I am writing to apologize for cancelling our meeting next week and to explain the situation.",
+    "back": "Dear Professor Smith, I am writing to apologize for cancelling our meeting next week and to explain the situation.",
+    "options": [],
+    "answer_points": [
+     "apologize",
+     "explain"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040806-6",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "The ____ is that an innovation contest will be held in my university next week, and I have been asked to ____ my team. I wonder if we could meet next month ____.",
+    "front": "The ____ is that an innovation contest will be held in my university next week, and I have been asked to ____ my team. I wonder if we could meet next month ____.",
+    "answer": "The reason is that an innovation contest will be held in my university next week, and I have been asked to lead my team. Therefore, I have to cancel the travel plan. I wonder if we could meet next month instead.",
+    "back": "The reason is that an innovation contest will be held in my university next week, and I have been asked to lead my team. Therefore, I have to cancel the travel plan. I wonder if we could meet next month instead.",
+    "options": [],
+    "answer_points": [
+     "reason",
+     "lead",
+     "instead"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040806-7",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "Please accept my ____ apology for any inconvenience I have caused. I am looking ____ to your reply.",
+    "front": "Please accept my ____ apology for any inconvenience I have caused. I am looking ____ to your reply.",
+    "answer": "Please accept my sincere apology for any inconvenience I have caused. I am looking forward to your reply. Yours sincerely, Li Ming.",
+    "back": "Please accept my sincere apology for any inconvenience I have caused. I am looking forward to your reply. Yours sincerely, Li Ming.",
+    "options": [],
+    "answer_points": [
+     "sincere",
+     "forward"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040806-8",
+    "kind": "句型",
+    "card_type": "应用",
+    "question": "本篇可迁移句式：道歉信",
+    "front": "本篇可迁移句式：道歉信",
+    "answer": "I am writing to apologize for… 换成 complain about / apply for 即改题型\nThe reason is that… 说明原因，投诉信与请假信通用\nI wonder if we could… 委婉请求，比 Can you… 更得体",
+    "back": "I am writing to apologize for… 换成 complain about / apply for 即改题型\nThe reason is that… 说明原因，投诉信与请假信通用\nI wonder if we could… 委婉请求，比 Can you… 更得体",
+    "options": [],
+    "answer_points": [
+     "I am writing to apologize for… 换成 compl…",
+     "The reason is that… 说明原因，投诉信与请假信通用",
+     "I wonder if we could… 委婉请求，比 Can you… 更…"
+    ],
+    "analysis": "换话题时只替换名词与理由，句式骨架保留；同一句式在图表作文与小作文里都能用。",
+    "unit_refs": [
+     1
+    ]
+   }
+  ],
+  "exam_evidence": {
+   "level": "pending",
+   "basis": "自写范文，待人工审定",
+   "sources": []
+  },
+  "tts": {
+   "enabled": false
+  }
+ },
+ {
+  "id": "2040807",
+  "chapter": "204-08",
+  "order": 3,
+  "point": "感谢信范文：感谢 + 具体回顾 + 回邀",
+  "title": "感谢信：文化交流项目的接待",
+  "explain": "感谢信范文，共 3 段。先听整篇，再做逐段回译与挖空默写，最后用句式卡换话题迁移。",
+  "exam": "写作 08 节常考题型：感谢信。背诵后按题目要求替换收信人、事由与理由即可。",
+  "keywords": [
+   "感谢信",
+   "文化交流",
+   "具体回顾",
+   "回邀"
+  ],
+  "priority": "★",
+  "tags": [],
+  "exam_types": [
+   "模板",
+   "回译",
+   "默写",
+   "句型"
+  ],
+  "source": {
+   "ref": "204-essays#2040807",
+   "file": "204-essays.jsonl",
+   "section": "感谢信",
+   "basis": "自写范文",
+   "kind": "md"
+  },
+  "spoken": "这是一篇感谢信范文，共 3 段，背诵时先听整篇，再逐段回译。",
+  "units": [
+   "第 1 段：尊敬的李先生：我刚从美国回来，特此写信感谢您的热情接待。",
+   "第 2 段：正是您的耐心与热情让我对美国文化有了如此多的了解。您安排的文化演出、博…",
+   "第 3 段：我也非常乐意在合适的时候欢迎您来中国。请代我向您的家人问好。你真诚的，…"
+  ],
+  "paragraphs": [
+   {
+    "en": "Dear Mr. Lee, I have just returned from the United States, and I am writing to express my sincere thanks for your warm reception.",
+    "cn": "尊敬的李先生：我刚从美国回来，特此写信感谢您的热情接待。",
+    "role": "感谢句",
+    "keys": [
+     "I am writing to express my sincere thanks",
+     "warm reception"
+    ]
+   },
+   {
+    "en": "It was your patience and enthusiasm that enabled me to learn so much about American culture. The activities you arranged, such as the cultural performance and the museum visit, left a deep impression on me.",
+    "cn": "正是您的耐心与热情让我对美国文化有了如此多的了解。您安排的文化演出、博物馆参观等活动给我留下了深刻印象。",
+    "role": "具体回顾",
+    "keys": [
+     "It was … that enabled me to",
+     "left a deep impression on me"
+    ]
+   },
+   {
+    "en": "I would be delighted to welcome you to China in due course. Please give my best regards to your family. Yours sincerely, Zhang Wei.",
+    "cn": "我也非常乐意在合适的时候欢迎您来中国。请代我向您的家人问好。你真诚的，张伟。",
+    "role": "回邀与收尾",
+    "keys": [
+     "I would be delighted to welcome you",
+     "give my best regards to your family"
+    ]
+   }
+  ],
+  "listen": {
+   "card_id": "c2040807-1",
+   "kind": "模板",
+   "script": "Dear Mr. Lee, I have just returned from the United States, and I am writing to express my sincere thanks for your warm reception.\n\nIt was your patience and enthusiasm that enabled me to learn so much about American culture. The activities you arranged, such as the cultural performance and the museum visit, left a deep impression on me.\n\nI would be delighted to welcome you to China in due course. Please give my best regards to your family. Yours sincerely, Zhang Wei.",
+   "audio": "pending"
+  },
+  "cards": [
+   {
+    "card_id": "c2040807-1",
+    "kind": "模板",
+    "card_type": "记忆",
+    "question": "整篇朗读：感谢信：文化交流项目的接待",
+    "front": "整篇朗读：感谢信：文化交流项目的接待",
+    "answer": "Dear Mr. Lee, I have just returned from the United States, and I am writing to express my sincere thanks for your warm reception.\n\nIt was your patience and enthusiasm that enabled me to learn so much about American culture. The activities you arranged, such as the cultural performance and the museum visit, left a deep impression on me.\n\nI would be delighted to welcome you to China in due course. Please give my best regards to your family. Yours sincerely, Zhang Wei.",
+    "back": "Dear Mr. Lee, I have just returned from the United States, and I am writing to express my sincere thanks for your warm reception.\n\nIt was your patience and enthusiasm that enabled me to learn so much about American culture. The activities you arranged, such as the cultural performance and the museum visit, left a deep impression on me.\n\nI would be delighted to welcome you to China in due course. Please give my best regards to your family. Yours sincerely, Zhang Wei.",
+    "options": [],
+    "answer_points": [
+     "感谢句：I am writing to express my sincere …",
+     "具体回顾：It was … that enabled me to…",
+     "回邀：I would be delighted to…"
+    ],
+    "analysis": "全篇 3 段、约 83 词。先听整篇抓节奏，再用回译与默写逐段吃透；考场按同一骨架换话题词即可复用。",
+    "unit_refs": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "card_id": "c2040807-2",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "尊敬的李先生：我刚从美国回来，特此写信感谢您的热情接待。",
+    "front": "尊敬的李先生：我刚从美国回来，特此写信感谢您的热情接待。",
+    "answer": "Dear Mr. Lee, I have just returned from the United States, and I am writing to express my sincere thanks for your warm reception.",
+    "back": "Dear Mr. Lee, I have just returned from the United States, and I am writing to express my sincere thanks for your warm reception.",
+    "options": [],
+    "answer_points": [
+     "I am writing to express my sincere than…",
+     "warm reception"
+    ],
+    "analysis": "本段功能：感谢句。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040807-3",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "正是您的耐心与热情让我对美国文化有了如此多的了解。您安排的文化演出、博物馆参观等活动给我留下了深刻印象。",
+    "front": "正是您的耐心与热情让我对美国文化有了如此多的了解。您安排的文化演出、博物馆参观等活动给我留下了深刻印象。",
+    "answer": "It was your patience and enthusiasm that enabled me to learn so much about American culture. The activities you arranged, such as the cultural performance and the museum visit, left a deep impression on me.",
+    "back": "It was your patience and enthusiasm that enabled me to learn so much about American culture. The activities you arranged, such as the cultural performance and the museum visit, left a deep impression on me.",
+    "options": [],
+    "answer_points": [
+     "It was … that enabled me to",
+     "left a deep impression on me"
+    ],
+    "analysis": "本段功能：具体回顾。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040807-4",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "我也非常乐意在合适的时候欢迎您来中国。请代我向您的家人问好。你真诚的，张伟。",
+    "front": "我也非常乐意在合适的时候欢迎您来中国。请代我向您的家人问好。你真诚的，张伟。",
+    "answer": "I would be delighted to welcome you to China in due course. Please give my best regards to your family. Yours sincerely, Zhang Wei.",
+    "back": "I would be delighted to welcome you to China in due course. Please give my best regards to your family. Yours sincerely, Zhang Wei.",
+    "options": [],
+    "answer_points": [
+     "I would be delighted to welcome you",
+     "give my best regards to your family"
+    ],
+    "analysis": "本段功能：回邀与收尾。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040807-5",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "I have just returned from the United States, and I am writing to express my ____ thanks for your warm ____.",
+    "front": "I have just returned from the United States, and I am writing to express my ____ thanks for your warm ____.",
+    "answer": "Dear Mr. Lee, I have just returned from the United States, and I am writing to express my sincere thanks for your warm reception.",
+    "back": "Dear Mr. Lee, I have just returned from the United States, and I am writing to express my sincere thanks for your warm reception.",
+    "options": [],
+    "answer_points": [
+     "sincere",
+     "reception"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040807-6",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "It was your patience and ____ that ____ me to learn so much about American culture. The activities you arranged left a deep ____ on me.",
+    "front": "It was your patience and ____ that ____ me to learn so much about American culture. The activities you arranged left a deep ____ on me.",
+    "answer": "It was your patience and enthusiasm that enabled me to learn so much about American culture. The activities you arranged, such as the cultural performance and the museum visit, left a deep impression on me.",
+    "back": "It was your patience and enthusiasm that enabled me to learn so much about American culture. The activities you arranged, such as the cultural performance and the museum visit, left a deep impression on me.",
+    "options": [],
+    "answer_points": [
+     "enthusiasm",
+     "enabled",
+     "impression"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040807-7",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "I would be ____ to welcome you to China in ____ course.",
+    "front": "I would be ____ to welcome you to China in ____ course.",
+    "answer": "I would be delighted to welcome you to China in due course. Please give my best regards to your family. Yours sincerely, Zhang Wei.",
+    "back": "I would be delighted to welcome you to China in due course. Please give my best regards to your family. Yours sincerely, Zhang Wei.",
+    "options": [],
+    "answer_points": [
+     "delighted",
+     "due"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040807-8",
+    "kind": "句型",
+    "card_type": "应用",
+    "question": "本篇可迁移句式：感谢信",
+    "front": "本篇可迁移句式：感谢信",
+    "answer": "I am writing to express my sincere thanks for… 换成 congratulations on… 即祝贺信\nIt was … that enabled me to… 强调句，写作中可替代 Because of you, I…\nI would be delighted to… 正式邀约或表达意愿",
+    "back": "I am writing to express my sincere thanks for… 换成 congratulations on… 即祝贺信\nIt was … that enabled me to… 强调句，写作中可替代 Because of you, I…\nI would be delighted to… 正式邀约或表达意愿",
+    "options": [],
+    "answer_points": [
+     "I am writing to express my sincere than…",
+     "It was … that enabled me to… 强调句，写作中可替代…",
+     "I would be delighted to… 正式邀约或表达意愿"
+    ],
+    "analysis": "换话题时只替换名词与理由，句式骨架保留；同一句式在图表作文与小作文里都能用。",
+    "unit_refs": [
+     1
+    ]
+   }
+  ],
+  "exam_evidence": {
+   "level": "pending",
+   "basis": "自写范文，待人工审定",
+   "sources": []
+  },
+  "tts": {
+   "enabled": false
+  }
+ },
+ {
+  "id": "2040808",
+  "chapter": "204-08",
+  "order": 4,
+  "point": "通知范文：活动介绍 + 职责要求 + 报名方式",
+  "title": "通知：夏令营招募志愿者",
+  "explain": "通知范文，共 3 段。先听整篇，再做逐段回译与挖空默写，最后用句式卡换话题迁移。",
+  "exam": "写作 08 节常考题型：通知。背诵后按题目要求替换收信人、事由与理由即可。",
+  "keywords": [
+   "通知",
+   "招募志愿者",
+   "职责要求",
+   "报名方式"
+  ],
+  "priority": "★",
+  "tags": [],
+  "exam_types": [
+   "模板",
+   "回译",
+   "默写",
+   "句型"
+  ],
+  "source": {
+   "ref": "204-essays#2040808",
+   "file": "204-essays.jsonl",
+   "section": "通知",
+   "basis": "自写范文",
+   "kind": "md"
+  },
+  "spoken": "这是一篇通知范文，共 3 段，背诵时先听整篇，再逐段回译。",
+  "units": [
+   "第 1 段：通知 各位同学请注意！我校将于七月举办面向高中生的夏令营，现招募志愿者。",
+   "第 2 段：夏令营安排讲座、校园参观和小组讨论，帮助参与者了解大学生活。志愿者需要…",
+   "第 3 段：有意者请于 6 月 20 日前发邮件至 camp@example.co…"
+  ],
+  "paragraphs": [
+   {
+    "en": "Notice\n\nAttention all students! Our university will host a summer camp for high school students in July, and volunteers are needed.",
+    "cn": "通知\n\n各位同学请注意！我校将于七月举办面向高中生的夏令营，现招募志愿者。",
+    "role": "标题与告知",
+    "keys": [
+     "Attention all students",
+     "volunteers are needed"
+    ]
+   },
+   {
+    "en": "The camp offers lectures, campus tours and group discussions, which help participants learn about university life. Volunteers are expected to guide the students, organize activities and answer their questions.",
+    "cn": "夏令营安排讲座、校园参观和小组讨论，帮助参与者了解大学生活。志愿者需要引导学生、组织活动并答疑。",
+    "role": "活动与职责",
+    "keys": [
+     "The camp offers…, which help…",
+     "Volunteers are expected to…"
+    ]
+   },
+   {
+    "en": "Those who are interested should send an email to camp@example.com before June 20. Welcome to join us!\n\nJuly 1, 2026",
+    "cn": "有意者请于 6 月 20 日前发邮件至 camp@example.com。欢迎加入！\n\n2026 年 7 月 1 日",
+    "role": "报名与号召",
+    "keys": [
+     "Those who are interested should…",
+     "before June 20"
+    ]
+   }
+  ],
+  "listen": {
+   "card_id": "c2040808-1",
+   "kind": "模板",
+   "script": "Notice\n\nAttention all students! Our university will host a summer camp for high school students in July, and volunteers are needed.\n\nThe camp offers lectures, campus tours and group discussions, which help participants learn about university life. Volunteers are expected to guide the students, organize activities and answer their questions.\n\nThose who are interested should send an email to camp@example.com before June 20. Welcome to join us!\n\nJuly 1, 2026",
+   "audio": "pending"
+  },
+  "cards": [
+   {
+    "card_id": "c2040808-1",
+    "kind": "模板",
+    "card_type": "记忆",
+    "question": "整篇朗读：通知：夏令营招募志愿者",
+    "front": "整篇朗读：通知：夏令营招募志愿者",
+    "answer": "Notice\n\nAttention all students! Our university will host a summer camp for high school students in July, and volunteers are needed.\n\nThe camp offers lectures, campus tours and group discussions, which help participants learn about university life. Volunteers are expected to guide the students, organize activities and answer their questions.\n\nThose who are interested should send an email to camp@example.com before June 20. Welcome to join us!\n\nJuly 1, 2026",
+    "back": "Notice\n\nAttention all students! Our university will host a summer camp for high school students in July, and volunteers are needed.\n\nThe camp offers lectures, campus tours and group discussions, which help participants learn about university life. Volunteers are expected to guide the students, organize activities and answer their questions.\n\nThose who are interested should send an email to camp@example.com before June 20. Welcome to join us!\n\nJuly 1, 2026",
+    "options": [],
+    "answer_points": [
+     "标题与告知：Notice / Attention all students",
+     "内容分点：The camp offers… / Volunteers are …",
+     "报名与号召：Those who are interested should…"
+    ],
+    "analysis": "全篇 3 段、约 70 词。先听整篇抓节奏，再用回译与默写逐段吃透；考场按同一骨架换话题词即可复用。",
+    "unit_refs": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "card_id": "c2040808-2",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "通知\n\n各位同学请注意！我校将于七月举办面向高中生的夏令营，现招募志愿者。",
+    "front": "通知\n\n各位同学请注意！我校将于七月举办面向高中生的夏令营，现招募志愿者。",
+    "answer": "Notice\n\nAttention all students! Our university will host a summer camp for high school students in July, and volunteers are needed.",
+    "back": "Notice\n\nAttention all students! Our university will host a summer camp for high school students in July, and volunteers are needed.",
+    "options": [],
+    "answer_points": [
+     "Attention all students",
+     "volunteers are needed"
+    ],
+    "analysis": "本段功能：标题与告知。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040808-3",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "夏令营安排讲座、校园参观和小组讨论，帮助参与者了解大学生活。志愿者需要引导学生、组织活动并答疑。",
+    "front": "夏令营安排讲座、校园参观和小组讨论，帮助参与者了解大学生活。志愿者需要引导学生、组织活动并答疑。",
+    "answer": "The camp offers lectures, campus tours and group discussions, which help participants learn about university life. Volunteers are expected to guide the students, organize activities and answer their questions.",
+    "back": "The camp offers lectures, campus tours and group discussions, which help participants learn about university life. Volunteers are expected to guide the students, organize activities and answer their questions.",
+    "options": [],
+    "answer_points": [
+     "The camp offers…, which help…",
+     "Volunteers are expected to…"
+    ],
+    "analysis": "本段功能：活动与职责。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040808-4",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "有意者请于 6 月 20 日前发邮件至 camp@example.com。欢迎加入！\n\n2026 年 7 月 1 日",
+    "front": "有意者请于 6 月 20 日前发邮件至 camp@example.com。欢迎加入！\n\n2026 年 7 月 1 日",
+    "answer": "Those who are interested should send an email to camp@example.com before June 20. Welcome to join us!\n\nJuly 1, 2026",
+    "back": "Those who are interested should send an email to camp@example.com before June 20. Welcome to join us!\n\nJuly 1, 2026",
+    "options": [],
+    "answer_points": [
+     "Those who are interested should…",
+     "before June 20"
+    ],
+    "analysis": "本段功能：报名与号召。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040808-5",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "Our university will ____ a summer camp for high school students in July, and ____ are needed.",
+    "front": "Our university will ____ a summer camp for high school students in July, and ____ are needed.",
+    "answer": "Notice\n\nAttention all students! Our university will host a summer camp for high school students in July, and volunteers are needed.",
+    "back": "Notice\n\nAttention all students! Our university will host a summer camp for high school students in July, and volunteers are needed.",
+    "options": [],
+    "answer_points": [
+     "host",
+     "volunteers"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040808-6",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "The camp offers lectures, campus tours and group discussions, which help ____ learn about university life. Volunteers are ____ to guide the students and ____ activities.",
+    "front": "The camp offers lectures, campus tours and group discussions, which help ____ learn about university life. Volunteers are ____ to guide the students and ____ activities.",
+    "answer": "The camp offers lectures, campus tours and group discussions, which help participants learn about university life. Volunteers are expected to guide the students, organize activities and answer their questions.",
+    "back": "The camp offers lectures, campus tours and group discussions, which help participants learn about university life. Volunteers are expected to guide the students, organize activities and answer their questions.",
+    "options": [],
+    "answer_points": [
+     "participants",
+     "expected",
+     "organize"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040808-7",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "Those who are ____ should send an email to camp@example.com ____ June 20.",
+    "front": "Those who are ____ should send an email to camp@example.com ____ June 20.",
+    "answer": "Those who are interested should send an email to camp@example.com before June 20. Welcome to join us!\n\nJuly 1, 2026",
+    "back": "Those who are interested should send an email to camp@example.com before June 20. Welcome to join us!\n\nJuly 1, 2026",
+    "options": [],
+    "answer_points": [
+     "interested",
+     "before"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040808-8",
+    "kind": "句型",
+    "card_type": "应用",
+    "question": "本篇可迁移句式：通知",
+    "front": "本篇可迁移句式：通知",
+    "answer": "Attention all students! 通知开头句，换成 Attention all members! 同理\nVolunteers are expected to… 换成 Applicants are required to… 即改成招募要求\nThose who are interested should… 招募与报名类固定句式",
+    "back": "Attention all students! 通知开头句，换成 Attention all members! 同理\nVolunteers are expected to… 换成 Applicants are required to… 即改成招募要求\nThose who are interested should… 招募与报名类固定句式",
+    "options": [],
+    "answer_points": [
+     "Attention all students! 通知开头句，换成 Attent…",
+     "Volunteers are expected to… 换成 Applican…",
+     "Those who are interested should… 招募与报名类…"
+    ],
+    "analysis": "换话题时只替换名词与理由，句式骨架保留；同一句式在图表作文与小作文里都能用。",
+    "unit_refs": [
+     1
+    ]
+   }
+  ],
+  "exam_evidence": {
+   "level": "pending",
+   "basis": "自写范文，待人工审定",
+   "sources": []
+  },
+  "tts": {
+   "enabled": false
+  }
+ },
+ {
+  "id": "2040809",
+  "chapter": "204-08",
+  "order": 5,
+  "point": "投诉信范文：投诉 + 事实 + 要求解决",
+  "title": "投诉信：电子词典质量问题",
+  "explain": "投诉信范文，共 3 段。先听整篇，再做逐段回译与挖空默写，最后用句式卡换话题迁移。",
+  "exam": "写作 08 节常考题型：投诉信。背诵后按题目要求替换收信人、事由与理由即可。",
+  "keywords": [
+   "投诉信",
+   "质量问题",
+   "事实陈述",
+   "要求解决"
+  ],
+  "priority": "★",
+  "tags": [],
+  "exam_types": [
+   "模板",
+   "回译",
+   "默写",
+   "句型"
+  ],
+  "source": {
+   "ref": "204-essays#2040809",
+   "file": "204-essays.jsonl",
+   "section": "投诉信",
+   "basis": "自写范文",
+   "kind": "md"
+  },
+  "spoken": "这是一篇投诉信范文，共 3 段，背诵时先听整篇，再逐段回译。",
+  "units": [
+   "第 1 段：尊敬的先生或女士：我写信是投诉上周在贵网店购买的电子词典。",
+   "第 2 段：遗憾的是，屏幕运行五分钟后就会失灵，使这台设备无法用于学习。我已尝试重…",
+   "第 3 段：我希望换货或全额退款。如能尽快处理此事，我将不胜感激。你真诚的，张伟。"
+  ],
+  "paragraphs": [
+   {
+    "en": "Dear Sir or Madam, I am writing to complain about the electronic dictionary I bought from your online store last week.",
+    "cn": "尊敬的先生或女士：我写信是投诉上周在贵网店购买的电子词典。",
+    "role": "投诉句",
+    "keys": [
+     "I am writing to complain about",
+     "bought from your online store"
+    ]
+   },
+   {
+    "en": "Unfortunately, the screen stops working after five minutes, which makes the device useless for my study. I have tried charging it again, but the problem remains.",
+    "cn": "遗憾的是，屏幕运行五分钟后就会失灵，使这台设备无法用于学习。我已尝试重新充电，但问题依然存在。",
+    "role": "事实陈述",
+    "keys": [
+     "Unfortunately, …, which makes…",
+     "I have tried…, but the problem remains"
+    ]
+   },
+   {
+    "en": "I would like to request a replacement or a full refund. I would appreciate it if you could deal with this matter promptly. Yours sincerely, Zhang Wei.",
+    "cn": "我希望换货或全额退款。如能尽快处理此事，我将不胜感激。你真诚的，张伟。",
+    "role": "要求解决",
+    "keys": [
+     "I would like to request",
+     "deal with this matter promptly"
+    ]
+   }
+  ],
+  "listen": {
+   "card_id": "c2040809-1",
+   "kind": "模板",
+   "script": "Dear Sir or Madam, I am writing to complain about the electronic dictionary I bought from your online store last week.\n\nUnfortunately, the screen stops working after five minutes, which makes the device useless for my study. I have tried charging it again, but the problem remains.\n\nI would like to request a replacement or a full refund. I would appreciate it if you could deal with this matter promptly. Yours sincerely, Zhang Wei.",
+   "audio": "pending"
+  },
+  "cards": [
+   {
+    "card_id": "c2040809-1",
+    "kind": "模板",
+    "card_type": "记忆",
+    "question": "整篇朗读：投诉信：电子词典质量问题",
+    "front": "整篇朗读：投诉信：电子词典质量问题",
+    "answer": "Dear Sir or Madam, I am writing to complain about the electronic dictionary I bought from your online store last week.\n\nUnfortunately, the screen stops working after five minutes, which makes the device useless for my study. I have tried charging it again, but the problem remains.\n\nI would like to request a replacement or a full refund. I would appreciate it if you could deal with this matter promptly. Yours sincerely, Zhang Wei.",
+    "back": "Dear Sir or Madam, I am writing to complain about the electronic dictionary I bought from your online store last week.\n\nUnfortunately, the screen stops working after five minutes, which makes the device useless for my study. I have tried charging it again, but the problem remains.\n\nI would like to request a replacement or a full refund. I would appreciate it if you could deal with this matter promptly. Yours sincerely, Zhang Wei.",
+    "options": [],
+    "answer_points": [
+     "投诉句：I am writing to complain about…",
+     "事实陈述：Unfortunately, … / I have tried…",
+     "要求解决：I would like to request…"
+    ],
+    "analysis": "全篇 3 段、约 74 词。先听整篇抓节奏，再用回译与默写逐段吃透；考场按同一骨架换话题词即可复用。",
+    "unit_refs": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "card_id": "c2040809-2",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "尊敬的先生或女士：我写信是投诉上周在贵网店购买的电子词典。",
+    "front": "尊敬的先生或女士：我写信是投诉上周在贵网店购买的电子词典。",
+    "answer": "Dear Sir or Madam, I am writing to complain about the electronic dictionary I bought from your online store last week.",
+    "back": "Dear Sir or Madam, I am writing to complain about the electronic dictionary I bought from your online store last week.",
+    "options": [],
+    "answer_points": [
+     "I am writing to complain about",
+     "bought from your online store"
+    ],
+    "analysis": "本段功能：投诉句。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040809-3",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "遗憾的是，屏幕运行五分钟后就会失灵，使这台设备无法用于学习。我已尝试重新充电，但问题依然存在。",
+    "front": "遗憾的是，屏幕运行五分钟后就会失灵，使这台设备无法用于学习。我已尝试重新充电，但问题依然存在。",
+    "answer": "Unfortunately, the screen stops working after five minutes, which makes the device useless for my study. I have tried charging it again, but the problem remains.",
+    "back": "Unfortunately, the screen stops working after five minutes, which makes the device useless for my study. I have tried charging it again, but the problem remains.",
+    "options": [],
+    "answer_points": [
+     "Unfortunately, …, which makes…",
+     "I have tried…, but the problem remains"
+    ],
+    "analysis": "本段功能：事实陈述。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040809-4",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "我希望换货或全额退款。如能尽快处理此事，我将不胜感激。你真诚的，张伟。",
+    "front": "我希望换货或全额退款。如能尽快处理此事，我将不胜感激。你真诚的，张伟。",
+    "answer": "I would like to request a replacement or a full refund. I would appreciate it if you could deal with this matter promptly. Yours sincerely, Zhang Wei.",
+    "back": "I would like to request a replacement or a full refund. I would appreciate it if you could deal with this matter promptly. Yours sincerely, Zhang Wei.",
+    "options": [],
+    "answer_points": [
+     "I would like to request",
+     "deal with this matter promptly"
+    ],
+    "analysis": "本段功能：要求解决。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040809-5",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "I am writing to ____ about the electronic dictionary I bought from your ____ store last week.",
+    "front": "I am writing to ____ about the electronic dictionary I bought from your ____ store last week.",
+    "answer": "Dear Sir or Madam, I am writing to complain about the electronic dictionary I bought from your online store last week.",
+    "back": "Dear Sir or Madam, I am writing to complain about the electronic dictionary I bought from your online store last week.",
+    "options": [],
+    "answer_points": [
+     "complain",
+     "online"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040809-6",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "Unfortunately, the screen stops working after five minutes, which makes the ____ useless for my study. I have tried ____ it again, but the problem ____.",
+    "front": "Unfortunately, the screen stops working after five minutes, which makes the ____ useless for my study. I have tried ____ it again, but the problem ____.",
+    "answer": "Unfortunately, the screen stops working after five minutes, which makes the device useless for my study. I have tried charging it again, but the problem remains.",
+    "back": "Unfortunately, the screen stops working after five minutes, which makes the device useless for my study. I have tried charging it again, but the problem remains.",
+    "options": [],
+    "answer_points": [
+     "device",
+     "charging",
+     "remains"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040809-7",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "I would like to ____ a replacement or a full ____. I would appreciate it if you could deal with this matter ____.",
+    "front": "I would like to ____ a replacement or a full ____. I would appreciate it if you could deal with this matter ____.",
+    "answer": "I would like to request a replacement or a full refund. I would appreciate it if you could deal with this matter promptly. Yours sincerely, Zhang Wei.",
+    "back": "I would like to request a replacement or a full refund. I would appreciate it if you could deal with this matter promptly. Yours sincerely, Zhang Wei.",
+    "options": [],
+    "answer_points": [
+     "request",
+     "refund",
+     "promptly"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040809-8",
+    "kind": "句型",
+    "card_type": "应用",
+    "question": "本篇可迁移句式：投诉信",
+    "front": "本篇可迁移句式：投诉信",
+    "answer": "I am writing to complain about… 换成 inquire about… 即咨询信\nUnfortunately, …, which makes… 陈述问题并说明影响\nI would like to request… 正式提出诉求，投诉与申请通用",
+    "back": "I am writing to complain about… 换成 inquire about… 即咨询信\nUnfortunately, …, which makes… 陈述问题并说明影响\nI would like to request… 正式提出诉求，投诉与申请通用",
+    "options": [],
+    "answer_points": [
+     "I am writing to complain about… 换成 inqu…",
+     "Unfortunately, …, which makes… 陈述问题并说明影响",
+     "I would like to request… 正式提出诉求，投诉与申请通用"
+    ],
+    "analysis": "换话题时只替换名词与理由，句式骨架保留；同一句式在图表作文与小作文里都能用。",
+    "unit_refs": [
+     1
+    ]
+   }
+  ],
+  "exam_evidence": {
+   "level": "pending",
+   "basis": "自写范文，待人工审定",
+   "sources": []
+  },
+  "tts": {
+   "enabled": false
+  }
+ },
+ {
+  "id": "2040810",
+  "chapter": "204-08",
+  "order": 6,
+  "point": "询问信范文：表明来意 + 具体问题 + 致谢",
+  "title": "询问信：了解志愿项目细节",
+  "explain": "询问信范文，共 3 段。先听整篇，再做逐段回译与挖空默写，最后用句式卡换话题迁移。",
+  "exam": "写作 08 节常考题型：询问信。背诵后按题目要求替换收信人、事由与理由即可。",
+  "keywords": [
+   "询问信",
+   "项目细节",
+   "具体问题",
+   "礼貌致谢"
+  ],
+  "priority": "★",
+  "tags": [],
+  "exam_types": [
+   "模板",
+   "回译",
+   "默写",
+   "句型"
+  ],
+  "source": {
+   "ref": "204-essays#2040810",
+   "file": "204-essays.jsonl",
+   "section": "询问信",
+   "basis": "自写范文",
+   "kind": "md"
+  },
+  "spoken": "这是一篇询问信范文，共 3 段，背诵时先听整篇，再逐段回译。",
+  "units": [
+   "第 1 段：尊敬的先生或女士：我写信是想咨询贵网站提到的“援助农村小学”项目。",
+   "第 2 段：我想了解志愿者需要做什么、项目持续多久，以及出发前是否会提供培训。",
+   "第 3 段：如能告知详情，我将不胜感激。感谢您的时间。你真诚的，李明。"
+  ],
+  "paragraphs": [
+   {
+    "en": "Dear Sir or Madam, I am writing to inquire about the \"Aiding Rural Primary School\" project mentioned on your website.",
+    "cn": "尊敬的先生或女士：我写信是想咨询贵网站提到的“援助农村小学”项目。",
+    "role": "表明来意",
+    "keys": [
+     "I am writing to inquire about",
+     "mentioned on your website"
+    ]
+   },
+   {
+    "en": "I would like to know what volunteers are expected to do, how long the project lasts, and whether any training will be provided before we set off.",
+    "cn": "我想了解志愿者需要做什么、项目持续多久，以及出发前是否会提供培训。",
+    "role": "具体问题",
+    "keys": [
+     "I would like to know what / how long / whether",
+     "before we set off"
+    ]
+   },
+   {
+    "en": "I would be grateful if you could send me the details. Thank you for your time. Yours sincerely, Li Ming.",
+    "cn": "如能告知详情，我将不胜感激。感谢您的时间。你真诚的，李明。",
+    "role": "致谢收尾",
+    "keys": [
+     "I would be grateful if you could",
+     "Thank you for your time"
+    ]
+   }
+  ],
+  "listen": {
+   "card_id": "c2040810-1",
+   "kind": "模板",
+   "script": "Dear Sir or Madam, I am writing to inquire about the \"Aiding Rural Primary School\" project mentioned on your website.\n\nI would like to know what volunteers are expected to do, how long the project lasts, and whether any training will be provided before we set off.\n\nI would be grateful if you could send me the details. Thank you for your time. Yours sincerely, Li Ming.",
+   "audio": "pending"
+  },
+  "cards": [
+   {
+    "card_id": "c2040810-1",
+    "kind": "模板",
+    "card_type": "记忆",
+    "question": "整篇朗读：询问信：了解志愿项目细节",
+    "front": "整篇朗读：询问信：了解志愿项目细节",
+    "answer": "Dear Sir or Madam, I am writing to inquire about the \"Aiding Rural Primary School\" project mentioned on your website.\n\nI would like to know what volunteers are expected to do, how long the project lasts, and whether any training will be provided before we set off.\n\nI would be grateful if you could send me the details. Thank you for your time. Yours sincerely, Li Ming.",
+    "back": "Dear Sir or Madam, I am writing to inquire about the \"Aiding Rural Primary School\" project mentioned on your website.\n\nI would like to know what volunteers are expected to do, how long the project lasts, and whether any training will be provided before we set off.\n\nI would be grateful if you could send me the details. Thank you for your time. Yours sincerely, Li Ming.",
+    "options": [],
+    "answer_points": [
+     "来意：I am writing to inquire about…",
+     "具体问题：I would like to know…",
+     "致谢：I would be grateful if…"
+    ],
+    "analysis": "全篇 3 段、约 67 词。先听整篇抓节奏，再用回译与默写逐段吃透；考场按同一骨架换话题词即可复用。",
+    "unit_refs": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "card_id": "c2040810-2",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "尊敬的先生或女士：我写信是想咨询贵网站提到的“援助农村小学”项目。",
+    "front": "尊敬的先生或女士：我写信是想咨询贵网站提到的“援助农村小学”项目。",
+    "answer": "Dear Sir or Madam, I am writing to inquire about the \"Aiding Rural Primary School\" project mentioned on your website.",
+    "back": "Dear Sir or Madam, I am writing to inquire about the \"Aiding Rural Primary School\" project mentioned on your website.",
+    "options": [],
+    "answer_points": [
+     "I am writing to inquire about",
+     "mentioned on your website"
+    ],
+    "analysis": "本段功能：表明来意。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040810-3",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "我想了解志愿者需要做什么、项目持续多久，以及出发前是否会提供培训。",
+    "front": "我想了解志愿者需要做什么、项目持续多久，以及出发前是否会提供培训。",
+    "answer": "I would like to know what volunteers are expected to do, how long the project lasts, and whether any training will be provided before we set off.",
+    "back": "I would like to know what volunteers are expected to do, how long the project lasts, and whether any training will be provided before we set off.",
+    "options": [],
+    "answer_points": [
+     "I would like to know what / how long / …",
+     "before we set off"
+    ],
+    "analysis": "本段功能：具体问题。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040810-4",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "如能告知详情，我将不胜感激。感谢您的时间。你真诚的，李明。",
+    "front": "如能告知详情，我将不胜感激。感谢您的时间。你真诚的，李明。",
+    "answer": "I would be grateful if you could send me the details. Thank you for your time. Yours sincerely, Li Ming.",
+    "back": "I would be grateful if you could send me the details. Thank you for your time. Yours sincerely, Li Ming.",
+    "options": [],
+    "answer_points": [
+     "I would be grateful if you could",
+     "Thank you for your time"
+    ],
+    "analysis": "本段功能：致谢收尾。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040810-5",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "I am writing to ____ about the \"Aiding Rural Primary School\" project ____ on your website.",
+    "front": "I am writing to ____ about the \"Aiding Rural Primary School\" project ____ on your website.",
+    "answer": "Dear Sir or Madam, I am writing to inquire about the \"Aiding Rural Primary School\" project mentioned on your website.",
+    "back": "Dear Sir or Madam, I am writing to inquire about the \"Aiding Rural Primary School\" project mentioned on your website.",
+    "options": [],
+    "answer_points": [
+     "inquire",
+     "mentioned"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040810-6",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "I would like to know what volunteers are ____ to do, how long the project ____, and whether any ____ will be provided before we set off.",
+    "front": "I would like to know what volunteers are ____ to do, how long the project ____, and whether any ____ will be provided before we set off.",
+    "answer": "I would like to know what volunteers are expected to do, how long the project lasts, and whether any training will be provided before we set off.",
+    "back": "I would like to know what volunteers are expected to do, how long the project lasts, and whether any training will be provided before we set off.",
+    "options": [],
+    "answer_points": [
+     "expected",
+     "lasts",
+     "training"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040810-7",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "I would be ____ if you could send me the ____.",
+    "front": "I would be ____ if you could send me the ____.",
+    "answer": "I would be grateful if you could send me the details. Thank you for your time. Yours sincerely, Li Ming.",
+    "back": "I would be grateful if you could send me the details. Thank you for your time. Yours sincerely, Li Ming.",
+    "options": [],
+    "answer_points": [
+     "grateful",
+     "details"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040810-8",
+    "kind": "句型",
+    "card_type": "应用",
+    "question": "本篇可迁移句式：询问信",
+    "front": "本篇可迁移句式：询问信",
+    "answer": "I am writing to inquire about… 换成 apply for… 即求职或申请信\nI would like to know what / how long / whether 三连问，条理清晰\nI would be grateful if you could… 请求信息的礼貌说法",
+    "back": "I am writing to inquire about… 换成 apply for… 即求职或申请信\nI would like to know what / how long / whether 三连问，条理清晰\nI would be grateful if you could… 请求信息的礼貌说法",
+    "options": [],
+    "answer_points": [
+     "I am writing to inquire about… 换成 apply…",
+     "I would like to know what / how long / …",
+     "I would be grateful if you could… 请求信息的…"
+    ],
+    "analysis": "换话题时只替换名词与理由，句式骨架保留；同一句式在图表作文与小作文里都能用。",
+    "unit_refs": [
+     1
+    ]
+   }
+  ],
+  "exam_evidence": {
+   "level": "pending",
+   "basis": "自写范文，待人工审定",
+   "sources": []
+  },
+  "tts": {
+   "enabled": false
+  }
+ },
+ {
+  "id": "2040906",
+  "chapter": "204-09",
+  "order": 7,
+  "point": "大作文范文：静态柱状图的描述与归因",
+  "title": "大作文 1：柱状图静态对比",
+  "explain": "柱状图·静态对比范文，共 3 段。先听整篇，再做逐段回译与挖空默写，最后用句式卡换话题迁移。",
+  "exam": "写作 09 节常考题型：柱状图·静态对比。背诵后按题目要求替换收信人、事由与理由即可。",
+  "keywords": [
+   "柱状图",
+   "静态对比",
+   "原因分析",
+   "建议收尾"
+  ],
+  "priority": "★",
+  "tags": [],
+  "exam_types": [
+   "模板",
+   "回译",
+   "默写",
+   "句型"
+  ],
+  "source": {
+   "ref": "204-essays#2040906",
+   "file": "204-essays.jsonl",
+   "section": "柱状图·静态对比",
+   "basis": "自写范文",
+   "kind": "md"
+  },
+  "spoken": "这是一篇柱状图·静态对比范文，共 3 段，背诵时先听整篇，再逐段回译。",
+  "units": [
+   "第 1 段：该柱状图展示了某市居民偏好的锻炼方式。可以看出，独自锻炼占 54.3%…",
+   "第 2 段：这一格局可由几个因素解释。首先，独自锻炼让人可以自由安排时间。其次，交…",
+   "第 3 段：在我看来，这一趋势很可能会延续。因此，政府宜建设更多公共体育设施，让团…"
+  ],
+  "paragraphs": [
+   {
+    "en": "The column chart illustrates how residents of a certain city prefer to exercise. As can be seen, exercising alone accounts for 54.3%, followed by exercising with friends at 47.7%, while exercising with family and in groups make up 23.9% and 15.8% respectively.",
+    "cn": "该柱状图展示了某市居民偏好的锻炼方式。可以看出，独自锻炼占 54.3%，与朋友一起锻炼占 47.7%，而与家人一起和参加团体活动的比例分别为 23.9% 和 15.8%。",
+    "role": "图表描述",
+    "keys": [
+     "The column chart illustrates",
+     "accounts for…, followed by…"
+    ]
+   },
+   {
+    "en": "Several factors may explain this pattern. First, exercising alone gives people the freedom to arrange their own schedule. Second, the desire for communication encourages many to work out with friends. Group activities, by contrast, require fixed time and space, which few people can afford.",
+    "cn": "这一格局可由几个因素解释。首先，独自锻炼让人可以自由安排时间。其次，交流的愿望促使许多人选择与朋友一起运动。相比之下，团体活动需要固定的时间和场地，很少有人能长期满足。",
+    "role": "原因分析",
+    "keys": [
+     "Several factors may explain",
+     "by contrast, require…, which few people can afford"
+    ]
+   },
+   {
+    "en": "In my view, this trend is likely to continue. It is therefore advisable for the government to build more public sports facilities so that group exercise becomes more convenient.",
+    "cn": "在我看来，这一趋势很可能会延续。因此，政府宜建设更多公共体育设施，让团体锻炼更便利。",
+    "role": "结论与建议",
+    "keys": [
+     "this trend is likely to continue",
+     "It is advisable for the government to"
+    ]
+   }
+  ],
+  "listen": {
+   "card_id": "c2040906-1",
+   "kind": "模板",
+   "script": "The column chart illustrates how residents of a certain city prefer to exercise. As can be seen, exercising alone accounts for 54.3%, followed by exercising with friends at 47.7%, while exercising with family and in groups make up 23.9% and 15.8% respectively.\n\nSeveral factors may explain this pattern. First, exercising alone gives people the freedom to arrange their own schedule. Second, the desire for communication encourages many to work out with friends. Group activities, by contrast, require fixed time and space, which few people can afford.\n\nIn my view, this trend is likely to continue. It is therefore advisable for the government to build more public sports facilities so that group exercise becomes more convenient.",
+   "audio": "pending"
+  },
+  "cards": [
+   {
+    "card_id": "c2040906-1",
+    "kind": "模板",
+    "card_type": "记忆",
+    "question": "整篇朗读：大作文 1：柱状图静态对比",
+    "front": "整篇朗读：大作文 1：柱状图静态对比",
+    "answer": "The column chart illustrates how residents of a certain city prefer to exercise. As can be seen, exercising alone accounts for 54.3%, followed by exercising with friends at 47.7%, while exercising with family and in groups make up 23.9% and 15.8% respectively.\n\nSeveral factors may explain this pattern. First, exercising alone gives people the freedom to arrange their own schedule. Second, the desire for communication encourages many to work out with friends. Group activities, by contrast, require fixed time and space, which few people can afford.\n\nIn my view, this trend is likely to continue. It is therefore advisable for the government to build more public sports facilities so that group exercise becomes more convenient.",
+    "back": "The column chart illustrates how residents of a certain city prefer to exercise. As can be seen, exercising alone accounts for 54.3%, followed by exercising with friends at 47.7%, while exercising with family and in groups make up 23.9% and 15.8% respectively.\n\nSeveral factors may explain this pattern. First, exercising alone gives people the freedom to arrange their own schedule. Second, the desire for communication encourages many to work out with friends. Group activities, by contrast, require fixed time and space, which few people can afford.\n\nIn my view, this trend is likely to continue. It is therefore advisable for the government to build more public sports facilities so that group exercise becomes more convenient.",
+    "options": [],
+    "answer_points": [
+     "描述段：The column chart illustrates… As ca…",
+     "原因段：Several factors may explain… First …",
+     "结论段：In my view… It is advisable for…"
+    ],
+    "analysis": "全篇 3 段、约 115 词。先听整篇抓节奏，再用回译与默写逐段吃透；考场按同一骨架换话题词即可复用。",
+    "unit_refs": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "card_id": "c2040906-2",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "该柱状图展示了某市居民偏好的锻炼方式。可以看出，独自锻炼占 54.3%，与朋友一起锻炼占 47.7%，而与家人一起和参加团体活动的比例分别为 23.9% 和 15.8%。",
+    "front": "该柱状图展示了某市居民偏好的锻炼方式。可以看出，独自锻炼占 54.3%，与朋友一起锻炼占 47.7%，而与家人一起和参加团体活动的比例分别为 23.9% 和 15.8%。",
+    "answer": "The column chart illustrates how residents of a certain city prefer to exercise. As can be seen, exercising alone accounts for 54.3%, followed by exercising with friends at 47.7%, while exercising with family and in groups make up 23.9% and 15.8% respectively.",
+    "back": "The column chart illustrates how residents of a certain city prefer to exercise. As can be seen, exercising alone accounts for 54.3%, followed by exercising with friends at 47.7%, while exercising with family and in groups make up 23.9% and 15.8% respectively.",
+    "options": [],
+    "answer_points": [
+     "The column chart illustrates",
+     "accounts for…, followed by…"
+    ],
+    "analysis": "本段功能：图表描述。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040906-3",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "这一格局可由几个因素解释。首先，独自锻炼让人可以自由安排时间。其次，交流的愿望促使许多人选择与朋友一起运动。相比之下，团体活动需要固定的时间和场地，很少有人能长期满足。",
+    "front": "这一格局可由几个因素解释。首先，独自锻炼让人可以自由安排时间。其次，交流的愿望促使许多人选择与朋友一起运动。相比之下，团体活动需要固定的时间和场地，很少有人能长期满足。",
+    "answer": "Several factors may explain this pattern. First, exercising alone gives people the freedom to arrange their own schedule. Second, the desire for communication encourages many to work out with friends. Group activities, by contrast, require fixed time and space, which few people can afford.",
+    "back": "Several factors may explain this pattern. First, exercising alone gives people the freedom to arrange their own schedule. Second, the desire for communication encourages many to work out with friends. Group activities, by contrast, require fixed time and space, which few people can afford.",
+    "options": [],
+    "answer_points": [
+     "Several factors may explain",
+     "by contrast, require…, which few people…"
+    ],
+    "analysis": "本段功能：原因分析。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040906-4",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "在我看来，这一趋势很可能会延续。因此，政府宜建设更多公共体育设施，让团体锻炼更便利。",
+    "front": "在我看来，这一趋势很可能会延续。因此，政府宜建设更多公共体育设施，让团体锻炼更便利。",
+    "answer": "In my view, this trend is likely to continue. It is therefore advisable for the government to build more public sports facilities so that group exercise becomes more convenient.",
+    "back": "In my view, this trend is likely to continue. It is therefore advisable for the government to build more public sports facilities so that group exercise becomes more convenient.",
+    "options": [],
+    "answer_points": [
+     "this trend is likely to continue",
+     "It is advisable for the government to"
+    ],
+    "analysis": "本段功能：结论与建议。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040906-5",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "The column chart ____ how residents of a certain city prefer to exercise. As can be seen, exercising alone ____ for 54.3%, ____ by exercising with friends at 47.7%.",
+    "front": "The column chart ____ how residents of a certain city prefer to exercise. As can be seen, exercising alone ____ for 54.3%, ____ by exercising with friends at 47.7%.",
+    "answer": "The column chart illustrates how residents of a certain city prefer to exercise. As can be seen, exercising alone accounts for 54.3%, followed by exercising with friends at 47.7%, while exercising with family and in groups make up 23.9% and 15.8% respectively.",
+    "back": "The column chart illustrates how residents of a certain city prefer to exercise. As can be seen, exercising alone accounts for 54.3%, followed by exercising with friends at 47.7%, while exercising with family and in groups make up 23.9% and 15.8% respectively.",
+    "options": [],
+    "answer_points": [
+     "illustrates",
+     "accounts",
+     "followed"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040906-6",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "Several factors may ____ this pattern. First, exercising alone gives people the ____ to arrange their own schedule. Group activities, by ____, require fixed time and space.",
+    "front": "Several factors may ____ this pattern. First, exercising alone gives people the ____ to arrange their own schedule. Group activities, by ____, require fixed time and space.",
+    "answer": "Several factors may explain this pattern. First, exercising alone gives people the freedom to arrange their own schedule. Second, the desire for communication encourages many to work out with friends. Group activities, by contrast, require fixed time and space, which few people can afford.",
+    "back": "Several factors may explain this pattern. First, exercising alone gives people the freedom to arrange their own schedule. Second, the desire for communication encourages many to work out with friends. Group activities, by contrast, require fixed time and space, which few people can afford.",
+    "options": [],
+    "answer_points": [
+     "explain",
+     "freedom",
+     "contrast"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040906-7",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "In my view, this trend is ____ to continue. It is therefore ____ for the government to build more public sports facilities.",
+    "front": "In my view, this trend is ____ to continue. It is therefore ____ for the government to build more public sports facilities.",
+    "answer": "In my view, this trend is likely to continue. It is therefore advisable for the government to build more public sports facilities so that group exercise becomes more convenient.",
+    "back": "In my view, this trend is likely to continue. It is therefore advisable for the government to build more public sports facilities so that group exercise becomes more convenient.",
+    "options": [],
+    "answer_points": [
+     "likely",
+     "advisable"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040906-8",
+    "kind": "句型",
+    "card_type": "应用",
+    "question": "本篇可迁移句式：柱状图·静态对比",
+    "front": "本篇可迁移句式：柱状图·静态对比",
+    "answer": "The column chart illustrates… 换成 The pie chart reveals… / The line graph traces…\naccounts for X%, followed by Y% 描述占比与排序的万能句\nIt is advisable for … to … 建议类收尾，图表作文通用",
+    "back": "The column chart illustrates… 换成 The pie chart reveals… / The line graph traces…\naccounts for X%, followed by Y% 描述占比与排序的万能句\nIt is advisable for … to … 建议类收尾，图表作文通用",
+    "options": [],
+    "answer_points": [
+     "The column chart illustrates… 换成 The pi…",
+     "accounts for X%, followed by Y% 描述占比与排序…",
+     "It is advisable for … to … 建议类收尾，图表作文通用"
+    ],
+    "analysis": "换话题时只替换名词与理由，句式骨架保留；同一句式在图表作文与小作文里都能用。",
+    "unit_refs": [
+     1
+    ]
+   }
+  ],
+  "exam_evidence": {
+   "level": "pending",
+   "basis": "自写范文，待人工审定",
+   "sources": []
+  },
+  "tts": {
+   "enabled": false
+  }
+ },
+ {
+  "id": "2040907",
+  "chapter": "204-09",
+  "order": 8,
+  "point": "大作文范文：两组年份的升降对比",
+  "title": "大作文 2：柱状图两年升降",
+  "explain": "柱状图·两年升降范文，共 3 段。先听整篇，再做逐段回译与挖空默写，最后用句式卡换话题迁移。",
+  "exam": "写作 09 节常考题型：柱状图·两年升降。背诵后按题目要求替换收信人、事由与理由即可。",
+  "keywords": [
+   "柱状图",
+   "升降对比",
+   "就业升学",
+   "辩证原因"
+  ],
+  "priority": "★",
+  "tags": [],
+  "exam_types": [
+   "模板",
+   "回译",
+   "默写",
+   "句型"
+  ],
+  "source": {
+   "ref": "204-essays#2040907",
+   "file": "204-essays.jsonl",
+   "section": "柱状图·两年升降",
+   "basis": "自写范文",
+   "kind": "md"
+  },
+  "spoken": "这是一篇柱状图·两年升降范文，共 3 段，背诵时先听整篇，再逐段回译。",
+  "units": [
+   "第 1 段：该柱状图对比了某高校 2013 年与 2018 年毕业生的去向。选择就…",
+   "第 2 段：有两个因素尤其突出。一方面，竞争激烈的就业市场促使学生提升学历。另一方…",
+   "第 3 段：总之，选择深造或创业的毕业生人数很可能会继续增加，这将带来一个更有活力…"
+  ],
+  "paragraphs": [
+   {
+    "en": "The column chart compares the choices of graduates in a certain university in 2013 and 2018. The proportion of those finding a job dropped from 68.1% to 60.7%, while the share of those pursuing further study rose by about one third and that of start-ups doubled.",
+    "cn": "该柱状图对比了某高校 2013 年与 2018 年毕业生的去向。选择就业的比例从 68.1% 降至 60.7%，而继续深造的比例上升约三分之一，创业比例翻了一番。",
+    "role": "图表描述",
+    "keys": [
+     "compares … in 2013 and 2018",
+     "while the share of… rose"
+    ]
+   },
+   {
+    "en": "Two factors stand out. On the one hand, a competitive job market pushes students to improve their qualifications. On the other hand, the booming economy has lowered the cost of starting a business, making entrepreneurship more attractive.",
+    "cn": "有两个因素尤其突出。一方面，竞争激烈的就业市场促使学生提升学历。另一方面，经济的繁荣降低了创业成本，使创业更具吸引力。",
+    "role": "原因分析",
+    "keys": [
+     "On the one hand / On the other hand",
+     "lowered the cost of starting a business"
+    ]
+   },
+   {
+    "en": "In conclusion, the number of graduates choosing further study or starting a business will probably keep growing, which promises a more dynamic society.",
+    "cn": "总之，选择深造或创业的毕业生人数很可能会继续增加，这将带来一个更有活力的社会。",
+    "role": "结论与展望",
+    "keys": [
+     "will probably keep growing",
+     "which promises a more dynamic society"
+    ]
+   }
+  ],
+  "listen": {
+   "card_id": "c2040907-1",
+   "kind": "模板",
+   "script": "The column chart compares the choices of graduates in a certain university in 2013 and 2018. The proportion of those finding a job dropped from 68.1% to 60.7%, while the share of those pursuing further study rose by about one third and that of start-ups doubled.\n\nTwo factors stand out. On the one hand, a competitive job market pushes students to improve their qualifications. On the other hand, the booming economy has lowered the cost of starting a business, making entrepreneurship more attractive.\n\nIn conclusion, the number of graduates choosing further study or starting a business will probably keep growing, which promises a more dynamic society.",
+   "audio": "pending"
+  },
+  "cards": [
+   {
+    "card_id": "c2040907-1",
+    "kind": "模板",
+    "card_type": "记忆",
+    "question": "整篇朗读：大作文 2：柱状图两年升降",
+    "front": "整篇朗读：大作文 2：柱状图两年升降",
+    "answer": "The column chart compares the choices of graduates in a certain university in 2013 and 2018. The proportion of those finding a job dropped from 68.1% to 60.7%, while the share of those pursuing further study rose by about one third and that of start-ups doubled.\n\nTwo factors stand out. On the one hand, a competitive job market pushes students to improve their qualifications. On the other hand, the booming economy has lowered the cost of starting a business, making entrepreneurship more attractive.\n\nIn conclusion, the number of graduates choosing further study or starting a business will probably keep growing, which promises a more dynamic society.",
+    "back": "The column chart compares the choices of graduates in a certain university in 2013 and 2018. The proportion of those finding a job dropped from 68.1% to 60.7%, while the share of those pursuing further study rose by about one third and that of start-ups doubled.\n\nTwo factors stand out. On the one hand, a competitive job market pushes students to improve their qualifications. On the other hand, the booming economy has lowered the cost of starting a business, making entrepreneurship more attractive.\n\nIn conclusion, the number of graduates choosing further study or starting a business will probably keep growing, which promises a more dynamic society.",
+    "options": [],
+    "answer_points": [
+     "描述段：compares … in 2013 and 2018 / while…",
+     "原因段：On the one hand / On the other hand",
+     "结论段：In conclusion… promises…"
+    ],
+    "analysis": "全篇 3 段、约 106 词。先听整篇抓节奏，再用回译与默写逐段吃透；考场按同一骨架换话题词即可复用。",
+    "unit_refs": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "card_id": "c2040907-2",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "该柱状图对比了某高校 2013 年与 2018 年毕业生的去向。选择就业的比例从 68.1% 降至 60.7%，而继续深造的比例上升约三分之一，创业比例翻了一番。",
+    "front": "该柱状图对比了某高校 2013 年与 2018 年毕业生的去向。选择就业的比例从 68.1% 降至 60.7%，而继续深造的比例上升约三分之一，创业比例翻了一番。",
+    "answer": "The column chart compares the choices of graduates in a certain university in 2013 and 2018. The proportion of those finding a job dropped from 68.1% to 60.7%, while the share of those pursuing further study rose by about one third and that of start-ups doubled.",
+    "back": "The column chart compares the choices of graduates in a certain university in 2013 and 2018. The proportion of those finding a job dropped from 68.1% to 60.7%, while the share of those pursuing further study rose by about one third and that of start-ups doubled.",
+    "options": [],
+    "answer_points": [
+     "compares … in 2013 and 2018",
+     "while the share of… rose"
+    ],
+    "analysis": "本段功能：图表描述。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040907-3",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "有两个因素尤其突出。一方面，竞争激烈的就业市场促使学生提升学历。另一方面，经济的繁荣降低了创业成本，使创业更具吸引力。",
+    "front": "有两个因素尤其突出。一方面，竞争激烈的就业市场促使学生提升学历。另一方面，经济的繁荣降低了创业成本，使创业更具吸引力。",
+    "answer": "Two factors stand out. On the one hand, a competitive job market pushes students to improve their qualifications. On the other hand, the booming economy has lowered the cost of starting a business, making entrepreneurship more attractive.",
+    "back": "Two factors stand out. On the one hand, a competitive job market pushes students to improve their qualifications. On the other hand, the booming economy has lowered the cost of starting a business, making entrepreneurship more attractive.",
+    "options": [],
+    "answer_points": [
+     "On the one hand / On the other hand",
+     "lowered the cost of starting a business"
+    ],
+    "analysis": "本段功能：原因分析。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040907-4",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "总之，选择深造或创业的毕业生人数很可能会继续增加，这将带来一个更有活力的社会。",
+    "front": "总之，选择深造或创业的毕业生人数很可能会继续增加，这将带来一个更有活力的社会。",
+    "answer": "In conclusion, the number of graduates choosing further study or starting a business will probably keep growing, which promises a more dynamic society.",
+    "back": "In conclusion, the number of graduates choosing further study or starting a business will probably keep growing, which promises a more dynamic society.",
+    "options": [],
+    "answer_points": [
+     "will probably keep growing",
+     "which promises a more dynamic society"
+    ],
+    "analysis": "本段功能：结论与展望。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040907-5",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "The column chart ____ the choices of graduates in 2013 and 2018. The proportion of those finding a job ____ from 68.1% to 60.7%, while the share of those pursuing further study ____ by about one third.",
+    "front": "The column chart ____ the choices of graduates in 2013 and 2018. The proportion of those finding a job ____ from 68.1% to 60.7%, while the share of those pursuing further study ____ by about one third.",
+    "answer": "The column chart compares the choices of graduates in a certain university in 2013 and 2018. The proportion of those finding a job dropped from 68.1% to 60.7%, while the share of those pursuing further study rose by about one third and that of start-ups doubled.",
+    "back": "The column chart compares the choices of graduates in a certain university in 2013 and 2018. The proportion of those finding a job dropped from 68.1% to 60.7%, while the share of those pursuing further study rose by about one third and that of start-ups doubled.",
+    "options": [],
+    "answer_points": [
+     "compares",
+     "dropped",
+     "rose"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040907-6",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "Two factors ____ out. On the one hand, a ____ job market pushes students to improve their qualifications. On the other hand, the booming economy has ____ the cost of starting a business.",
+    "front": "Two factors ____ out. On the one hand, a ____ job market pushes students to improve their qualifications. On the other hand, the booming economy has ____ the cost of starting a business.",
+    "answer": "Two factors stand out. On the one hand, a competitive job market pushes students to improve their qualifications. On the other hand, the booming economy has lowered the cost of starting a business, making entrepreneurship more attractive.",
+    "back": "Two factors stand out. On the one hand, a competitive job market pushes students to improve their qualifications. On the other hand, the booming economy has lowered the cost of starting a business, making entrepreneurship more attractive.",
+    "options": [],
+    "answer_points": [
+     "stand",
+     "competitive",
+     "lowered"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040907-7",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "In conclusion, the number of graduates choosing further study will probably keep ____, which ____ a more dynamic society.",
+    "front": "In conclusion, the number of graduates choosing further study will probably keep ____, which ____ a more dynamic society.",
+    "answer": "In conclusion, the number of graduates choosing further study or starting a business will probably keep growing, which promises a more dynamic society.",
+    "back": "In conclusion, the number of graduates choosing further study or starting a business will probably keep growing, which promises a more dynamic society.",
+    "options": [],
+    "answer_points": [
+     "growing",
+     "promises"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040907-8",
+    "kind": "句型",
+    "card_type": "应用",
+    "question": "本篇可迁移句式：柱状图·两年升降",
+    "front": "本篇可迁移句式：柱状图·两年升降",
+    "answer": "dropped from X to Y / rose by about one third 升降描述成对使用\nOn the one hand… On the other hand… 两面原因，避免单一归因\nwhich promises a more dynamic society 结论段的正面拔高句",
+    "back": "dropped from X to Y / rose by about one third 升降描述成对使用\nOn the one hand… On the other hand… 两面原因，避免单一归因\nwhich promises a more dynamic society 结论段的正面拔高句",
+    "options": [],
+    "answer_points": [
+     "dropped from X to Y / rose by about one…",
+     "On the one hand… On the other hand… 两面原…",
+     "which promises a more dynamic society 结…"
+    ],
+    "analysis": "换话题时只替换名词与理由，句式骨架保留；同一句式在图表作文与小作文里都能用。",
+    "unit_refs": [
+     1
+    ]
+   }
+  ],
+  "exam_evidence": {
+   "level": "pending",
+   "basis": "自写范文，待人工审定",
+   "sources": []
+  },
+  "tts": {
+   "enabled": false
+  }
+ },
+ {
+  "id": "2040908",
+  "chapter": "204-09",
+  "order": 9,
+  "point": "大作文范文：单指标增长型的写法",
+  "title": "大作文 3：柱状图单指标增长",
+  "explain": "柱状图·单指标增长范文，共 3 段。先听整篇，再做逐段回译与挖空默写，最后用句式卡换话题迁移。",
+  "exam": "写作 09 节常考题型：柱状图·单指标增长。背诵后按题目要求替换收信人、事由与理由即可。",
+  "keywords": [
+   "柱状图",
+   "持续增长",
+   "三条原因",
+   "展望"
+  ],
+  "priority": "★",
+  "tags": [],
+  "exam_types": [
+   "模板",
+   "回译",
+   "默写",
+   "句型"
+  ],
+  "source": {
+   "ref": "204-essays#2040908",
+   "file": "204-essays.jsonl",
+   "section": "柱状图·单指标增长",
+   "basis": "自写范文",
+   "kind": "md"
+  },
+  "spoken": "这是一篇柱状图·单指标增长范文，共 3 段，背诵时先听整篇，再逐段回译。",
+  "units": [
+   "第 1 段：该柱状图显示了中国快递业务的快速增长。全国业务量从 2018 年的 5…",
+   "第 2 段：这一增长可归因于三个因素。首先，收入提高使人们能在网上购买更多商品。其…",
+   "第 3 段：这一增长在未来几年预计仍将持续，在给更多家庭带来便利的同时，也对行业提…"
+  ],
+  "paragraphs": [
+   {
+    "en": "The column chart shows the rapid growth of parcel delivery in China. The total volume climbed from 51 billion in 2018 to 83 billion in 2020, and the figure for rural areas rose from 12 billion to 30 billion over the same period.",
+    "cn": "该柱状图显示了中国快递业务的快速增长。全国业务量从 2018 年的 510 亿件升至 2020 年的 830 亿件，同期农村地区的数字从 120 亿件升至 300 亿件。",
+    "role": "图表描述",
+    "keys": [
+     "shows the rapid growth of",
+     "climbed from … to …"
+    ]
+   },
+   {
+    "en": "This boom can be attributed to three factors. First, rising incomes have enabled people to buy more goods online. Second, online shopping removes the limits of distance and time. Third, government support for e-commerce has helped delivery companies expand quickly.",
+    "cn": "这一增长可归因于三个因素。首先，收入提高使人们能在网上购买更多商品。其次，网购打破了距离与时间的限制。第三，政府对电子商务的支持帮助快递公司迅速扩张。",
+    "role": "原因分析",
+    "keys": [
+     "can be attributed to three factors",
+     "removes the limits of distance and time"
+    ]
+   },
+   {
+    "en": "Such growth is expected to continue in the years ahead, bringing convenience to more families while placing higher demands on the industry.",
+    "cn": "这一增长在未来几年预计仍将持续，在给更多家庭带来便利的同时，也对行业提出了更高要求。",
+    "role": "结论与展望",
+    "keys": [
+     "is expected to continue",
+     "while placing higher demands on"
+    ]
+   }
+  ],
+  "listen": {
+   "card_id": "c2040908-1",
+   "kind": "模板",
+   "script": "The column chart shows the rapid growth of parcel delivery in China. The total volume climbed from 51 billion in 2018 to 83 billion in 2020, and the figure for rural areas rose from 12 billion to 30 billion over the same period.\n\nThis boom can be attributed to three factors. First, rising incomes have enabled people to buy more goods online. Second, online shopping removes the limits of distance and time. Third, government support for e-commerce has helped delivery companies expand quickly.\n\nSuch growth is expected to continue in the years ahead, bringing convenience to more families while placing higher demands on the industry.",
+   "audio": "pending"
+  },
+  "cards": [
+   {
+    "card_id": "c2040908-1",
+    "kind": "模板",
+    "card_type": "记忆",
+    "question": "整篇朗读：大作文 3：柱状图单指标增长",
+    "front": "整篇朗读：大作文 3：柱状图单指标增长",
+    "answer": "The column chart shows the rapid growth of parcel delivery in China. The total volume climbed from 51 billion in 2018 to 83 billion in 2020, and the figure for rural areas rose from 12 billion to 30 billion over the same period.\n\nThis boom can be attributed to three factors. First, rising incomes have enabled people to buy more goods online. Second, online shopping removes the limits of distance and time. Third, government support for e-commerce has helped delivery companies expand quickly.\n\nSuch growth is expected to continue in the years ahead, bringing convenience to more families while placing higher demands on the industry.",
+    "back": "The column chart shows the rapid growth of parcel delivery in China. The total volume climbed from 51 billion in 2018 to 83 billion in 2020, and the figure for rural areas rose from 12 billion to 30 billion over the same period.\n\nThis boom can be attributed to three factors. First, rising incomes have enabled people to buy more goods online. Second, online shopping removes the limits of distance and time. Third, government support for e-commerce has helped delivery companies expand quickly.\n\nSuch growth is expected to continue in the years ahead, bringing convenience to more families while placing higher demands on the industry.",
+    "options": [],
+    "answer_points": [
+     "描述段：shows the rapid growth / climbed fr…",
+     "原因段：First / Second / Third 三条并列",
+     "结论段：Such growth is expected to continue"
+    ],
+    "analysis": "全篇 3 段、约 105 词。先听整篇抓节奏，再用回译与默写逐段吃透；考场按同一骨架换话题词即可复用。",
+    "unit_refs": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "card_id": "c2040908-2",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "该柱状图显示了中国快递业务的快速增长。全国业务量从 2018 年的 510 亿件升至 2020 年的 830 亿件，同期农村地区的数字从 120 亿件升至 300 亿件。",
+    "front": "该柱状图显示了中国快递业务的快速增长。全国业务量从 2018 年的 510 亿件升至 2020 年的 830 亿件，同期农村地区的数字从 120 亿件升至 300 亿件。",
+    "answer": "The column chart shows the rapid growth of parcel delivery in China. The total volume climbed from 51 billion in 2018 to 83 billion in 2020, and the figure for rural areas rose from 12 billion to 30 billion over the same period.",
+    "back": "The column chart shows the rapid growth of parcel delivery in China. The total volume climbed from 51 billion in 2018 to 83 billion in 2020, and the figure for rural areas rose from 12 billion to 30 billion over the same period.",
+    "options": [],
+    "answer_points": [
+     "shows the rapid growth of",
+     "climbed from … to …"
+    ],
+    "analysis": "本段功能：图表描述。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040908-3",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "这一增长可归因于三个因素。首先，收入提高使人们能在网上购买更多商品。其次，网购打破了距离与时间的限制。第三，政府对电子商务的支持帮助快递公司迅速扩张。",
+    "front": "这一增长可归因于三个因素。首先，收入提高使人们能在网上购买更多商品。其次，网购打破了距离与时间的限制。第三，政府对电子商务的支持帮助快递公司迅速扩张。",
+    "answer": "This boom can be attributed to three factors. First, rising incomes have enabled people to buy more goods online. Second, online shopping removes the limits of distance and time. Third, government support for e-commerce has helped delivery companies expand quickly.",
+    "back": "This boom can be attributed to three factors. First, rising incomes have enabled people to buy more goods online. Second, online shopping removes the limits of distance and time. Third, government support for e-commerce has helped delivery companies expand quickly.",
+    "options": [],
+    "answer_points": [
+     "can be attributed to three factors",
+     "removes the limits of distance and time"
+    ],
+    "analysis": "本段功能：原因分析。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040908-4",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "这一增长在未来几年预计仍将持续，在给更多家庭带来便利的同时，也对行业提出了更高要求。",
+    "front": "这一增长在未来几年预计仍将持续，在给更多家庭带来便利的同时，也对行业提出了更高要求。",
+    "answer": "Such growth is expected to continue in the years ahead, bringing convenience to more families while placing higher demands on the industry.",
+    "back": "Such growth is expected to continue in the years ahead, bringing convenience to more families while placing higher demands on the industry.",
+    "options": [],
+    "answer_points": [
+     "is expected to continue",
+     "while placing higher demands on"
+    ],
+    "analysis": "本段功能：结论与展望。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040908-5",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "The column chart shows the ____ growth of parcel delivery in China. The total volume ____ from 51 billion in 2018 to 83 billion in 2020.",
+    "front": "The column chart shows the ____ growth of parcel delivery in China. The total volume ____ from 51 billion in 2018 to 83 billion in 2020.",
+    "answer": "The column chart shows the rapid growth of parcel delivery in China. The total volume climbed from 51 billion in 2018 to 83 billion in 2020, and the figure for rural areas rose from 12 billion to 30 billion over the same period.",
+    "back": "The column chart shows the rapid growth of parcel delivery in China. The total volume climbed from 51 billion in 2018 to 83 billion in 2020, and the figure for rural areas rose from 12 billion to 30 billion over the same period.",
+    "options": [],
+    "answer_points": [
+     "rapid",
+     "climbed"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040908-6",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "This boom can be ____ to three factors. First, rising incomes have ____ people to buy more goods online. Second, online shopping removes the ____ of distance and time.",
+    "front": "This boom can be ____ to three factors. First, rising incomes have ____ people to buy more goods online. Second, online shopping removes the ____ of distance and time.",
+    "answer": "This boom can be attributed to three factors. First, rising incomes have enabled people to buy more goods online. Second, online shopping removes the limits of distance and time. Third, government support for e-commerce has helped delivery companies expand quickly.",
+    "back": "This boom can be attributed to three factors. First, rising incomes have enabled people to buy more goods online. Second, online shopping removes the limits of distance and time. Third, government support for e-commerce has helped delivery companies expand quickly.",
+    "options": [],
+    "answer_points": [
+     "attributed",
+     "enabled",
+     "limits"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040908-7",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "Such growth is ____ to continue in the years ahead, ____ convenience to more families.",
+    "front": "Such growth is ____ to continue in the years ahead, ____ convenience to more families.",
+    "answer": "Such growth is expected to continue in the years ahead, bringing convenience to more families while placing higher demands on the industry.",
+    "back": "Such growth is expected to continue in the years ahead, bringing convenience to more families while placing higher demands on the industry.",
+    "options": [],
+    "answer_points": [
+     "expected",
+     "bringing"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040908-8",
+    "kind": "句型",
+    "card_type": "应用",
+    "question": "本篇可迁移句式：柱状图·单指标增长",
+    "front": "本篇可迁移句式：柱状图·单指标增长",
+    "answer": "climbed from … to … 单指标增长的描述句\ncan be attributed to three factors 引出并列原因\nwhile placing higher demands on… 利与弊同句的收尾方式",
+    "back": "climbed from … to … 单指标增长的描述句\ncan be attributed to three factors 引出并列原因\nwhile placing higher demands on… 利与弊同句的收尾方式",
+    "options": [],
+    "answer_points": [
+     "climbed from … to … 单指标增长的描述句",
+     "can be attributed to three factors 引出并列…",
+     "while placing higher demands on… 利与弊同句的…"
+    ],
+    "analysis": "换话题时只替换名词与理由，句式骨架保留；同一句式在图表作文与小作文里都能用。",
+    "unit_refs": [
+     1
+    ]
+   }
+  ],
+  "exam_evidence": {
+   "level": "pending",
+   "basis": "自写范文，待人工审定",
+   "sources": []
+  },
+  "tts": {
+   "enabled": false
+  }
+ },
+ {
+  "id": "2040909",
+  "chapter": "204-09",
+  "order": 10,
+  "point": "大作文范文：饼图的占比与排序描述",
+  "title": "大作文 4：饼状图占比排序",
+  "explain": "饼状图·占比排序范文，共 3 段。先听整篇，再做逐段回译与挖空默写，最后用句式卡换话题迁移。",
+  "exam": "写作 09 节常考题型：饼状图·占比排序。背诵后按题目要求替换收信人、事由与理由即可。",
+  "keywords": [
+   "饼状图",
+   "占比排序",
+   "学习与娱乐",
+   "建议"
+  ],
+  "priority": "★",
+  "tags": [],
+  "exam_types": [
+   "模板",
+   "回译",
+   "默写",
+   "句型"
+  ],
+  "source": {
+   "ref": "204-essays#2040909",
+   "file": "204-essays.jsonl",
+   "section": "饼状图·占比排序",
+   "basis": "自写范文",
+   "kind": "md"
+  },
+  "spoken": "这是一篇饼状图·占比排序范文，共 3 段，背诵时先听整篇，再逐段回译。",
+  "units": [
+   "第 1 段：该饼状图揭示了大学生用手机阅读的原因。为学习而阅读占比最大，达 59.…",
+   "第 2 段：学习类阅读占主导并不意外。手机让随处复习笔记成为可能，免费学习应用也大…",
+   "第 3 段：在我看来，手机阅读会继续增长，也应鼓励学生有目的地使用它。"
+  ],
+  "paragraphs": [
+   {
+    "en": "The pie chart reveals why college students read on their smartphones. Reading for study takes the largest share at 59.5%, followed by entertainment at 21.3%, while getting information accounts for 17.0% and other purposes only 2.2%.",
+    "cn": "该饼状图揭示了大学生用手机阅读的原因。为学习而阅读占比最大，达 59.5%，其次是为娱乐，占 21.3%，获取信息占 17.0%，其他目的仅占 2.2%。",
+    "role": "图表描述",
+    "keys": [
+     "takes the largest share",
+     "followed by… while… accounts for…"
+    ]
+   },
+   {
+    "en": "The dominance of study reading is not surprising. Smartphones make it possible to review notes anywhere, and free learning apps have greatly reduced the cost of access. Entertainment ranks second because short videos and novels offer quick relief from academic pressure.",
+    "cn": "学习类阅读占主导并不意外。手机让随处复习笔记成为可能，免费学习应用也大幅降低了获取知识的成本。娱乐排在第二，是因为短视频和小说能快速缓解学业压力。",
+    "role": "原因分析",
+    "keys": [
+     "is not surprising",
+     "offer quick relief from"
+    ]
+   },
+   {
+    "en": "In my opinion, mobile reading will keep growing, and students should be encouraged to use it in a purposeful way.",
+    "cn": "在我看来，手机阅读会继续增长，也应鼓励学生有目的地使用它。",
+    "role": "结论与建议",
+    "keys": [
+     "will keep growing",
+     "in a purposeful way"
+    ]
+   }
+  ],
+  "listen": {
+   "card_id": "c2040909-1",
+   "kind": "模板",
+   "script": "The pie chart reveals why college students read on their smartphones. Reading for study takes the largest share at 59.5%, followed by entertainment at 21.3%, while getting information accounts for 17.0% and other purposes only 2.2%.\n\nThe dominance of study reading is not surprising. Smartphones make it possible to review notes anywhere, and free learning apps have greatly reduced the cost of access. Entertainment ranks second because short videos and novels offer quick relief from academic pressure.\n\nIn my opinion, mobile reading will keep growing, and students should be encouraged to use it in a purposeful way.",
+   "audio": "pending"
+  },
+  "cards": [
+   {
+    "card_id": "c2040909-1",
+    "kind": "模板",
+    "card_type": "记忆",
+    "question": "整篇朗读：大作文 4：饼状图占比排序",
+    "front": "整篇朗读：大作文 4：饼状图占比排序",
+    "answer": "The pie chart reveals why college students read on their smartphones. Reading for study takes the largest share at 59.5%, followed by entertainment at 21.3%, while getting information accounts for 17.0% and other purposes only 2.2%.\n\nThe dominance of study reading is not surprising. Smartphones make it possible to review notes anywhere, and free learning apps have greatly reduced the cost of access. Entertainment ranks second because short videos and novels offer quick relief from academic pressure.\n\nIn my opinion, mobile reading will keep growing, and students should be encouraged to use it in a purposeful way.",
+    "back": "The pie chart reveals why college students read on their smartphones. Reading for study takes the largest share at 59.5%, followed by entertainment at 21.3%, while getting information accounts for 17.0% and other purposes only 2.2%.\n\nThe dominance of study reading is not surprising. Smartphones make it possible to review notes anywhere, and free learning apps have greatly reduced the cost of access. Entertainment ranks second because short videos and novels offer quick relief from academic pressure.\n\nIn my opinion, mobile reading will keep growing, and students should be encouraged to use it in a purposeful way.",
+    "options": [],
+    "answer_points": [
+     "描述段：reveals why… / takes the largest sh…",
+     "原因段：is not surprising / ranks second be…",
+     "结论段：will keep growing / should be encou…"
+    ],
+    "analysis": "全篇 3 段、约 97 词。先听整篇抓节奏，再用回译与默写逐段吃透；考场按同一骨架换话题词即可复用。",
+    "unit_refs": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "card_id": "c2040909-2",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "该饼状图揭示了大学生用手机阅读的原因。为学习而阅读占比最大，达 59.5%，其次是为娱乐，占 21.3%，获取信息占 17.0%，其他目的仅占 2.2%。",
+    "front": "该饼状图揭示了大学生用手机阅读的原因。为学习而阅读占比最大，达 59.5%，其次是为娱乐，占 21.3%，获取信息占 17.0%，其他目的仅占 2.2%。",
+    "answer": "The pie chart reveals why college students read on their smartphones. Reading for study takes the largest share at 59.5%, followed by entertainment at 21.3%, while getting information accounts for 17.0% and other purposes only 2.2%.",
+    "back": "The pie chart reveals why college students read on their smartphones. Reading for study takes the largest share at 59.5%, followed by entertainment at 21.3%, while getting information accounts for 17.0% and other purposes only 2.2%.",
+    "options": [],
+    "answer_points": [
+     "takes the largest share",
+     "followed by… while… accounts for…"
+    ],
+    "analysis": "本段功能：图表描述。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040909-3",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "学习类阅读占主导并不意外。手机让随处复习笔记成为可能，免费学习应用也大幅降低了获取知识的成本。娱乐排在第二，是因为短视频和小说能快速缓解学业压力。",
+    "front": "学习类阅读占主导并不意外。手机让随处复习笔记成为可能，免费学习应用也大幅降低了获取知识的成本。娱乐排在第二，是因为短视频和小说能快速缓解学业压力。",
+    "answer": "The dominance of study reading is not surprising. Smartphones make it possible to review notes anywhere, and free learning apps have greatly reduced the cost of access. Entertainment ranks second because short videos and novels offer quick relief from academic pressure.",
+    "back": "The dominance of study reading is not surprising. Smartphones make it possible to review notes anywhere, and free learning apps have greatly reduced the cost of access. Entertainment ranks second because short videos and novels offer quick relief from academic pressure.",
+    "options": [],
+    "answer_points": [
+     "is not surprising",
+     "offer quick relief from"
+    ],
+    "analysis": "本段功能：原因分析。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040909-4",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "在我看来，手机阅读会继续增长，也应鼓励学生有目的地使用它。",
+    "front": "在我看来，手机阅读会继续增长，也应鼓励学生有目的地使用它。",
+    "answer": "In my opinion, mobile reading will keep growing, and students should be encouraged to use it in a purposeful way.",
+    "back": "In my opinion, mobile reading will keep growing, and students should be encouraged to use it in a purposeful way.",
+    "options": [],
+    "answer_points": [
+     "will keep growing",
+     "in a purposeful way"
+    ],
+    "analysis": "本段功能：结论与建议。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040909-5",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "The pie chart ____ why college students read on their smartphones. Reading for study takes the largest ____ at 59.5%, ____ by entertainment at 21.3%.",
+    "front": "The pie chart ____ why college students read on their smartphones. Reading for study takes the largest ____ at 59.5%, ____ by entertainment at 21.3%.",
+    "answer": "The pie chart reveals why college students read on their smartphones. Reading for study takes the largest share at 59.5%, followed by entertainment at 21.3%, while getting information accounts for 17.0% and other purposes only 2.2%.",
+    "back": "The pie chart reveals why college students read on their smartphones. Reading for study takes the largest share at 59.5%, followed by entertainment at 21.3%, while getting information accounts for 17.0% and other purposes only 2.2%.",
+    "options": [],
+    "answer_points": [
+     "reveals",
+     "share",
+     "followed"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040909-6",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "The ____ of study reading is not surprising. Free learning apps have greatly ____ the cost of access. Entertainment ranks second because short videos offer quick ____ from academic pressure.",
+    "front": "The ____ of study reading is not surprising. Free learning apps have greatly ____ the cost of access. Entertainment ranks second because short videos offer quick ____ from academic pressure.",
+    "answer": "The dominance of study reading is not surprising. Smartphones make it possible to review notes anywhere, and free learning apps have greatly reduced the cost of access. Entertainment ranks second because short videos and novels offer quick relief from academic pressure.",
+    "back": "The dominance of study reading is not surprising. Smartphones make it possible to review notes anywhere, and free learning apps have greatly reduced the cost of access. Entertainment ranks second because short videos and novels offer quick relief from academic pressure.",
+    "options": [],
+    "answer_points": [
+     "dominance",
+     "reduced",
+     "relief"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040909-7",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "In my opinion, mobile reading will keep ____, and students should be encouraged to use it in a ____ way.",
+    "front": "In my opinion, mobile reading will keep ____, and students should be encouraged to use it in a ____ way.",
+    "answer": "In my opinion, mobile reading will keep growing, and students should be encouraged to use it in a purposeful way.",
+    "back": "In my opinion, mobile reading will keep growing, and students should be encouraged to use it in a purposeful way.",
+    "options": [],
+    "answer_points": [
+     "growing",
+     "purposeful"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040909-8",
+    "kind": "句型",
+    "card_type": "应用",
+    "question": "本篇可迁移句式：饼状图·占比排序",
+    "front": "本篇可迁移句式：饼状图·占比排序",
+    "answer": "takes the largest share at X%, followed by Y% 饼图排序描述\nis not surprising / ranks second because 归因句式\nin a purposeful way 建议类状语，替换 properly / correctly",
+    "back": "takes the largest share at X%, followed by Y% 饼图排序描述\nis not surprising / ranks second because 归因句式\nin a purposeful way 建议类状语，替换 properly / correctly",
+    "options": [],
+    "answer_points": [
+     "takes the largest share at X%, followed…",
+     "is not surprising / ranks second becaus…",
+     "in a purposeful way 建议类状语，替换 properly /…"
+    ],
+    "analysis": "换话题时只替换名词与理由，句式骨架保留；同一句式在图表作文与小作文里都能用。",
+    "unit_refs": [
+     1
+    ]
+   }
+  ],
+  "exam_evidence": {
+   "level": "pending",
+   "basis": "自写范文，待人工审定",
+   "sources": []
+  },
+  "tts": {
+   "enabled": false
+  }
+ },
+ {
+  "id": "2040910",
+  "chapter": "204-09",
+  "order": 11,
+  "point": "大作文范文：折线图的趋势描述",
+  "title": "大作文 5：折线图持续上升",
+  "explain": "折线图·持续上升范文，共 3 段。先听整篇，再做逐段回译与挖空默写，最后用句式卡换话题迁移。",
+  "exam": "写作 09 节常考题型：折线图·持续上升。背诵后按题目要求替换收信人、事由与理由即可。",
+  "keywords": [
+   "折线图",
+   "持续上升",
+   "三条原因",
+   "社会影响"
+  ],
+  "priority": "★",
+  "tags": [],
+  "exam_types": [
+   "模板",
+   "回译",
+   "默写",
+   "句型"
+  ],
+  "source": {
+   "ref": "204-essays#2040910",
+   "file": "204-essays.jsonl",
+   "section": "折线图·持续上升",
+   "basis": "自写范文",
+   "kind": "md"
+  },
+  "spoken": "这是一篇折线图·持续上升范文，共 3 段，背诵时先听整篇，再逐段回译。",
+  "units": [
+   "第 1 段：该折线图追踪了 2012 至 2021 年中国居民的健康素养水平。这一…",
+   "第 2 段：这一改善有几个原因。首先，公共宣传活动让健康知识更易获得。其次，互联网…",
+   "第 3 段：这一上升趋势很可能会延续，并将推动社会更健康、更有生产力。"
+  ],
+  "paragraphs": [
+   {
+    "en": "The line graph traces the health literacy level of Chinese residents from 2012 to 2021. The percentage rose steadily from about 8.8% to 25.4%, with no obvious decline in any year.",
+    "cn": "该折线图追踪了 2012 至 2021 年中国居民的健康素养水平。这一比例从约 8.8% 稳步上升到 25.4%，期间没有任何一年出现明显下降。",
+    "role": "图表描述",
+    "keys": [
+     "traces … from … to …",
+     "rose steadily, with no obvious decline"
+    ]
+   },
+   {
+    "en": "Several reasons account for the improvement. First, public campaigns have made health knowledge more accessible. Second, the growing use of the internet enables people to obtain medical information quickly. Third, better education has helped citizens judge that information critically.",
+    "cn": "这一改善有几个原因。首先，公共宣传活动让健康知识更易获得。其次，互联网的普及使人们能迅速获取医疗信息。第三，教育水平的提升帮助公众批判性地判断这些信息。",
+    "role": "原因分析",
+    "keys": [
+     "Several reasons account for",
+     "judge that information critically"
+    ]
+   },
+   {
+    "en": "This upward trend is likely to continue, and it will contribute to a healthier and more productive society.",
+    "cn": "这一上升趋势很可能会延续，并将推动社会更健康、更有生产力。",
+    "role": "结论与影响",
+    "keys": [
+     "is likely to continue",
+     "contribute to a healthier society"
+    ]
+   }
+  ],
+  "listen": {
+   "card_id": "c2040910-1",
+   "kind": "模板",
+   "script": "The line graph traces the health literacy level of Chinese residents from 2012 to 2021. The percentage rose steadily from about 8.8% to 25.4%, with no obvious decline in any year.\n\nSeveral reasons account for the improvement. First, public campaigns have made health knowledge more accessible. Second, the growing use of the internet enables people to obtain medical information quickly. Third, better education has helped citizens judge that information critically.\n\nThis upward trend is likely to continue, and it will contribute to a healthier and more productive society.",
+   "audio": "pending"
+  },
+  "cards": [
+   {
+    "card_id": "c2040910-1",
+    "kind": "模板",
+    "card_type": "记忆",
+    "question": "整篇朗读：大作文 5：折线图持续上升",
+    "front": "整篇朗读：大作文 5：折线图持续上升",
+    "answer": "The line graph traces the health literacy level of Chinese residents from 2012 to 2021. The percentage rose steadily from about 8.8% to 25.4%, with no obvious decline in any year.\n\nSeveral reasons account for the improvement. First, public campaigns have made health knowledge more accessible. Second, the growing use of the internet enables people to obtain medical information quickly. Third, better education has helped citizens judge that information critically.\n\nThis upward trend is likely to continue, and it will contribute to a healthier and more productive society.",
+    "back": "The line graph traces the health literacy level of Chinese residents from 2012 to 2021. The percentage rose steadily from about 8.8% to 25.4%, with no obvious decline in any year.\n\nSeveral reasons account for the improvement. First, public campaigns have made health knowledge more accessible. Second, the growing use of the internet enables people to obtain medical information quickly. Third, better education has helped citizens judge that information critically.\n\nThis upward trend is likely to continue, and it will contribute to a healthier and more productive society.",
+    "options": [],
+    "answer_points": [
+     "描述段：traces … from 2012 to 2021 / rose s…",
+     "原因段：Several reasons account for / First…",
+     "结论段：likely to continue / contribute to"
+    ],
+    "analysis": "全篇 3 段、约 88 词。先听整篇抓节奏，再用回译与默写逐段吃透；考场按同一骨架换话题词即可复用。",
+    "unit_refs": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "card_id": "c2040910-2",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "该折线图追踪了 2012 至 2021 年中国居民的健康素养水平。这一比例从约 8.8% 稳步上升到 25.4%，期间没有任何一年出现明显下降。",
+    "front": "该折线图追踪了 2012 至 2021 年中国居民的健康素养水平。这一比例从约 8.8% 稳步上升到 25.4%，期间没有任何一年出现明显下降。",
+    "answer": "The line graph traces the health literacy level of Chinese residents from 2012 to 2021. The percentage rose steadily from about 8.8% to 25.4%, with no obvious decline in any year.",
+    "back": "The line graph traces the health literacy level of Chinese residents from 2012 to 2021. The percentage rose steadily from about 8.8% to 25.4%, with no obvious decline in any year.",
+    "options": [],
+    "answer_points": [
+     "traces … from … to …",
+     "rose steadily, with no obvious decline"
+    ],
+    "analysis": "本段功能：图表描述。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040910-3",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "这一改善有几个原因。首先，公共宣传活动让健康知识更易获得。其次，互联网的普及使人们能迅速获取医疗信息。第三，教育水平的提升帮助公众批判性地判断这些信息。",
+    "front": "这一改善有几个原因。首先，公共宣传活动让健康知识更易获得。其次，互联网的普及使人们能迅速获取医疗信息。第三，教育水平的提升帮助公众批判性地判断这些信息。",
+    "answer": "Several reasons account for the improvement. First, public campaigns have made health knowledge more accessible. Second, the growing use of the internet enables people to obtain medical information quickly. Third, better education has helped citizens judge that information critically.",
+    "back": "Several reasons account for the improvement. First, public campaigns have made health knowledge more accessible. Second, the growing use of the internet enables people to obtain medical information quickly. Third, better education has helped citizens judge that information critically.",
+    "options": [],
+    "answer_points": [
+     "Several reasons account for",
+     "judge that information critically"
+    ],
+    "analysis": "本段功能：原因分析。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040910-4",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "这一上升趋势很可能会延续，并将推动社会更健康、更有生产力。",
+    "front": "这一上升趋势很可能会延续，并将推动社会更健康、更有生产力。",
+    "answer": "This upward trend is likely to continue, and it will contribute to a healthier and more productive society.",
+    "back": "This upward trend is likely to continue, and it will contribute to a healthier and more productive society.",
+    "options": [],
+    "answer_points": [
+     "is likely to continue",
+     "contribute to a healthier society"
+    ],
+    "analysis": "本段功能：结论与影响。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040910-5",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "The line graph ____ the health literacy level of Chinese residents from 2012 to 2021. The percentage rose ____ from about 8.8% to 25.4%, with no ____ decline in any year.",
+    "front": "The line graph ____ the health literacy level of Chinese residents from 2012 to 2021. The percentage rose ____ from about 8.8% to 25.4%, with no ____ decline in any year.",
+    "answer": "The line graph traces the health literacy level of Chinese residents from 2012 to 2021. The percentage rose steadily from about 8.8% to 25.4%, with no obvious decline in any year.",
+    "back": "The line graph traces the health literacy level of Chinese residents from 2012 to 2021. The percentage rose steadily from about 8.8% to 25.4%, with no obvious decline in any year.",
+    "options": [],
+    "answer_points": [
+     "traces",
+     "steadily",
+     "obvious"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040910-6",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "Several reasons ____ for the improvement. Public campaigns have made health knowledge more ____. Better education has helped citizens ____ that information critically.",
+    "front": "Several reasons ____ for the improvement. Public campaigns have made health knowledge more ____. Better education has helped citizens ____ that information critically.",
+    "answer": "Several reasons account for the improvement. First, public campaigns have made health knowledge more accessible. Second, the growing use of the internet enables people to obtain medical information quickly. Third, better education has helped citizens judge that information critically.",
+    "back": "Several reasons account for the improvement. First, public campaigns have made health knowledge more accessible. Second, the growing use of the internet enables people to obtain medical information quickly. Third, better education has helped citizens judge that information critically.",
+    "options": [],
+    "answer_points": [
+     "account",
+     "accessible",
+     "judge"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040910-7",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "This upward ____ is likely to continue, and it will ____ to a healthier and more productive society.",
+    "front": "This upward ____ is likely to continue, and it will ____ to a healthier and more productive society.",
+    "answer": "This upward trend is likely to continue, and it will contribute to a healthier and more productive society.",
+    "back": "This upward trend is likely to continue, and it will contribute to a healthier and more productive society.",
+    "options": [],
+    "answer_points": [
+     "trend",
+     "contribute"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040910-8",
+    "kind": "句型",
+    "card_type": "应用",
+    "question": "本篇可迁移句式：折线图·持续上升",
+    "front": "本篇可迁移句式：折线图·持续上升",
+    "answer": "The line graph traces… from … to … 折线图开头，替换柱/饼图词即可\nrose steadily, with no obvious decline 趋势平稳的修饰方式\ncontribute to a healthier and more productive society 影响类收尾",
+    "back": "The line graph traces… from … to … 折线图开头，替换柱/饼图词即可\nrose steadily, with no obvious decline 趋势平稳的修饰方式\ncontribute to a healthier and more productive society 影响类收尾",
+    "options": [],
+    "answer_points": [
+     "The line graph traces… from … to … 折线图开…",
+     "rose steadily, with no obvious decline …",
+     "contribute to a healthier and more prod…"
+    ],
+    "analysis": "换话题时只替换名词与理由，句式骨架保留；同一句式在图表作文与小作文里都能用。",
+    "unit_refs": [
+     1
+    ]
+   }
+  ],
+  "exam_evidence": {
+   "level": "pending",
+   "basis": "自写范文，待人工审定",
+   "sources": []
+  },
+  "tts": {
+   "enabled": false
+  }
+ },
+ {
+  "id": "2040911",
+  "chapter": "204-09",
+  "order": 12,
+  "point": "大作文范文：表格数据的比较与建议",
+  "title": "大作文 6：表格多类别数据",
+  "explain": "表格·多类别数据范文，共 3 段。先听整篇，再做逐段回译与挖空默写，最后用句式卡换话题迁移。",
+  "exam": "写作 09 节常考题型：表格·多类别数据。背诵后按题目要求替换收信人、事由与理由即可。",
+  "keywords": [
+   "表格",
+   "满意度",
+   "比较分析",
+   "改进建议"
+  ],
+  "priority": "★",
+  "tags": [],
+  "exam_types": [
+   "模板",
+   "回译",
+   "默写",
+   "句型"
+  ],
+  "source": {
+   "ref": "204-essays#2040911",
+   "file": "204-essays.jsonl",
+   "section": "表格·多类别数据",
+   "basis": "自写范文",
+   "kind": "md"
+  },
+  "spoken": "这是一篇表格·多类别数据范文，共 3 段，背诵时先听整篇，再逐段回译。",
+  "units": [
+   "第 1 段：该表格呈现了某公司员工满意度调查。工作环境得分最高，为 4.5 分（满…",
+   "第 2 段：晋升机会得分的低落值得关注。这说明员工看不到成长空间，可能削弱他们的积…",
+   "第 3 段：因此，公司应完善晋升制度、提供更清晰的职业路径，从而以可持续的方式提升…"
+  ],
+  "paragraphs": [
+   {
+    "en": "The table presents a survey of employees' satisfaction in a company. Working environment receives the highest score at 4.5 out of 5, salary ranks second at 3.9, while promotion opportunities score only 3.1.",
+    "cn": "该表格呈现了某公司员工满意度调查。工作环境得分最高，为 4.5 分（满分 5 分），薪酬以 3.9 分排第二，而晋升机会仅得 3.1 分。",
+    "role": "图表描述",
+    "keys": [
+     "The table presents a survey",
+     "receives the highest score, while… score only"
+    ]
+   },
+   {
+    "en": "The low score for promotion deserves attention. It suggests that employees see little room to grow, which may weaken their motivation. By contrast, a comfortable environment alone cannot keep talented staff in the long run.",
+    "cn": "晋升机会得分的低落值得关注。这说明员工看不到成长空间，可能削弱他们的积极性。相反，仅有舒适的环境无法长期留住优秀员工。",
+    "role": "分析",
+    "keys": [
+     "deserves attention",
+     "cannot keep talented staff in the long run"
+    ]
+   },
+   {
+    "en": "Therefore, the company should improve its promotion system and offer clearer career paths, so that satisfaction can be raised in a sustainable way.",
+    "cn": "因此，公司应完善晋升制度、提供更清晰的职业路径，从而以可持续的方式提升满意度。",
+    "role": "建议",
+    "keys": [
+     "should improve … and offer …",
+     "in a sustainable way"
+    ]
+   }
+  ],
+  "listen": {
+   "card_id": "c2040911-1",
+   "kind": "模板",
+   "script": "The table presents a survey of employees' satisfaction in a company. Working environment receives the highest score at 4.5 out of 5, salary ranks second at 3.9, while promotion opportunities score only 3.1.\n\nThe low score for promotion deserves attention. It suggests that employees see little room to grow, which may weaken their motivation. By contrast, a comfortable environment alone cannot keep talented staff in the long run.\n\nTherefore, the company should improve its promotion system and offer clearer career paths, so that satisfaction can be raised in a sustainable way.",
+   "audio": "pending"
+  },
+  "cards": [
+   {
+    "card_id": "c2040911-1",
+    "kind": "模板",
+    "card_type": "记忆",
+    "question": "整篇朗读：大作文 6：表格多类别数据",
+    "front": "整篇朗读：大作文 6：表格多类别数据",
+    "answer": "The table presents a survey of employees' satisfaction in a company. Working environment receives the highest score at 4.5 out of 5, salary ranks second at 3.9, while promotion opportunities score only 3.1.\n\nThe low score for promotion deserves attention. It suggests that employees see little room to grow, which may weaken their motivation. By contrast, a comfortable environment alone cannot keep talented staff in the long run.\n\nTherefore, the company should improve its promotion system and offer clearer career paths, so that satisfaction can be raised in a sustainable way.",
+    "back": "The table presents a survey of employees' satisfaction in a company. Working environment receives the highest score at 4.5 out of 5, salary ranks second at 3.9, while promotion opportunities score only 3.1.\n\nThe low score for promotion deserves attention. It suggests that employees see little room to grow, which may weaken their motivation. By contrast, a comfortable environment alone cannot keep talented staff in the long run.\n\nTherefore, the company should improve its promotion system and offer clearer career paths, so that satisfaction can be raised in a sustainable way.",
+    "options": [],
+    "answer_points": [
+     "描述段：The table presents a survey / recei…",
+     "分析段：deserves attention / By contrast",
+     "建议段：should improve / so that…"
+    ],
+    "analysis": "全篇 3 段、约 91 词。先听整篇抓节奏，再用回译与默写逐段吃透；考场按同一骨架换话题词即可复用。",
+    "unit_refs": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "card_id": "c2040911-2",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "该表格呈现了某公司员工满意度调查。工作环境得分最高，为 4.5 分（满分 5 分），薪酬以 3.9 分排第二，而晋升机会仅得 3.1 分。",
+    "front": "该表格呈现了某公司员工满意度调查。工作环境得分最高，为 4.5 分（满分 5 分），薪酬以 3.9 分排第二，而晋升机会仅得 3.1 分。",
+    "answer": "The table presents a survey of employees' satisfaction in a company. Working environment receives the highest score at 4.5 out of 5, salary ranks second at 3.9, while promotion opportunities score only 3.1.",
+    "back": "The table presents a survey of employees' satisfaction in a company. Working environment receives the highest score at 4.5 out of 5, salary ranks second at 3.9, while promotion opportunities score only 3.1.",
+    "options": [],
+    "answer_points": [
+     "The table presents a survey",
+     "receives the highest score, while… scor…"
+    ],
+    "analysis": "本段功能：图表描述。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040911-3",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "晋升机会得分的低落值得关注。这说明员工看不到成长空间，可能削弱他们的积极性。相反，仅有舒适的环境无法长期留住优秀员工。",
+    "front": "晋升机会得分的低落值得关注。这说明员工看不到成长空间，可能削弱他们的积极性。相反，仅有舒适的环境无法长期留住优秀员工。",
+    "answer": "The low score for promotion deserves attention. It suggests that employees see little room to grow, which may weaken their motivation. By contrast, a comfortable environment alone cannot keep talented staff in the long run.",
+    "back": "The low score for promotion deserves attention. It suggests that employees see little room to grow, which may weaken their motivation. By contrast, a comfortable environment alone cannot keep talented staff in the long run.",
+    "options": [],
+    "answer_points": [
+     "deserves attention",
+     "cannot keep talented staff in the long …"
+    ],
+    "analysis": "本段功能：分析。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040911-4",
+    "kind": "回译",
+    "card_type": "应用",
+    "question": "因此，公司应完善晋升制度、提供更清晰的职业路径，从而以可持续的方式提升满意度。",
+    "front": "因此，公司应完善晋升制度、提供更清晰的职业路径，从而以可持续的方式提升满意度。",
+    "answer": "Therefore, the company should improve its promotion system and offer clearer career paths, so that satisfaction can be raised in a sustainable way.",
+    "back": "Therefore, the company should improve its promotion system and offer clearer career paths, so that satisfaction can be raised in a sustainable way.",
+    "options": [],
+    "answer_points": [
+     "should improve … and offer …",
+     "in a sustainable way"
+    ],
+    "analysis": "本段功能：建议。回译时先想句子骨架再补内容，对照原文只改表达不改逻辑。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040911-5",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "The table ____ a survey of employees' satisfaction. Working environment ____ the highest score at 4.5 out of 5, ____ promotion opportunities score only 3.1.",
+    "front": "The table ____ a survey of employees' satisfaction. Working environment ____ the highest score at 4.5 out of 5, ____ promotion opportunities score only 3.1.",
+    "answer": "The table presents a survey of employees' satisfaction in a company. Working environment receives the highest score at 4.5 out of 5, salary ranks second at 3.9, while promotion opportunities score only 3.1.",
+    "back": "The table presents a survey of employees' satisfaction in a company. Working environment receives the highest score at 4.5 out of 5, salary ranks second at 3.9, while promotion opportunities score only 3.1.",
+    "options": [],
+    "answer_points": [
+     "presents",
+     "receives",
+     "while"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     1
+    ]
+   },
+   {
+    "card_id": "c2040911-6",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "The low score for promotion ____ attention. It suggests that employees see little ____ to grow, which may weaken their ____. By contrast, a comfortable environment alone cannot keep talented staff in the long run.",
+    "front": "The low score for promotion ____ attention. It suggests that employees see little ____ to grow, which may weaken their ____. By contrast, a comfortable environment alone cannot keep talented staff in the long run.",
+    "answer": "The low score for promotion deserves attention. It suggests that employees see little room to grow, which may weaken their motivation. By contrast, a comfortable environment alone cannot keep talented staff in the long run.",
+    "back": "The low score for promotion deserves attention. It suggests that employees see little room to grow, which may weaken their motivation. By contrast, a comfortable environment alone cannot keep talented staff in the long run.",
+    "options": [],
+    "answer_points": [
+     "deserves",
+     "room",
+     "motivation"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     2
+    ]
+   },
+   {
+    "card_id": "c2040911-7",
+    "kind": "默写",
+    "card_type": "记忆",
+    "question": "Therefore, the company should improve its promotion system and offer clearer career ____, so that satisfaction can be raised in a ____ way.",
+    "front": "Therefore, the company should improve its promotion system and offer clearer career ____, so that satisfaction can be raised in a ____ way.",
+    "answer": "Therefore, the company should improve its promotion system and offer clearer career paths, so that satisfaction can be raised in a sustainable way.",
+    "back": "Therefore, the company should improve its promotion system and offer clearer career paths, so that satisfaction can be raised in a sustainable way.",
+    "options": [],
+    "answer_points": [
+     "paths",
+     "sustainable"
+    ],
+    "analysis": "挖空处是功能词与高分表达，默写时注意拼写与介词搭配；错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。",
+    "unit_refs": [
+     3
+    ]
+   },
+   {
+    "card_id": "c2040911-8",
+    "kind": "句型",
+    "card_type": "应用",
+    "question": "本篇可迁移句式：表格·多类别数据",
+    "front": "本篇可迁移句式：表格·多类别数据",
+    "answer": "The table presents a survey of… 表格题开头，替换 survey 内容即可\nreceives the highest score … while … score only 表格比较句\nso that … can be raised in a sustainable way 建议类目的从句",
+    "back": "The table presents a survey of… 表格题开头，替换 survey 内容即可\nreceives the highest score … while … score only 表格比较句\nso that … can be raised in a sustainable way 建议类目的从句",
+    "options": [],
+    "answer_points": [
+     "The table presents a survey of… 表格题开头，替…",
+     "receives the highest score … while … sc…",
+     "so that … can be raised in a sustainabl…"
+    ],
+    "analysis": "换话题时只替换名词与理由，句式骨架保留；同一句式在图表作文与小作文里都能用。",
+    "unit_refs": [
+     1
+    ]
+   }
+  ],
+  "exam_evidence": {
+   "level": "pending",
+   "basis": "自写范文，待人工审定",
+   "sources": []
+  },
+  "tts": {
+   "enabled": false
+  }
+ }
+]

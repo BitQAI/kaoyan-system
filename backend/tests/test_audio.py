@@ -45,5 +45,47 @@ def test_audio_requires_auth(client):
         client.headers["Authorization"] = saved
 
 
+def test_audio_clip_hit(client, conn, tmp_path, monkeypatch):
+    row = _first_card(conn)
+    target = tmp_path / row["subject_id"]
+    target.mkdir()
+    (target / f'{row["card_id"]}-word.mp3').write_bytes(b"ID3clip")
+    monkeypatch.setattr(config, "AUDIO_DIR", tmp_path)
+
+    res = client.get(f'/api/audio/{row["card_id"]}', params={"clip": "word"})
+    assert res.status_code == 200
+    assert res.content == b"ID3clip"
+
+
+def test_audio_clip_missing(client, conn, tmp_path, monkeypatch):
+    row = _first_card(conn)
+    monkeypatch.setattr(config, "AUDIO_DIR", tmp_path)
+    res = client.get(f'/api/audio/{row["card_id"]}', params={"clip": "sentence"})
+    assert res.status_code == 404
+
+
+def test_audio_clip_invalid(client, conn, tmp_path, monkeypatch):
+    row = _first_card(conn)
+    target = tmp_path / row["subject_id"]
+    target.mkdir()
+    (target / "secret.mp3").write_bytes(b"ID3secret")
+    monkeypatch.setattr(config, "AUDIO_DIR", tmp_path)
+    for bad in ("../../etc/passwd", "..%2F..%2Fsecret", "full"):
+        res = client.get(f'/api/audio/{row["card_id"]}', params={"clip": bad})
+        assert res.status_code == 404, bad
+
+
+def test_audio_clip_keeps_default(client, conn, tmp_path, monkeypatch):
+    row = _first_card(conn)
+    target = tmp_path / row["subject_id"]
+    target.mkdir()
+    (target / f'{row["card_id"]}.mp3').write_bytes(b"ID3full")
+    (target / f'{row["card_id"]}-word.mp3').write_bytes(b"ID3word")
+    monkeypatch.setattr(config, "AUDIO_DIR", tmp_path)
+
+    res = client.get(f'/api/audio/{row["card_id"]}')
+    assert res.content == b"ID3full"
+
+
 def test_audio_dir_defaults_under_data():
     assert config.AUDIO_DIR.name == "audio"

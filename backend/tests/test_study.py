@@ -45,3 +45,47 @@ def test_queue_orders_by_chapter_weight(client):
     chapters = {c["id"]: c for c in client.get("/api/subjects/812/chapters").json()["items"]}
     first = chapters[got["items"][0]["chapter_id"]]
     assert first["weight_center"] >= 10, "大分章应排前面"
+
+
+def _seed_word_db(path):
+    from app import db
+    conn = db.connect(path)
+    db.create_tables(conn)
+    conn.execute(
+        "INSERT INTO chapter (id, subject_id, name, module, tier, weight_center, "
+        "weight_basis, entry_count, sort) VALUES "
+        "('204-10','204','核心词汇','词汇',2,30,'b',1,0)")
+    conn.execute(
+        "INSERT INTO point (id, subject_id, chapter_id, ord, point, title, explain, exam, "
+        "keywords, priority, tags, exam_types, spoken, listen_script, tts_enabled, "
+        "evidence_level, evidence_basis, evidence_sources) VALUES "
+        "('2041001','204','204-10',0,'p','t','e','x','[]','○','[]','[]','','',0,"
+        "'pending','','[]')")
+    conn.executemany(
+        "INSERT INTO card (card_id, point_id, ord, kind, card_type, question, answer, "
+        "options, answer_points, analysis, unit_refs, payload) VALUES "
+        "(?,?,?,'词汇','记忆','q','a','[]','[\"a\"]','x','[]',?)",
+        [("c2041001-1", "2041001", 0, '{"word": "momentum"}'),
+         ("c2041001-2", "2041001", 1, '{}')])
+    conn.commit()
+    return conn
+
+
+def test_listen_queue_returns_payload(tmp_path):
+    from app import service
+    conn = _seed_word_db(tmp_path / "listen.db")
+    items = service.custom_listen(conn, subjects=["204"], limit=5)["items"]
+    conn.close()
+    by_id = {i["card_id"]: i for i in items}
+    assert by_id["c2041001-1"]["payload"] == {"word": "momentum"}
+    assert by_id["c2041001-2"]["payload"] == {}
+
+
+def test_queue_returns_payload(tmp_path):
+    from app import service
+    conn = _seed_word_db(tmp_path / "queue.db")
+    items = service.custom_cards(conn, subjects=["204"], limit=5)["items"]
+    conn.close()
+    by_id = {i["card_id"]: i for i in items}
+    assert by_id["c2041001-1"]["payload"] == {"word": "momentum"}
+    assert by_id["c2041001-2"]["payload"] == {}

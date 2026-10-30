@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>英语二 · 词汇与作文卡片原型</title>
+<style>
+/* ---------- 令牌：与 frontend/src/app/globals.css 对齐 ---------- */
+:root{
+  --ink:#0b1220; --ink-2:#1d2839; --muted:#5c6878;
+  --line:rgba(11,18,32,.09);
+  --bg:#e6ebf5; --bg2:rgba(118,118,128,.12);
+  --accent:#007AFF; --accent-ink:#0062CC; --accent-soft:rgba(0,122,255,.14);
+  --good:#248A3D; --warn:#B25E00; --bad:#D70015;
+  --panel-top:rgba(255,255,255,.58);
+  --panel-bottom:rgba(255,255,255,.30);
+  --panel-border:rgba(255,255,255,.78);
+  --panel-inner:rgba(255,255,255,.95);
+  --panel-shadow:rgba(18,28,45,.16);
+  --radius-xl:32px; --radius:26px; --radius-sm:16px;
+  --blob-1:#4DA3FF; --blob-2:#5AE0D0; --blob-3:#6FE39A; --blob-4:#3BB8F0; --blob-5:#A8F0D4;
+  --blob-alpha:.58;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --ink:#f2f6fc; --ink-2:#dbe4f0; --muted:#93a1b5;
+    --line:rgba(255,255,255,.10);
+    --bg:#04070d; --bg2:rgba(118,118,128,.24);
+    --accent:#0A84FF; --accent-ink:#64B5FF; --accent-soft:rgba(10,132,255,.20);
+    --good:#34C759; --warn:#FF9F0A; --bad:#FF453A;
+    --panel-top:rgba(24,32,46,.66);
+    --panel-bottom:rgba(12,17,27,.46);
+    --panel-border:rgba(255,255,255,.15);
+    --panel-inner:rgba(255,255,255,.18);
+    --panel-shadow:rgba(0,0,0,.55);
+    --blob-alpha:.60;
+    --blob-1:#1F6BFF; --blob-2:#00C2B2; --blob-3:#1E9E5B; --blob-4:#1278C8; --blob-5:#0E7C74;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  min-height:100vh;color:var(--ink);background:var(--bg);
+  font:15px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro SC","PingFang SC","Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  padding:20px 16px 56px;
+  position:relative;overflow-x:hidden;
+}
+body::before,body::after{
+  content:"";position:fixed;border-radius:50%;filter:blur(70px);opacity:var(--blob-alpha);
+  pointer-events:none;z-index:0;
+}
+body::before{width:46vw;height:46vw;left:-12vw;top:-12vw;background:var(--blob-1)}
+body::after{width:40vw;height:40vw;right:-10vw;top:10vh;background:var(--blob-3)}
+.page{position:relative;z-index:1;max-width:760px;margin:0 auto}
+
+/* ---------- 原型切换（真实应用里不存在） ---------- */
+.demo-bar{
+  display:flex;gap:6px;flex-wrap:wrap;align-items:center;
+  margin:0 0 16px;padding:10px 12px;border-radius:16px;
+  background:var(--bg2);border:1px dashed var(--line);font-size:12px;color:var(--muted);
+}
+.demo-bar b{font-weight:750;color:var(--ink);margin-right:4px;font-size:12px}
+.demo-bar button{
+  border:1px solid var(--line);background:transparent;color:var(--ink-2);
+  padding:5px 11px;border-radius:999px;font-size:12.5px;cursor:pointer;font-weight:600;
+}
+.demo-bar button.on{background:var(--accent);border-color:transparent;color:#fff;font-weight:750}
+
+/* ---------- 顶栏 ---------- */
+.stepper-bar{display:flex;align-items:center;gap:10px;margin:2px 0 12px;font-size:13px;color:var(--muted)}
+.badge-btn{
+  border:1px solid var(--line);background:var(--bg2);color:var(--ink-2);
+  padding:4px 10px;border-radius:999px;font-size:12.5px;cursor:pointer;font-weight:600;white-space:nowrap;
+}
+.progress-bar{flex:1;height:5px;border-radius:999px;background:var(--line);overflow:hidden}
+.progress-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 55%,#fff))}
+
+/* ---------- 卡面 ---------- */
+.flip-card{perspective:1500px;height:clamp(420px,66vh,560px);min-height:420px}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .68s cubic-bezier(.22,1,.36,1)}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{
+  position:absolute;inset:0;backface-visibility:hidden;display:flex;flex-direction:column;
+  border-radius:var(--radius-xl);padding:24px;
+  border:1px solid var(--panel-border);
+  background:linear-gradient(180deg,var(--panel-top),var(--panel-bottom));
+  box-shadow:0 18px 40px -16px var(--panel-shadow), inset 0 1px 0 var(--panel-inner);
+  backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);
+}
+.flip-back{transform:rotateY(180deg)}
+.flip-body{flex:1;overflow:auto;padding-right:4px;display:flex;flex-direction:column}
+.flip-body::-webkit-scrollbar{width:6px}
+.flip-body::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.flip-btn{margin-top:14px;align-self:flex-start}
+.card-top{display:flex;align-items:center;gap:6px;margin-bottom:10px}
+.spacer{flex:1}
+.badge{
+  font-size:11.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);
+  color:var(--muted);background:var(--bg2);white-space:nowrap;
+}
+.badge.kind{color:var(--accent-ink);border-color:transparent;background:var(--accent-soft);font-weight:700}
+.badge.type{border-color:var(--accent);color:var(--accent-ink)}
+.badge.real{color:var(--good);border-color:transparent;background:color-mix(in srgb,var(--good) 14%,transparent);font-weight:700}
+.btn{
+  border:1px solid var(--line);background:var(--bg2);color:var(--ink);
+  padding:9px 15px;border-radius:13px;cursor:pointer;font-size:13.5px;font-weight:650;
+  transition:.18s ease;font-family:inherit;
+}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{
+  background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 88%,#fff),var(--accent));
+  border-color:transparent;color:#fff;box-shadow:0 8px 20px -8px var(--accent), inset 0 1px 0 rgba(255,255,255,.35);
+}
+.btn.small{padding:5px 10px;font-size:12px;border-radius:10px}
+
+/* ---------- 词卡 ---------- */
+.word-head{display:flex;align-items:flex-start;gap:12px;margin:6px 0 4px}
+.word{font-size:40px;font-weight:780;letter-spacing:-.02em;line-height:1.1}
+.phonetic{color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;margin-top:6px}
+.speaker{
+  width:38px;height:38px;border-radius:50%;flex:none;cursor:pointer;
+  border:1px solid var(--line);background:var(--bg2);font-size:16px;line-height:1;
+  display:grid;place-items:center;color:var(--accent-ink);transition:.15s ease;
+}
+.speaker:hover{border-color:var(--accent);transform:scale(1.05)}
+.speaker.playing{background:var(--accent-soft);border-color:var(--accent)}
+.word-hint{margin-top:auto;color:var(--muted);font-size:12.5px}
+.vcenter{flex:1;display:flex;flex-direction:column;justify-content:center;gap:0}
+.vcenter .word-hint{margin-top:16px}
+.senses{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.senses li{font-size:16px;line-height:1.7}
+.pos{color:var(--accent-ink);font-weight:750;font-size:13px;margin-right:6px}
+.block{margin:0 0 16px}
+.block + .block{border-top:1px solid var(--line);padding-top:16px}
+.block h4{margin:0 0 8px;font-size:12px;color:var(--muted);letter-spacing:.06em;display:flex;align-items:center;gap:8px}
+.quote{
+  margin:0;padding:12px 14px;border-left:3px solid var(--accent);
+  background:color-mix(in srgb,var(--accent) 6%,transparent);border-radius:0 12px 12px 0;
+  font-size:15px;line-height:1.72;color:var(--ink-2);
+}
+.quote mark{background:linear-gradient(180deg,transparent 58%,var(--accent-soft) 58%);color:inherit;font-weight:750;padding:0 1px}
+.quote .cn{display:block;margin-top:6px;color:var(--muted);font-size:13px}
+.meta-line{display:flex;flex-wrap:wrap;gap:8px;color:var(--muted);font-size:12.5px;margin-top:8px;align-items:center}
+.block.note .quote{border-left-color:var(--warn);background:color-mix(in srgb,var(--warn) 7%,transparent)}
+.confuse{display:flex;flex-direction:column;gap:8px}
+.confuse .row{display:flex;gap:8px;align-items:baseline;font-size:14px;line-height:1.6}
+.confuse b{font-weight:750;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.confuse span{color:var(--ink-2)}
+.phrase-line{display:flex;align-items:baseline;gap:8px;font-size:14.5px}
+.phrase-line b{font-weight:750}
+.phrase-line span{color:var(--muted);font-size:13px}
+.audio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+/* ---------- 辨析 / 选项 ---------- */
+.stem{font-size:16px;line-height:1.75;margin:2px 0 12px}
+.stem u{text-decoration:none;border-bottom:2px solid var(--accent);padding:0 14px}
+.options{display:flex;flex-direction:column;gap:8px;margin:0 0 10px}
+.option{display:flex;gap:10px;align-items:center;padding:9px 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);font-size:14.5px}
+.option .letter{
+  width:22px;height:22px;border-radius:7px;background:var(--accent-soft);color:var(--accent-ink);
+  font-size:12px;font-weight:750;display:grid;place-items:center;flex:none;
+}
+.option.ok{border-color:var(--good);background:color-mix(in srgb,var(--good) 10%,transparent)}
+.option.ok .letter{background:var(--good);color:#fff}
+
+/* ---------- 默写 ---------- */
+.blank-line{font-size:15.5px;line-height:2.3;color:var(--ink-2)}
+.blank-line input{
+  font:inherit;font-size:15px;padding:2px 8px;border-radius:8px;color:var(--ink);
+  border:1px solid var(--line);background:var(--bg2);min-width:110px;
+  border-bottom:2px solid var(--accent);outline:none;
+}
+.blank-line input.ok{border-color:var(--good);border-bottom-color:var(--good);background:color-mix(in srgb,var(--good) 10%,transparent)}
+.blank-line input.no{border-color:var(--bad);border-bottom-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.check-row{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.result{font-size:13px;font-weight:700}
+.result.ok{color:var(--good)}
+.result.no{color:var(--bad)}
+.correct-answer{
+  margin-top:12px;padding:12px 14px;border-radius:12px;border:1px dashed var(--line);
+  font-size:14px;line-height:1.8;color:var(--ink-2);display:none;
+}
+.correct-answer.show{display:block}
+.correct-answer b{color:var(--good)}
+
+/* ---------- 评分与导航 ---------- */
+.grade-row{display:flex;gap:8px;margin-top:14px;opacity:0;pointer-events:none;transition:.2s ease}
+.grade-row.show{opacity:1;pointer-events:auto}
+.grade-row button{
+  flex:1;padding:12px 8px;border-radius:14px;cursor:pointer;font-weight:750;font-size:14px;
+  border:1px solid var(--panel-border);color:var(--ink);font-family:inherit;
+  background:linear-gradient(180deg,var(--panel-top),var(--panel-bottom));
+  box-shadow:inset 0 1px 0 var(--panel-inner),0 2px 8px -3px var(--panel-shadow);
+  transition:.18s ease;
+}
+.grade-row button:hover{transform:translateY(-1px)}
+.grade-row button[data-grade="秒答"]{color:var(--good)}
+.grade-row button[data-grade="吃力"]{color:var(--warn)}
+.grade-row button[data-grade="忘了"]{color:var(--bad)}
+.stepper-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.muted{color:var(--muted)}
+.toast{
+  position:fixed;left:50%;bottom:40px;transform:translate(-50%,12px);opacity:0;pointer-events:none;
+  background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:13px;
+  transition:.24s ease;z-index:9;max-width:88vw;text-align:center;
+}
+.toast.show{opacity:.94;transform:translate(-50%,0)}
+@media (max-width:640px){
+  .flip-card{height:min(76vh,620px)}
+  .word{font-size:34px}
+  body{padding:14px 12px 40px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="demo-bar">
+    <b>原型切换</b>
+    <button data-view="word" class="on">词卡</button>
+    <button data-view="phrase">词组卡</button>
+    <button data-view="confuse">辨析卡</button>
+    <button data-view="back">回译卡</button>
+    <button data-view="cloze">默写卡</button>
+    <button data-view="essay">整篇朗读</button>
+  </div>
+
+  <div class="stepper-bar">
+    <button class="badge-btn">范围：核心词汇 · 第 1–30 高频词</button>
+    <div class="progress-bar"><i style="width:10%"></i></div>
+    <span class="muted" style="font-size:12px">3 / 30</span>
+  </div>
+
+  <div class="flip-card" id="card">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <div class="flip-body" id="front"></div>
+        <button class="btn primary flip-btn" id="flipBtn">翻面看答案</button>
+      </div>
+      <div class="flip-back">
+        <div class="flip-body" id="back"></div>
+        <button class="btn flip-btn" id="unflipBtn">返回题目</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grade-row" id="grades">
+    <button data-grade="秒答">秒答</button>
+    <button data-grade="吃力">吃力</button>
+    <button data-grade="忘了">忘了</button>
+  </div>
+
+  <div class="stepper-nav">
+    <button class="btn" id="prev">上一张</button>
+    <span class="muted" style="font-size:12px">空格翻面 · 1/2/3 评分</span>
+    <button class="btn" id="next">下一张</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const card = document.getElementById('card');
+const front = document.getElementById('front');
+const back = document.getElementById('back');
+const grades = document.getElementById('grades');
+const toastEl = document.getElementById('toast');
+let view = 'word';
+let flipped = false;
+
+function toast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => toastEl.classList.remove('show'), 1800);
+}
+
+/* 原型里用浏览器语音；真实应用播放离线 mp3（/api/audio/{card_id}?clip=…） */
+function speak(text, lang='en-US'){
+  if(!('speechSynthesis' in window)){ toast('这个浏览器不支持朗读'); return; }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang; u.rate = 0.92;
+  window.speechSynthesis.speak(u);
+}
+function speaker(text, lang, title){
+  return `<button class="speaker" title="${title||'朗读'}" data-say="${text.replace(/"/g,'&quot;')}" data-lang="${lang}">🔊</button>`;
+}
+
+const cardTop = (kind, type, extra='') => `
+  <div class="card-top">
+    <span class="badge kind">${kind}</span>
+    <span class="badge">${type}</span>
+    ${extra}
+    <span class="spacer"></span>
+    <button class="badge-btn">☆</button>
+    <button class="badge-btn">去学</button>
+    <button class="badge-btn">问 AI</button>
+  </div>`;
+
+const views = {
+  word: {
+    front: () => `
+      ${cardTop('词汇','记忆','<span class="badge type">新</span>')}
+      <div class="vcenter">
+      <div class="word-head">
+        <div>
+          <div class="word">momentum</div>
+          <div class="phonetic">/məˈmentəm/ · n.</div>
+        </div>
+        <span class="spacer"></span>
+        ${speaker('momentum','en-US','读单词')}
+      </div>
+      <div class="word-hint">点击卡片或按空格翻面</div>
+      </div>`,
+    back: () => `
+      ${cardTop('词汇','记忆')}
+      <div class="block">
+        <h4>释义</h4>
+        <ul class="senses">
+          <li><span class="pos">n.</span>动力；势头；推动力</li>
+          <li><span class="pos">n.</span>（物理）动量</li>
+        </ul>
+        <div class="audio-row">
+          <button class="btn small" data-say="动力，势头，推动力" data-lang="zh-CN">🔊 读释义</button>
+        </div>
+      </div>
+      <div class="block">
+        <h4>真题情境 <span class="badge real">真题</span></h4>
+        <blockquote class="quote">
+          The move to renewables is picking up <mark>momentum</mark> around the world:
+          they now account for more than half of new power sources going on line.
+          <span class="cn">全世界的可再生能源发展势头正盛：它们已占新增电力来源的一半以上。</span>
+        </blockquote>
+        <div class="meta-line">
+          <span>2018 · 阅读 A · Text 2</span>
+          <span>·</span>
+          <span>第 3 题（词义猜测）</span>
+          <button class="btn small" data-say="The move to renewables is picking up momentum around the world" data-lang="en-US">🔊 读原句</button>
+        </div>
+        <div class="meta-line">
+          <span>考法：题干问 “picking up momentum” 的含义，需从后半句“占新增电源一半以上”反推“势头增强”，对应 B 项。</span>
+        </div>
+      </div>
+      <div class="block note">
+        <h4>例句 <span class="badge">非真题原句</span></h4>
+        <blockquote class="quote">
+          The campaign gained <mark>momentum</mark> after the televised debate.
+          <span class="cn">电视辩论之后，这场运动的声势越来越大。</span>
+        </blockquote>
+      </div>
+      <div class="block">
+        <h4>易混 / 近义</h4>
+        <div class="confuse">
+          <div class="row"><b>moment</b><span>片刻；瞬间，与“势头”无关，只差一个字母</span></div>
+          <div class="row"><b>impetus</b><span>近义：推动力、促进因素，多指外力推动</span></div>
+        </div>
+      </div>
+      <div class="block">
+        <h4>词组</h4>
+        <div class="phrase-line"><b>pick up / gain momentum</b><span>势头增强，越来越受欢迎</span></div>
+      </div>`
+  },
+
+  phrase: {
+    front: () => `
+      ${cardTop('词汇','记忆','<span class="badge type">新</span>')}
+      <div class="vcenter">
+      <div class="word-head">
+        <div>
+          <div class="word" style="font-size:32px">account for</div>
+          <div class="phonetic">动词短语 · v. + prep.</div>
+        </div>
+        <span class="spacer"></span>
+        ${speaker('account for','en-US','读词组')}
+      </div>
+      <div class="word-hint">点击卡片或按空格翻面</div>
+      </div>`,
+    back: () => `
+      ${cardTop('词汇','记忆')}
+      <div class="block">
+        <h4>释义</h4>
+        <ul class="senses">
+          <li><span class="pos">①</span>占（比例）</li>
+          <li><span class="pos">②</span>解释；说明原因</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>真题情境 <span class="badge real">真题</span></h4>
+        <blockquote class="quote">
+          They now <mark>account for</mark> more than half of new power sources going on line.
+          <span class="cn">它们现在占新增电力来源的一半以上。</span>
+        </blockquote>
+        <div class="meta-line">
+          <span>2018 · 阅读 A · Text 2</span>
+          <span>·</span>
+          <span>数据细节题定位句</span>
+          <button class="btn small" data-say="They now account for more than half of new power sources going on line" data-lang="en-US">🔊 读原句</button>
+        </div>
+      </div>
+      <div class="block">
+        <h4>易混搭配</h4>
+        <div class="confuse">
+          <div class="row"><b>account for</b><span>占比 / 解释；后接比例或原因</span></div>
+          <div class="row"><b>take account of</b><span>把……考虑在内，意思完全不同</span></div>
+          <div class="row"><b>on account of</b><span>因为，引导原因状语</span></div>
+        </div>
+      </div>`
+  },
+
+  confuse: {
+    front: () => `
+      ${cardTop('词汇','辨析','<span class="badge type">新</span>')}
+      <div class="block" style="margin-bottom:0">
+        <h4>选词填空</h4>
+        <div class="stem">The new policy was quickly <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> by most universities.</div>
+        <div class="options">
+          <div class="option"><span class="letter">A</span><span>adapted</span></div>
+          <div class="option"><span class="letter">B</span><span>adopted</span></div>
+          <div class="option"><span class="letter">C</span><span>adept</span></div>
+          <div class="option"><span class="letter">D</span><span>adopted to</span></div>
+        </div>
+      </div>`,
+    back: () => `
+      ${cardTop('词汇','辨析')}
+      <div class="block">
+        <h4>答案</h4>
+        <div class="stem">The new policy was quickly <u>adopted</u> by most universities.</div>
+        <div class="options">
+          <div class="option"><span class="letter">A</span><span>adapted</span></div>
+          <div class="option ok"><span class="letter">B</span><span>adopted　✓ 采纳、通过</span></div>
+          <div class="option"><span class="letter">C</span><span>adept</span></div>
+          <div class="option"><span class="letter">D</span><span>adopted to</span></div>
+        </div>
+      </div>
+      <div class="block">
+        <h4>一句话辨析</h4>
+        <div class="confuse">
+          <div class="row"><b>adopt</b><span>采纳、收养；政策/方案被 adopt</span></div>
+          <div class="row"><b>adapt</b><span>适应、改编；adapt to 适应，adapt from 改编自</span></div>
+          <div class="row"><b>adept</b><span>形容词，熟练的；be adept at 擅长</span></div>
+        </div>
+        <div class="meta-line"><span>形近词只差一个字母，考场靠搭配落点判断：by 后接过去分词，选 adopt；出现 at 才考虑 adept。</span></div>
+      </div>`
+  },
+
+  back: {
+    front: () => `
+      ${cardTop('回译','应用','<span class="badge type">小作文 · 第 2 段</span>')}
+      <div class="block" style="margin-bottom:0">
+        <h4>看中文，说英文</h4>
+        <blockquote class="quote" style="border-left-color:var(--warn);background:color-mix(in srgb,var(--warn) 7%,transparent)">
+          我写信是想建议你去艺术展。理由有三：首先，展览提供接触不同文化的机会；
+          其次，你能在展览中获得创作灵感；最后，这段经历会比机器人展更难忘。
+        </blockquote>
+        <div class="meta-line"><span>先口述或默写，再翻面对照原文</span></div>
+      </div>`,
+    back: () => `
+      ${cardTop('回译','应用','<span class="badge type">小作文 · 第 2 段</span>')}
+      <div class="block">
+        <h4>参考原文</h4>
+        <blockquote class="quote">
+          I am writing to suggest that you go to the art exhibition, and there are three
+          reasons for my recommendation. To begin with, the exhibition offers a rare chance
+          to engage with different cultures. In addition, you can draw creative inspiration
+          from the works on display. Finally, the experience is likely to be far more
+          memorable than the robot show.
+          <span class="cn">段内结构：目的句 → 三点理由（To begin with / In addition / Finally）</span>
+        </blockquote>
+        <div class="audio-row">
+          <button class="btn small" data-say="I am writing to suggest that you go to the art exhibition." data-lang="en-US">🔊 读整段</button>
+        </div>
+      </div>
+      <div class="block">
+        <h4>可替换</h4>
+        <div class="confuse">
+          <div class="row"><b>suggest</b><span>recommend / propose / advise that you…</span></div>
+          <div class="row"><b>To begin with</b><span>First of all / For one thing / Above all</span></div>
+        </div>
+      </div>`
+  },
+
+  cloze: {
+    front: () => `
+      ${cardTop('默写','记忆','<span class="badge type">大作文 · 第 3 段</span>')}
+      <div class="block" style="margin-bottom:0">
+        <h4>补全句子（每空一个词）</h4>
+        <div class="blank-line" id="clozeLine">
+          In the final analysis, we can probably
+          <input data-ans="expect" autocomplete="off" spellcheck="false"> to see a persistent
+          <input data-ans="growth" autocomplete="off" spellcheck="false"> in online learning.
+          Meanwhile, it is advisable for schools to
+          <input data-ans="invest" autocomplete="off" spellcheck="false"> in digital resources.
+        </div>
+        <div class="check-row">
+          <button class="btn primary" id="checkBtn">检查</button>
+          <span class="result" id="result"></span>
+        </div>
+        <div class="correct-answer" id="correct"></div>
+      </div>`,
+    back: () => `
+      ${cardTop('默写','记忆','<span class="badge type">大作文 · 第 3 段</span>')}
+      <div class="block">
+        <h4>完整段落</h4>
+        <blockquote class="quote">
+          In the final analysis, we can probably expect to see a persistent growth in
+          online learning. Meanwhile, it is advisable for schools to invest in digital
+          resources.
+        </blockquote>
+        <div class="audio-row">
+          <button class="btn small" data-say="In the final analysis, we can probably expect to see a persistent growth in online learning." data-lang="en-US">🔊 读整段</button>
+        </div>
+      </div>
+      <div class="block">
+        <h4>易错</h4>
+        <div class="confuse">
+          <div class="row"><b>expect</b><span>不要漏写 p：expect ≠ exspect</span></div>
+          <div class="row"><b>invest in</b><span>介词 in 不能省</span></div>
+        </div>
+      </div>`
+  },
+
+  essay: {
+    front: () => `
+      ${cardTop('模板','记忆','<span class="badge type">小作文 1 / 6 · 建议信</span>')}
+      <div class="block" style="margin-bottom:0">
+        <h4>整篇朗读 · 建议信（二选一）</h4>
+        <blockquote class="quote">
+          Dear David,<br>
+          I am writing to suggest that you go to the art exhibition.<br>
+          …<br>
+          Yours sincerely,<br>
+          Li Ming
+        </blockquote>
+        <div class="audio-row">
+          <button class="btn small" data-say="Dear David, I am writing to suggest that you go to the art exhibition." data-lang="en-US">🔊 播放整篇</button>
+          <button class="btn small" data-say="">⏸</button>
+        </div>
+        <div class="meta-line"><span>整篇约 1 分 10 秒 · 听队列自动收录</span></div>
+      </div>`,
+    back: () => `
+      ${cardTop('模板','记忆','<span class="badge type">小作文 1 / 6 · 建议信</span>')}
+      <div class="block">
+        <h4>全文</h4>
+        <blockquote class="quote">
+          Dear David,<br>
+          I am writing to suggest that you go to the art exhibition, and there are three
+          reasons for my recommendation. To begin with, the exhibition offers a rare chance
+          to engage with different cultures. In addition, you can draw creative inspiration
+          from the works on display. Finally, the experience is likely to be far more
+          memorable than the robot show.<br>
+          I would appreciate it if you could take my suggestion into consideration.<br>
+          Yours sincerely,<br>
+          Li Ming
+        </blockquote>
+      </div>
+      <div class="block">
+        <h4>本篇可迁移句式</h4>
+        <div class="confuse">
+          <div class="row"><b>I am writing to suggest that…</b><span>换成 congratulate / apologize / complain 即可改题型</span></div>
+          <div class="row"><b>is likely to be far more…</b><span>比较句，图表作文同样可用</span></div>
+        </div>
+      </div>`
+  }
+};
+
+function render(){
+  front.innerHTML = views[view].front();
+  back.innerHTML = views[view].back();
+  setFlipped(false);
+  if(view === 'cloze') bindCloze();
+}
+
+function setFlipped(v){
+  flipped = v;
+  card.classList.toggle('flipped', v);
+  grades.classList.toggle('show', v);
+}
+
+document.getElementById('flipBtn').onclick = () => setFlipped(true);
+document.getElementById('unflipBtn').onclick = () => setFlipped(false);
+card.addEventListener('click', (e) => {
+  if(e.target.closest('button, input, a')) return;
+  setFlipped(!flipped);
+});
+
+document.querySelectorAll('.demo-bar button').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('.demo-bar button').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    view = b.dataset.view;
+    render();
+  };
+});
+
+document.addEventListener('click', (e) => {
+  const s = e.target.closest('[data-say]');
+  if(!s) return;
+  const text = s.dataset.say;
+  if(!text){ toast('原型演示：暂停'); return; }
+  speak(text, s.dataset.lang || 'en-US');
+  toast(s.dataset.lang === 'zh-CN' ? '原型用浏览器语音代替离线 mp3' : '原型用浏览器语音代替离线 mp3');
+});
+
+document.getElementById('grades').addEventListener('click', (e) => {
+  const g = e.target.closest('button');
+  if(g) toast(`已记为「${g.dataset.grade}」· 原型不写进度`);
+});
+document.getElementById('prev').onclick = () => toast('上一张');
+document.getElementById('next').onclick = () => toast('下一张');
+
+function bindCloze(){
+  const btn = document.getElementById('checkBtn');
+  if(!btn) return;
+  btn.onclick = () => {
+    const inputs = [...document.querySelectorAll('#clozeLine input')];
+    let ok = 0;
+    inputs.forEach(i => {
+      const right = i.value.trim().toLowerCase() === i.dataset.ans.toLowerCase();
+      i.classList.toggle('ok', right);
+      i.classList.toggle('no', !right && i.value.trim() !== '');
+      if(right) ok++;
+    });
+    const res = document.getElementById('result');
+    res.textContent = `${ok} / ${inputs.length} 正确`;
+    res.className = 'result ' + (ok === inputs.length ? 'ok' : 'no');
+    const box = document.getElementById('correct');
+    box.classList.add('show');
+    box.innerHTML = '标准答案：' + inputs.map(i => `<b>${i.dataset.ans}</b>`).join(' · ') +
+      '<br><span class="muted">真实应用按归一化比对（小写、去标点、合并空格），判完仍由你自己打三档。</span>';
+  };
+}
+
+document.addEventListener('keydown', (e) => {
+  const tag = (e.target.tagName || '').toUpperCase();
+  if(tag === 'INPUT' || tag === 'TEXTAREA') return;
+  if(e.code === 'Space'){ e.preventDefault(); setFlipped(!flipped); }
+  if(flipped && ['1','2','3'].includes(e.key)) toast(`评分：${['秒答','吃力','忘了'][Number(e.key)-1]}`);
+});
+
+render();
+</script>
+</body>
+</html>

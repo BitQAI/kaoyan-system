@@ -102,13 +102,13 @@ def _insert_cards(conn, p: dict) -> None:
     for idx, c in enumerate(p.get("cards") or []):
         conn.execute(
             "INSERT INTO card (card_id, point_id, ord, kind, card_type, question, answer, "
-            "options, answer_points, analysis, unit_refs, difficulty) "
-            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+            "options, answer_points, analysis, unit_refs, difficulty, payload) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
             (c["card_id"], p["id"], idx, c.get("kind", ""), c.get("card_type", ""),
              c.get("question", ""), c.get("answer", ""),
              _json(c.get("options")), _json(c.get("answer_points")),
              c.get("analysis", ""), _json(c.get("unit_refs")),
-             c.get("difficulty")),
+             c.get("difficulty"), _json(c.get("payload") or {}, "{}")),
         )
 
 

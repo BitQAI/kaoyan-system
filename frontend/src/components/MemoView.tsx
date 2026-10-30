@@ -5,10 +5,12 @@ import { postJson } from "@/lib/api";
 import { answerHtml } from "@/lib/render";
 import { clearResume, readResume, saveResume } from "@/lib/resume";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
-import type { Card, Chapter } from "@/lib/types";
+import type { Card, Chapter, WordPayload } from "@/lib/types";
 import { useAi } from "./AiProvider";
 import { PriorityBadge, StarButton, uniqueLabels } from "./Badges";
 import CardMeta from "./CardMeta";
+import ClozeFace from "./ClozeFace";
+import WordFace from "./WordFace";
 import FavoritesPanel from "./FavoritesPanel";
 import RangePicker from "./RangePicker";
 
@@ -74,6 +76,9 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
   }
 
   const card = cards[index];
+  const wordPayload = (card?.payload as WordPayload | undefined)?.type
+    ? (card.payload as WordPayload) : null;
+  const isCloze = card?.kind === "默写";
 
   const grade = useCallback((result: string) => {
     if (!card) return;
@@ -236,16 +241,24 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
                   question: `这道题我没看懂：${card.question}`,
                 })}>问 AI</button>
               </div>
-              <div className="question">{card.question}</div>
-              {card.options.length > 0 && (
-                <div className="options">
-                  {card.options.map((o, i) => (
-                    <div className="option" key={i}>
-                      <span className="letter">{String.fromCharCode(65 + i)}</span>
-                      <span>{o.replace(/^[A-D][.、]\s*/, "")}</span>
+              {isCloze ? (
+                <ClozeFace key={card.card_id} card={card} side="front" />
+              ) : wordPayload ? (
+                <WordFace card={card} side="front" />
+              ) : (
+                <>
+                  <div className="question">{card.question}</div>
+                  {card.options.length > 0 && (
+                    <div className="options">
+                      {card.options.map((o, i) => (
+                        <div className="option" key={i}>
+                          <span className="letter">{String.fromCharCode(65 + i)}</span>
+                          <span>{o.replace(/^[A-D][.、]\s*/, "")}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  )}
+                </>
               )}
               <CardMeta reviews={card.reviews} lastResult={card.last_result}
                 lapses={card.lapses} dueAt={card.due_at}
@@ -271,24 +284,32 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
                   question: `这道题我没看懂：${card.question}`,
                 })}>问 AI</button>
               </div>
-              <div className="question">{card.question}</div>
-              {card.answer_points.length > 0 && (
-                <div className="block answer">
-                  <h4>要点</h4>
-                  <ul className="answer-points">
-                    {card.answer_points.map((a) => <li key={a}>{a}</li>)}
-                  </ul>
-                </div>
-              )}
-              <div className="block analysis">
-                <h4>答案</h4>
-                <div className="prose" dangerouslySetInnerHTML={{ __html: answerHtml(card.answer) }} />
-              </div>
-              {card.analysis && (
-                <div className="block analysis">
-                  <h4>解析</h4>
-                  <div className="prose">{card.analysis}</div>
-                </div>
+              {isCloze ? (
+                <ClozeFace key={card.card_id} card={card} side="back" />
+              ) : wordPayload ? (
+                <WordFace card={card} side="back" />
+              ) : (
+                <>
+                  <div className="question">{card.question}</div>
+                  {card.answer_points.length > 0 && (
+                    <div className="block answer">
+                      <h4>要点</h4>
+                      <ul className="answer-points">
+                        {card.answer_points.map((a) => <li key={a}>{a}</li>)}
+                      </ul>
+                    </div>
+                  )}
+                  <div className="block analysis">
+                    <h4>答案</h4>
+                    <div className="prose" dangerouslySetInnerHTML={{ __html: answerHtml(card.answer) }} />
+                  </div>
+                  {card.analysis && (
+                    <div className="block analysis">
+                      <h4>解析</h4>
+                      <div className="prose">{card.analysis}</div>
+                    </div>
+                  )}
+                </>
               )}
               <CardMeta reviews={card.reviews} lastResult={card.last_result}
                 lapses={card.lapses} dueAt={card.due_at}

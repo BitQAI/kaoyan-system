@@ -40,22 +40,29 @@ export function pinAudio(cardId: string): void {
   pinned = cardId;
 }
 
-export function loadAudio(cardId: string): Promise<string> {
-  const hit = urls.get(cardId);
+/** 词卡分片：同一个缓存与淘汰策略，key 用 `cardId:clip` */
+export function loadClip(cardId: string, clip: string): Promise<string> {
+  return loadAudio(cardId, clip);
+}
+
+export function loadAudio(cardId: string, clip?: string): Promise<string> {
+  const key = clip ? `${cardId}:${clip}` : cardId;
+  const hit = urls.get(key);
   if (hit) return hit;
-  const task = fetch(`/api/audio/${cardId}`, { headers: authHeaders() })
+  const url = clip ? `/api/audio/${cardId}?clip=${clip}` : `/api/audio/${cardId}`;
+  const task = fetch(url, { headers: authHeaders() })
     .then((res) => {
-      if (!res.ok) throw new Error(`audio ${cardId} -> ${res.status}`);
+      if (!res.ok) throw new Error(`audio ${key} -> ${res.status}`);
       return res.blob();
     })
     .then((blob) => URL.createObjectURL(blob));
-  urls.set(cardId, task);
-  order.push(cardId);
+  urls.set(key, task);
+  order.push(key);
   while (order.length > CACHE_MAX) {
     const victim = order.find((id) => id !== pinned);
     if (victim === undefined) break;
     drop(victim);
   }
-  task.catch(() => drop(cardId));
+  task.catch(() => drop(key));
   return task;
 }

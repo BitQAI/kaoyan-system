@@ -44,21 +44,22 @@ VOICE_LIB = {
 def api_key():
     k = os.environ.get('FISH_API_KEY', '')
     if not k:
-        env = ROOT / '.build' / 'fish' / '.env'
-        if env.exists():
-            for line in env.read_text(encoding='utf-8').splitlines():
-                if line.startswith('FISH_API_KEY='):
-                    k = line.split('=', 1)[1].strip()
+        for env in (ROOT / '.build' / 'fish' / '.env',
+                    pathlib.Path.home() / '.config' / 'kaoyan' / 'fish.env'):
+            if not k and env.exists():
+                for line in env.read_text(encoding='utf-8').splitlines():
+                    if line.startswith('FISH_API_KEY='):
+                        k = line.split('=', 1)[1].strip()
     if not k:
         raise SystemExit('缺少 FISH_API_KEY')
     return k
 
 
-def synth(text, ref, key, retries=5):
+def synth(text, ref, key, retries=5, language='zh'):
     payload = {
         'text': text, 'reference_id': ref, 'format': 'mp3', 'sample_rate': 44100,
         'mp3_bitrate': 128, 'latency': 'normal', 'chunk_length': 300,
-        'min_chunk_length': 50, 'normalize': True, 'language': 'zh',
+        'min_chunk_length': 50, 'normalize': True, 'language': language,
         'prosody': {'speed': 1.0, 'volume': 0, 'normalize_loudness': True},
     }
     headers = {'Authorization': f'Bearer {key}', 'Content-Type': 'application/json',
