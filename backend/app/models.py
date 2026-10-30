@@ -96,6 +96,8 @@ card = Table(
     Column("analysis", Text, nullable=False, default=""),
     Column("unit_refs", Text, nullable=False, default="[]"),
     Column("difficulty", Integer),
+    #: 结构化卡片内容（词卡/词组卡/辨析卡）；其余题型为空对象
+    Column("payload", Text, nullable=False, default="{}"),
 )
 Index("idx_card_point", card.c.point_id, card.c.ord)
 
