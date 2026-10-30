@@ -9,6 +9,7 @@ import type { Card, Chapter, WordPayload } from "@/lib/types";
 import { useAi } from "./AiProvider";
 import { PriorityBadge, StarButton, uniqueLabels } from "./Badges";
 import CardMeta from "./CardMeta";
+import CardNote from "./CardNote";
 import ClozeFace from "./ClozeFace";
 import WordFace from "./WordFace";
 import FavoritesPanel from "./FavoritesPanel";
@@ -98,6 +99,8 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
 
   function onPointerDown(e: React.PointerEvent) {
     if (!flipped) return;
+    // 笔记区里按下不启动滑动评分
+    if ((e.target as HTMLElement).closest(".card-note")) return;
     dragRef.current = { x: e.clientX, y: e.clientY, active: true, moved: false };
     setSwipe(null);
   }
@@ -212,7 +215,7 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
         onPointerCancel={() => { dragRef.current.active = false; setSwipe(null); }}
         onClick={(e) => {
           const el = e.target as HTMLElement;
-          if (el.closest("button, a, input, summary, .options")) return;
+          if (el.closest("button, a, input, textarea, summary, .options, .card-note")) return;
           if (dragRef.current.moved) { dragRef.current.moved = false; return; }
           setFlipped((f) => !f);
         }}
@@ -311,6 +314,9 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
                   )}
                 </>
               )}
+              <CardNote cardId={card.card_id} note={card.note}
+                onSaved={(text) => setCards((list) => list.map((x, i) =>
+                  i === index ? { ...x, note: text } : x))} />
               <CardMeta reviews={card.reviews} lastResult={card.last_result}
                 lapses={card.lapses} dueAt={card.due_at}
                 listenCount={card.listen_count}

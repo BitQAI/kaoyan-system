@@ -50,4 +50,5 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
 
 export const getJson = <T>(path: string) => request<T>("GET", path);
 export const postJson = <T>(path: string, body?: unknown) => request<T>("POST", path, body);
+export const putJson = <T>(path: string, body?: unknown) => request<T>("PUT", path, body);
 export const delJson = <T>(path: string) => request<T>("DELETE", path);

@@ -84,6 +84,8 @@ export interface Card {
   last_result?: string | null;
   lapses?: number;
   listen_count?: number;
+  /** 学习笔记：听与记共用同一条 */
+  note?: string;
   title?: string;
   subject_id?: string;
   chapter_id?: string;
@@ -151,6 +153,8 @@ export interface ListenItem {
   exam_types?: string[];
   heard: boolean;
   listen_count: number;
+  /** 学习笔记：听与记共用同一条 */
+  note?: string;
   reviews?: number;
   last_result?: string | null;
   lapses?: number;

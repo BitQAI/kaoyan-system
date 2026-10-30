@@ -194,11 +194,13 @@ def custom_cards(conn, subjects=None, chapters=None, limit=30,
                c.payload,
                p.title, p.subject_id, p.chapter_id, p.priority,
                cp.card_id AS seen, cp.due_at, cp.reviews, cp.last_result, cp.lapses,
+               cn.content AS note,
                (SELECT listen_count FROM card_listen cl WHERE cl.card_id = c.card_id) AS listen_count
         FROM card c
         JOIN point p ON p.id = c.point_id
         JOIN chapter ch ON ch.id = p.chapter_id
         LEFT JOIN card_progress cp ON cp.card_id = c.card_id
+        LEFT JOIN card_note cn ON cn.card_id = c.card_id
         WHERE (cp.card_id IS NULL OR cp.due_at <= ?){excl_sql}{scope_sql}
         ORDER BY CASE WHEN cp.card_id IS NULL THEN 1 ELSE 0 END,
                  ch.tier, ch.weight_center DESC, {PRIORITY_RANK}, ch.sort, p.ord, c.ord
@@ -216,6 +218,7 @@ def custom_cards(conn, subjects=None, chapters=None, limit=30,
         "priority": r["priority"],
         "reviews": r["reviews"] or 0, "last_result": r["last_result"],
         "lapses": r["lapses"] or 0, "listen_count": r["listen_count"] or 0,
+        "note": r["note"] or "",
         "subject_id": r["subject_id"], "chapter_id": r["chapter_id"],
         "due_at": r["due_at"], "new": r["seen"] is None,
     } for r in rows]
@@ -242,12 +245,14 @@ def custom_listen(conn, subjects=None, chapters=None, limit=10,
                c.analysis, c.answer_points, c.payload,
                p.title, p.point, p.explain, p.subject_id, p.chapter_id, p.priority,
                ch.name AS chapter_name, cl.card_id AS heard, cl.listen_count,
-               cp.reviews, cp.last_result, cp.lapses, cp.due_at
+               cp.reviews, cp.last_result, cp.lapses, cp.due_at,
+               cn.content AS note
         FROM card c
         JOIN point p ON p.id = c.point_id
         JOIN chapter ch ON ch.id = p.chapter_id
         LEFT JOIN card_listen cl ON cl.card_id = c.card_id
         LEFT JOIN card_progress cp ON cp.card_id = c.card_id
+        LEFT JOIN card_note cn ON cn.card_id = c.card_id
         WHERE 1=1{excl_sql}{scope_sql}
         ORDER BY CASE WHEN cl.card_id IS NULL THEN 0 ELSE 1 END,
                  COALESCE(cl.listen_count, 0), ch.tier, ch.weight_center DESC,
@@ -269,6 +274,7 @@ def custom_listen(conn, subjects=None, chapters=None, limit=10,
         "heard": r["heard"] is not None, "listen_count": r["listen_count"] or 0,
         "reviews": r["reviews"] or 0, "last_result": r["last_result"],
         "lapses": r["lapses"] or 0, "due_at": r["due_at"],
+        "note": r["note"] or "",
     } for r in rows]
     return {"items": items, "remaining": _count_remaining(conn, sql, params, len(items))}
 
@@ -335,6 +341,40 @@ def today_summary(conn) -> dict:
             "SELECT COUNT(*) FROM point_progress WHERE substr(read_at,1,10)=?",
             (today,)).fetchone()[0],
     }
+
+
+# ---------- 卡片笔记 ----------
+
+NOTE_MAX_LEN = 2000
+
+
+def get_note(conn, card_id: str) -> dict | None:
+    row = conn.execute(
+        "SELECT card_id, content, created_at, updated_at FROM card_note "
+        "WHERE card_id = ?", (card_id,)).fetchone()
+    return dict(row) if row else None
+
+
+def set_note(conn, card_id: str, content: str) -> dict | None:
+    """保存或删除笔记；卡不存在返回 None，超长抛 ValueError。"""
+    if conn.execute("SELECT 1 FROM card WHERE card_id = ?", (card_id,)).fetchone() is None:
+        return None
+    text = (content or "").strip()
+    if len(text) > NOTE_MAX_LEN:
+        raise ValueError(f"笔记不能超过 {NOTE_MAX_LEN} 字")
+    now = _now()
+    if not text:
+        conn.execute("DELETE FROM card_note WHERE card_id = ?", (card_id,))
+        conn.commit()
+        return {"card_id": card_id, "content": "", "updated_at": None}
+    conn.execute(
+        "INSERT INTO card_note (card_id, content, created_at, updated_at) "
+        "VALUES (?,?,?,?) ON CONFLICT(card_id) DO UPDATE SET "
+        "content = excluded.content, updated_at = excluded.updated_at",
+        (card_id, text, now, now))
+    conn.commit()
+    row = get_note(conn, card_id)
+    return row
 
 
 # ---------- 收藏 / 错题 ----------

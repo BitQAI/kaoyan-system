@@ -201,6 +201,15 @@ favorites = Table(
     Column("created_at", Text, nullable=False),
 )
 
+#: 每张卡一条学习笔记，听与记共用
+card_note = Table(
+    "card_note", metadata,
+    Column("card_id", Text, primary_key=True),
+    Column("content", Text, nullable=False),
+    Column("created_at", Text, nullable=False),
+    Column("updated_at", Text, nullable=False),
+)
+
 # ---------- AI 会话表 ----------
 
 conversations = Table(
@@ -245,5 +254,5 @@ ALL_TABLES = [
     subject, chapter, point, unit, card, media, relation,
     point_progress, unit_progress, card_progress, listen_progress, card_listen,
     card_event, listen_event, settings,
-    favorites, conversations, messages, message_points,
+    favorites, card_note, conversations, messages, message_points,
 ]

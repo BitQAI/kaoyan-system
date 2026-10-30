@@ -3,8 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app import auth, db
-from app.routers import (assistant, audio, auth as auth_router, content, progress,
-                         study)
+from app.routers import (assistant, audio, auth as auth_router, content, notes,
+                         progress, study)
 
 app = FastAPI(title="考研学习应用")
 
@@ -41,4 +41,5 @@ app.include_router(audio.router)
 app.include_router(content.router)
 app.include_router(progress.router)
 app.include_router(study.router)
+app.include_router(notes.router)
 app.include_router(assistant.router)

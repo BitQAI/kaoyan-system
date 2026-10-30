@@ -14,6 +14,7 @@ import type { Chapter, ListenItem } from "@/lib/types";
 import { useAi } from "./AiProvider";
 import { PriorityBadge, StarButton, uniqueLabels } from "./Badges";
 import CardMeta from "./CardMeta";
+import CardNote from "./CardNote";
 import FavoritesPanel from "./FavoritesPanel";
 import RangePicker from "./RangePicker";
 import { Quote } from "./WordFace";
@@ -526,6 +527,10 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
             )}
           </div>
         )}
+
+        <CardNote cardId={item.card_id} note={item.note}
+          onSaved={(text) => setItems((list) => list.map((x, i) =>
+            i === idx ? { ...x, note: text } : x))} />
 
         <div className="player">
           <div className="transport">

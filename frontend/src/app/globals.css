@@ -897,3 +897,37 @@ html[data-theme="dark"] .badge.pri-hot{background:rgba(255,159,10,.16)}
   .aurora .blob{animation:none !important}
   .btn,.tab,.ghost,.star-btn,.bn-item{transition:none}
 }
+
+/* ============================================================
+   卡片笔记（听 / 记 共用，每卡一条）
+   ============================================================ */
+.card-note{
+  margin:14px 0 4px;padding:12px 14px;border-radius:var(--radius);
+  border:1px dashed var(--line);
+  background:color-mix(in srgb, var(--accent) 3%, var(--bg2));
+}
+.card-note-head{display:flex;align-items:center;gap:8px}
+.card-note-head h3{margin:0;font-size:12px;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.card-note-spacer{flex:1}
+.card-note-tip{font-size:11.5px;color:var(--good)}
+.card-note-tip:empty{display:none}
+.card-note-body{
+  margin-top:8px;font-size:13.5px;line-height:1.78;color:var(--ink-2);
+  white-space:pre-wrap;word-break:break-word;
+}
+.card-note-add{
+  margin-top:8px;padding:9px 12px;width:100%;border-radius:12px;cursor:pointer;
+  border:1px dashed var(--line);background:transparent;color:var(--muted);
+  font-size:13px;text-align:left;transition:.18s ease;
+}
+.card-note-add:hover{border-color:var(--accent);color:var(--accent-ink)}
+.card-note-input{
+  margin-top:8px;width:100%;box-sizing:border-box;resize:vertical;min-height:88px;
+  border:1px solid var(--line);border-radius:12px;padding:10px 11px;
+  background:var(--panel-top);color:var(--ink);font:inherit;font-size:13.5px;line-height:1.7;
+  outline:none;transition:border-color .18s ease;
+}
+.card-note-input:focus{border-color:var(--accent)}
+.card-note-actions{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+.card-note-actions .btn{padding:6px 12px;font-size:12.5px;border-radius:10px}
+.card-note-hint{font-size:11px;color:var(--muted)}
