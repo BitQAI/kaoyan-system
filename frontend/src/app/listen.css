@@ -34,17 +34,7 @@
   background:color-mix(in srgb, var(--warn) 7%, transparent);
 }
 
-/* ---------- 听：分段与播放器 ---------- */
-.seg-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.seg-chip{
-  border:1px solid var(--line);background:var(--bg2);color:var(--ink-2);
-  padding:6px 12px;border-radius:999px;font-size:13px;font-weight:650;cursor:pointer;
-  transition:.15s ease;
-}
-.seg-chip:hover{border-color:var(--accent)}
-.seg-chip.on{
-  background:var(--accent-soft);border-color:transparent;color:var(--accent-ink);
-}
+/* ---------- 听：播放器 ---------- */
 .player{
   margin:16px 0 4px;padding:14px;border-radius:var(--radius);
   border:1px solid var(--line);background:var(--bg2);
@@ -73,3 +63,23 @@
   padding:4px 10px;border-radius:999px;font-size:12px;cursor:pointer;
 }
 .chip.on{background:var(--accent-soft);border-color:transparent;color:var(--accent-ink);font-weight:700}
+/* 重听：主控居中，右侧次级圆钮 */
+.transport{position:relative}
+.tp.side{
+  position:absolute;right:0;top:50%;transform:translateY(-50%);
+  width:42px;height:42px;font-size:17px;color:var(--muted);
+}
+.tp.side:hover{color:var(--accent-ink);border-color:var(--accent);transform:translateY(-50%) scale(1.04)}
+@media (max-width:330px){
+  .tp.side{position:static;transform:none}
+  .tp.side:hover{transform:translateY(-1px)}
+}
+
+/* 单词 / 例句右侧的试听喇叭 */
+.listen-word-head .word-speaker{
+  margin-left:auto;align-self:center;width:32px;height:32px;font-size:14px;
+}
+.listen-word .word-quote{position:relative;padding-right:46px}
+.listen-word .quote-speaker{
+  position:absolute;right:8px;top:8px;width:30px;height:30px;font-size:13px;
+}

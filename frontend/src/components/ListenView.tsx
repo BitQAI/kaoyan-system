@@ -2,10 +2,10 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { postJson } from "@/lib/api";
-import { loadAudio, loadClip, pinAudio, readRate, RATE_DEFAULT } from "@/lib/listen";
+import { loadAudio, loadClip, pinAudio, playClipOnce, readRate, RATE_DEFAULT } from "@/lib/listen";
 import {
-  GAPS, MODES, REPEATS, readGap, readMode, readRepeat,
-  segmentsFor, wordPayloadOf, writeSetting, type ListenMode,
+  readGap, readMode, readRepeat,
+  segmentsFor, wordPayloadOf, type ListenMode,
 } from "@/lib/listen-player";
 import { answerHtml, paragraphs } from "@/lib/render";
 import { clearResume, readResume, saveResume } from "@/lib/resume";
@@ -34,7 +34,6 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   const [rate, setRate] = useState(RATE_DEFAULT);
   const [pos, setPos] = useState(0);
   const [dur, setDur] = useState(0);
-  const [showNotes, setShowNotes] = useState(false);
   const [autoPlay, setAutoPlay] = useState(true);
   const [mode, setMode] = useState<ListenMode>("wms");
   const [repeat, setRepeat] = useState(1);
@@ -108,9 +107,14 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
     } catch { /* 忽略 */ }
   }, []);
 
-  // 语速在「我的 → 账号」设置；本页与那边同路由，不会重新挂载
+  // 语速、听法、遍数、间隔都在「我的 → 账号」设置；回到本页时同步一次
   useEffect(() => {
-    const sync = () => setRate(readRate());
+    const sync = () => {
+      setRate(readRate());
+      setMode(readMode());
+      setRepeat(readRepeat());
+      setGap(readGap());
+    };
     sync();
     window.addEventListener("focus", sync);
     window.addEventListener("storage", sync);
@@ -122,13 +126,6 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
       document.removeEventListener("visibilitychange", sync);
       document.removeEventListener("pointerdown", sync);
     };
-  }, []);
-
-  // 听法/遍数/间隔：跨会话记住
-  useEffect(() => {
-    setMode(readMode());
-    setRepeat(readRepeat());
-    setGap(readGap());
   }, []);
 
   // 播放器单例：<audio> 播 blob，锁屏/切后台不会被系统掐断
@@ -161,23 +158,6 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
     writeScope(sid, next);
     setPickerOpen(false);
     load(next);
-  }
-
-  function applyMode(next: ListenMode) {
-    setMode(next);
-    writeSetting("mode", next);
-    setSegIdx(0);
-    if (st.current.speaking) void playFrom(st.current.idx, 0, st.current.repeat);
-  }
-
-  function applyRepeat(next: number) {
-    setRepeat(next);
-    writeSetting("repeat", next);
-  }
-
-  function applyGap(next: number) {
-    setGap(next);
-    writeSetting("gap", next);
   }
 
   // 锁屏 / 耳机控制：把当前朗读登记成系统媒体会话
@@ -256,6 +236,13 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
     audioRef.current?.pause();
     if (typeof window !== "undefined" && "speechSynthesis" in window) window.speechSynthesis.pause();
     setPaused(true);
+  }
+
+  /** 小喇叭：单独重听一个片段，同时压住主播放器，避免两路声音叠在一起 */
+  function replay(clip: string | null, text: string) {
+    if (!item) return;
+    if (st.current.speaking) pause();
+    playClipOnce(item.card_id, clip, text, "en-US");
   }
 
   async function resume() {
@@ -481,6 +468,10 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
               {wordPayload.phonetic && (
                 <span className="word-phonetic">{wordPayload.phonetic}</span>
               )}
+              {wordPayload.word && (
+                <button className="word-speaker" title="重听单词" aria-label="重听单词"
+                  onClick={() => replay("word", wordPayload.word!)}>🔊</button>
+              )}
             </div>
             <ul className="word-senses">
               {(wordPayload.meanings ?? []).map((m, i) => (
@@ -491,17 +482,11 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
               <blockquote className={`word-quote${ex.kind === "真题" ? "" : " note"}`} key={i}>
                 <Quote text={ex.quote} word={wordPayload.word} />
                 {ex.cn && <span className="cn">{ex.cn}</span>}
+                <button className="word-speaker quote-speaker" title="重听例句"
+                  aria-label="重听例句"
+                  onClick={() => replay("sentence", ex.quote)}>🔊</button>
               </blockquote>
             ))}
-            <div className="seg-row" role="group" aria-label="分段重听">
-              {segments.map((s, i) => (
-                <button
-                  key={s.label}
-                  className={`seg-chip${speaking && segIdx === i ? " on" : ""}`}
-                  onClick={() => void playFrom(idx, i, repeat)}
-                >{s.label}</button>
-              ))}
-            </div>
           </section>
         )}
 
@@ -516,18 +501,6 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
             dangerouslySetInnerHTML={{ __html: answerHtml(item.answer || item.fallback) }} />
         </section>
 
-        {item.analysis && (
-          <div className="listen-notes">
-            <button className="badge-btn" onClick={() => setShowNotes((v) => !v)}>
-              {showNotes ? "收起评分要点" : "评分要点（不朗读）"}
-            </button>
-            {showNotes && (
-              <div className="prose" style={{ marginTop: 8 }}
-                dangerouslySetInnerHTML={{ __html: paragraphs(item.analysis) }} />
-            )}
-          </div>
-        )}
-
         <CardNote cardId={item.card_id} note={item.note}
           onSaved={(text) => setItems((list) => list.map((x, i) =>
             i === idx ? { ...x, note: text } : x))} />
@@ -535,16 +508,18 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
         <div className="player">
           <div className="transport">
             <button className="tp" onClick={() => gotoCard(-1)} title="上一个词">⏮</button>
-            <button className="tp" onClick={() => gotoSegment(-1)} title="上一句">⏪</button>
             <button className="tp main" onClick={() => (speaking ? (paused ? void resume() : pause()) : void playFrom(idx, 0, repeat))}
               title={isPlaying ? "暂停" : "播放"}>
               {isPlaying ? "⏸" : "▶"}
             </button>
-            <button className="tp" onClick={() => gotoSegment(1)} title="下一句">⏩</button>
             <button className="tp" onClick={() => gotoCard(1)} title="下一个词">⏭</button>
+            <button className="tp side" onClick={() => void playFrom(idx, 0, repeat)}
+              title="重听" aria-label="重听这张卡">↻</button>
           </div>
           <div className="player-meta">
-            <span className="muted">{speaking ? segments[segIdx]?.label ?? "" : "就绪"}</span>
+            <span className="muted">
+              {!speaking ? "就绪" : segments.length > 1 ? segments[segIdx]?.label ?? "播放中" : "播放中"}
+            </span>
             <span className="muted">{clock(pos)} / {clock(dur)}</span>
             <button className={`badge-btn${autoPlay ? " on" : ""}`}
               onClick={() => setAutoPlay((v) => !v)}>
@@ -561,27 +536,6 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
                 if (audioRef.current) audioRef.current.currentTime = next;
               }} />
           )}
-          <div className="player-opts">
-            {wordPayload && (
-              <>
-                <span className="opt-label">听法</span>
-                {MODES.map((m) => (
-                  <button key={m.id} className={`chip${mode === m.id ? " on" : ""}`}
-                    onClick={() => applyMode(m.id)}>{m.label}</button>
-                ))}
-              </>
-            )}
-            <span className="opt-label">遍数</span>
-            {REPEATS.map((n) => (
-              <button key={n} className={`chip${repeat === n ? " on" : ""}`}
-                onClick={() => applyRepeat(n)}>{n}</button>
-            ))}
-            <span className="opt-label">间隔</span>
-            {GAPS.map((n) => (
-              <button key={n} className={`chip${gap === n ? " on" : ""}`}
-                onClick={() => applyGap(n)}>{n}s</button>
-            ))}
-          </div>
         </div>
 
         <CardMeta reviews={item.reviews} lastResult={item.last_result}

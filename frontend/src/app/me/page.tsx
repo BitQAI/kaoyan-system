@@ -3,6 +3,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import ProgressDashboard from "@/components/ProgressDashboard";
 import { readRate, writeRate, RATE_MAX, RATE_MIN } from "@/lib/listen";
+import {
+  GAPS, MODES, REPEATS, readGap, readMode, readRepeat, writeSetting,
+  type ListenMode,
+} from "@/lib/listen-player";
 import { applyTheme, readTheme, type Theme } from "@/lib/theme";
 import { delJson, getJson, setToken } from "@/lib/api";
 import type { ProgressStats } from "@/lib/types";
@@ -34,8 +38,17 @@ export default function MePage() {
   const [error, setError] = useState("");
   const [theme, setTheme] = useState<Theme>("auto");
   const [rate, setRate] = useState(1.5);
+  const [mode, setMode] = useState<ListenMode>("wms");
+  const [repeat, setRepeat] = useState(1);
+  const [gap, setGap] = useState(1);
 
-  useEffect(() => { setTheme(readTheme()); setRate(readRate()); }, []);
+  useEffect(() => {
+    setTheme(readTheme());
+    setRate(readRate());
+    setMode(readMode());
+    setRepeat(readRepeat());
+    setGap(readGap());
+  }, []);
 
   useEffect(() => {
     getJson<{ items: FavPoint[] }>("/api/favorites?kind=point")
@@ -181,6 +194,52 @@ export default function MePage() {
                 aria-label="朗读语速"
               />
               <span className="rate-value">{rate.toFixed(2)}×</span>
+            </div>
+          </div>
+          <h3 className="me-sub">听学</h3>
+          <div className="me-row" style={{ flexDirection: "column", alignItems: "stretch", gap: 8 }}>
+            <span className="me-main">
+              <b>听法</b>
+              <span className="muted">单词卡按什么顺序朗读</span>
+            </span>
+            <div className="theme-row" role="group" aria-label="听法">
+              {MODES.map((m) => (
+                <button key={m.id} className={mode === m.id ? "on" : ""}
+                  aria-pressed={mode === m.id}
+                  onClick={() => { setMode(m.id); writeSetting("mode", m.id); }}>
+                  {m.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="me-row" style={{ flexDirection: "column", alignItems: "stretch", gap: 8 }}>
+            <span className="me-main">
+              <b>遍数</b>
+              <span className="muted">每张卡重复几遍</span>
+            </span>
+            <div className="theme-row" role="group" aria-label="遍数">
+              {REPEATS.map((n) => (
+                <button key={n} className={repeat === n ? "on" : ""}
+                  aria-pressed={repeat === n}
+                  onClick={() => { setRepeat(n); writeSetting("repeat", n); }}>
+                  {n}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="me-row" style={{ flexDirection: "column", alignItems: "stretch", gap: 8 }}>
+            <span className="me-main">
+              <b>间隔</b>
+              <span className="muted">连播时两张卡之间停几秒</span>
+            </span>
+            <div className="theme-row" role="group" aria-label="间隔">
+              {GAPS.map((n) => (
+                <button key={n} className={gap === n ? "on" : ""}
+                  aria-pressed={gap === n}
+                  onClick={() => { setGap(n); writeSetting("gap", n); }}>
+                  {n}s
+                </button>
+              ))}
             </div>
           </div>
           <div className="me-row">

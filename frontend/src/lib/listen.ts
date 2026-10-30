@@ -66,3 +66,31 @@ export function loadAudio(cardId: string, clip?: string): Promise<string> {
   task.catch(() => drop(key));
   return task;
 }
+
+/** 单段试听：不进入播放队列，点小喇叭重听单词/例句用；无音频时回退浏览器语音 */
+let oncePlayer: HTMLAudioElement | null = null;
+
+export function playClipOnce(cardId: string, clip: string | null,
+                             text: string, lang = "en-US"): void {
+  const speak = () => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    try {
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = lang;
+      u.rate = Math.min(readRate(), 2);
+      window.speechSynthesis.speak(u);
+    } catch { /* 浏览器不支持就静默 */ }
+  };
+  const task = clip ? loadClip(cardId, clip) : loadAudio(cardId);
+  task
+    .then((url) => {
+      oncePlayer?.pause();
+      oncePlayer = oncePlayer ?? new Audio();
+      oncePlayer.src = url;
+      oncePlayer.playbackRate = readRate();
+      oncePlayer.onerror = speak;
+      void oncePlayer.play().catch(speak);
+    })
+    .catch(speak);
+}
