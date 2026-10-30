@@ -32,7 +32,7 @@ KINDS_BY_SUBJECT = {
     '812': {'名解', '简答', '论述'},
     '315': {'选择', '填空', '计算', '分析', '合成'},
     '101': {'名词解释', '简答', '分析'},
-    '204': {'词汇', '句型', '技巧', '模板'},
+    '204': {'词汇', '句型', '技巧', '模板', '回译', '默写'},
 }
 QUOTA_812 = {'名解': 2, '简答': 2, '论述': 1}
 CARD_TYPES = {'定义', '原理', '条件', '公式', '过程', '辨析', '应用', '易错', '记忆'}
@@ -56,6 +56,46 @@ def load_unit_registry(sid='812'):
             if m:
                 reg.add((m.group(1), int(m.group(2))))
     return reg
+
+
+#: 结构化卡片 payload 的必填字段（词卡 / 词组卡 / 辨析卡）
+PAYLOAD_REQUIRED = {
+    'word': ('word', 'meanings', 'examples'),
+    'phrase': ('word', 'meanings', 'examples'),
+    'confusable': ('group', 'stem', 'answer', 'diff'),
+}
+CLOZE_BLANK = '____'
+
+
+def check_payload(sid, pid, card):
+    """E24：payload 结构不合法或缺必填字段；没有 payload 视为普通卡。"""
+    p = card.get('payload')
+    if p is None:
+        return []
+    if not isinstance(p, dict):
+        return [f'E28 {sid}: {pid} payload 不是对象']
+    kind = p.get('type')
+    if kind not in PAYLOAD_REQUIRED:
+        return [f'E28 {sid}: {pid} payload.type 非法 {kind!r}']
+    errs = []
+    for key in PAYLOAD_REQUIRED[kind]:
+        if p.get(key) in (None, '', [], {}):
+            errs.append(f'E28 {sid}: {pid} payload 缺 {key}')
+    group = p.get('group')
+    if kind == 'confusable' and isinstance(group, list) and len(group) < 2:
+        errs.append(f'E24 {sid}: {pid} 辨析组少于 2 个词')
+    return errs
+
+
+def check_cloze(sid, pid, card):
+    """E25：默写卡的空格数与 answer_points 数量必须一致。"""
+    if card.get('kind') != '默写':
+        return []
+    blanks = (card.get('question') or '').count(CLOZE_BLANK)
+    answers = card.get('answer_points') or []
+    if blanks != len(answers):
+        return [f'E29 {sid}: {pid} 默写空格 {blanks} 个，答案 {len(answers)} 个']
+    return []
 
 
 def validate_v3(sid, d, errors, warns):
@@ -275,6 +315,8 @@ def main():
                 else:
                     if c.get('options'):
                         errors.append(f'E17 {sid}: {pid} 非选择题不应带 options')
+                errors.extend(check_payload(sid, pid, c))
+                errors.extend(check_cloze(sid, pid, c))
                 chap_kinds[p.get('chapter')][kind] += 1
 
             # E18 listen 代表题
