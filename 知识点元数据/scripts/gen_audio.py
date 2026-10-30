@@ -44,11 +44,12 @@ VOICE_LIB = {
 def api_key():
     k = os.environ.get('FISH_API_KEY', '')
     if not k:
-        env = ROOT / '.build' / 'fish' / '.env'
-        if env.exists():
-            for line in env.read_text(encoding='utf-8').splitlines():
-                if line.startswith('FISH_API_KEY='):
-                    k = line.split('=', 1)[1].strip()
+        for env in (ROOT / '.build' / 'fish' / '.env',
+                    pathlib.Path.home() / '.config' / 'kaoyan' / 'fish.env'):
+            if not k and env.exists():
+                for line in env.read_text(encoding='utf-8').splitlines():
+                    if line.startswith('FISH_API_KEY='):
+                        k = line.split('=', 1)[1].strip()
     if not k:
         raise SystemExit('缺少 FISH_API_KEY')
     return k

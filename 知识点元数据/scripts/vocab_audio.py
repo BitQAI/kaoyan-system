@@ -20,8 +20,8 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 META = ROOT / '知识点元数据'
 DOC = META / 'subjects' / '204' / '204.json'
 OUT = ROOT / 'data' / 'audio'
-EN_VOICE = '6f1ca7031e964906905e5a46c5b2da4c'   # 专业本男声：英文片先用它，验证后定稿
-ZH_VOICE = '36ef842120654ee6b38ef43c8f08535a'
+EN_VOICE = '933563129e564b19a115bedd57b7406a'   # Sarah：Fish 公共英文音色（用户选定）
+ZH_VOICE = '59cb5986671546eaa6ca8ae6f29f6d22'   # 央视配音：Fish 公共中文音色
 
 
 def clip_path(subject: str, card_id: str, clip: str | None) -> pathlib.Path:
