@@ -12,6 +12,7 @@ import argparse
 import json
 import pathlib
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
@@ -81,6 +82,9 @@ def main():
         return
     key = gen_audio.api_key()
     done = 0
+    started = time.time()
+    count = [0]
+    last = [time.time()]
 
     def one(job):
         parts = []
@@ -99,6 +103,15 @@ def main():
         if parts:
             whole = clip_path('204', job['card_id'], None)
             whole.write_bytes(b''.join(p.read_bytes() for p in parts))
+        count[0] += 1
+        if count[0] % 50 == 0:
+            now = time.time()
+            span = max(0.5, now - last[0])
+            last[0] = now
+            rate = 50 / span * 60
+            eta = (len(jobs) - count[0]) / max(rate, 0.01)
+            print(f'  {count[0]}/{len(jobs)} 张卡   {rate:.0f} 张/分   剩余约 {eta:.0f} 分钟',
+                  flush=True)
         return sum(1 for _ in parts)
 
     with ThreadPoolExecutor(max_workers=max(1, args.workers)) as pool:
