@@ -14,7 +14,22 @@ BY_CARD = ("card_progress", "card_listen", "card_event", "listen_event")
 BY_POINT = ("point_progress", "unit_progress", "listen_progress")
 
 
-def prune(conn) -> dict[str, int]:
+def prune(conn, dry_run: bool = False) -> dict[str, int]:
+    cards = conn.execute("SELECT COUNT(*) FROM card").fetchone()[0]
+    points = conn.execute("SELECT COUNT(*) FROM point").fetchone()[0]
+    if cards == 0 or points == 0:
+        raise SystemExit("内容表为空，拒绝清理（先跑 import_meta.py）")
+    if dry_run:
+        counts = {}
+        for table in BY_CARD:
+            counts[table] = conn.execute(
+                f"SELECT COUNT(*) FROM {table} WHERE card_id NOT IN "
+                "(SELECT card_id FROM card)").fetchone()[0]
+        for table in BY_POINT:
+            counts[table] = conn.execute(
+                f"SELECT COUNT(*) FROM {table} WHERE point_id NOT IN "
+                "(SELECT id FROM point)").fetchone()[0]
+        return counts
     removed = {}
     for table in BY_CARD:
         cur = conn.execute(
@@ -35,5 +50,5 @@ def prune(conn) -> dict[str, int]:
 
 if __name__ == "__main__":
     conn = db.connect(config.DB_PATH)
-    print(prune(conn))
+    print(prune(conn, dry_run="--dry-run" in sys.argv))
     conn.close()

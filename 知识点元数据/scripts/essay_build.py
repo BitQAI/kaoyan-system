@@ -19,7 +19,9 @@ def _cut(s: str, n: int = MAX_POINT) -> str:
     return s if len(s) <= n else s[:n - 1] + '…'
 
 
-def _points(items: list[str], floor: int = 2) -> list[str]:
+def _points(items: list[str], floor: int = 2, exact: bool = False) -> list[str]:
+    if exact:
+        return [_cut(x) for x in items if x]
     out = [_cut(x) for x in items if x][:6]
     while len(out) < floor:
         out.append('段意与句式要点')
@@ -65,7 +67,7 @@ def build_point(essay: dict, order: int) -> dict:
     for blank in essay['blanks']:
         refs = [blank['para']]
         add('默写', blank['en'], paras[blank['para'] - 1]['en'],
-            _points(blank['answers']),
+            _points(blank['answers'], exact=True),
             f'挖空处是功能词与高分表达，默写时注意拼写与介词搭配；'
             f'错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。',
             refs)

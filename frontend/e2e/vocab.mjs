@@ -43,6 +43,12 @@ const browser = await chromium.launch({ executablePath: EXECUTABLE });
 const page = await browser.newPage({ viewport: { width: 420, height: 860 } });
 const errors = [];
 page.on("pageerror", (e) => errors.push(String(e)));
+const audioAuth = [];
+page.on("request", (req) => {
+  if (req.url().includes("/api/audio/")) {
+    audioAuth.push(Boolean(req.headers()["authorization"]));
+  }
+});
 
 if (TOKEN) {
   await page.goto(`${BASE}/login`, { waitUntil: "domcontentloaded" });
@@ -63,6 +69,8 @@ await page.evaluate(() => {
 await page.reload({ waitUntil: "networkidle" });
 await page.waitForSelector(".word-title", { timeout: 15000 });
 check("词卡正面渲染", true);
+await page.click(".word-speaker");
+await page.waitForTimeout(1500);
 await page.click(".flip-btn.primary");
 await page.waitForSelector(".word-senses", { timeout: 8000 });
 const back = await page.textContent(".flip-back");
@@ -78,6 +86,8 @@ await page.waitForSelector(".question", { timeout: 15000 });
 const q = await page.textContent(".flip-front .question");
 check("范文整篇卡出现", /整篇朗读/.test(q || ""), q?.slice(0, 24));
 
+check("分片音频带鉴权请求", audioAuth.length > 0 && audioAuth.every(Boolean),
+  `requests=${audioAuth.length}`);
 check("无前端报错", errors.length === 0, errors.slice(0, 2).join(" | "));
 
 await browser.close();

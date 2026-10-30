@@ -1,5 +1,8 @@
 "use client";
+import { loadClip } from "@/lib/listen";
 import type { Card, WordExample, WordPayload } from "@/lib/types";
+
+let player: HTMLAudioElement | null = null;
 
 /** 分片音频；缺失或播放失败时回退浏览器语音，保证按钮永远有反应 */
 function play(cardId: string, clip: string, text: string, lang: string) {
@@ -15,9 +18,15 @@ function play(cardId: string, clip: string, text: string, lang: string) {
       window.speechSynthesis.speak(u);
     } catch { /* 浏览器不支持就静默 */ }
   };
-  const a = new Audio(`/api/audio/${cardId}?clip=${clip}`);
-  a.onerror = speak;
-  void a.play().catch(speak);
+  loadClip(cardId, clip)
+    .then((url) => {
+      player?.pause();
+      player = player ?? new Audio();
+      player.src = url;
+      player.onerror = speak;
+      return player.play();
+    })
+    .catch(speak);
 }
 
 function Speaker({ onClick, title }: { onClick: () => void; title: string }) {
@@ -41,7 +50,8 @@ function Quote({ text, word }: { text: string; word?: string }) {
   );
 }
 
-function Example({ ex, cardId, word }: { ex: WordExample; cardId: string; word?: string }) {
+function Example({ ex, cardId, word, audioClip }:
+  { ex: WordExample; cardId: string; word?: string; audioClip?: string }) {
   const real = ex.kind === "真题";
   const where = [ex.year, ex.part, ex.text, ex.qno ? `第 ${ex.qno} 题` : ""]
     .filter(Boolean).join(" · ");
@@ -53,10 +63,12 @@ function Example({ ex, cardId, word }: { ex: WordExample; cardId: string; word?:
       </blockquote>
       <div className="word-meta">
         {where && <span>{where}</span>}
-        <button className="btn small" onClick={(e) => {
-          e.stopPropagation();
-          play(cardId, "sentence", ex.quote, "en-US");
-        }}>🔊 读原句</button>
+        {audioClip && (
+          <button className="btn small" onClick={(e) => {
+            e.stopPropagation();
+            play(cardId, audioClip, ex.quote, "en-US");
+          }}>🔊 读原句</button>
+        )}
       </div>
       {ex.tested && <div className="word-tested">考法：{ex.tested}</div>}
     </div>
@@ -156,7 +168,8 @@ export default function WordFace({ card, side }:
               {ex.kind === "真题" ? "真题" : ex.note ?? "例句（非真题原句）"}
             </span>
           </h4>
-          <Example ex={ex} cardId={card.card_id} word={word} />
+          <Example ex={ex} cardId={card.card_id} word={word}
+            audioClip={i === 0 ? "sentence" : undefined} />
         </div>
       ))}
 
