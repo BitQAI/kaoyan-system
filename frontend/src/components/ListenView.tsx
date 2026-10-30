@@ -2,7 +2,9 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { postJson } from "@/lib/api";
-import { loadAudio, loadClip, pinAudio, playClipOnce, readRate, RATE_DEFAULT } from "@/lib/listen";
+import {
+  loadAudio, loadClip, pinAudio, playClipOnce, readRate, writeRate, RATE_DEFAULT,
+} from "@/lib/listen";
 import {
   readGap, readMode, readRepeat,
   segmentsFor, wordPayloadOf, type ListenMode,
@@ -17,6 +19,7 @@ import CardMeta from "./CardMeta";
 import EssayFace from "./EssayFace";
 import FavoritesPanel from "./FavoritesPanel";
 import NoteDialog from "./NoteDialog";
+import RateWheel from "./RateWheel";
 import RangePicker from "./RangePicker";
 import { Quote } from "./WordFace";
 
@@ -43,6 +46,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   const [pickerOpen, setPickerOpen] = useState(false);
   const [favOpen, setFavOpen] = useState(false);
   const [noteOpen, setNoteOpen] = useState(false);
+  const [rateOpen, setRateOpen] = useState(false);
   const [scope, setScope] = useState<Scope>(DEFAULT_SCOPE);
   const activeRef = useRef<string | null>(null);
   const autoRef = useRef(true);
@@ -532,7 +536,9 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
               onClick={() => setAutoPlay((v) => !v)}>
               {autoPlay ? "连播" : "单条"}
             </button>
-            <span className="muted" title="在「我的 → 账号」调整">语速 {rate.toFixed(2)}×</span>
+            <button className="badge-btn" onClick={() => setRateOpen(true)} title="调整朗读语速">
+              语速 {rate.toFixed(2)}×
+            </button>
           </div>
           {dur > 0 && (
             <input className="seek" type="range" min={0} max={dur} step={0.1}
@@ -553,6 +559,8 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
       <RangePicker open={pickerOpen} chapters={chapters} scope={scope}
         onClose={() => setPickerOpen(false)} onApply={applyScope} />
       <FavoritesPanel open={favOpen} sid={sid} onClose={() => setFavOpen(false)} />
+      <RateWheel open={rateOpen} value={rate} onClose={() => setRateOpen(false)}
+        onChange={(v) => { setRate(v); writeRate(v); }} />
       <NoteDialog open={noteOpen} cardId={item.card_id} note={item.note}
         onClose={() => setNoteOpen(false)}
         onSaved={(text) => setItems((list) => list.map((x, i) =>

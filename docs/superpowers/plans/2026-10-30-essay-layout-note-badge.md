@@ -82,3 +82,16 @@
 - [x] 浏览器：315 解析分成两段、812 答案分段；翻面后无「读释义」。
 - [x] `pytest` 127 passed、`tsc --noEmit` 通过、`next build` 通过。
 - [ ] 用户确认后提交。
+
+---
+
+## 补充任务（同日第二轮）
+
+- [x] `essay_build.py`：回译/默写/句型卡标记 `memo_hidden`；整篇卡挂 `figure`。
+- [x] `service.custom_cards` / `custom_listen` 过滤 `memo_hidden=1` 的卡（听、记都是 48 → 6）。
+- [x] 新增 `scripts/essay_figures.py` 与 `204-essay-figures.json`（6 图表 + 6 情景）。
+- [x] `EssayPayload.figure` 类型与 EssayFace 图片区、图注样式。
+- [x] 新增 `RateWheel.tsx` 与滚轮样式；`ListenView` 播放条改为按钮入口。
+- [x] 移除「我的 → 账号」的朗读语速滑杆。
+- [x] 重建数据并导入两个库；`pytest` 127 passed、`tsc`、`next build` 通过。
+- [x] 浏览器实测：听、记均 1/6；图与图注正常；语速滚轮 1.50→2.00 生效并持久化。

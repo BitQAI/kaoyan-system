@@ -55,6 +55,13 @@ export interface EssayParagraph {
   keys?: string[];
 }
 
+export interface EssayFigure {
+  kind: string;
+  caption: string;
+  alt?: string;
+  svg: string;
+}
+
 export interface EssayPayload {
   type: "essay";
   format: "letter" | "notice" | "chart";
@@ -66,6 +73,7 @@ export interface EssayPayload {
   word_count: number;
   min_words?: number;
   paragraphs: EssayParagraph[];
+  figure?: EssayFigure;
 }
 
 export type CardPayload = WordPayload | EssayPayload | Record<string, never>;

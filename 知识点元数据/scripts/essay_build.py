@@ -10,6 +10,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 META = ROOT / '知识点元数据'
 SRC = META / 'subjects' / '204' / '204-essays.jsonl'
+FIGURES = META / 'subjects' / '204' / '204-essay-figures.json'
 CHAPTERS = {'204-08': '写作 A（应用文）', '204-09': '写作 B（短文）'}
 MAX_POINT = 40          # answer_points 单项字数上限（schema 约束）
 MIN_WORDS = {'204-08': 100, '204-09': 150}   # 小作文 / 大作文字数下限
@@ -43,6 +44,24 @@ def _card(pid: str, n: int, kind: str, question: str, answer: str,
     if payload:
         card['payload'] = payload
     return card
+
+
+def _practice(payload: dict | None = None) -> dict:
+    """回译/默写/句型：听里仍然出卡，记里只保留整篇卡，不再拆成多张。"""
+    data = dict(payload or {})
+    data['memo_hidden'] = True
+    return data
+
+
+_FIG_CACHE: dict | None = None
+
+
+def _figures() -> dict:
+    global _FIG_CACHE
+    if _FIG_CACHE is None:
+        _FIG_CACHE = (json.loads(FIGURES.read_text(encoding='utf-8'))
+                      if FIGURES.exists() else {})
+    return _FIG_CACHE
 
 
 def _format(essay: dict) -> str:
@@ -105,12 +124,17 @@ def build_point(essay: dict, order: int) -> dict:
         cards.append(_card(pid, n, kind, question, answer, points, analysis, refs,
                            payload))
 
+    full_payload = _essay_payload(essay, paras, 'full')
+    figure = _figures().get(pid)
+    if figure:
+        full_payload['figure'] = figure
+
     add('模板', f'整篇朗读：{essay["title"]}', full,
         _points(essay.get('structure') or ['目的句', '主体展开', '收尾']),
         f'全篇 {len(paras)} 段、约 {len(full.split())} 词。先听整篇抓节奏，再用回译与默写逐段吃透；'
         f'考场按同一骨架换话题词即可复用。',
         list(range(1, len(paras) + 1)),
-        _essay_payload(essay, paras, 'full'))
+        full_payload)
 
     for i, para in enumerate(paras, start=1):
         add('回译', para['cn'], para['en'],
@@ -118,7 +142,7 @@ def build_point(essay: dict, order: int) -> dict:
             f'本段功能：{para.get("role", "段落展开")}。回译时先想句子骨架再补内容，'
             f'对照原文只改表达不改逻辑。',
             [i],
-            _essay_payload(essay, [para], 'paragraph', i))
+            _practice(_essay_payload(essay, [para], 'paragraph', i)))
 
     for blank in essay['blanks']:
         refs = [blank['para']]
@@ -127,12 +151,13 @@ def build_point(essay: dict, order: int) -> dict:
             f'挖空处是功能词与高分表达，默写时注意拼写与介词搭配；'
             f'错一格说明该句式还没进肌肉记忆，回到回译卡再过一遍。',
             refs,
-            _essay_payload(essay, [paras[blank['para'] - 1]], 'paragraph', blank['para']))
+            _practice(_essay_payload(essay, [paras[blank['para'] - 1]], 'paragraph',
+                                     blank['para'])))
 
     add('句型', f'本篇可迁移句式：{essay["type"]}', '\n'.join(essay['transfer']),
         _points(essay['transfer'][:3]),
         '换话题时只替换名词与理由，句式骨架保留；同一句式在图表作文与小作文里都能用。',
-        [1])
+        [1], _practice())
 
     kinds = []
     for c in cards:

@@ -201,7 +201,9 @@ def custom_cards(conn, subjects=None, chapters=None, limit=30,
         JOIN chapter ch ON ch.id = p.chapter_id
         LEFT JOIN card_progress cp ON cp.card_id = c.card_id
         LEFT JOIN card_note cn ON cn.card_id = c.card_id
-        WHERE (cp.card_id IS NULL OR cp.due_at <= ?){excl_sql}{scope_sql}
+        WHERE (cp.card_id IS NULL OR cp.due_at <= ?)
+          AND COALESCE(json_extract(c.payload, '$.memo_hidden'), 0) != 1
+          {excl_sql}{scope_sql}
         ORDER BY CASE WHEN cp.card_id IS NULL THEN 1 ELSE 0 END,
                  ch.tier, ch.weight_center DESC, {PRIORITY_RANK}, ch.sort, p.ord, c.ord
         LIMIT ?
@@ -253,7 +255,8 @@ def custom_listen(conn, subjects=None, chapters=None, limit=10,
         LEFT JOIN card_listen cl ON cl.card_id = c.card_id
         LEFT JOIN card_progress cp ON cp.card_id = c.card_id
         LEFT JOIN card_note cn ON cn.card_id = c.card_id
-        WHERE 1=1{excl_sql}{scope_sql}
+        WHERE COALESCE(json_extract(c.payload, '$.memo_hidden'), 0) != 1
+          {excl_sql}{scope_sql}
         ORDER BY CASE WHEN cl.card_id IS NULL THEN 0 ELSE 1 END,
                  COALESCE(cl.listen_count, 0), ch.tier, ch.weight_center DESC,
                  {PRIORITY_RANK}, ch.sort, p.ord, c.ord

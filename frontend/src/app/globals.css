@@ -947,3 +947,38 @@ html[data-theme="dark"] .badge.pri-hot{background:rgba(255,159,10,.16)}
   font-size:12.5px;line-height:1.72;color:var(--muted);
   border-top:1px dashed var(--line);padding-top:6px;
 }
+
+.essay-figure{margin:0 0 4px;display:flex;flex-direction:column;gap:6px}
+.essay-figure-svg{width:100%}
+.essay-figure-svg svg{display:block;width:100%;height:auto;max-height:46vh}
+.essay-figure figcaption{
+  text-align:center;font-size:12px;color:var(--muted);
+}
+
+/* ============================================================
+   语速滚轮（仿 iOS 时间轮盘）
+   ============================================================ */
+.rate-sheet{width:min(320px,100%)}
+.rate-preview{font-family:var(--mono);font-size:13px;color:var(--accent-ink);font-weight:700}
+.rate-wheel-wrap{position:relative;height:240px;margin:6px 12px 14px}
+.rate-wheel{
+  height:240px;overflow-y:auto;scroll-snap-type:y mandatory;
+  scrollbar-width:none;overscroll-behavior:contain;
+}
+.rate-wheel::-webkit-scrollbar{display:none}
+.rate-item{
+  display:flex;align-items:center;justify-content:center;width:100%;
+  border:0;background:transparent;color:var(--muted);font-family:var(--mono);
+  font-size:17px;cursor:pointer;scroll-snap-align:center;font-variant-numeric:tabular-nums;
+  transition:color .15s ease,font-size .15s ease;
+}
+.rate-item.on{color:var(--ink);font-weight:800;font-size:24px}
+.rate-wheel-band{
+  position:absolute;left:10px;right:10px;top:100px;height:40px;z-index:1;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--accent) 7%,transparent);
+  border-radius:10px;pointer-events:none;
+}
+.rate-wheel-fade{position:absolute;left:0;right:0;height:72px;z-index:2;pointer-events:none}
+.rate-wheel-fade.top{top:0;background:linear-gradient(180deg,var(--card-strong),transparent)}
+.rate-wheel-fade.bottom{bottom:0;background:linear-gradient(0deg,var(--card-strong),transparent)}

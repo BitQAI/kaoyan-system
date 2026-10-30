@@ -63,6 +63,14 @@ export default function EssayFace({ p }: { p: EssayPayload }) {
         )}
       </div>
 
+      {p.figure && (
+        <figure className="essay-figure">
+          <div className="essay-figure-svg"
+            dangerouslySetInnerHTML={{ __html: p.figure.svg }} />
+          {p.figure.caption && <figcaption>{p.figure.caption}</figcaption>}
+        </figure>
+      )}
+
       {p.paragraphs.map((para, i) => {
         const { head, body, sign, date } = splitPara(
           p.format, para.en, i === 0, i === p.paragraphs.length - 1);
