@@ -101,3 +101,46 @@
 | ali-204-088 | align | secondary | 考研英语作文评分标准与常见问题（新航道） | 全文 | https://kaoyan.xhd.cn/news/99000567.html | 2026-10-28 | 条款级对齐引用 1 处 |
 | ali-204-089 | align | secondary | 2025 考研英语二翻译和写作评分标准（希赛网，评分原则与方法） | 全文 | https://www.educity.cn/mba/5366723.html | 2026-10-28 | 条款级对齐引用 1 处 |
 | ali-204-090 | align | secondary | 从考研英语作文评分标准看写作备考（中国教育在线） | 全文 | https://kaoyan.eol.cn/nnews/201807/t20180715_1616900.shtml | 2026-10-28 | 条款级对齐引用 1 处 |
+
+## 真题原文语料（204-corpus/raw，2026-10-30）
+
+**来源站点**
+
+| 站点 | 用途 | 说明 |
+|---|---|---|
+| 懒笔记 english-exam.lazynote.cn | 主来源（全部 16 年） | `https://english-exam.lazynote.cn/kaoyan/paper/{year}-english-two/` 逐卷还原 2010–2026 卷面，附「全卷客观题答案速查」表（完形 1–20、阅读 21–40、Part B 41–45） |
+| 懒笔记 `/kaoyan/sections/{year}-english-two/...` | 补全 | 题目解析页，正文逐段完整并附中文；用于补 2011 Text 2 缺失段落与选项 |
+
+**覆盖表**（yes＝正文＋全部题干/选项＋答案齐全；partial＝正文齐全、题目信息不全；text-only＝仅正文）
+
+| 年份 | cloze | readingA-1 | readingA-2 | readingA-3 | readingA-4 | readingB | translation |
+|---|---|---|---|---|---|---|---|
+| 2010 | text-only | partial | partial | partial | yes | partial | text-only |
+| 2011 | text-only | partial | yes | partial | partial | yes | text-only |
+| 2012 | partial | partial | partial | partial | partial | yes | text-only |
+| 2013 | partial | partial | partial | partial | partial | partial | text-only |
+| 2014 | partial | partial | partial | partial | yes | partial | text-only |
+| 2015 | partial | partial | partial | partial | partial | partial | text-only |
+| 2016 | text-only | partial | partial | partial | partial | text-only | text-only |
+| 2017 | text-only | partial | partial | partial | partial | yes | text-only |
+| 2018 | text-only | partial | partial | partial | partial | partial | text-only |
+| 2019 | text-only | partial | partial | partial | partial | partial | text-only |
+| 2020 | text-only | partial | partial | yes | partial | partial | text-only |
+| 2021 | text-only | text-only | partial | partial | partial | partial | text-only |
+| 2022 | text-only | partial | yes | partial | yes | yes | text-only |
+| 2023 | text-only | partial | yes | partial | partial | yes | text-only |
+| 2024 | partial | partial | partial | partial | partial | partial | text-only |
+| 2025 | partial | partial | yes | partial | yes | yes | text-only |
+
+**缺失清单**
+
+- 题型缺失：无。16 年 × 7 题型共 112 个 `.txt` 全部生成。
+- 正文缺失：无。全部篇章英文正文完整（抽查核对见下）。
+- 题目缺失：该站卷面页以折叠/分栏渲染题目选项，抓取只能取到部分 ABCD，故 69 篇标 `partial`；完形与个别阅读页无题干，标 `text-only`。答案均取自卷末速查表，未自行推断。
+- 中文译文、写作（Section IV）、听力：按任务要求不收录。
+
+**核对记录（随机 5 篇）**
+
+- 2013-cloze、2017-readingA-3、2021-readingA-2、2024-readingB、2025-translation：source 页面正文与文件逐句一致。
+- 2020 年 21–45 全部答案与懒笔记卷末答案表逐题吻合。
+- 2011-readingA-2 初次抓取缺第 4 段，已用题目解析页补全并升级为 `yes`；2024-readingB 第 7 个选项在卷面页无字母，按同页 A–G 说明补标 G（与 2024 真题 PDF 一致）。

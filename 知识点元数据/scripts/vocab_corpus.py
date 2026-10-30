@@ -9,7 +9,7 @@ import pathlib
 import re
 import sys
 
-ROOT = pathlib.Path(__file__).resolve().parents[3]
+ROOT = pathlib.Path(__file__).resolve().parents[2]
 RAW = ROOT / '知识点元数据' / 'research' / '204-corpus' / 'raw'
 OUT = RAW.parent
 
