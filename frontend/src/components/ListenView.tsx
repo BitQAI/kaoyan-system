@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { postJson } from "@/lib/api";
 import { loadAudio, pinAudio, readRate, RATE_DEFAULT } from "@/lib/listen";
@@ -325,6 +326,10 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
           {badges.map((b) => <span className="badge" key={b}>{b}</span>)}
           <span className="spacer" />
           <StarButton kind="card" id={item.card_id} title={item.question} />
+          <Link className="study-entry-btn" title="打开这个知识点的完整讲解"
+            href={`/study?view=study&sid=${item.subject_id}&pid=${item.point_id}`}>
+            去学
+          </Link>
           <button className="ai-entry-btn" onClick={() => ai.open({
             point_id: item.point_id,
             card_id: item.card_id,

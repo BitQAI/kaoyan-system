@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { postJson } from "@/lib/api";
 import { answerHtml } from "@/lib/render";
@@ -170,6 +171,8 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
     );
   }
 
+  const studyHref = `/study?view=study&sid=${card.subject_id ?? sid}&pid=${card.point_id}`;
+
   return (
     <div className="memo-wrap">
       <div className="stepper-bar">
@@ -210,6 +213,8 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
                 {card.new && <span className="badge type">新</span>}
                 <span className="spacer" />
                 <StarButton kind="card" id={card.card_id} title={card.question} />
+                <Link className="study-entry-btn" href={studyHref}
+                  title="打开这个知识点的完整讲解">去学</Link>
                 <button className="ai-entry-btn" onClick={() => ai.open({
                   point_id: card.point_id,
                   card_id: card.card_id,
@@ -243,6 +248,8 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
                   <span className="badge" key={b}>{b}</span>
                 ))}
                 <span className="spacer" />
+                <Link className="study-entry-btn" href={studyHref}
+                  title="打开这个知识点的完整讲解">去学</Link>
                 <button className="ai-entry-btn" onClick={() => ai.open({
                   point_id: card.point_id,
                   card_id: card.card_id,
