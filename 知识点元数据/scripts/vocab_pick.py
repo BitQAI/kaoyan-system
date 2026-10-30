@@ -10,9 +10,10 @@ import re
 import sys
 from collections import Counter, defaultdict
 
-ROOT = pathlib.Path(__file__).resolve().parents[3]
+ROOT = pathlib.Path(__file__).resolve().parents[2]
 META = ROOT / '知识点元数据'
 SENTENCES = META / 'research' / '204-corpus' / 'sentences.jsonl'
+BASIC = META / 'research' / '204-corpus' / 'basic-words.txt'
 OUT = META / 'subjects' / '204' / '204-vocab-list.jsonl'
 
 TOKEN = re.compile(r"[A-Za-z][A-Za-z'-]+")
@@ -25,8 +26,11 @@ i if in into is it its itself just me more most my myself no nor not now of off 
 once only or other our ours ourselves out over own same she should so some such than
 that the their theirs them themselves then there these they this those through to too
 under until up very was we were what when where which while who whom why will with
-would you your yours yourself yourselves
+would you your yours yourself yourselves cannot
 """.split())
+
+NUMBER_WORDS = set('one two three four five six seven eight nine ten eleven twelve '
+                   'hundred thousand million billion trillion first second third'.split())
 
 SUPPLEMENT = """
 abandon abstract abundant accelerate access accommodate accompany accomplish accumulate
@@ -81,9 +85,64 @@ withstand witness yield
 """.split()
 
 
+def load_basic(path: pathlib.Path = BASIC) -> set[str]:
+    """中学 3500 词：语料里出现得再多也不进考研词表。"""
+    if not pathlib.Path(path).exists():
+        return set()
+    return {w.strip().lower() for w in pathlib.Path(path).read_text(encoding='utf-8').splitlines()
+            if w.strip()}
+
+
+#: 常见不规则形态 → 原形，只为和中学 3500 词比对
+IRREGULAR = {
+    'said': 'say', 'says': 'say', 'made': 'make', 'came': 'come', 'done': 'do',
+    'given': 'give', 'took': 'take', 'taken': 'take', 'went': 'go', 'gone': 'go',
+    'got': 'get', 'gotten': 'get', 'better': 'good', 'best': 'good',
+    'less': 'little', 'least': 'little', 'more': 'much', 'most': 'much',
+    'kept': 'keep', 'found': 'find', 'thought': 'think', 'brought': 'bring',
+    'began': 'begin', 'begun': 'begin', 'grew': 'grow', 'grown': 'grow',
+    'knew': 'know', 'known': 'know', 'left': 'leave', 'lost': 'lose',
+    'met': 'meet', 'paid': 'pay', 'ran': 'run', 'saw': 'see', 'seen': 'see',
+    'sold': 'sell', 'sent': 'send', 'spent': 'spend', 'stood': 'stand',
+    'told': 'tell', 'wrote': 'write', 'written': 'write', 'built': 'build',
+    'bought': 'buy', 'caught': 'catch', 'chose': 'choose', 'chosen': 'choose',
+    'drove': 'drive', 'driven': 'drive', 'fell': 'fall', 'fallen': 'fall',
+    'felt': 'feel', 'held': 'hold', 'led': 'lead', 'meant': 'mean',
+    'rose': 'rise', 'risen': 'rise', 'spoke': 'speak', 'spoken': 'speak',
+    'won': 'win', 'wore': 'wear', 'worn': 'wear', 'children': 'child',
+    'women': 'woman', 'men': 'man', 'people': 'people', 'feet': 'foot',
+    'teeth': 'tooth', 'lives': 'life', 'wives': 'wife', 'knives': 'knife',
+}
+
+
+def lemma(w: str) -> list[str]:
+    """粗词形还原：用于和中学 3500 词比对。"""
+    out = [w]
+    if w in IRREGULAR:
+        out.append(IRREGULAR[w])
+    for suf in ('ing', 'ed', 'ly', 'er', 'est', 'es', 's'):
+        if len(w) > len(suf) + 1 and w.endswith(suf):
+            base = w[:-len(suf)]
+            out += [base, base + 'e', base[:-1]]
+    if w.endswith('ly') and len(w) > 4:
+        out += [w[:-2] + 'le', w[:-2] + 'l']
+    if w.endswith('ier') and len(w) > 4:
+        out.append(w[:-3] + 'y')
+    if w.endswith('ies') and len(w) > 4:
+        out.append(w[:-3] + 'y')
+    return out
+
+
+def is_basic(w: str, basic: set[str]) -> bool:
+    return any(x in basic for x in lemma(w))
+
+
 def pick(path: pathlib.Path, limit: int = 1500, min_freq: int = 2,
-         supplemental: list[str] | None = None) -> list[dict]:
+         supplemental: list[str] | None = None,
+         basic: set[str] | None = None) -> list[dict]:
+    basic = load_basic() if basic is None else basic
     freq: Counter = Counter()
+    lower_freq: Counter = Counter()
     years: dict[str, set] = defaultdict(set)
     for line in pathlib.Path(path).read_text(encoding='utf-8').splitlines():
         if not line.strip():
@@ -91,23 +150,38 @@ def pick(path: pathlib.Path, limit: int = 1500, min_freq: int = 2,
         row = json.loads(line)
         year = row.get('year')
         for tok in TOKEN.findall(row.get('en') or ''):
-            w = tok.lower().strip("-'")
-            if len(w) < 3 or w in STOPWORDS:
+            if "'" in tok or '-' in tok:
+                continue
+            w = tok.lower()
+            if len(w) < 4 or w in STOPWORDS or w in NUMBER_WORDS:
                 continue
             freq[w] += 1
+            if tok.islower():
+                lower_freq[w] += 1
             if year:
                 years[w].add(int(year))
     ranked = sorted(
-        ((w, n) for w, n in freq.items() if n >= min_freq),
+        ((w, n) for w, n in freq.items()
+         if n >= min_freq and lower_freq[w] >= 1 and not is_basic(w, basic)),
         key=lambda x: (-x[1], x[0]))
-    out = [{'word': w, 'freq': n, 'years': sorted(years[w]), 'in_corpus': True}
-           for w, n in ranked[:limit]]
+    # 同一词形链只留最高频那个（lowers / lowered / lower 只留一条）
+    seen_lemma: set[str] = set()
+    picked: list[dict] = []
+    for w, n in ranked:
+        forms = {f for f in lemma(w) if f in freq}
+        if forms & seen_lemma:
+            continue
+        seen_lemma.add(w)
+        picked.append({'word': w, 'freq': n, 'years': sorted(years[w]), 'in_corpus': True})
+        if len(picked) >= limit:
+            break
+    out = picked
     have = {r['word'] for r in out}
     for w in (supplemental or []):
         if len(out) >= limit:
             break
         w = w.lower()
-        if w in have or w in STOPWORDS or len(w) < 3:
+        if w in have or w in STOPWORDS or is_basic(w, basic) or len(w) < 4:
             continue
         out.append({'word': w, 'freq': 0, 'years': [], 'in_corpus': False})
         have.add(w)
@@ -116,7 +190,7 @@ def pick(path: pathlib.Path, limit: int = 1500, min_freq: int = 2,
 
 def main():
     limit = 1500
-    rows = pick(SENTENCES, limit=limit, supplemental=SUPPLEMENT)
+    rows = pick(SENTENCES, limit=limit, min_freq=1, supplemental=SUPPLEMENT)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     with OUT.open('w', encoding='utf-8') as f:
         for r in rows:

@@ -22,7 +22,7 @@ def main():
     path = pathlib.Path(tempfile.mkdtemp()) / "s.jsonl"
     path.write_text('\n'.join(__import__('json').dumps(r) for r in ROWS),
                     encoding='utf-8')
-    got = v.pick(path, limit=10, min_freq=2)
+    got = v.pick(path, limit=10, min_freq=2, basic=set())
     words = [r['word'] for r in got]
     assert words[0] == 'momentum', words
     assert 'renewables' in words
@@ -31,10 +31,14 @@ def main():
     assert got[0]['years'] == [2018, 2019]
 
     # 语料不足时用补充词表填满，并标 in_corpus=False
-    filled = v.pick(path, limit=10, min_freq=2, supplemental=['abandon', 'benefit'])
+    filled = v.pick(path, limit=10, min_freq=2, basic=set(),
+                     supplemental=['abandon', 'benefit'])
     tail = [r for r in filled if not r['in_corpus']]
     assert [r['word'] for r in tail] == ['abandon', 'benefit'], tail
     assert len(filled) == len(got) + 2
+    # 中学基础词即使语料高频也要排除
+    filtered = v.pick(path, limit=10, min_freq=2, basic={'momentum'})
+    assert 'momentum' not in [r['word'] for r in filtered], filtered
     print('vocab pick ok')
 
 
