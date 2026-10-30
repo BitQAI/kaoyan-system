@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { postJson } from "@/lib/api";
 import { answerHtml } from "@/lib/render";
+import { clearResume, readResume, saveResume } from "@/lib/resume";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
 import type { Card, Chapter } from "@/lib/types";
 import { useAi } from "./AiProvider";
@@ -30,15 +31,21 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
   const chapterNames: Record<string, string> = {};
   chapters.forEach((c) => { chapterNames[c.id] = c.name; });
 
-  const load = useCallback((next: Scope) => {
+  const load = useCallback((next: Scope, resume = false) => {
     setLoading(true);
     postJson<{ items: Card[]; remaining: number }>("/api/queue/custom", {
       mode: "memo", subjects: [sid], chapters: next.chapters, limit: next.limit,
     })
       .then((d) => {
+        let start = 0;
+        if (resume) {
+          const cardId = readResume("memo", sid);
+          const i = cardId ? d.items.findIndex((c) => c.card_id === cardId) : -1;
+          if (i > 0) start = i;
+        }
         setCards(d.items);
         setRemaining(d.remaining);
-        setIndex(0);
+        setIndex(start);
         setFlipped(false);
         setGrades([]);
       })
@@ -49,8 +56,15 @@ export default function MemoView({ sid, chapters }: { sid: string; chapters: Cha
   useEffect(() => {
     const saved = readScope(sid);
     setScope(saved);
-    load(saved);
+    load(saved, true);
   }, [sid, load]);
+
+  useEffect(() => {
+    if (!cards.length) return;
+    const current = cards[index];
+    if (current) saveResume("memo", sid, current.card_id);
+    else clearResume("memo", sid);
+  }, [cards, index, sid]);
 
   function applyScope(next: Scope) {
     setScope(next);

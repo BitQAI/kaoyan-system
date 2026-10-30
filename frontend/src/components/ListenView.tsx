@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { postJson } from "@/lib/api";
 import { loadAudio, pinAudio, readRate, RATE_DEFAULT } from "@/lib/listen";
 import { answerHtml, paragraphs } from "@/lib/render";
+import { clearResume, readResume, saveResume } from "@/lib/resume";
 import { DEFAULT_SCOPE, readScope, scopeLabel, writeScope, type Scope } from "@/lib/scope";
 import type { Chapter, ListenItem } from "@/lib/types";
 import { useAi } from "./AiProvider";
@@ -43,7 +44,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   const chapterNames: Record<string, string> = {};
   chapters.forEach((c) => { chapterNames[c.id] = c.name; });
 
-  const load = useCallback((next: Scope) => {
+  const load = useCallback((next: Scope, resume = false) => {
     setLoading(true);
     setSpeaking(false);
     if (typeof window !== "undefined" && "speechSynthesis" in window) window.speechSynthesis.cancel();
@@ -52,10 +53,27 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
     postJson<{ items: ListenItem[]; remaining: number }>("/api/queue/custom", {
       mode: "listen", subjects: [sid], chapters: next.chapters, limit: next.limit,
     })
-      .then((d) => { setItems(d.items); setRemaining(d.remaining); setIdx(0); })
+      .then((d) => {
+        let start = 0;
+        if (resume) {
+          const cardId = readResume("listen", sid);
+          const i = cardId ? d.items.findIndex((x) => x.card_id === cardId) : -1;
+          if (i > 0) start = i;
+        }
+        setItems(d.items);
+        setRemaining(d.remaining);
+        setIdx(start);
+      })
       .catch(() => { setItems([]); setRemaining(0); })
       .finally(() => setLoading(false));
   }, [sid]);
+
+  useEffect(() => {
+    if (!items.length) return;
+    const current = items[idx];
+    if (current) saveResume("listen", sid, current.card_id);
+    else clearResume("listen", sid);
+  }, [items, idx, sid]);
 
   // 语音引擎预热：首次朗读常要等音色加载，先空跑一次
   useEffect(() => {
@@ -105,7 +123,7 @@ export default function ListenView({ sid, chapters }: { sid: string; chapters: C
   useEffect(() => {
     const saved = readScope(sid);
     setScope(saved);
-    load(saved);
+    load(saved, true);
     return () => {
       if (typeof window !== "undefined" && "speechSynthesis" in window) window.speechSynthesis.cancel();
     };
