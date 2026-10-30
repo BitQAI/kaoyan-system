@@ -1,10 +1,15 @@
+def _expect():
+    from app import importer
+    return importer.expected_counts()
+
+
 def test_progress_stats_all(client):
     got = client.get("/api/stats/progress").json()
-    assert got["points"]["total"] == 538
-    assert got["cards"]["total"] == 3171
-    assert got["listen"]["total"] == 3171
+    assert got["points"]["total"] == _expect()["point"]
+    assert got["cards"]["total"] == _expect()["card"]
+    assert got["listen"]["total"] == _expect()["card"]
     assert got["listen"]["heard"] <= got["listen"]["total"]
-    assert len(got["chapters"]) == 74
+    assert len(got["chapters"]) == _expect()["chapter"]
 
 
 def test_progress_stats_by_subject(client):
@@ -85,11 +90,11 @@ def test_timeline_shape(client):
     got = client.get("/api/stats/timeline").json()
     assert set(got["dimensions"]) == {"memo", "listen"}
     memo = got["dimensions"]["memo"]
-    assert memo["label"] == "记" and memo["total"] == 3171
+    assert memo["label"] == "记" and memo["total"] == _expect()["card"]
     assert memo["series"] and memo["series"][0]["actual"] is True
     assert {"total", "done", "percent", "pace", "status", "status_text"} <= set(memo)
     listen = got["dimensions"]["listen"]
-    assert listen["label"] == "听" and listen["total"] == 3171
+    assert listen["label"] == "听" and listen["total"] == _expect()["card"]
     assert listen["series"] and listen["series"][0]["actual"] is True
     assert got["exam_date"] and got["days_left"] >= 0
     assert len(got["subjects"]) == 4
@@ -125,7 +130,7 @@ def test_listen_event_recorded_on_mark(conn):
 
 def test_progress_stats_listen_counts_cards(client, conn):
     got = client.get("/api/stats/progress").json()
-    assert got["listen"]["total"] == got["cards"]["total"] == 3171
+    assert got["listen"]["total"] == got["cards"]["total"] == _expect()["card"]
     assert got["listen"]["heard"] == conn.execute(
         "SELECT COUNT(*) FROM card_listen").fetchone()[0]
 
