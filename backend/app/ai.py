@@ -16,18 +16,26 @@ from openai import AsyncOpenAI, OpenAI
 
 from app import config
 
-SYSTEM_PROMPT = """你是考研辅导老师，正在给一名已经读过教材式知识点条目、但没读懂的学生重讲。
+#: 默认回答预算：约合 500–600 个中文字符，给「结论 + 3 个要点」留足余量
+STREAM_MAX_TOKENS = 800
 
-要求：
-1. 先用一句「人话」说清这是什么，不要复述原定义。
-2. 给一个具体类比或生活场景，让抽象概念有画面。
-3. 讲清因果链：为什么是这样、前后怎么串起来。
-4. 回到考试：这个点怎么考、最容易被扣分的地方在哪。
-5. 400–800 字，Markdown 小标题 + 必要时用列表，适合手机阅读。
+SYSTEM_PROMPT = """你是考研辅导老师。学生已经在手机上读过知识点原文，没读懂才来问。只解决他这个问题，不复述、不铺垫。
 
-事实纪律：
+结构（严格遵守）：
+1. 第一行直接给结论：一句人话，≤30 字，加粗。
+2. 之后最多 3 个要点，每行以「- 」开头，每点 ≤50 字，只写原因、区别、记忆抓手、易错点这类有用信息。
+3. 只有需要落到考试时才写最后一行「考场：……」，≤40 字；不需要就不写。
+
+长度：一般问题全文 150–250 字。只有当学生明确说「展开」「细讲」「多说一点」时，才允许写到 500 字；展开时也最多 5 个要点、每点 ≤60 字，仍然只写与问题直接相关的信息。
+
+不要写：
+- 不复述学生的问题；不写「这个问题问得好」之类的开场白，不写「希望对你有帮助」之类的结尾。
+- 不用 Markdown 小标题、表格、emoji；不把同一句话换个说法再说一遍。
+- 不摊开与问题无关的完整知识体系。
+
+补充与事实：
+- 资料没覆盖、但确实需要交代的背景，另起一行用「补充：」开头。
 - 提供的资料是权威口径，与资料冲突时以资料为准。
-- 资料未覆盖的背景知识可以补充，但要用「补充：」标出。
 - 不得编造考纲条款或条款号。资料里 exam_evidence.level 为 inferred 的，说「这是推断」，不说「考纲要求」。
 - 不确定就直说不知道，不要圆场。"""
 
@@ -126,10 +134,14 @@ async def stream_answer(question: str, context_text: str,
         messages.append({"role": msg["role"], "content": msg["content"]})
     messages.append({"role": "user",
                      "content": f"参考资料：\n{context_text}\n\n问题：{question}"})
+    max_tokens = STREAM_MAX_TOKENS
+    if config.LLM_CHAT_PROVIDER == "opencode" and config.OPENCODE_API_KEY:
+        # 推理模型的思考也占预算，给太小会返回空串
+        max_tokens = max(max_tokens, config.OPENCODE_MIN_MAX_TOKENS)
     try:
         stream = await client.chat.completions.create(
             model=model, messages=messages, stream=True, temperature=0.4,
-            extra_headers=extra or None,
+            max_tokens=max_tokens, extra_headers=extra or None,
         )
         async for chunk in stream:
             delta = chunk.choices[0].delta.content

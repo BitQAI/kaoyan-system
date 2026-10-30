@@ -36,6 +36,7 @@ const SUGGESTIONS = [
   "这个点在真题里怎么考",
 ];
 const GENERIC = ["今天先复习哪几个点最值？", "某个概念看不懂怎么问？", "怎么安排背诵节奏？"];
+const FOLLOWUPS = ["展开讲讲", "举个例子", "怎么考"];
 const MAX_INPUT_H = 132;
 
 export default function AiChat({
@@ -322,8 +323,19 @@ export default function AiChat({
                   </div>
                 )}
                 {m.text && (
-                  <button className="badge-btn" style={{ marginTop: 4 }}
-                    onClick={() => void handleCopy(m.text)}>复制回答</button>
+                  <>
+                    <button className="badge-btn" style={{ marginTop: 4 }}
+                      onClick={() => void handleCopy(m.text)}>复制回答</button>
+                    {i === messages.length - 1 && !busy && (
+                      <div className="ai-followups">
+                        {FOLLOWUPS.map((f) => (
+                          <button key={f} className="ai-suggest" onClick={() => void ask(f)}>
+                            {f}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </>
                 )}
               </>
             ) : (

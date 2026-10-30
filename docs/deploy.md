@@ -85,6 +85,11 @@ bash deploy/install_server.sh
 cp data/ky.db data/ky.db.bak.$(date +%F)
 ```
 
+> 以 `0008_add_card_note` 为例：升级会自动新建 `card_note` 表（「听 / 记」共享的卡片笔记），
+> 不写、不删任何旧数据。笔记和进度、收藏、问答历史一样都存在 `data/ky.db` 里，备份与恢复方式不变。
+> 本次更新同时改了 AI 助手的系统提示词和前端排版，`install_server.sh` 会重建前端并重启两个服务，
+> 跑完再刷新页面即可；只 `git pull` 不跑脚本的话，AI 仍会按旧提示词长篇回答。
+
 脚本**不会**动 `data/audio/`（音频是静态文件，不在 git 里，也不会被导入覆盖）；音频有更新时按下一节手动同步。
 
 ---
@@ -151,7 +156,7 @@ PY
 
 ## 七、备份
 
-需要备份的**只有** `data/ky.db`（学习进度、收藏、问答历史都在里面）。
+需要备份的**只有** `data/ky.db`（学习进度、收藏、卡片笔记、问答历史都在里面）。
 代码与元数据都在 git 里，不必备份；`data/audio/` 是可再生成的静态文件，也不必备份（丢了就按第五节重新生成并同步）。
 
 ```bash
@@ -182,6 +187,8 @@ curl -s localhost:8000/api/health     # {"ok":true,"points":538,"ai_configured":
 | AI 报「未配置密钥」 | 根目录没有 `.env` 或没有 `DEEPSEEK_API_KEY` | 补齐 `.env` 后 `systemctl restart kaoyan-backend` |
 | `alembic check` 报漂移 | 手工改过库 | 以迁移为准：备份后 `alembic upgrade head`，再核对 `alembic check` |
 | 元数据更新后页面没变 | 只 pull 了代码，没重跑导入 | `bash deploy/install_server.sh`（会重新导入） |
+| 笔记保存失败，或再进来看不到之前写的笔记 | 后端没跑迁移（缺 `card_note` 表）或仍是旧进程 | 备份 `data/ky.db` 后 `bash deploy/install_server.sh`；`cd backend && .venv/bin/alembic current` 应为 `0008` |
+| AI 回答又变成长篇、没有「展开讲讲 / 举个例子 / 怎么考」 | 只 pull 了代码：后端还是旧提示词，前端还是旧构建 | `bash deploy/install_server.sh`；只想先缓解提示词问题可 `systemctl restart kaoyan-backend` |
 | 进度预测页加载失败或两个维度数字全 0 | 后端还是旧进程，接口结构没更新（`/api/stats/timeline` 返回旧字段） | `systemctl restart kaoyan-backend`；正常更新走 `install_server.sh` 会自动重启 |
 | 朗读没声音 | 服务器上没有 `data/audio/`，或该卡本就无音频且系统无中文语音包 | 先确认 `data/audio/{科目}/{card_id}.mp3` 存在；204 没有音频，只能走 TTS，需要系统装中文语音 |
 | iOS 锁屏后朗读中断 | 只有回退到 `speechSynthesis` 的卡片会断（有音频的卡走 `<audio>`，锁屏可继续） | 属于回退路径的固有限制；确认对应科目的音频已上传 |
