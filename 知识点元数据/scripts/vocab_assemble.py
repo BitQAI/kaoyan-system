@@ -74,7 +74,7 @@ def build_word_points(entries: list[dict]) -> list[dict]:
         lo, hi = gi + 1, gi + len(chunk)
         units = [f'{e["word"]}：{_meaning_text(e.get("meanings") or [])[:36]}' for e in chunk]
         cards = [word_card(pid, i, e, units[i - 1]) for i, e in enumerate(chunk, start=1)]
-        title = f'核心词汇 {gi // GROUP + 1:02d}（第 {lo}–{hi} 高频）'
+        title = f'核心词汇 {gi // GROUP + 1:02d}（第 {lo}–{hi}）'
         points.append({
             'id': pid, 'chapter': '204-10', 'order': gi // GROUP + 1,
             'point': title, 'title': title,

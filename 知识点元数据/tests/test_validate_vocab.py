@@ -30,6 +30,11 @@ CONFUSABLE_BAD = {
     "card_id": "c2041104-2", "kind": "词汇",
     "payload": {"type": "confusable", "group": ["adapt"]},
 }
+PHRASE_OK = {
+    "card_id": "c2041101-1", "kind": "词汇",
+    "payload": {"type": "phrase", "word": "account for",
+                "meanings": [{"pos": "phr.", "cn": "占比"}]},
+}
 CLOZE_BAD = {
     "card_id": "c2040805-3", "kind": "默写",
     "question": "a ____ b ____ c", "answer_points": ["x", "y", "z"],
@@ -49,6 +54,7 @@ def main():
     assert 'E28' in codes(v.check_payload('204', '2041001', WORD_NO_EXAMPLES))
     assert v.check_payload('204', '2041104', CONFUSABLE_OK) == []
     assert 'E28' in codes(v.check_payload('204', '2041104', CONFUSABLE_BAD))
+    assert v.check_payload('204', '2041101', PHRASE_OK) == []
     assert v.check_cloze('204', '2040805', CLOZE_BAD)
     assert v.check_cloze('204', '2040805', CLOZE_OK) == []
     print('validate vocab fixture ok')

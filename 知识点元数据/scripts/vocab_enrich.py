@@ -14,6 +14,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import llm  # noqa: E402
+import os  # noqa: E402
+import requests  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 META = ROOT / '知识点元数据'
@@ -153,31 +155,77 @@ def attach_occurrences(entry: dict, index: dict[str, list[dict]]) -> dict:
     return entry
 
 
-def enrich(word: str, call=llm.call_llm) -> dict | None:
+def _deepseek_settings():
+    """优先用 DeepSeek 官方接口：网关限流时它更快。"""
+    key = os.environ.get('DEEPSEEK_API_KEY', '')
+    base = os.environ.get('DEEPSEEK_BASE_URL', 'https://api.deepseek.com')
+    env = ROOT / '.env'
+    if env.exists():
+        for line in env.read_text(encoding='utf-8').splitlines():
+            if line.startswith('DEEPSEEK_API_KEY='):
+                key = key or line.split('=', 1)[1].strip()
+            elif line.startswith('DEEPSEEK_BASE_URL='):
+                base = line.split('=', 1)[1].strip() or base
+    return key, base.rstrip('/')
+
+
+def call_llm(messages, max_tokens=2500):
+    key, base = _deepseek_settings()
+    if not key:
+        return llm.call_llm(messages, max_tokens=max_tokens)
+    try:
+        r = requests.post(f'{base}/chat/completions',
+                          headers={'Authorization': f'Bearer {key}'},
+                          json={'model': 'deepseek-chat', 'messages': messages,
+                                'max_tokens': max_tokens}, timeout=180)
+        if r.status_code != 200:
+            return llm.call_llm(messages, max_tokens=max_tokens)
+        content = (r.json().get('choices') or [{}])[0].get('message', {}).get('content', '')
+        return llm.parse_reply(content)
+    except Exception:  # noqa: BLE001
+        return llm.call_llm(messages, max_tokens=max_tokens)
+
+
+def enrich(word: str, call=call_llm) -> dict | None:
     raw = call([{'role': 'user', 'content': PROMPT.format(word=word)}], max_tokens=2500)
     if not isinstance(raw, dict):
         return None
     return normalize({**raw, 'word': raw.get('word') or word})
 
 
-def main(limit: int | None = None, workers: int = 4):
+def main(limit: int | None = None, workers: int = 4, shard: str | None = None):
     rows = [json.loads(l) for l in SENTENCES.read_text(encoding='utf-8').splitlines() if l.strip()]
     index = build_index(rows)
     words = [json.loads(l) for l in WORD_LIST.read_text(encoding='utf-8').splitlines() if l.strip()]
     done: dict[str, dict] = {}
-    if OUT.exists():
+    if OUT.exists() and not shard:
         for line in OUT.read_text(encoding='utf-8').splitlines():
             if line.strip():
                 row = json.loads(line)
                 done[row['word']] = row
-    todo = [w['word'] for w in words if w['word'] not in done]
+    out_path = OUT if not shard else OUT.with_suffix('.shard' + shard.replace('/', '-') + '.jsonl')
+    existing: set[str] = set()
+    if shard:
+        idx, num = (int(x) for x in shard.split('/'))
+        done = {}
+        if OUT.exists():
+            existing = {json.loads(l)['word'] for l in OUT.read_text(encoding='utf-8').splitlines() if l.strip()}
+        if out_path.exists():
+            for line in out_path.read_text(encoding='utf-8').splitlines():
+                if line.strip():
+                    row = json.loads(line)
+                    done[row['word']] = row
+                    existing.add(row['word'])
+    todo = [w['word'] for w in words if w['word'] not in done and w['word'] not in existing]
+    if shard:
+        todo = todo[idx::num]
     if limit:
         todo = todo[:limit]
     lock = threading.Lock()
     order = [w['word'] for w in words]
 
     def flush():
-        with OUT.open('w', encoding='utf-8') as f:
+        with out_path.open('w', encoding='utf-8') as f:
             for w in order:
                 if w in done:
                     f.write(json.dumps(done[w], ensure_ascii=False) + '\n')
@@ -196,7 +244,26 @@ def main(limit: int | None = None, workers: int = 4):
     with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
         list(pool.map(one, todo))
     flush()
-    print(f'写出 {OUT.relative_to(ROOT)}：{len(done)} 词')
+    print(f'写出 {out_path.relative_to(ROOT)}：{len(done)} 词')
+
+
+def main_merge():
+    seen: dict[str, dict] = {}
+    paths = [OUT] + sorted(OUT.parent.glob('204-vocab.shard*.jsonl'))
+    for path in paths:
+        for line in path.read_text(encoding='utf-8').splitlines():
+            if line.strip():
+                row = json.loads(line)
+                seen[row['word']] = row
+    order = [json.loads(l)['word'] for l in WORD_LIST.read_text(encoding='utf-8').splitlines() if l.strip()]
+    with OUT.open('w', encoding='utf-8') as f:
+        for w in order:
+            if w in seen:
+                f.write(json.dumps(seen[w], ensure_ascii=False) + '\n')
+    for path in paths:
+        if path != OUT:
+            path.unlink()
+    print(f'合并 {len(paths)} 个文件 → {len(seen)} 词')
 
 
 if __name__ == '__main__':
@@ -204,5 +271,10 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('--limit', type=int, default=None, help='只生成前 N 个未处理的词')
     ap.add_argument('--workers', type=int, default=4, help='并发数')
+    ap.add_argument('--shard', default=None, help='分片，如 0/3')
+    ap.add_argument('--merge', action='store_true', help='合并分片结果到主文件')
     args = ap.parse_args()
-    main(args.limit, args.workers)
+    if args.merge:
+        main_merge()
+    else:
+        main(args.limit, args.workers, args.shard)

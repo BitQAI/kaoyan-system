@@ -12,6 +12,7 @@ import argparse
 import json
 import pathlib
 import sys
+from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import gen_audio  # noqa: E402
@@ -65,6 +66,7 @@ def main():
     ap.add_argument('--limit', type=int, default=None)
     ap.add_argument('--dry-run', action='store_true')
     ap.add_argument('--sample', action='store_true', help='只做前 5 个词验音色')
+    ap.add_argument('--workers', type=int, default=4, help='并发数')
     args = ap.parse_args()
 
     doc = json.loads(DOC.read_text(encoding='utf-8'))
@@ -79,7 +81,8 @@ def main():
         return
     key = gen_audio.api_key()
     done = 0
-    for job in jobs:
+
+    def one(job):
         parts = []
         for clip in job['clips']:
             path = clip_path('204', job['card_id'], clip['clip'])
@@ -93,10 +96,14 @@ def main():
                     continue
                 path.write_bytes(content)
             parts.append(path)
-            done += 1
         if parts:
             whole = clip_path('204', job['card_id'], None)
             whole.write_bytes(b''.join(p.read_bytes() for p in parts))
+        return sum(1 for _ in parts)
+
+    with ThreadPoolExecutor(max_workers=max(1, args.workers)) as pool:
+        for n in pool.map(one, jobs):
+            done += n
     print(f'完成 {done}/{total} 段')
 
 

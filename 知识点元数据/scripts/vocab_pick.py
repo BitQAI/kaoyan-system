@@ -115,22 +115,35 @@ IRREGULAR = {
 }
 
 
-def lemma(w: str) -> list[str]:
-    """粗词形还原：用于和中学 3500 词比对。"""
-    out = [w]
-    if w in IRREGULAR:
-        out.append(IRREGULAR[w])
+def _strip(base: str) -> list[str]:
+    out = [base]
+    if base in IRREGULAR:
+        out.append(IRREGULAR[base])
     for suf in ('ing', 'ed', 'ly', 'er', 'est', 'es', 's'):
-        if len(w) > len(suf) + 1 and w.endswith(suf):
-            base = w[:-len(suf)]
-            out += [base, base + 'e', base[:-1]]
-    if w.endswith('ly') and len(w) > 4:
-        out += [w[:-2] + 'le', w[:-2] + 'l']
-    if w.endswith('ier') and len(w) > 4:
-        out.append(w[:-3] + 'y')
-    if w.endswith('ies') and len(w) > 4:
-        out.append(w[:-3] + 'y')
+        if len(base) > len(suf) + 1 and base.endswith(suf):
+            stem = base[:-len(suf)]
+            out += [stem, stem + 'e', stem[:-1]]
+    if base.endswith('ier') and len(base) > 4:
+        out.append(base[:-3] + 'y')
+    if base.endswith('ies') and len(base) > 4:
+        out.append(base[:-3] + 'y')
+    if base.endswith('ly') and len(base) > 4:
+        out += [base[:-2] + 'le', base[:-2] + 'l']
     return out
+
+
+def lemma(w: str) -> list[str]:
+    """粗词形还原（两层）：只用于和中学 3500 词比对与同形去重。"""
+    seen, frontier = [], [w]
+    for _ in range(2):
+        nxt = []
+        for x in frontier:
+            for y in _strip(x):
+                if y not in seen:
+                    seen.append(y)
+                    nxt.append(y)
+        frontier = nxt[:20]
+    return seen
 
 
 def is_basic(w: str, basic: set[str]) -> bool:

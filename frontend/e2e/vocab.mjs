@@ -23,8 +23,9 @@ if (process.argv.includes("--unit")) {
 const BASE = process.argv[2] || "http://localhost:3000";
 const USER = process.env.KY_USER;
 const PASS = process.env.KY_PASS;
-if (!USER || !PASS) {
-  console.error("需要 KY_USER / KY_PASS 环境变量");
+const TOKEN = process.env.KY_TOKEN;
+if (!TOKEN && (!USER || !PASS)) {
+  console.error("需要 KY_USER/KY_PASS 或 KY_TOKEN");
   process.exit(2);
 }
 
@@ -43,11 +44,16 @@ const page = await browser.newPage({ viewport: { width: 420, height: 860 } });
 const errors = [];
 page.on("pageerror", (e) => errors.push(String(e)));
 
-await page.goto(`${BASE}/login`, { waitUntil: "networkidle" });
-await page.fill('input[name="username"], input[type="text"]', USER);
-await page.fill('input[type="password"]', PASS);
-await page.keyboard.press("Enter");
-await page.waitForLoadState("networkidle");
+if (TOKEN) {
+  await page.goto(`${BASE}/login`, { waitUntil: "domcontentloaded" });
+  await page.evaluate((t) => localStorage.setItem("kaoyan.auth.token", t), TOKEN);
+} else {
+  await page.goto(`${BASE}/login`, { waitUntil: "networkidle" });
+  await page.fill('input[name="username"], input[type="text"]', USER);
+  await page.fill('input[type="password"]', PASS);
+  await page.keyboard.press("Enter");
+  await page.waitForLoadState("networkidle");
+}
 
 // 词汇：翻面看释义与真题标注
 await page.goto(`${BASE}/study?view=memo&sid=204`, { waitUntil: "networkidle" });

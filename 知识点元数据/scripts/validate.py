@@ -61,8 +61,8 @@ def load_unit_registry(sid='812'):
 #: 结构化卡片 payload 的必填字段（词卡 / 词组卡 / 辨析卡）
 PAYLOAD_REQUIRED = {
     'word': ('word', 'meanings', 'examples'),
-    'phrase': ('word', 'meanings', 'examples'),
-    'confusable': ('group', 'stem', 'answer', 'diff'),
+    'phrase': ('word', 'meanings'),
+    'confusable': ('group', 'diff'),
 }
 CLOZE_BLANK = '____'
 
