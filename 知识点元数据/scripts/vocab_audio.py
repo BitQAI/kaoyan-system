@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+"""词卡与范文卡的分片音频。
+
+规则（与前端、接口约定一致）：
+- 词卡：word(英文) / meaning(中文) / sentence(英文)；整卡 mp3 由分片字节拼接
+- 词组卡：word / meaning
+- 辨析卡：说明中文一条
+- 回译 / 默写 / 句型 / 整篇卡：para（英文段落或全文）
+缺失时前端回退浏览器 TTS，所以失败只记日志、不中断。
+"""
+import argparse
+import json
+import pathlib
+import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import gen_audio  # noqa: E402
+
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+META = ROOT / '知识点元数据'
+DOC = META / 'subjects' / '204' / '204.json'
+OUT = ROOT / 'data' / 'audio'
+EN_VOICE = '6f1ca7031e964906905e5a46c5b2da4c'   # 专业本男声：英文片先用它，验证后定稿
+ZH_VOICE = '36ef842120654ee6b38ef43c8f08535a'
+
+
+def clip_path(subject: str, card_id: str, clip: str | None) -> pathlib.Path:
+    name = f'{card_id}-{clip}.mp3' if clip else f'{card_id}.mp3'
+    return OUT / subject / name
+
+
+def scripts_for(card: dict) -> list[dict]:
+    p = card.get('payload') or {}
+    kind = p.get('type')
+    if kind == 'word':
+        meaning = '；'.join(m['cn'] for m in p.get('meanings') or [] if m.get('cn'))
+        ex = (p.get('examples') or [{}])[0]
+        out = [{'clip': 'word', 'text': p.get('word') or '', 'lang': 'en-US'}]
+        if meaning:
+            out.append({'clip': 'meaning', 'text': meaning, 'lang': 'zh-CN'})
+        if ex.get('quote'):
+            out.append({'clip': 'sentence', 'text': ex['quote'], 'lang': 'en-US'})
+        return [c for c in out if c['text']]
+    if kind == 'phrase':
+        meaning = '；'.join(m['cn'] for m in p.get('meanings') or [] if m.get('cn'))
+        return [{'clip': 'word', 'text': p.get('word') or '', 'lang': 'en-US'}] + (
+            [{'clip': 'meaning', 'text': meaning, 'lang': 'zh-CN'}] if meaning else [])
+    if kind == 'confusable':
+        return [{'clip': 'meaning', 'text': p.get('diff') or '', 'lang': 'zh-CN'}] \
+            if p.get('diff') else []
+    text = (card.get('answer') or '').strip()
+    return [{'clip': 'para', 'text': text, 'lang': 'en-US'}] if text else []
+
+
+def build(doc: dict) -> list[dict]:
+    jobs = []
+    for point in doc['points']:
+        for card in point['cards']:
+            jobs.append({'card_id': card['card_id'], 'clips': scripts_for(card)})
+    return jobs
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--limit', type=int, default=None)
+    ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--sample', action='store_true', help='只做前 5 个词验音色')
+    args = ap.parse_args()
+
+    doc = json.loads(DOC.read_text(encoding='utf-8'))
+    jobs = build(doc)
+    if args.sample:
+        jobs = [j for j in jobs if j['clips'] and j['card_id'].startswith('c2041')][:5]
+    if args.limit:
+        jobs = jobs[:args.limit]
+    total = sum(len(j['clips']) for j in jobs)
+    if args.dry_run:
+        print(f'{len(jobs)} 张卡 / {total} 段音频')
+        return
+    key = gen_audio.api_key()
+    done = 0
+    for job in jobs:
+        parts = []
+        for clip in job['clips']:
+            path = clip_path('204', job['card_id'], clip['clip'])
+            path.parent.mkdir(parents=True, exist_ok=True)
+            voice = EN_VOICE if clip['lang'] == 'en-US' else ZH_VOICE
+            if not path.exists():
+                content, err = gen_audio.synth(
+                    clip['text'], voice, key, language='en' if clip['lang'] == 'en-US' else 'zh')
+                if not content:
+                    print(f'  ! 失败 {path.name}: {err}')
+                    continue
+                path.write_bytes(content)
+            parts.append(path)
+            done += 1
+        if parts:
+            whole = clip_path('204', job['card_id'], None)
+            whole.write_bytes(b''.join(p.read_bytes() for p in parts))
+    print(f'完成 {done}/{total} 段')
+
+
+if __name__ == '__main__':
+    main()

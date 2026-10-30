@@ -54,11 +54,11 @@ def api_key():
     return k
 
 
-def synth(text, ref, key, retries=5):
+def synth(text, ref, key, retries=5, language='zh'):
     payload = {
         'text': text, 'reference_id': ref, 'format': 'mp3', 'sample_rate': 44100,
         'mp3_bitrate': 128, 'latency': 'normal', 'chunk_length': 300,
-        'min_chunk_length': 50, 'normalize': True, 'language': 'zh',
+        'min_chunk_length': 50, 'normalize': True, 'language': language,
         'prosody': {'speed': 1.0, 'volume': 0, 'normalize_loudness': True},
     }
     headers = {'Authorization': f'Bearer {key}', 'Content-Type': 'application/json',

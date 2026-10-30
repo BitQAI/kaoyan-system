@@ -8,12 +8,14 @@ import json
 import pathlib
 import re
 import sys
+import threading
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import llm  # noqa: E402
 
-ROOT = pathlib.Path(__file__).resolve().parents[3]
+ROOT = pathlib.Path(__file__).resolve().parents[2]
 META = ROOT / '知识点元数据'
 SENTENCES = META / 'research' / '204-corpus' / 'sentences.jsonl'
 WORD_LIST = META / 'subjects' / '204' / '204-vocab-list.jsonl'
@@ -44,6 +46,8 @@ def build_index(rows: list[dict]) -> dict[str, list[dict]]:
     seen: dict[str, set] = defaultdict(set)
     for r in rows:
         en = r.get('en') or ''
+        if re.search(r'\s\d{1,2}\s', en):
+            continue  # 完形设空处的编号，去掉这些句子免得例句带空
         for tok in TOKEN.findall(en):
             w = tok.lower().strip("-'")
             if len(w) < 3:
@@ -95,6 +99,27 @@ def normalize(raw: dict) -> dict:
     }
 
 
+def pick_occurrence(hits: list[dict], word: str) -> dict | None:
+    """从语料命中里挑一条最适合展示的：小写、长度适中、不要专有名词里的人名机构名。"""
+    best, best_score = None, -1
+    for h in hits:
+        en = h.get('en') or ''
+        i = en.lower().find(word.lower())
+        if i < 0:
+            continue
+        n = len(en.split())
+        score = 0
+        if i > 0 and en[i].islower():
+            score += 2
+        if 8 <= n <= 30:
+            score += 2
+        if n > 45:
+            score -= 2
+        if score > best_score:
+            best, best_score = h, score
+    return best
+
+
 def attach_occurrences(entry: dict, index: dict[str, list[dict]]) -> dict:
     """把例句与语料对上：命中就补年份/题型/原文编号，命不中的降级为自写例句。"""
     hits = index.get(entry['word'].lower(), [])
@@ -117,29 +142,25 @@ def attach_occurrences(entry: dict, index: dict[str, list[dict]]) -> dict:
                    'part': hit.get('part') or '', 'text': hit.get('text') or ''})
         out.append(ex)
 
-    # 模型没给够真题句时，从语料里补一条真实原句
+    # 模型没给够真题句时，从语料里补一条最适合展示的真实原句
     if not any(x['kind'] == '真题' for x in out):
-        for h in hits[:2]:
-            key = _norm_sent(h['en'])
-            if key in used:
-                continue
-            used.add(key)
+        h = pick_occurrence(hits, entry['word'])
+        if h is not None:
             out.insert(0, {'kind': '真题', 'quote': h['en'].strip(),
                            'year': h.get('year'), 'part': h.get('part') or '',
                            'text': h.get('text') or ''})
-            break
     entry['examples'] = out
     return entry
 
 
 def enrich(word: str, call=llm.call_llm) -> dict | None:
-    raw = call([{'role': 'user', 'content': PROMPT.format(word=word)}], max_tokens=1200)
+    raw = call([{'role': 'user', 'content': PROMPT.format(word=word)}], max_tokens=2500)
     if not isinstance(raw, dict):
         return None
     return normalize({**raw, 'word': raw.get('word') or word})
 
 
-def main():
+def main(limit: int | None = None, workers: int = 4):
     rows = [json.loads(l) for l in SENTENCES.read_text(encoding='utf-8').splitlines() if l.strip()]
     index = build_index(rows)
     words = [json.loads(l) for l in WORD_LIST.read_text(encoding='utf-8').splitlines() if l.strip()]
@@ -149,22 +170,39 @@ def main():
             if line.strip():
                 row = json.loads(line)
                 done[row['word']] = row
-    with OUT.open('w', encoding='utf-8') as f:
-        for i, row in enumerate(words, start=1):
-            w = row['word']
-            entry = done.get(w)
-            if entry is None:
-                entry = enrich(w)
-                if entry is None:
-                    print(f'  ! 生成失败，跳过 {w}')
-                    continue
-                entry = attach_occurrences(entry, index)
-            f.write(json.dumps(entry, ensure_ascii=False) + '\n')
-            if i % 50 == 0:
-                print(f'  {i}/{len(words)}')
-    total = sum(1 for _ in OUT.open(encoding='utf-8'))
-    print(f'写出 {OUT.relative_to(ROOT)}：{total} 词')
+    todo = [w['word'] for w in words if w['word'] not in done]
+    if limit:
+        todo = todo[:limit]
+    lock = threading.Lock()
+    order = [w['word'] for w in words]
+
+    def flush():
+        with OUT.open('w', encoding='utf-8') as f:
+            for w in order:
+                if w in done:
+                    f.write(json.dumps(done[w], ensure_ascii=False) + '\n')
+
+    def one(word):
+        entry = enrich(word)
+        if entry is None:
+            print(f'  ! 生成失败，跳过 {word}', flush=True)
+            return
+        with lock:
+            done[word] = attach_occurrences(entry, index)
+            if len(done) % 25 == 0:
+                flush()
+                print(f'  {len(done)}/{len(order)}', flush=True)
+
+    with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
+        list(pool.map(one, todo))
+    flush()
+    print(f'写出 {OUT.relative_to(ROOT)}：{len(done)} 词')
 
 
 if __name__ == '__main__':
-    main()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--limit', type=int, default=None, help='只生成前 N 个未处理的词')
+    ap.add_argument('--workers', type=int, default=4, help='并发数')
+    args = ap.parse_args()
+    main(args.limit, args.workers)
