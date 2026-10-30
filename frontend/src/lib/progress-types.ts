@@ -2,6 +2,7 @@ export type DimStatus = "ok" | "risk" | "late" | "empty" | "insufficient" | "sta
 export type PaceTrend = "up" | "down" | "flat";
 export type ForecastMode = "load_aware" | "linear";
 export type Confidence = "high" | "medium" | "low";
+export type FocusMode = "memo" | "listen" | "both";
 
 export interface SeriesPoint {
   date: string;

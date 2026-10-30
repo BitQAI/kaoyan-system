@@ -28,7 +28,10 @@
   --shadow:0 18px 40px -16px var(--panel-shadow);
 
   --card-strong:#fff;
-  --chart-ac:#248A3D; --chart-fc:#B25E00; --chart-goal:rgba(11,18,32,.22);
+  --chart-ac:#34C759; --chart-ac-ink:#248A3D;
+  --chart-fc:#C93400; --chart-fc-bright:#FF9500;
+  --chart-goal:rgba(142,142,147,.55);
+  --pc-hatch-opacity:.32; --pc-tint-opacity:.07;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 
@@ -56,7 +59,10 @@
     --blob-4:#1278C8; --blob-5:#0E7C74;
 
     --card-strong:#111b28;
-    --chart-ac:#34C759; --chart-fc:#FF9F0A; --chart-goal:rgba(242,246,252,.28);
+    --chart-ac:#30D158; --chart-ac-ink:#30D158;
+    --chart-fc:#FF9F0A; --chart-fc-bright:#FF9F0A;
+    --chart-goal:rgba(142,142,147,.65);
+    --pc-hatch-opacity:.42; --pc-tint-opacity:.10;
   }
 }
 
@@ -83,7 +89,10 @@ html[data-theme="dark"]{
   --blob-4:#1278C8; --blob-5:#0E7C74;
 
   --card-strong:#111b28;
-  --chart-ac:#34C759; --chart-fc:#FF9F0A; --chart-goal:rgba(242,246,252,.28);
+  --chart-ac:#30D158; --chart-ac-ink:#30D158;
+  --chart-fc:#FF9F0A; --chart-fc-bright:#FF9F0A;
+  --chart-goal:rgba(142,142,147,.65);
+  --pc-hatch-opacity:.42; --pc-tint-opacity:.10;
 }
 
 /* ============================================================
@@ -699,15 +708,57 @@ html[data-theme="dark"] .badge.pri-hot{background:rgba(255,159,10,.16)}
 .habit-line b{color:var(--ink);font-size:13px;font-variant-numeric:tabular-nums}
 
 .chart-card{border-radius:20px;padding:10px 6px 8px}
+.chart-focus{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:2px 12px 6px}
+.chart-focus-label{font-size:10.5px;color:var(--muted);font-weight:650;letter-spacing:.04em}
+.chart-focus button{
+  border:1px solid var(--line);background:var(--bg2);color:var(--muted);
+  border-radius:999px;padding:4px 11px;font-size:11.5px;cursor:pointer;font-weight:600;
+  transition:background .15s ease,color .15s ease,border-color .15s ease;
+}
+.chart-focus button.on{
+  background:color-mix(in srgb,var(--chart-ac) 12%,transparent);
+  border-color:color-mix(in srgb,var(--chart-ac) 38%,transparent);color:var(--ink);
+}
+.chart-focus button.on.listen{
+  background:color-mix(in srgb,var(--accent) 12%,transparent);
+  border-color:color-mix(in srgb,var(--accent) 38%,transparent);
+}
+.chart-focus button.on.both{
+  background:color-mix(in srgb,var(--muted) 12%,transparent);
+  border-color:var(--line);
+}
 .progress-chart{width:100%;height:auto;display:block}
 .pc-axis{font-size:11px;fill:var(--muted)}
+.pc-axis-strong{fill:var(--ink);font-weight:650}
+.pc-pill{fill:var(--bg2)}
+.pc-pill-text{fill:var(--muted);font-size:9.5px;font-weight:600}
+.pc-finish-pill{fill:color-mix(in srgb,var(--chart-fc-bright) 16%,transparent)}
+.pc-finish-text{fill:var(--chart-fc);font-size:9.5px;font-weight:650}
+.pc-hatch-line{opacity:var(--pc-hatch-opacity)}
 .chart-legend{display:flex;gap:14px;flex-wrap:wrap;padding:4px 12px;font-size:11.5px;color:var(--muted)}
 .chart-legend span{display:inline-flex;align-items:center;gap:5px}
 .chart-legend i{display:inline-block;width:16px;height:3px;border-radius:2px}
-.lg-solid.memo{background:var(--chart-ac)}
+.lg-solid.memo{background:var(--chart-ac-ink)}
 .lg-solid.listen{background:var(--accent)}
 .lg-dash{background:repeating-linear-gradient(90deg,var(--muted) 0 4px,transparent 4px 7px)}
 .lg-goal{background:repeating-linear-gradient(90deg,var(--chart-goal) 0 4px,transparent 4px 7px)}
+.lg-fill{
+  height:9px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--chart-ac) 34%,transparent),transparent);
+  border:1px solid color-mix(in srgb,var(--chart-ac) 24%,transparent);
+}
+.lg-fill.listen{
+  background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 34%,transparent),transparent);
+  border-color:color-mix(in srgb,var(--accent) 24%,transparent);
+}
+.lg-hatch{
+  height:9px;
+  background:repeating-linear-gradient(45deg,color-mix(in srgb,var(--chart-fc-bright) 50%,transparent) 0 1px,transparent 1px 6px);
+  border:1px solid color-mix(in srgb,var(--chart-fc-bright) 30%,transparent);
+}
+.chart-legend .lg-fill,
+.chart-legend .lg-hatch{height:9px}
+.chart-focus-note{margin:1px 12px 0;font-size:11px;color:var(--muted);line-height:1.5}
 .chart-foot{
   display:flex;justify-content:space-between;gap:8px 14px;padding:8px 12px 2px;
   font-size:11.5px;color:var(--muted);flex-wrap:wrap;
@@ -735,7 +786,7 @@ html[data-theme="dark"] .badge.pri-hot{background:rgba(255,159,10,.16)}
   width:18px;text-align:center;font-size:10.5px;font-weight:700;border-radius:5px;
   padding:1px 0;color:var(--dim);
 }
-.sl-tag.memo{--dim:var(--chart-ac);background:color-mix(in srgb, var(--chart-ac) 14%, transparent)}
+.sl-tag.memo{--dim:var(--chart-ac-ink);background:color-mix(in srgb, var(--chart-ac) 14%, transparent)}
 .sl-tag.listen{--dim:var(--accent);background:var(--accent-soft)}
 .sl-bar{flex:1;height:5px;border-radius:999px;background:var(--line);overflow:hidden}
 .sl-bar i{display:block;height:100%;border-radius:999px;transition:width .3s ease}

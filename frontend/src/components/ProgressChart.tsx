@@ -1,20 +1,22 @@
 "use client";
 import { useMemo, useState } from "react";
-import type { ChartLine, SeriesPoint } from "@/lib/progress-types";
+import type { ChartLine, FocusMode, SeriesPoint } from "@/lib/progress-types";
 
 const W = 720;
 const H = 240;
-const PAD = { l: 46, r: 18, t: 18, b: 30 };
+const PAD = { l: 46, r: 18, t: 24, b: 30 };
 const DAY = 86400000;
 
 const TONE_COLOR: Record<ChartLine["tone"], string> = {
-  memo: "var(--chart-ac)",
+  memo: "var(--chart-ac-ink)",
   listen: "var(--accent)",
 };
 const DASH: Record<ChartLine["tone"], string> = { memo: "6 4", listen: "2 3" };
 
 const md = (iso: string): string => iso.slice(5).replace("-", "/");
 const dayNum = (iso: string): number => Date.parse(`${iso}T00:00:00Z`) / DAY;
+
+type Point = { date: string; percent: number };
 
 function pointAt(series: SeriesPoint[], date: string): SeriesPoint | undefined {
   let found: SeriesPoint | undefined;
@@ -27,11 +29,12 @@ function pointAt(series: SeriesPoint[], date: string): SeriesPoint | undefined {
 }
 
 export default function ProgressChart({
-  lines, examDate, today, height = H, summary,
+  lines, examDate, today, focus = "memo", height = H, summary,
 }: {
   lines: ChartLine[];
   examDate: string;
   today: string;
+  focus?: FocusMode;
   height?: number;
   summary?: string;
 }) {
@@ -52,14 +55,18 @@ export default function ProgressChart({
     const yMax = maxPct <= 100 ? 100 : Math.ceil(maxPct / 20) * 20;
     const y = (pct: number) => PAD.t + innerH - (pct / yMax) * innerH;
 
-    const seq = (list: SeriesPoint[]) => list
+    const seq = (list: Point[]) => list
       .map((p, i) => `${i === 0 ? "M" : "L"}${x(p.date).toFixed(1)},${y(p.percent).toFixed(1)}`)
       .join(" ");
+    const area = (list: Point[]) =>
+      `M${x(list[0].date).toFixed(1)},${y(0).toFixed(1)} ` +
+      list.map((p) => `L${x(p.date).toFixed(1)},${y(p.percent).toFixed(1)}`).join(" ") +
+      ` L${x(list[list.length - 1].date).toFixed(1)},${y(0).toFixed(1)} Z`;
 
     const paths = lines.map((line) => {
       const actual = line.series.filter((p) => p.actual);
       const tail = line.series.filter((p) => !p.actual);
-      const forecast = [...actual.slice(-1), ...tail];
+      const forecast = actual.length ? [actual[actual.length - 1], ...tail] : tail;
       const bandPts = tail.filter((p) => p.low_pct !== undefined && p.high_pct !== undefined);
       const band = bandPts.length > 1
         ? bandPts.map((p, i) =>
@@ -68,6 +75,10 @@ export default function ProgressChart({
             .map((p) => `L${x(p.date).toFixed(1)},${y(p.low_pct!).toFixed(1)}`).join(" ")
           + " Z"
         : "";
+      const bandLow = bandPts.length > 1
+        ? seq(bandPts.map((p) => ({ date: p.date, percent: p.low_pct! }))) : "";
+      const bandHigh = bandPts.length > 1
+        ? seq(bandPts.map((p) => ({ date: p.date, percent: p.high_pct! }))) : "";
       const todayPct = line.series.find((p) => p.date === today)?.percent;
       const ideal = todayPct !== undefined && x(examDate) > x(today)
         ? `M${x(today).toFixed(1)},${y(todayPct).toFixed(1)} `
@@ -81,9 +92,14 @@ export default function ProgressChart({
         series: line.series,
         actual: actual.length > 1 ? seq(actual) : "",
         forecast: tail.length ? seq(forecast) : "",
+        actualArea: actual.length > 1 ? area(actual) : "",
+        forecastArea: forecast.length > 1 ? area(forecast) : "",
         band,
+        bandLow,
+        bandHigh,
         ideal,
         todayPct,
+        finishPoint: tail.length ? tail[tail.length - 1] : undefined,
       };
     });
 
@@ -118,6 +134,8 @@ export default function ProgressChart({
   if (!geo) return null;
   const { paths, yMax, y, x, marks, dates, nearest, inRange } = geo;
   const ticks = yMax <= 100 ? [0, 50, 100] : [0, Math.round(yMax / 2), yMax];
+  const focusLine = focus === "both" ? null : paths.find((p) => p.tone === focus);
+  const otherLine = focus === "both" ? null : paths.find((p) => p.tone !== focus);
   const activeRows = active
     ? paths.map((p) => ({ ...p, point: pointAt(p.series, active) }))
     : [];
@@ -150,6 +168,26 @@ export default function ProgressChart({
           else if (e.key === "ArrowRight") { e.preventDefault(); move(1); }
           else if (e.key === "Escape") setActive(null);
         }}>
+        <defs>
+          <linearGradient id="pc-fill-memo" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" style={{ stopColor: "var(--chart-ac)", stopOpacity: 0.18 }} />
+            <stop offset="100%" style={{ stopColor: "var(--chart-ac)", stopOpacity: 0.02 }} />
+          </linearGradient>
+          <linearGradient id="pc-fill-listen" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" style={{ stopColor: "var(--accent)", stopOpacity: 0.18 }} />
+            <stop offset="100%" style={{ stopColor: "var(--accent)", stopOpacity: 0.02 }} />
+          </linearGradient>
+          <pattern id="pc-hatch" width="10" height="10"
+            patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <line x1="0" y1="0" x2="0" y2="10" strokeWidth="1"
+              style={{ stroke: "var(--chart-fc-bright)" }} className="pc-hatch-line" />
+          </pattern>
+          <clipPath id="pc-clip">
+            <rect x={PAD.l} y={PAD.t} width={W - PAD.l - PAD.r}
+              height={height - PAD.t - PAD.b} />
+          </clipPath>
+        </defs>
+
         {ticks.map((t) => (
           <g key={t}>
             <line x1={PAD.l} x2={W - PAD.r} y1={y(t)} y2={y(t)}
@@ -158,6 +196,21 @@ export default function ProgressChart({
           </g>
         ))}
 
+        {focusLine && (
+          <g clipPath="url(#pc-clip)">
+            {focusLine.actualArea && (
+              <path d={focusLine.actualArea} fill={`url(#pc-fill-${focusLine.tone})`} />
+            )}
+            {focusLine.forecastArea && (
+              <>
+                <path d={focusLine.forecastArea} fill="var(--chart-fc-bright)"
+                  style={{ opacity: "var(--pc-tint-opacity)" }} />
+                <path d={focusLine.forecastArea} fill="url(#pc-hatch)" />
+              </>
+            )}
+          </g>
+        )}
+
         <line x1={PAD.l} x2={W - PAD.r} y1={y(100)} y2={y(100)}
           stroke="var(--chart-goal)" strokeWidth="1" strokeDasharray="5 5" opacity=".7" />
 
@@ -165,26 +218,90 @@ export default function ProgressChart({
           <line x1={x(examDate)} x2={x(examDate)} y1={PAD.t} y2={height - PAD.b}
             stroke="var(--chart-goal)" strokeWidth="1" strokeDasharray="3 4" opacity=".7" />
         )}
+        {inRange(today) && (
+          <line x1={x(today)} x2={x(today)} y1={PAD.t} y2={height - PAD.b}
+            stroke="var(--muted)" strokeWidth="1" strokeDasharray="3 4" opacity=".45" />
+        )}
+        {inRange(today) && (
+          <g transform={`translate(${x(today)},${PAD.t - 10})`}>
+            <rect x={-19} y={-9} width={38} height={18} rx={9} className="pc-pill" />
+            <text x={0} y={3.5} textAnchor="middle" className="pc-pill-text">今天</text>
+          </g>
+        )}
+        {inRange(examDate) && Math.abs(x(examDate) - x(today)) > 50 && (
+          <g transform={`translate(${x(examDate) - 21},${PAD.t - 10})`}>
+            <rect x={-19} y={-9} width={38} height={18} rx={9} className="pc-pill" />
+            <text x={0} y={3.5} textAnchor="middle" className="pc-pill-text">初试</text>
+          </g>
+        )}
 
-        {paths.map((p) => p.band && (
+        {focusLine?.bandLow && (
+          <path d={focusLine.bandLow} fill="none" stroke="var(--chart-fc)"
+            strokeWidth="1" strokeDasharray="2 5" opacity=".28" />
+        )}
+        {focusLine?.bandHigh && (
+          <path d={focusLine.bandHigh} fill="none" stroke="var(--chart-fc)"
+            strokeWidth="1" strokeDasharray="2 5" opacity=".28" />
+        )}
+        {focusLine?.ideal && (
+          <path d={focusLine.ideal} fill="none" stroke="var(--muted)"
+            strokeWidth="1" strokeDasharray="2 6" opacity=".45" />
+        )}
+
+        {focus === "both" && paths.map((p) => p.band && (
           <path key={`b-${p.key}`} d={p.band} fill={p.color} opacity=".12" />
         ))}
-        {paths.map((p) => p.ideal && (
+        {focus === "both" && paths.map((p) => p.ideal && (
           <path key={`i-${p.key}`} d={p.ideal} fill="none" stroke={p.color}
             strokeWidth="1" strokeDasharray="2 5" opacity=".45" />
         ))}
-        {paths.map((p) => p.forecast && (
-          <path key={`f-${p.key}`} d={p.forecast} fill="none" stroke={p.color}
-            strokeWidth="2.2" strokeLinecap="round" strokeDasharray={DASH[p.tone]} opacity=".85" />
-        ))}
-        {paths.map((p) => p.actual && (
-          <path key={`a-${p.key}`} d={p.actual} fill="none" stroke={p.color}
-            strokeWidth="2.8" strokeLinecap="round" />
-        ))}
-        {paths.map((p) => p.todayPct !== undefined && (
-          <circle key={`t-${p.key}`} cx={x(today)} cy={y(p.todayPct)} r="4.5"
-            fill={p.color} stroke="var(--card-strong)" strokeWidth={p.tone === "memo" ? 2 : 3} />
-        ))}
+
+        {otherLine?.actual && (
+          <path d={otherLine.actual} fill="none" stroke={otherLine.color}
+            strokeWidth="2" strokeLinecap="round" opacity=".22" />
+        )}
+
+        {paths.map((p) => {
+          if (focus !== "both" && p.key !== focusLine?.key) return null;
+          return p.forecast && (
+            <path key={`f-${p.key}`} d={p.forecast} fill="none"
+              stroke={focus === "both" ? p.color : "var(--chart-fc)"}
+              strokeWidth="2.2" strokeLinecap="round"
+              strokeDasharray={DASH[p.tone]} opacity=".85" />
+          );
+        })}
+        {paths.map((p) => {
+          if (focus !== "both" && p.key !== focusLine?.key) return null;
+          return p.actual && (
+            <path key={`a-${p.key}`} d={p.actual} fill="none" stroke={p.color}
+              strokeWidth="2.8" strokeLinecap="round" />
+          );
+        })}
+        {paths.map((p) => {
+          if (focus !== "both" && p.key !== focusLine?.key) return null;
+          return p.todayPct !== undefined && (
+            <circle key={`t-${p.key}`} cx={x(today)} cy={y(p.todayPct)} r="4.5"
+              fill={p.color} stroke="var(--card-strong)"
+              strokeWidth={p.tone === "memo" ? 2 : 3} />
+          );
+        })}
+        {focusLine?.finishPoint && (
+          <>
+            <circle cx={x(focusLine.finishPoint.date)} cy={y(focusLine.finishPoint.percent)}
+              r="3.5" fill="var(--chart-fc-bright)" stroke="var(--card-strong)" strokeWidth="2" />
+            {Math.abs(x(focusLine.finishPoint.date) - x(examDate)) > 100
+              && Math.abs(x(focusLine.finishPoint.date) - x(today)) > 80 && (
+              <>
+                <rect x={x(focusLine.finishPoint.date) - 82} y={y(100) - 21}
+                  width={76} height={17} rx={8.5} className="pc-finish-pill" />
+                <text x={x(focusLine.finishPoint.date) - 44} y={y(100) - 9}
+                  textAnchor="middle" className="pc-finish-text">
+                  预计 {md(focusLine.finishPoint.date)}
+                </text>
+              </>
+            )}
+          </>
+        )}
 
         {marks.map((m) => (
           <text key={m.date} x={x(m.date)} y={height - 8} textAnchor={m.anchor}

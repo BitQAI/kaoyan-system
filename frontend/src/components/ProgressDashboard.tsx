@@ -5,13 +5,14 @@ import ProgressChart from "./ProgressChart";
 import DimSummary from "./DimSummary";
 import SubjectRow from "./SubjectRow";
 import { demoData } from "@/lib/progress-demo";
-import type { ChartLine, Timeline } from "@/lib/progress-types";
+import type { ChartLine, FocusMode, Timeline } from "@/lib/progress-types";
 import { TREND_LABEL } from "@/lib/progress-labels";
 
 export default function ProgressDashboard() {
   const [data, setData] = useState<Timeline | null>(null);
   const [scope, setScope] = useState<string>("all");
   const [demo, setDemo] = useState(false);
+  const [focus, setFocus] = useState<FocusMode>("memo");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -31,7 +32,8 @@ export default function ProgressDashboard() {
   ] : [];
   const summary = memo && listen
     ? `记完成 ${memo.percent.toFixed(1)}%，${memo.status_text}；`
-      + `听完成 ${listen.percent.toFixed(1)}%，${listen.status_text}`
+      + `听完成 ${listen.percent.toFixed(1)}%，${listen.status_text}；`
+      + `当前填充${focus === "both" ? "双线" : focus === "memo" ? "记" : "听"}`
     : undefined;
   const stalled = view
     ? (["memo", "listen"] as const).filter((k) => view.dimensions[k].status === "stalled")
@@ -61,16 +63,45 @@ export default function ProgressDashboard() {
           </div>
 
           <div className="chart-card">
-            <ProgressChart lines={lines} examDate={view.exam_date}
-              today={view.today} summary={summary} />
-            <div className="chart-legend">
-              <span><i className="lg-solid memo" />记</span>
-              <span><i className="lg-solid listen" />听</span>
-              <span><i className="lg-dash" />预测</span>
-              <span><i className="lg-band" />80% 预测区间</span>
-              <span><i className="lg-ideal" />所需速度</span>
-              <span><i className="lg-goal" />初试</span>
+            <div className="chart-focus">
+              <span className="chart-focus-label">填充</span>
+              {(["memo", "listen", "both"] as const).map((k) => (
+                <button key={k} type="button"
+                  className={`${focus === k ? "on" : ""} ${k}`}
+                  aria-pressed={focus === k}
+                  onClick={() => setFocus(k)}>
+                  {k === "memo" ? "记" : k === "listen" ? "听" : "双线"}
+                </button>
+              ))}
             </div>
+            <ProgressChart lines={lines} examDate={view.exam_date}
+              today={view.today} focus={focus} summary={summary} />
+            <div className="chart-legend">
+              {focus === "both" ? (
+                <>
+                  <span><i className="lg-solid memo" />记</span>
+                  <span><i className="lg-solid listen" />听</span>
+                  <span><i className="lg-dash" />预测</span>
+                  <span><i className="lg-band" />80% 预测区间</span>
+                  <span><i className="lg-ideal" />所需速度</span>
+                  <span><i className="lg-goal" />初试</span>
+                </>
+              ) : (
+                <>
+                  <span><i className={`lg-solid ${focus}`} />{focus === "memo" ? "记" : "听"} · 实际</span>
+                  <span><i className={`lg-fill ${focus}`} />实际填充</span>
+                  <span><i className="lg-hatch" />预测斜线</span>
+                  <span><i className="lg-band" />80% 区间</span>
+                  <span><i className="lg-ideal" />所需速度</span>
+                  <span><i className="lg-goal" />初试 / 100%</span>
+                </>
+              )}
+            </div>
+            <p className="chart-focus-note">
+              {focus === "both"
+                ? "双线模式：关闭填充，对比记与听。"
+                : `当前填充：${focus === "memo" ? "记" : "听"}；另一条线保留为细线。切到双线可对比。`}
+            </p>
             <div className="chart-foot">
               <span>
                 近期日均：记 {memo.pace}（{TREND_LABEL[memo.pace_trend ?? "flat"]}）
