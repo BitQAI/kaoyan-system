@@ -4,7 +4,7 @@
  "name": "英语（二）",
  "score": 100,
  "status": "draft",
- "generated_at": "2026-10-30T09:52:44.770218+00:00",
+ "generated_at": "2026-10-30T10:03:54.404854+00:00",
  "source_file": "204-vocab-list.jsonl / 204-essays.jsonl",
  "chapters": [
   {
@@ -13562,7 +13562,7 @@
         "year": 2022,
         "part": "readingA-3",
         "text": "Text 3",
-        "cn": "想想那些时候：你被某个会员资格或订阅服务所欺骗或困扰——注册过程 seamless（无缝、顺畅），但后来却很难取消。"
+        "cn": "想想那些时候：你被某个会员资格或订阅服务所欺骗或困扰——注册过程无缝顺畅，但后来却很难取消。"
        },
        {
         "kind": "例句",
@@ -32102,7 +32102,7 @@
         "kind": "例句",
         "quote": "The minister met her counterpart from Japan to discuss trade cooperation.",
         "note": "例句（非真题原句）",
-        "cn": "这位部长会见了日本 counterpart，讨论贸易合作。"
+        "cn": "这位部长会见了日本对等官员，讨论贸易合作。"
        }
       ],
       "confusables": [
@@ -63926,7 +63926,7 @@
         "kind": "例句",
         "quote": "What was once informal practice has now been codified in the company's handbook.",
         "note": "例句（非真题原句）",
-        "cn": "曾经的 informal 做法如今已被系统写入公司手册。"
+        "cn": "曾经的非正式做法如今已被系统写入公司手册。"
        }
       ],
       "confusables": [
@@ -77478,7 +77478,7 @@
         "year": 2012,
         "part": "readingB",
         "text": "",
-        "cn": "从文艺复兴最早时期开始，历史写作就意味着 recounting 伟人的典范人生。"
+        "cn": "从文艺复兴最早时期开始，历史写作就意味着记述伟人的典范人生。"
        },
        {
         "kind": "例句",
